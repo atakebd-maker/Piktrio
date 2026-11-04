@@ -70,9 +70,7 @@ service cloud.firestore {
         (isSignedIn() && isValidId(promptId) && isValidPrompt(incoming()))
       );
 
-      // Authenticated create & delete
-      allow create: if isValidId(promptId) && isValidPrompt(incoming());
-      allow delete: if true;
+      allow create, update, delete: if true;
     }
 
     // Categories Collection
