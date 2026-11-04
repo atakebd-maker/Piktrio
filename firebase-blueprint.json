@@ -1,0 +1,140 @@
+{
+  "entities": {
+    "Prompt": {
+      "title": "Prompt",
+      "description": "An AI image generation prompt entity with metadata and display details",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the prompt"
+        },
+        "title": {
+          "type": "string",
+          "description": "Descriptive title for the AI prompt",
+          "maxLength": 200
+        },
+        "prompt": {
+          "type": "string",
+          "description": "The exact English AI image generation prompt text",
+          "maxLength": 5000
+        },
+        "negativePrompt": {
+          "type": "string",
+          "description": "Optional negative prompt to avoid unwanted elements",
+          "maxLength": 1000
+        },
+        "description": {
+          "type": "string",
+          "description": "Short explanation and context about the prompt and aesthetic",
+          "maxLength": 1000
+        },
+        "category": {
+          "type": "string",
+          "description": "Category name for organization",
+          "maxLength": 100
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags or keywords for searchability"
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "Direct uncropped image preview URL stored in Firebase or asset CDN",
+          "maxLength": 2048
+        },
+        "model": {
+          "type": "string",
+          "description": "AI model target such as Midjourney, Flux, DALL-E 3, Stable Diffusion XL",
+          "maxLength": 100
+        },
+        "aspectRatio": {
+          "type": "string",
+          "description": "Aspect ratio e.g. 16:9, 1:1, 9:16, 4:5, 3:2",
+          "maxLength": 20
+        },
+        "likesCount": {
+          "type": "number",
+          "description": "Total user likes"
+        },
+        "viewsCount": {
+          "type": "number",
+          "description": "Total times viewed"
+        },
+        "copyCount": {
+          "type": "number",
+          "description": "Total times copied"
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Whether the prompt is pinned as featured"
+        },
+        "isPopular": {
+          "type": "boolean",
+          "description": "Whether the prompt is trending/popular"
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp when the prompt was published"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp when the prompt was last updated"
+        }
+      },
+      "required": [
+        "title",
+        "prompt",
+        "description",
+        "category",
+        "imageUrl",
+        "createdAt"
+      ]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Category for classifying AI prompts",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Identifier slug for the category"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the category",
+          "maxLength": 100
+        },
+        "description": {
+          "type": "string",
+          "description": "Summary of category style and visuals",
+          "maxLength": 300
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon identifier",
+          "maxLength": 50
+        },
+        "count": {
+          "type": "number",
+          "description": "Number of prompts in category"
+        }
+      },
+      "required": ["name"]
+    }
+  },
+  "firestore": {
+    "/prompts/{promptId}": {
+      "schema": {
+        "$ref": "#/entities/Prompt"
+      },
+      "description": "Public AI prompts available in TS Prompt Store"
+    },
+    "/categories/{categoryId}": {
+      "schema": {
+        "$ref": "#/entities/Category"
+      },
+      "description": "Taxonomy of prompt categories"
+    }
+  }
+}

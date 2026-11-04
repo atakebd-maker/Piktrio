@@ -1,0 +1,6 @@
+{
+  "name": "TS Prompt Store",
+  "description": "Modern AI Prompt Store featuring high quality uncropped prompts for Midjourney, Flux, Stable Diffusion, DALL-E and more with live search and category browsing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
