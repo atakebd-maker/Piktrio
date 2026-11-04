@@ -3,6 +3,7 @@ import {
   doc,
   getDocs,
   setDoc,
+  deleteDoc,
   updateDoc,
   increment,
   onSnapshot,
@@ -18,17 +19,24 @@ const PROMPTS_COLLECTION = 'prompts';
 const CATEGORIES_COLLECTION = 'categories';
 
 /**
- * Ensures categories are available in Firestore
+ * Ensures strictly the 5 requested categories are available in Firestore
  */
 export async function seedCategoriesIfEmpty(): Promise<void> {
   try {
     const categoriesRef = collection(db, CATEGORIES_COLLECTION);
     const existingCategories = await getDocs(categoriesRef);
 
-    if (existingCategories.empty) {
-      for (const cat of PROMPTPIN_CATEGORIES) {
-        await setDoc(doc(db, CATEGORIES_COLLECTION, cat.id), cat);
+    // Delete any old categories like templates, anime, cinematic, etc.
+    const validIds = new Set(PROMPTPIN_CATEGORIES.map((c) => c.id));
+    for (const d of existingCategories.docs) {
+      if (!validIds.has(d.id)) {
+        await deleteDoc(d.ref);
       }
+    }
+
+    // Ensure the 5 active categories exist
+    for (const cat of PROMPTPIN_CATEGORIES) {
+      await setDoc(doc(db, CATEGORIES_COLLECTION, cat.id), cat);
     }
   } catch (err) {
     console.warn('Categories init notice:', err);

@@ -13,9 +13,12 @@ export const CategoryBar: React.FC<CategoryBarProps> = ({
   onSelectCategory,
 }) => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-      {/* Horizontally scrollable container matching screenshots */}
-      <div className="flex items-center gap-2 overflow-x-auto py-1 no-scrollbar scroll-smooth">
+    <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-3 pb-1">
+      {/* 
+        Single-line enclosed category pill bar matching PromptPin screenshot:
+        Fits All, Trending, Boys, Girls, Couple cleanly on one line 
+      */}
+      <div className="bg-gray-100/90 p-1 sm:p-1.5 rounded-2xl border border-gray-200 flex items-center justify-between gap-1 sm:gap-2 overflow-x-auto no-scrollbar">
         {categories.map((cat) => {
           const isSelected = selectedCategory.toLowerCase() === cat.name.toLowerCase();
 
@@ -23,10 +26,10 @@ export const CategoryBar: React.FC<CategoryBarProps> = ({
             <button
               key={cat.id || cat.name}
               onClick={() => onSelectCategory(cat.name)}
-              className={`px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all whitespace-nowrap cursor-pointer ${
+              className={`flex-1 text-center py-2 px-2 sm:px-5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap ${
                 isSelected
-                  ? 'bg-blue-600 text-white shadow-xs font-semibold'
-                  : 'bg-white text-gray-700 hover:text-blue-600 border border-gray-200 hover:border-blue-300 hover:bg-blue-50/50'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'text-gray-700 hover:text-blue-600 hover:bg-white/80'
               }`}
             >
               {cat.name}

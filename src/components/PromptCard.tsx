@@ -87,19 +87,12 @@ export const PromptCard: React.FC<PromptCardProps> = ({
           }`}
         />
 
-        {/* BADGES matching reference screenshots: 📌 Pinned / 📌 Template */}
+        {/* BADGE: 📌 Pinned */}
         <div className="absolute top-2.5 left-2.5 flex flex-col gap-1.5 z-10 pointer-events-none">
           {prompt.isPinned && (
             <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-900/85 text-white backdrop-blur-md border border-gray-700/60 shadow-xs">
               <span>📌</span>
               <span>Pinned</span>
-            </span>
-          )}
-
-          {prompt.isTemplate && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-900/85 text-white backdrop-blur-md border border-gray-700/60 shadow-xs">
-              <span>📌</span>
-              <span>Template</span>
             </span>
           )}
         </div>

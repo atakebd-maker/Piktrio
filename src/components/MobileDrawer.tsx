@@ -9,15 +9,10 @@ interface MobileDrawerProps {
 }
 
 const COLLECTIONS_LIST = [
-  'Diwali AI Photo Prompts',
-  'Trending AI Photo Prompts',
-  'Couple AI Photo Prompts',
-  'AI Photo Prompts for Girls',
-  'AI Photo Prompts for Boys',
-  'Raksha Bandhan AI Photo Prompts',
-  '1980s AI Photo Prompts',
-  'Car AI Photo Prompts for Boys',
-  'Birthday AI Photo Prompts',
+  { label: 'Trending AI Photo Prompts', cat: 'Trending' },
+  { label: 'Couple AI Photo Prompts', cat: 'Couple' },
+  { label: 'AI Photo Prompts for Girls', cat: 'Girls' },
+  { label: 'AI Photo Prompts for Boys', cat: 'Boys' },
 ];
 
 export const MobileDrawer: React.FC<MobileDrawerProps> = ({
@@ -54,6 +49,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
 
           <button
             onClick={onClose}
+            aria-label="Close menu"
             className="p-2 rounded-xl text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-colors cursor-pointer"
           >
             <X className="w-6 h-6" />
@@ -73,19 +69,6 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
               className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer"
             >
               Home
-            </button>
-          </div>
-
-          {/* Templates */}
-          <div>
-            <button
-              onClick={() => {
-                onSelectCategory('Templates');
-                onClose();
-              }}
-              className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer"
-            >
-              Templates
             </button>
           </div>
 
@@ -135,32 +118,18 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
               <div className="pl-3 pr-2 py-2 space-y-1 text-xs font-medium text-gray-600 bg-gray-50/70 rounded-xl my-2">
                 {COLLECTIONS_LIST.map((col) => (
                   <button
-                    key={col}
+                    key={col.label}
                     onClick={() => {
-                      onSelectCategory(col.includes('Girls') ? 'Girls' : col.includes('Boys') ? 'Boys' : col.includes('Couple') ? 'Couple' : 'All');
+                      onSelectCategory(col.cat);
                       onClose();
                     }}
                     className="w-full text-left py-1.5 px-3 rounded-lg hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer block"
                   >
-                    {col}
+                    {col.label}
                   </button>
                 ))}
               </div>
             )}
-          </div>
-
-          {/* App */}
-          <div className="border-t border-gray-100 pt-3">
-            <button
-              onClick={() => {
-                alert('Piktrio Web App is enabled. Add to home screen via your browser menu!');
-                onClose();
-              }}
-              className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer flex items-center justify-between"
-            >
-              <span>App</span>
-              <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">Free</span>
-            </button>
           </div>
 
           {/* About Us with Expandable Dropdown */}
@@ -178,7 +147,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             {aboutOpen && (
               <div className="pl-3 pr-2 py-2 space-y-1.5 text-sm font-medium text-gray-600 bg-gray-50/70 rounded-xl my-2">
                 <p className="px-3 py-1.5 text-xs text-gray-500 leading-relaxed">
-                  Piktrio curates the finest AI photo editing prompts for ChatGPT, Gemini, Flux, and Midjourney with 100% uncropped full visual reference.
+                  Piktrio curates the finest AI photo editing prompts for ChatGPT and Gemini with 100% uncropped full visual reference.
                 </p>
                 <div className="border-t border-gray-200/60 pt-1">
                   <a href="#privacy" onClick={onClose} className="block px-3 py-1 text-xs text-blue-600 hover:underline">

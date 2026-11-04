@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { MobileDrawer } from './components/MobileDrawer';
 import { HeroSearch } from './components/HeroSearch';
 import { CategoryBar } from './components/CategoryBar';
+import { FeaturedSlider } from './components/FeaturedSlider';
 import { PromptCard } from './components/PromptCard';
 import { PromptDetailPage } from './components/PromptDetailPage';
 import { LightboxModal } from './components/LightboxModal';
@@ -77,7 +78,13 @@ export default function App() {
     );
 
     const unsubCategories = subscribeToCategories((cats) => {
-      if (cats.length > 0) setCategories(cats);
+      const allowed = ['all', 'trending', 'boys', 'girls', 'couple'];
+      const filtered = cats.filter((c) => allowed.includes(c.id.toLowerCase()));
+      if (filtered.length > 0) {
+        setCategories(filtered);
+      } else {
+        setCategories(PROMPTPIN_CATEGORIES);
+      }
     });
 
     const handleHashChange = () => {
@@ -225,7 +232,7 @@ export default function App() {
               onSearchChange={setSearchQuery}
             />
 
-            {/* 3. Horizontal Category Navigation (Matching Screenshots 5 & 6) */}
+            {/* 3. Horizontal Category Navigation (Single Line) */}
             <CategoryBar
               categories={categories}
               selectedCategory={selectedCategory}
@@ -235,7 +242,16 @@ export default function App() {
               }}
             />
 
-            {/* 4. Two-Column Image Gallery on Mobile / Multi-column on Desktop */}
+            {/* 4. Long Horizontal Featured Banner Slider below categories */}
+            <FeaturedSlider
+              onSelectCategory={(name) => {
+                setSelectedCategory(name);
+                setSearchQuery('');
+                window.scrollTo({ top: 340, behavior: 'smooth' });
+              }}
+            />
+
+            {/* 5. Two-Column Image Gallery on Mobile / Multi-column on Desktop */}
             <section className="mt-4 mb-8">
               {isLoading ? (
                 <div className="py-20 flex flex-col items-center justify-center space-y-3">

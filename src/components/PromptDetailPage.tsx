@@ -36,7 +36,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
   const [shareToast, setShareToast] = useState(false);
 
   useEffect(() => {
-    document.title = `${prompt.title} - TS Prompt Store`;
+    document.title = `${prompt.title} - Piktrio`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [prompt]);
 
