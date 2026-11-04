@@ -34,7 +34,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
     <footer className="bg-white border-t border-gray-200 mt-16 pt-12 pb-10 text-center">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
-        {/* SECTION 1: MENU (matching Screenshots 2, 3, 4) */}
+        {/* SECTION 1: MENU */}
         <div className="mb-10">
           <h4 className="text-xs font-bold text-gray-400 tracking-widest uppercase mb-4">
             MENU
@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
                     onSelectCategory('All');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   } else {
-                    alert(`${item.name} of TS Prompt Store.`);
+                    alert(`${item.name} of Piktrio.`);
                   }
                 }}
                 className="px-4 py-2 rounded-full text-xs font-medium bg-blue-50/70 hover:bg-blue-100 text-blue-900 border border-blue-100 transition-colors cursor-pointer"
@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
           </div>
         </div>
 
-        {/* SECTION 2: COLLECTIONS (matching Screenshots 2, 3, 4) */}
+        {/* SECTION 2: COLLECTIONS */}
         <div className="mb-10">
           <h4 className="text-xs font-bold text-gray-400 tracking-widest uppercase mb-4">
             COLLECTIONS
@@ -80,10 +80,10 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
           </div>
         </div>
 
-        {/* SECTION 3: FOLLOW TS PROMPT STORE (matching Screenshots 2, 3, 4) */}
+        {/* SECTION 3: FOLLOW PIKTRIO */}
         <div className="mb-10">
           <h4 className="text-xs font-bold text-gray-400 tracking-widest uppercase mb-4">
-            FOLLOW TS PROMPT STORE
+            FOLLOW PIKTRIO
           </h4>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {/* Instagram */}
@@ -125,7 +125,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
 
             {/* Get the App */}
             <button
-              onClick={() => alert('TS Prompt Store Progressive Web App is available! Add to home screen in your browser options.')}
+              onClick={() => alert('Piktrio Web App is available! Add to home screen in your browser options.')}
               className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200 transition-colors cursor-pointer"
             >
               <Smartphone className="w-3.5 h-3.5" />
@@ -134,10 +134,10 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
           </div>
         </div>
 
-        {/* SECTION 4: COPYRIGHT & DMCA (matching Screenshots 2, 3, 4) */}
+        {/* SECTION 4: COPYRIGHT & DMCA */}
         <div className="pt-6 border-t border-gray-100 flex flex-col items-center gap-3 text-xs text-gray-400">
           <p className="max-w-xl text-center leading-relaxed">
-            &copy; {new Date().getFullYear()} TS Prompt Store. All rights reserved. All content on this site, including AI prompts, images, and articles, is protected by copyright law. Unauthorised reproduction or distribution is prohibited. &mdash;{' '}
+            &copy; {new Date().getFullYear()} Piktrio. All rights reserved. All content on this site, including AI prompts, images, and articles, is protected by copyright law. Unauthorised reproduction or distribution is prohibited. &mdash;{' '}
             <span className="text-gray-600 hover:text-blue-600 cursor-pointer">Terms</span> |{' '}
             <span className="text-gray-600 hover:text-blue-600 cursor-pointer">Privacy</span>
           </p>

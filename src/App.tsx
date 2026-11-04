@@ -18,7 +18,7 @@ import {
   seedCategoriesIfEmpty,
 } from './services/promptService';
 import { testConnection } from './services/firebase';
-import { CheckCircle2, SearchX } from 'lucide-react';
+import { CheckCircle2, SearchX, Sparkles } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 8; // Optimal for 2-column mobile and 4-column desktop layout
 
@@ -163,7 +163,7 @@ export default function App() {
     if (window.location.hash.startsWith('#prompt/')) {
       history.pushState('', document.title, window.location.pathname + window.location.search);
     }
-    document.title = 'TS Prompt Store – AI Photo Editing Prompts for ChatGPT & Gemini';
+    document.title = 'Piktrio – AI Photo Editing Prompts for ChatGPT & Gemini';
     window.scrollTo({ top: 240, behavior: 'smooth' });
   };
 
@@ -263,8 +263,22 @@ export default function App() {
                     onPageChange={handlePageChange}
                   />
                 </>
+              ) : prompts.length === 0 ? (
+                /* Store empty state - Ready for user's fresh uploads */
+                <div className="py-20 text-center max-w-md mx-auto px-4">
+                  <div className="w-16 h-16 rounded-3xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4 shadow-xs">
+                    <Sparkles className="w-8 h-8" />
+                  </div>
+                  <h3 className="font-bold text-gray-900 text-lg mb-2">Ready for New Prompts</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-4">
+                    All previous prompts have been cleared. Send your images, titles, and prompts in chat anytime, and they will be published directly to Piktrio!
+                  </p>
+                  <span className="inline-block px-3.5 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full border border-blue-200/60">
+                    0 Prompts • Ready to Upload
+                  </span>
+                </div>
               ) : (
-                /* Empty state */
+                /* Filter / search empty state */
                 <div className="py-16 text-center max-w-sm mx-auto">
                   <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-3">
                     <SearchX className="w-6 h-6" />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ChevronDown, ChevronUp, Sparkles, ExternalLink } from 'lucide-react';
+import { X, ChevronDown, ChevronUp } from 'lucide-react';
 import { PROMPTPIN_CATEGORIES } from '../data/initialPrompts';
 
 interface MobileDrawerProps {
@@ -39,16 +39,16 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         onClick={onClose}
       />
 
-      {/* Drawer Panel (Clean White & Blue theme matching Screenshot 1 layout) */}
+      {/* Drawer Panel */}
       <div className="absolute inset-y-0 right-0 max-w-full w-full sm:w-96 bg-white shadow-2xl flex flex-col z-10">
         
-        {/* Drawer Header */}
+        {/* Drawer Header with Larger Logo */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
           <div className="flex items-center">
             <img
               src="/assets/aistudio/1000050243-removebg-preview_62525162.png"
-              alt="Piktrio - TS Prompt Store"
-              className="h-8 w-auto max-w-[180px] object-contain"
+              alt="Piktrio"
+              className="h-12 sm:h-14 w-auto max-w-[250px] object-contain"
             />
           </div>
 
@@ -153,7 +153,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           <div className="border-t border-gray-100 pt-3">
             <button
               onClick={() => {
-                alert('TS Prompt Store Progressive Web App is enabled. Add to home screen via your browser menu!');
+                alert('Piktrio Web App is enabled. Add to home screen via your browser menu!');
                 onClose();
               }}
               className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer flex items-center justify-between"
@@ -178,7 +178,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             {aboutOpen && (
               <div className="pl-3 pr-2 py-2 space-y-1.5 text-sm font-medium text-gray-600 bg-gray-50/70 rounded-xl my-2">
                 <p className="px-3 py-1.5 text-xs text-gray-500 leading-relaxed">
-                  TS Prompt Store curates the finest AI photo editing prompts for ChatGPT, Gemini, Flux, and Midjourney with 100% uncropped full visual reference.
+                  Piktrio curates the finest AI photo editing prompts for ChatGPT, Gemini, Flux, and Midjourney with 100% uncropped full visual reference.
                 </p>
                 <div className="border-t border-gray-200/60 pt-1">
                   <a href="#privacy" onClick={onClose} className="block px-3 py-1 text-xs text-blue-600 hover:underline">
@@ -195,7 +195,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           {/* Contact Us */}
           <div className="border-t border-gray-100 pt-3">
             <a
-              href="mailto:support@tspromptstore.com"
+              href="mailto:support@piktrio.com"
               onClick={onClose}
               className="block w-full text-left py-2 hover:text-blue-600 transition-colors"
             >
@@ -208,7 +208,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         {/* Drawer Footer */}
         <div className="p-6 border-t border-gray-100 bg-gray-50">
           <p className="text-xs text-gray-500 text-center">
-            &copy; 2026 TS Prompt Store. All rights reserved.
+            &copy; {new Date().getFullYear()} Piktrio. All rights reserved.
           </p>
         </div>
 
