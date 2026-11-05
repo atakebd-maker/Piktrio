@@ -14,6 +14,7 @@ import {
 import { PromptItem } from '../types/prompt';
 import { copyToClipboard } from '../utils/clipboard';
 import { PromptCard } from './PromptCard';
+import ReactMarkdown from 'react-markdown';
 
 interface PromptDetailPageProps {
   prompt: PromptItem;
@@ -164,9 +165,11 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 {prompt.title}
               </h1>
 
-              <p className="text-sm text-gray-600 leading-relaxed">
-                {prompt.description}
-              </p>
+              {prompt.description && !prompt.description.startsWith('#') && (
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {prompt.description}
+                </p>
+              )}
             </div>
 
             {/* Complete English AI Prompt in High Contrast Box */}
@@ -246,6 +249,28 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                       #{tag}
                     </span>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {/* Complete Guide / Description rendered directly below the Copy Prompt Button */}
+            {prompt.description && (
+              <div className="pt-5 border-t border-gray-100">
+                <div className="bg-blue-50/40 rounded-2xl p-5 sm:p-6 border border-blue-100/80">
+                  <ReactMarkdown
+                    components={{
+                      h1: ({ node, ...props }) => <h2 className="text-lg sm:text-xl font-extrabold text-gray-900 mt-2 mb-3 leading-snug" {...props} />,
+                      h2: ({ node, ...props }) => <h3 className="text-base sm:text-lg font-bold text-gray-900 mt-6 mb-2.5 pb-1 border-b border-blue-200/50" {...props} />,
+                      h3: ({ node, ...props }) => <h4 className="text-sm sm:text-base font-semibold text-gray-900 mt-4 mb-1.5" {...props} />,
+                      p: ({ node, ...props }) => <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3.5" {...props} />,
+                      ul: ({ node, ...props }) => <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-gray-600 mb-4" {...props} />,
+                      ol: ({ node, ...props }) => <ol className="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm text-gray-600 mb-4" {...props} />,
+                      li: ({ node, ...props }) => <li className="leading-relaxed" {...props} />,
+                      strong: ({ node, ...props }) => <strong className="font-bold text-gray-900" {...props} />,
+                    }}
+                  >
+                    {prompt.description}
+                  </ReactMarkdown>
                 </div>
               </div>
             )}
