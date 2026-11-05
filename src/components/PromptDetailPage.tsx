@@ -39,6 +39,52 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
   useEffect(() => {
     document.title = `${prompt.title} - Piktrio`;
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Dynamic SEO description for Google indexing
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', `${prompt.title}. Learn how to create this AI photo using ChatGPT & Gemini.`);
+    }
+
+    // Dynamic SEO keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement('meta');
+      metaKeywords.setAttribute('name', 'keywords');
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.setAttribute(
+      'content',
+      (prompt.tags?.join(', ') || '') +
+        ', Jailer 2 AI Photo Prompt, Boys AI Photo, ChatGPT prompt, Gemini AI Prompt, AI photo editing'
+    );
+
+    // Schema.org Structured Data for Google Rich Snippets & Indexing
+    let scriptTag = document.getElementById('jsonld-prompt-schema') as HTMLScriptElement | null;
+    if (!scriptTag) {
+      scriptTag = document.createElement('script');
+      scriptTag.id = 'jsonld-prompt-schema';
+      scriptTag.type = 'application/ld+json';
+      document.head.appendChild(scriptTag);
+    }
+    scriptTag.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'TechArticle',
+      headline: prompt.title,
+      image: window.location.origin + prompt.imageUrl,
+      description: prompt.description.slice(0, 200),
+      articleBody: prompt.prompt,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Piktrio',
+        url: window.location.origin,
+      },
+    });
+
+    return () => {
+      const el = document.getElementById('jsonld-prompt-schema');
+      if (el) el.remove();
+    };
   }, [prompt]);
 
   const relatedPrompts = allPrompts
@@ -107,9 +153,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
       <div className="bg-white rounded-3xl border border-gray-200/90 shadow-sm overflow-hidden p-5 sm:p-8 mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* LEFT: Large Original Image Preview with NO Cropping */}
+          {/* LEFT: Large Original Image Preview in Showcase Frame */}
           <div className="lg:col-span-6 flex flex-col items-center">
-            <div className="relative w-full h-[400px] sm:h-[520px] bg-gray-950 rounded-2xl flex items-center justify-center p-3 overflow-hidden shadow-inner border border-gray-800 group">
+            <div className="relative w-full h-[400px] sm:h-[540px] bg-gray-950 rounded-2xl sm:rounded-3xl flex items-center justify-center p-3 overflow-hidden shadow-inner border border-gray-800 group">
               
               {/* Subtle background grid pattern */}
               <div 

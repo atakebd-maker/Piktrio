@@ -70,20 +70,13 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory }) => {
           </div>
         </div>
 
-        {/* SECTION 3: COPYRIGHT & DMCA */}
+        {/* SECTION 3: COPYRIGHT */}
         <div className="pt-6 border-t border-gray-100 flex flex-col items-center gap-3 text-xs text-gray-400">
           <p className="max-w-xl text-center leading-relaxed">
             &copy; {new Date().getFullYear()} Piktrio. All rights reserved. All content on this site, including AI prompts and images, is protected by copyright law. Unauthorised reproduction or distribution is prohibited. &mdash;{' '}
             <span className="text-gray-600 hover:text-blue-600 cursor-pointer">Terms</span> |{' '}
             <span className="text-gray-600 hover:text-blue-600 cursor-pointer">Privacy</span>
           </p>
-
-          {/* DMCA Protected Badge */}
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-900 text-white font-mono text-[10px] tracking-wider uppercase">
-            <span className="text-emerald-400 font-bold">DMCA</span>
-            <span className="text-gray-400">|</span>
-            <span className="text-gray-200">PROTECTED</span>
-          </div>
         </div>
 
       </div>

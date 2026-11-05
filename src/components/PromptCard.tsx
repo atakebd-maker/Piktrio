@@ -58,17 +58,12 @@ export const PromptCard: React.FC<PromptCardProps> = ({
         - Use object-fit: contain.
         - Allow natural image dimensions and heights.
       */}
-      <div className="relative w-full bg-gray-950 flex items-center justify-center overflow-hidden min-h-[220px] sm:min-h-[280px]">
+      <div className="relative w-full bg-gray-50 flex items-center justify-center overflow-hidden min-h-[220px] sm:min-h-[280px]">
         
-        {/* Soft background pattern */}
-        <div 
-          className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#60a5fa_1px,transparent_1px)] [background-size:16px_16px]"
-        />
-
         {/* Loading skeleton */}
         {!imageLoaded && (
-          <div className="absolute inset-0 bg-gray-900 animate-pulse flex items-center justify-center">
-            <Sparkles className="w-5 h-5 text-gray-700 animate-spin" />
+          <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
+            <Sparkles className="w-5 h-5 text-blue-400 animate-spin" />
           </div>
         )}
 

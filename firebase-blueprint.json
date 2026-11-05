@@ -121,6 +121,21 @@
         }
       },
       "required": ["name"]
+    },
+    "Test": {
+      "title": "Test",
+      "description": "Connection test heartbeat entity",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Status string"
+        },
+        "testedAt": {
+          "type": "string",
+          "description": "Timestamp of test"
+        }
+      }
     }
   },
   "firestore": {
@@ -135,6 +150,12 @@
         "$ref": "#/entities/Category"
       },
       "description": "Taxonomy of prompt categories"
+    },
+    "/test/{testId}": {
+      "schema": {
+        "$ref": "#/entities/Test"
+      },
+      "description": "Connection test path"
     }
   }
 }

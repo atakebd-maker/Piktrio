@@ -67,9 +67,8 @@ export function subscribeToPrompts(
       onData(items);
     },
     (error) => {
-      console.error('Subscription error on prompts:', error);
+      console.warn('Subscription notice on prompts (operating with local/cache data):', error.message);
       if (onError) onError(error);
-      handleFirestoreError(error, OperationType.GET, PROMPTS_COLLECTION);
     }
   );
 }
