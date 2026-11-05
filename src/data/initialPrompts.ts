@@ -9,8 +9,8 @@ import { CategoryItem, PromptItem } from '../types/prompt';
  * - Couple
  */
 export const PROMPTPIN_CATEGORIES: CategoryItem[] = [
-  { id: 'all', name: 'All', description: 'All AI Photo editing prompts' },
   { id: 'trending', name: 'Trending', description: 'Viral and popular AI image editing prompts' },
+  { id: 'all', name: 'All', description: 'All AI Photo editing prompts' },
   { id: 'boys', name: 'Boys', description: 'AI photo editing prompts for boys and men' },
   { id: 'girls', name: 'Girls', description: 'AI photo editing prompts for girls and women' },
   { id: 'couple', name: 'Couple', description: 'Romantic and aesthetic couple AI photo prompts' },
@@ -259,7 +259,7 @@ Vertical 3:4 portrait orientation, full-body photograph. Keep the entire person 
 FINAL RESULT
 Create an incredibly realistic, premium cinematic photograph that looks like an actual professional DSLR photograph taken during a major Indian movie premiere celebration on 15 October 2026.
 The person must have a completely natural, thick, stylish modern hairstyle, regardless of whether the original reference photo shows a bald head. Preserve the person's original facial identity while transforming the hairstyle and creating a stunning cinematic movie-premiere atmosphere.`,
-    imageUrl: '/assets/aistudio/jailer2_cinema_prompt.jpg',
+    imageUrl: '/assets/aistudio/image_ad502c62.png',
     tags: [
       'Boys',
       'Jailer 2',

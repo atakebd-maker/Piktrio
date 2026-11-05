@@ -78,10 +78,12 @@ export default function App() {
     );
 
     const unsubCategories = subscribeToCategories((cats) => {
-      const allowed = ['all', 'trending', 'boys', 'girls', 'couple'];
-      const filtered = cats.filter((c) => allowed.includes(c.id.toLowerCase()));
-      if (filtered.length > 0) {
-        setCategories(filtered);
+      const order = ['trending', 'all', 'boys', 'girls', 'couple'];
+      const sorted = order
+        .map((id) => cats.find((c) => c.id.toLowerCase() === id) || PROMPTPIN_CATEGORIES.find((c) => c.id.toLowerCase() === id))
+        .filter((c): c is CategoryItem => Boolean(c));
+      if (sorted.length > 0) {
+        setCategories(sorted);
       } else {
         setCategories(PROMPTPIN_CATEGORIES);
       }
