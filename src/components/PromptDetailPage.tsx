@@ -34,7 +34,33 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
   allPrompts,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [copyCountdown, setCopyCountdown] = useState<number | null>(null);
   const [shareToast, setShareToast] = useState(false);
+
+  // 5-second countdown timer for copying
+  useEffect(() => {
+    if (copyCountdown === null) return;
+    if (copyCountdown > 0) {
+      const timer = setTimeout(() => {
+        setCopyCountdown(copyCountdown - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else if (copyCountdown === 0) {
+      copyToClipboard(prompt.prompt).then((success) => {
+        if (success) {
+          onCopyPrompt(prompt.prompt, prompt.id);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 3000);
+        }
+        setCopyCountdown(null);
+      });
+    }
+  }, [copyCountdown, prompt.prompt, prompt.id, onCopyPrompt]);
+
+  const handleStartCopyCountdown = () => {
+    if (copyCountdown !== null || copied) return;
+    setCopyCountdown(5);
+  };
 
   useEffect(() => {
     document.title = `${prompt.title} - Piktrio`;

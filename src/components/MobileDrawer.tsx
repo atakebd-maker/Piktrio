@@ -11,7 +11,6 @@ interface MobileDrawerProps {
 const COLLECTIONS_LIST = [
   { label: 'Trending AI Photo Prompts', cat: 'Trending' },
   { label: 'Couple AI Photo Prompts', cat: 'Couple' },
-  { label: 'AI Photo Prompts for Girls', cat: 'Girls' },
   { label: 'AI Photo Prompts for Boys', cat: 'Boys' },
 ];
 

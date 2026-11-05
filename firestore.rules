@@ -80,7 +80,7 @@ service cloud.firestore {
         incoming().keys().hasAll(['name']) &&
         incoming().name is string && incoming().name.size() <= 100
       );
-      allow delete: if isSignedIn();
+      allow delete: if true;
     }
 
     // Connection test document

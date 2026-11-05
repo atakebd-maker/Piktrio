@@ -78,7 +78,7 @@ export default function App() {
     );
 
     const unsubCategories = subscribeToCategories((cats) => {
-      const order = ['trending', 'all', 'boys', 'girls', 'couple'];
+      const order = ['trending', 'all', 'boys', 'couple'];
       const sorted = order
         .map((id) => cats.find((c) => c.id.toLowerCase() === id) || PROMPTPIN_CATEGORIES.find((c) => c.id.toLowerCase() === id))
         .filter((c): c is CategoryItem => Boolean(c));

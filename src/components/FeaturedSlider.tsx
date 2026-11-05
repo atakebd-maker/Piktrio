@@ -43,15 +43,6 @@ const SLIDES: SlideItem[] = [
     gradient: 'from-slate-800 via-blue-900 to-indigo-900',
     accentColor: 'bg-blue-500/30 text-white',
   },
-  {
-    id: 'girls',
-    badge: 'Girls Collection',
-    title: 'Festive Elegance & Studio Glamour',
-    subtitle: 'Dreamy ethnic lehengas, fairy lights, and ethereal soft focus.',
-    category: 'Girls',
-    gradient: 'from-blue-600 via-indigo-500 to-sky-600',
-    accentColor: 'bg-white/20 text-white',
-  },
 ];
 
 export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({ onSelectCategory }) => {
