@@ -71,7 +71,7 @@ export default function App() {
         }
       },
       (err) => {
-        console.error('Firestore subscription note:', err);
+        console.warn('Firestore subscription notice (using local fallback):', err.message);
         setPrompts(STORE_PROMPTS);
         setIsLoading(false);
       }

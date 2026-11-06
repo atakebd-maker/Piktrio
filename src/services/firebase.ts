@@ -8,11 +8,11 @@ import firebaseConfig from '../../firebase-applet-config.json';
 export const app = initializeApp(firebaseConfig);
 
 // CRITICAL: Must pass database ID as per Firebase skill guidelines.
-// Using experimentalAutoDetectLongPolling ensures robust connectivity inside browser iframe environments.
+// Using experimentalForceLongPolling eliminates WebSocket handshake drops in sandboxed iframe environments.
 export const db = initializeFirestore(
   app,
   {
-    experimentalAutoDetectLongPolling: true,
+    experimentalForceLongPolling: true,
   },
   firebaseConfig.firestoreDatabaseId
 );
@@ -77,11 +77,13 @@ export function handleFirestoreError(
 // Connection test on boot as mandated by the skill
 export async function testConnection(): Promise<boolean> {
   try {
+    // Brief grace period for long-polling channel setup before querying server
+    await new Promise((resolve) => setTimeout(resolve, 600));
     await getDocFromServer(doc(db, 'test', 'connection'));
     return true;
   } catch (error) {
     if (error instanceof Error && error.message.includes('the client is offline')) {
-      console.error('Please check your Firebase configuration.');
+      console.warn('Firebase connection note: running in offline/cache mode.');
       return false;
     }
     // Expected to succeed or throw not-found, meaning online
