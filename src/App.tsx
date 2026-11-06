@@ -53,27 +53,43 @@ export default function App() {
     testConnection();
     seedCategoriesIfEmpty();
 
+    const syncRouteFromLocation = (items: PromptItem[]) => {
+      const searchParams = new URLSearchParams(window.location.search);
+      const promptParam = searchParams.get('prompt') || searchParams.get('p');
+      const catParam = searchParams.get('category') || searchParams.get('c');
+      const hash = window.location.hash;
+
+      const targetPromptId = promptParam || (hash.startsWith('#prompt/') ? hash.replace('#prompt/', '') : null);
+
+      if (targetPromptId) {
+        const match = items.find((p) => p.id === targetPromptId) || STORE_PROMPTS.find((p) => p.id === targetPromptId);
+        if (match) {
+          setSelectedPrompt(match);
+          document.title = `${match.title} – Piktrio`;
+        }
+      } else {
+        setSelectedPrompt(null);
+        document.title = 'Piktrio – AI Photo Editing Prompts for ChatGPT & Gemini';
+      }
+
+      if (catParam) {
+        const formattedCat = catParam.charAt(0).toUpperCase() + catParam.slice(1).toLowerCase();
+        setSelectedCategory(formattedCat);
+      }
+    };
+
     const unsubPrompts = subscribeToPrompts(
       (items) => {
-        if (items.length > 0) {
-          setPrompts(items);
-        } else {
-          setPrompts(STORE_PROMPTS);
-        }
+        const activeItems = items.length > 0 ? items : STORE_PROMPTS;
+        setPrompts(activeItems);
         setIsLoading(false);
-
-        // Check if URL hash opens a specific prompt page
-        const hash = window.location.hash;
-        if (hash.startsWith('#prompt/')) {
-          const promptId = hash.replace('#prompt/', '');
-          const match = items.find((p) => p.id === promptId) || STORE_PROMPTS.find((p) => p.id === promptId);
-          if (match) setSelectedPrompt(match);
-        }
+        syncRouteFromLocation(activeItems);
       },
       (err) => {
         console.warn('Firestore subscription notice (using local fallback):', err.message);
         setPrompts(STORE_PROMPTS);
         setIsLoading(false);
+        syncRouteFromLocation(STORE_PROMPTS);
       }
     );
 
@@ -89,26 +105,21 @@ export default function App() {
       }
     });
 
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      if (hash.startsWith('#prompt/')) {
-        const promptId = hash.replace('#prompt/', '');
-        setPrompts((current) => {
-          const match = current.find((p) => p.id === promptId);
-          if (match) setSelectedPrompt(match);
-          return current;
-        });
-      } else if (!hash) {
-        setSelectedPrompt(null);
-      }
+    const handleLocationChange = () => {
+      setPrompts((current) => {
+        syncRouteFromLocation(current);
+        return current;
+      });
     };
 
-    window.addEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
 
     return () => {
       unsubPrompts();
       unsubCategories();
-      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
     };
   }, []);
 
@@ -161,7 +172,10 @@ export default function App() {
   // Open prompt on dedicated page
   const handleViewPrompt = (prompt: PromptItem) => {
     setSelectedPrompt(prompt);
-    window.location.hash = `#prompt/${prompt.id}`;
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set('prompt', prompt.id);
+    window.history.pushState({ promptId: prompt.id }, '', `?${searchParams.toString()}`);
+    document.title = `${prompt.title} – Piktrio`;
     recordPromptView(prompt.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -169,9 +183,11 @@ export default function App() {
   // Back to gallery
   const handleBackToGallery = () => {
     setSelectedPrompt(null);
-    if (window.location.hash.startsWith('#prompt/')) {
-      history.pushState('', document.title, window.location.pathname + window.location.search);
-    }
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.delete('prompt');
+    const newSearch = searchParams.toString();
+    const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '');
+    window.history.pushState({}, '', newUrl);
     document.title = 'Piktrio – AI Photo Editing Prompts for ChatGPT & Gemini';
     window.scrollTo({ top: 240, behavior: 'smooth' });
   };
@@ -182,20 +198,53 @@ export default function App() {
     showToast('Prompt Copied Successfully!');
   };
 
+  // Category selection with clean URL query params (no hash fragments) for SEO
+  const handleSelectCategory = (catName: string) => {
+    setSelectedPrompt(null);
+    setSelectedCategory(catName);
+    setSearchQuery('');
+    setCurrentPage(1);
+
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.delete('prompt');
+    searchParams.delete('p');
+    if (catName.toLowerCase() === 'all') {
+      searchParams.delete('category');
+      searchParams.delete('c');
+    } else {
+      searchParams.set('category', catName.toLowerCase());
+    }
+    const newSearch = searchParams.toString();
+    const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '');
+    window.history.pushState({}, '', newUrl);
+    window.location.hash = '';
+
+    if (catName.toLowerCase() !== 'all') {
+      document.title = `${catName} AI Prompts – Piktrio`;
+    } else {
+      document.title = 'Piktrio – AI Photo Editing Prompts for ChatGPT & Gemini';
+    }
+  };
+
+  // Home navigation
+  const handleHomeClick = () => {
+    setSelectedPrompt(null);
+    setSelectedCategory('All');
+    setSearchQuery('');
+    setCurrentPage(1);
+    window.history.pushState({}, '', window.location.pathname);
+    window.location.hash = '';
+    document.title = 'Piktrio – AI Photo Editing Prompts for ChatGPT & Gemini';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-blue-600 selection:text-white flex flex-col">
       
       {/* 1. Header (Sticky, clean white, logo left, hamburger right) */}
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
-        onHomeClick={() => {
-          setSelectedPrompt(null);
-          setSelectedCategory('All');
-          setSearchQuery('');
-          setCurrentPage(1);
-          window.location.hash = '';
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
+        onHomeClick={handleHomeClick}
       />
 
       {/* Mobile Drawer Navigation (Matching Screenshot 1) */}
@@ -203,10 +252,7 @@ export default function App() {
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
         onSelectCategory={(catName) => {
-          setSelectedPrompt(null);
-          setSelectedCategory(catName);
-          setSearchQuery('');
-          window.location.hash = '';
+          handleSelectCategory(catName);
           window.scrollTo({ top: 240, behavior: 'smooth' });
         }}
       />
@@ -238,17 +284,13 @@ export default function App() {
             <CategoryBar
               categories={categories}
               selectedCategory={selectedCategory}
-              onSelectCategory={(name) => {
-                setSelectedCategory(name);
-                setSearchQuery('');
-              }}
+              onSelectCategory={handleSelectCategory}
             />
 
             {/* 4. Long Horizontal Featured Banner Slider below categories */}
             <FeaturedSlider
               onSelectCategory={(name) => {
-                setSelectedCategory(name);
-                setSearchQuery('');
+                handleSelectCategory(name);
                 window.scrollTo({ top: 340, behavior: 'smooth' });
               }}
             />
@@ -325,10 +367,7 @@ export default function App() {
       {/* 6. Footer (Matching Screenshots 2, 3, 4 with MENU, COLLECTIONS, FOLLOW US) */}
       <Footer
         onSelectCategory={(catName) => {
-          setSelectedPrompt(null);
-          setSelectedCategory(catName);
-          setSearchQuery('');
-          window.location.hash = '';
+          handleSelectCategory(catName);
           window.scrollTo({ top: 220, behavior: 'smooth' });
         }}
       />

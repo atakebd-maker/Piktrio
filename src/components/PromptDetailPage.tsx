@@ -93,13 +93,21 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
       scriptTag.type = 'application/ld+json';
       document.head.appendChild(scriptTag);
     }
+    const resolvedImageUrl = prompt.imageUrl.startsWith('http')
+      ? prompt.imageUrl
+      : `${window.location.origin}${prompt.imageUrl.startsWith('/') ? '' : '/'}${prompt.imageUrl}`;
+
     scriptTag.textContent = JSON.stringify({
       '@context': 'https://schema.org',
-      '@type': 'TechArticle',
+      '@type': 'Article',
       headline: prompt.title,
-      image: window.location.origin + prompt.imageUrl,
-      description: prompt.description.slice(0, 200),
+      image: [resolvedImageUrl],
+      description: prompt.description ? prompt.description.slice(0, 200) : prompt.title,
       articleBody: prompt.prompt,
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': `${window.location.origin}/?prompt=${prompt.id}`,
+      },
       publisher: {
         '@type': 'Organization',
         name: 'Piktrio',
@@ -107,9 +115,17 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
       },
     });
 
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (canonicalLink) {
+      canonicalLink.setAttribute('href', `${window.location.origin}/?prompt=${prompt.id}`);
+    }
+
     return () => {
       const el = document.getElementById('jsonld-prompt-schema');
       if (el) el.remove();
+      if (canonicalLink) {
+        canonicalLink.setAttribute('href', `${window.location.origin}/`);
+      }
     };
   }, [prompt]);
 
