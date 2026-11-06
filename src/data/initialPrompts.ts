@@ -17,6 +17,78 @@ export const PROMPTPIN_CATEGORIES: CategoryItem[] = [
 
 export const STORE_PROMPTS: PromptItem[] = [
   {
+    id: 'diwali-prompt-for-boys',
+    title: 'Diwali prompt for boys',
+    category: 'Boys',
+    description: `# How to Create a Realistic Diwali Festival AI Photo Using Your Own Picture
+
+Learn how to create an ultra-realistic, cinematic Diwali celebration portrait using ChatGPT or Google Gemini with your own reference photograph. Follow this simple step-by-step tutorial to create a stunning festive portrait with glowing diyas, fairy lights, marigold decorations, and an elegant kurta outfit.
+
+## What Is This AI Photo Editing Prompt?
+
+This is a specially crafted AI photo editing prompt designed for celebrating Diwali (the Festival of Lights). It places you on a beautifully decorated balcony at night holding a traditional glowing clay diya, surrounded by fairy lights and vibrant marigold flowers, while preserving 100% of your authentic facial identity and features.
+
+## What You Need Before Creating the Image
+
+- A clear, front-facing personal photo or selfie.
+- ChatGPT (GPT-4o / Image Generation) or Google Gemini.
+- The Diwali AI Photo Prompt provided below.
+- A stable internet connection.
+
+## Step-by-Step: How to Create This AI Photo
+
+### Step 1: Select Your Personal Photo
+Choose a clear, well-lit photograph of yourself where your face and natural expression are clearly visible. Avoid dark, heavily blurred, or heavily filtered photos.
+
+### Step 2: Open ChatGPT or Google Gemini
+Open ChatGPT or Google Gemini on your smartphone or computer. Select the image generation or photo editing feature that supports reference photo uploads.
+
+### Step 3: Upload Your Face Reference
+Attach your personal picture to the chat prompt box so the AI can analyze your facial structure, skin tone, hair, and facial features.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy** button on this page (wait 5 seconds for the countdown) to copy the complete English prompt text.
+
+### Step 5: Paste and Generate
+Paste the prompt into the message box alongside your uploaded photo. Ask the AI to generate a vertical full-body portrait (3:4 or 9:16 aspect ratio).
+
+### Step 6: Review & Save
+Check the face, hands, clay diya lighting, and kurta details. Once satisfied, download your ultra-realistic 8K festive Diwali celebration photo!
+
+---
+
+## SEO Keywords & Google Search Indexing Tags
+Diwali AI Photo Prompt, Diwali AI Image Prompt, Diwali Photo Editing, Boys Diwali AI Photo, Diwali Festive Kurta AI Photo, Diwali Balcony Diya Photo Prompt, Realistic Diwali AI Photo, ChatGPT Diwali Prompt, Gemini Diwali Prompt, AI Festival Photo Editing, Indian Festival AI Photo Prompt, Diwali Portrait AI Prompt`,
+    prompt: `Create an original, ultra-realistic cinematic Diwali celebration portrait using the uploaded photograph as the facial reference.
+Facial Identity Preservation: Maintain the reference person's recognizable facial identity, natural skin tone, facial structure, hairstyle, eyes, nose, lips, beard, and genuine expression. Do not apply beauty filters or artificially modify facial features.
+Scene & Composition: Capture a full-body portrait of a young Indian man standing confidently on a beautifully decorated apartment balcony at night. He wears an elegant ivory-white embroidered kurta pajama, a stylish red-and-black wristwatch, and no footwear. His posture is relaxed, with one leg naturally crossed over the other while leaning gently against the balcony railing.
+Festive Action: He holds a traditional handmade clay diya in one hand and carefully lights its wick with the other. His face displays a natural, joyful smile as he celebrates the festival of lights.
+Environment: Decorate the balcony with glowing golden fairy lights, vibrant orange and yellow marigold flower arrangements, traditional clay oil lamps along the railing and floor, decorative lanterns, and elegant green plants. Include a softly illuminated nighttime cityscape in the distance.
+Photography Style: Professional full-frame DSLR photography, realistic skin texture, detailed fabric embroidery, natural body proportions, cinematic golden-hour-inspired lighting at night, beautiful warm reflections, soft background bokeh, balanced highlights, realistic shadows, shallow depth of field, premium editorial photography, ultra-detailed 8K appearance.
+Important: Keep the composition natural and visually believable. Avoid artificial skin smoothing, distorted hands, extra fingers, incorrect anatomy, duplicated objects, cartoon effects, watermarks, logos, and unwanted text.
+Create a completely original photographic composition.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAO929HdP61AHpFttEvtfAFMNfp5Di3s1Hb8eGEkU_uwLBhnYPS53UGk6G_6pl7_kE4wtNgcldADU77nGBa6jbsdmQv8Tqx3R6CuKofZQyfZ_TI9CvHhbVmFXD6ggCtN-aklUE2Unz5-Gt8k6TOvftr0s7TpBEUgfpiponm3BATw60PLWqXUDSI1J3nhuR/s1600/image.png',
+    tags: [
+      'Boys',
+      'Diwali',
+      'Festival',
+      'Kurta',
+      'Cinematic',
+      'ChatGPT',
+      'Gemini',
+      'Trending',
+      'Diya',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 0,
+    viewsCount: 0,
+    copyCount: 0,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: new Date().toISOString(),
+  },
+  {
     id: 'orUmpTSCFTyOAc9HOMhV',
     title: 'Black & White Luxury Car Photoshoot AI Prompt – Create Ultra Realistic Mahindra Scorpio Portrait with ChatGPT & Gemini',
     category: 'Boys',
