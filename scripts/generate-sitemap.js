@@ -9,7 +9,7 @@ const rootDir = path.resolve(__dirname, '..');
 // Determine base URL:
 // 1. Explicit SITE_URL or VITE_SITE_URL environment variable
 // 2. Vercel System Env: VERCEL_PROJECT_PRODUCTION_URL or VERCEL_URL
-// 3. Fallback to AI Studio preview or default
+// 3. Fallback to production Vercel domain https://piktrio.vercel.app
 let siteUrl = process.env.SITE_URL || process.env.VITE_SITE_URL;
 
 if (!siteUrl && process.env.VERCEL_PROJECT_PRODUCTION_URL) {
@@ -19,10 +19,13 @@ if (!siteUrl && process.env.VERCEL_PROJECT_PRODUCTION_URL) {
 }
 
 if (!siteUrl) {
-  siteUrl = 'https://ais-pre-vhiymzxyklgz4c7rzsugsk-732506247199.asia-southeast1.run.app';
+  siteUrl = 'https://piktrio.vercel.app';
 }
 
-// Clean trailing slash
+// Ensure protocol and remove trailing slash
+if (!siteUrl.startsWith('http://') && !siteUrl.startsWith('https://')) {
+  siteUrl = `https://${siteUrl}`;
+}
 siteUrl = siteUrl.replace(/\/+$/, '');
 
 console.log(`[Sitemap Generator] Generating sitemap for domain: ${siteUrl}`);
@@ -114,4 +117,4 @@ const publicDir = path.join(rootDir, 'public');
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemapContent.trim() + '\n', 'utf-8');
 fs.writeFileSync(path.join(publicDir, 'robots.txt'), robotsContent.trim() + '\n', 'utf-8');
 
-console.log('[Sitemap Generator] Successfully written sitemap.xml and robots.txt!');
+console.log(`[Sitemap Generator] Successfully generated sitemap.xml and robots.txt for ${siteUrl}!`);
