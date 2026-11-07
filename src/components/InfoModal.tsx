@@ -31,39 +31,39 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-gray-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 md:p-6 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 md:p-6 animate-in fade-in duration-200">
       
       {/* Background click to close */}
       <div className="fixed inset-0" onClick={onClose} />
 
       {/* Modal Card */}
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col border border-gray-100 z-10 overflow-hidden">
+      <div className="relative bg-[#0e0922] rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col border border-[#271a4f] z-10 overflow-hidden text-gray-200">
         
         {/* Modal Header & Navigation Tabs */}
-        <div className="border-b border-gray-100 bg-gray-50/80 px-4 sm:px-6 pt-5 pb-3">
+        <div className="border-b border-[#21153f] bg-[#0a0618] px-4 sm:px-6 pt-5 pb-3">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-xs">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-500 text-white flex items-center justify-center shadow-md">
                 {activeTab === 'about' && <Info className="w-5 h-5" />}
                 {activeTab === 'contact' && <Mail className="w-5 h-5" />}
                 {activeTab === 'privacy' && <Shield className="w-5 h-5" />}
                 {activeTab === 'terms' && <FileText className="w-5 h-5" />}
               </div>
               <div>
-                <h3 className="font-bold text-gray-900 text-base sm:text-lg">
+                <h3 className="font-bold text-white text-base sm:text-lg">
                   {activeTab === 'about' && 'About Piktrio'}
                   {activeTab === 'contact' && 'Contact Us'}
                   {activeTab === 'privacy' && 'Privacy Policy'}
                   {activeTab === 'terms' && 'Terms & Conditions'}
                 </h3>
-                <p className="text-[11px] text-gray-500">Official Piktrio Information & Guidelines</p>
+                <p className="text-[11px] text-purple-300/60">Official Piktrio Information &amp; Guidelines</p>
               </div>
             </div>
 
             <button
               onClick={onClose}
               aria-label="Close modal"
-              className="p-2 rounded-xl text-gray-400 hover:text-gray-700 hover:bg-gray-200/60 transition-colors cursor-pointer"
+              className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -75,8 +75,8 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
               onClick={() => setActiveTab('about')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'about'
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'text-gray-600 hover:bg-gray-200/70'
+                  ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xs'
+                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
               }`}
             >
               About Us
@@ -85,8 +85,8 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
               onClick={() => setActiveTab('contact')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'contact'
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'text-gray-600 hover:bg-gray-200/70'
+                  ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xs'
+                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
               }`}
             >
               Contact Us
@@ -95,8 +95,8 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
               onClick={() => setActiveTab('privacy')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'privacy'
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'text-gray-600 hover:bg-gray-200/70'
+                  ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xs'
+                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
               }`}
             >
               Privacy Policy
@@ -105,17 +105,17 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
               onClick={() => setActiveTab('terms')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'terms'
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'text-gray-600 hover:bg-gray-200/70'
+                  ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xs'
+                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
               }`}
             >
-              Terms & Conditions
+              Terms &amp; Conditions
             </button>
           </div>
         </div>
 
         {/* Modal Scrollable Content */}
-        <div className="flex-1 overflow-y-auto px-5 sm:px-7 py-6 text-gray-700 text-sm leading-relaxed space-y-4">
+        <div className="flex-1 overflow-y-auto px-5 sm:px-7 py-6 text-gray-300 text-sm leading-relaxed space-y-4">
           
           {/* 1. ABOUT US */}
           {activeTab === 'about' && (

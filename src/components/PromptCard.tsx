@@ -5,7 +5,7 @@ import { PromptItem } from '../types/prompt';
 interface PromptCardProps {
   prompt: PromptItem;
   onViewDetails: (prompt: PromptItem) => void;
-  onCopyPrompt: (promptText: string, promptId: string) => void;
+  onCopyPrompt?: (promptText: string, promptId: string) => void;
 }
 
 export const PromptCard: React.FC<PromptCardProps> = ({
@@ -26,10 +26,10 @@ export const PromptCard: React.FC<PromptCardProps> = ({
   };
 
   const handleTouchCard = () => {
-    // On touch devices, reveal the Copy Prompt button overlay
+    // On touch devices, briefly reveal the Copy Prompt button overlay
     if (!mobileActive) {
       setMobileActive(true);
-      setTimeout(() => setMobileActive(false), 4000);
+      setTimeout(() => setMobileActive(false), 3500);
     }
   };
 
@@ -37,16 +37,16 @@ export const PromptCard: React.FC<PromptCardProps> = ({
     <div
       onClick={handleCardClick}
       onTouchStart={handleTouchCard}
-      className="group relative bg-white rounded-2xl overflow-hidden border border-gray-200/90 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer"
+      className="group relative bg-[#130d2a] rounded-2xl border border-[#271a4f] hover:border-purple-500/80 hover:shadow-2xl hover:shadow-purple-950/50 transition-all duration-300 flex flex-col cursor-pointer overflow-hidden"
     >
       {/* 
         TITLE & CATEGORY HEADER (PLACED ABOVE THE IMAGE AS REQUESTED)
       */}
-      <div className="p-3 bg-white border-b border-gray-100 flex items-start justify-between gap-2 z-10 min-h-[50px]">
-        <h3 className="text-xs sm:text-sm font-bold text-gray-900 line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors">
+      <div className="p-3 bg-[#0f0923] border-b border-[#241748] flex items-start justify-between gap-2 z-10 min-h-[50px]">
+        <h3 className="text-xs sm:text-sm font-bold text-white line-clamp-2 leading-snug group-hover:text-pink-400 transition-colors">
           {prompt.title}
         </h3>
-        <span className="text-[10px] font-semibold text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md shrink-0 mt-0.5">
+        <span className="text-[10px] font-semibold text-purple-300 bg-purple-900/40 border border-purple-700/50 px-2 py-0.5 rounded-md shrink-0 mt-0.5">
           {prompt.category}
         </span>
       </div>
@@ -54,24 +54,23 @@ export const PromptCard: React.FC<PromptCardProps> = ({
       {/* 
         IMAGE DISPLAY CONTAINER (BELOW TITLE):
         Strict adherence to Image Display Rules:
-        - Never crop uploaded images.
-        - Never cut off any part of an image.
-        - Preserve original aspect ratios.
-        - Use object-fit: contain.
-        - Allow natural image dimensions and heights.
+        - NEVER crop any uploaded image (zero cropping).
+        - NEVER cut off any part of the image (head, legs, clothing fully visible).
+        - Preserve original 100% aspect ratio with object-fit: contain.
+        - Generous min-height and auto height to allow full vertical portrait display.
       */}
-      <div className="relative w-full bg-gray-50 flex items-center justify-center overflow-hidden min-h-[220px] sm:min-h-[280px]">
+      <div className="relative w-full bg-[#090518] flex items-center justify-center p-2 sm:p-2.5 min-h-[240px] sm:min-h-[300px]">
         
         {/* Loading skeleton */}
         {!imageLoaded && (
-          <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center">
-            <Sparkles className="w-5 h-5 text-blue-400 animate-spin" />
+          <div className="absolute inset-0 bg-[#160e32] animate-pulse flex items-center justify-center">
+            <Sparkles className="w-5 h-5 text-purple-400 animate-spin" />
           </div>
         )}
 
         {/* 
-          Original Uncropped Image
-          Always object-contain and max-w-full
+          100% Uncropped Image
+          Always object-contain with max-w-full and h-auto to show whole photograph
         */}
         <img
           src={prompt.imageUrl}
@@ -79,30 +78,30 @@ export const PromptCard: React.FC<PromptCardProps> = ({
           loading="lazy"
           onLoad={() => setImageLoaded(true)}
           style={{ objectFit: 'contain' }}
-          className={`w-full h-auto max-h-[460px] object-contain transition-transform duration-300 group-hover:scale-[1.01] ${
-            imageLoaded ? 'opacity-100' : 'opacity-0'
+          className={`w-full h-auto max-h-[540px] object-contain rounded-xl transition-transform duration-300 group-hover:scale-[1.01] ${
+            imageLoaded ? 'opacity-100' : 'opacity-90'
           }`}
         />
 
         {/* BADGE: 📌 Pinned */}
-        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1.5 z-10 pointer-events-none">
-          {prompt.isPinned && (
-            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-gray-900/85 text-white backdrop-blur-md border border-gray-700/60 shadow-xs">
+        {prompt.isPinned && (
+          <div className="absolute top-3.5 left-3.5 flex flex-col gap-1.5 z-10 pointer-events-none">
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#0a0618]/90 text-amber-300 backdrop-blur-md border border-amber-500/40 shadow-md">
               <span>📌</span>
               <span>Pinned</span>
             </span>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* HOVER-TO-COPY OVERLAY */}
         <div 
-          className={`absolute inset-0 bg-gray-950/40 backdrop-blur-[2px] flex items-center justify-center p-3 transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-[#080514]/60 backdrop-blur-[2px] rounded-xl flex items-center justify-center p-3 transition-opacity duration-300 ${
             mobileActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
           }`}
         >
           <button
             onClick={handleCopy}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-xl transition-all duration-200 cursor-pointer transform active:scale-95 bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/40 hover:scale-105"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-xl transition-all duration-200 cursor-pointer transform active:scale-95 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white shadow-pink-500/30 hover:scale-105"
           >
             <Copy className="w-4 h-4" />
             <span>Copy Prompt</span>

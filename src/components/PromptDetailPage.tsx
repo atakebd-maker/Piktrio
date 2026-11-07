@@ -185,10 +185,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 animate-in fade-in duration-300">
       
       {/* Top Breadcrumb & Back Navigation */}
-      <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-gray-100">
+      <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#21163e]">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-gray-700 bg-gray-50 hover:bg-blue-50 hover:text-blue-600 border border-gray-200 hover:border-blue-200 transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-gray-200 bg-[#140e2e] hover:bg-[#1f1544] hover:text-pink-400 border border-[#2a1c50] hover:border-pink-500/50 transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Prompts</span>
@@ -197,33 +197,33 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
         {/* Share Button */}
         <button
           onClick={handleShare}
-          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-gray-600 hover:text-blue-600 hover:bg-blue-50 border border-gray-200 transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-gray-300 hover:text-white bg-[#140e2e] hover:bg-[#1f1544] border border-[#2a1c50] transition-colors cursor-pointer"
           title="Share prompt link"
         >
-          <Share2 className="w-3.5 h-3.5" />
+          <Share2 className="w-3.5 h-3.5 text-pink-400" />
           <span>Share</span>
         </button>
       </div>
 
       {/* Main Prompt Details Card */}
-      <div className="bg-white rounded-3xl border border-gray-200/90 shadow-sm overflow-hidden p-5 sm:p-8 mb-12">
+      <div className="bg-[#120c29] rounded-3xl border border-[#271a4f] shadow-2xl overflow-hidden p-5 sm:p-8 mb-12">
         {/* Title Header placed ABOVE the photo and content as requested */}
-        <div className="mb-6 pb-4 border-b border-gray-100">
+        <div className="mb-6 pb-4 border-b border-[#21153f]">
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-purple-900/40 text-purple-300 border border-purple-700/50">
               {prompt.category}
             </span>
             {prompt.model && (
-              <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+              <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-white/5 text-gray-300 border border-white/10">
                 {prompt.model}
               </span>
             )}
           </div>
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 leading-snug">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-white leading-snug tracking-tight">
             {prompt.title}
           </h1>
           {prompt.description && !prompt.description.startsWith('#') && (
-            <p className="text-sm text-gray-600 leading-relaxed mt-2">
+            <p className="text-sm text-gray-300 leading-relaxed mt-2">
               {prompt.description}
             </p>
           )}
@@ -236,11 +236,11 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             {/* Ad on top of the image (as requested: "ছবির উপরে মানে যেকোনো পোস্ট ওপেন করলে ছবিটির উপরে") */}
             <AdBanner label="Sponsored Ad" className="mb-3" />
 
-            <div className="relative w-full h-[400px] sm:h-[540px] bg-gray-950 rounded-2xl sm:rounded-3xl flex items-center justify-center p-3 overflow-hidden shadow-inner border border-gray-800 group">
+            <div className="relative w-full min-h-[420px] sm:min-h-[560px] max-h-[78vh] bg-[#080514] rounded-2xl sm:rounded-3xl flex items-center justify-center p-3 overflow-hidden shadow-inner border border-[#231542] group">
               
               {/* Subtle background grid pattern */}
               <div 
-                className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#60a5fa_1px,transparent_1px)] [background-size:16px_16px]"
+                className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#a855f7_1px,transparent_1px)] [background-size:16px_16px]"
               />
 
               <img
@@ -254,7 +254,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               {/* Lightbox Fullscreen Trigger */}
               <button
                 onClick={() => onOpenLightbox(prompt.imageUrl, prompt.title)}
-                className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gray-900/90 text-white text-xs font-semibold hover:bg-blue-600 transition-colors backdrop-blur-md border border-gray-700 cursor-pointer shadow-lg"
+                className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-black/80 text-white text-xs font-semibold hover:bg-pink-600 transition-colors backdrop-blur-md border border-white/20 cursor-pointer shadow-lg"
               >
                 <Maximize2 className="w-3.5 h-3.5" />
                 <span>Full Image Preview</span>
@@ -265,7 +265,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               <span>100% Uncropped &bull; Original Aspect Ratio</span>
               <button
                 onClick={() => onOpenLightbox(prompt.imageUrl, prompt.title)}
-                className="text-blue-600 hover:underline font-medium cursor-pointer"
+                className="text-pink-400 hover:underline font-medium cursor-pointer"
               >
                 Zoom View
               </button>
@@ -281,18 +281,18 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             {/* Complete English AI Prompt in High Contrast Box */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-bold text-gray-800 uppercase tracking-wider flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                <label className="text-xs font-bold text-gray-300 uppercase tracking-wider flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-pink-400" />
                   <span>English AI Generation Prompt</span>
                 </label>
                 <button
                   onClick={handleCopyButtonClick}
                   className={`text-xs font-semibold transition-colors cursor-pointer ${
                     copyStatus === 'ready' || copyStatus === 'copied'
-                      ? 'text-emerald-600 hover:text-emerald-700 font-bold'
+                      ? 'text-emerald-400 hover:text-emerald-300 font-bold'
                       : copyStatus === 'counting'
-                      ? 'text-amber-600 font-bold'
-                      : 'text-blue-600 hover:text-blue-800'
+                      ? 'text-amber-400 font-bold'
+                      : 'text-purple-400 hover:text-purple-300'
                   }`}
                 >
                   {copyStatus === 'counting'
@@ -305,7 +305,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 </button>
               </div>
 
-              <div className="relative bg-gray-900 text-gray-100 rounded-2xl p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed border border-gray-800 shadow-md selection:bg-blue-600">
+              <div className="relative bg-[#090518] text-purple-100/90 rounded-2xl p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed border border-[#2b1b50] shadow-md selection:bg-purple-600">
                 <p className="whitespace-pre-wrap select-all">{prompt.prompt}</p>
               </div>
             </div>
@@ -320,10 +320,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                   copyStatus === 'counting'
                     ? 'bg-amber-500 text-white cursor-wait opacity-95 shadow-amber-500/20'
                     : copyStatus === 'ready'
-                    ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-500/30 ring-4 ring-emerald-400/50 active:scale-[0.99] font-extrabold animate-pulse'
+                    ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-500/40 ring-4 ring-emerald-400/50 active:scale-[0.99] font-extrabold animate-pulse'
                     : copyStatus === 'copied'
                     ? 'bg-emerald-600 text-white shadow-emerald-500/20'
-                    : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/25 active:scale-[0.99]'
+                    : 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white shadow-pink-500/30 active:scale-[0.99]'
                 }`}
               >
                 {copyStatus === 'counting' ? (
@@ -351,9 +351,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
               {/* Progress bar during 7-second countdown */}
               {copyStatus === 'counting' && (
-                <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-[#181035] rounded-full h-2 overflow-hidden border border-[#2a1c4f]">
                   <div
-                    className="bg-amber-500 h-full transition-all duration-1000 ease-linear rounded-full"
+                    className="bg-amber-400 h-full transition-all duration-1000 ease-linear rounded-full"
                     style={{ width: `${((7 - countdown) / 7) * 100}%` }}
                   />
                 </div>
@@ -363,17 +363,17 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={handleOpenChatGPT}
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-emerald-50 hover:border-emerald-200 text-gray-800 hover:text-emerald-700 text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[#2b1c52] bg-[#140e2d] hover:bg-[#1e1542] hover:border-emerald-500/50 text-gray-200 hover:text-emerald-400 text-xs sm:text-sm font-semibold transition-all cursor-pointer"
                 >
-                  <Bot className="w-4 h-4 text-emerald-600" />
+                  <Bot className="w-4 h-4 text-emerald-400" />
                   <span>Open in ChatGPT</span>
                 </button>
 
                 <button
                   onClick={handleOpenGemini}
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-gray-200 bg-gray-50 hover:bg-blue-50 hover:border-blue-200 text-gray-800 hover:text-blue-700 text-xs sm:text-sm font-semibold transition-all cursor-pointer"
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-[#2b1c52] bg-[#140e2d] hover:bg-[#1e1542] hover:border-pink-500/50 text-gray-200 hover:text-pink-300 text-xs sm:text-sm font-semibold transition-all cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4 text-blue-600" />
+                  <Sparkles className="w-4 h-4 text-pink-400" />
                   <span>Open in Gemini</span>
                 </button>
               </div>
@@ -382,12 +382,12 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             {/* Tags (if any) */}
             {prompt.tags && prompt.tags.length > 0 && (
               <div className="pt-2">
-                <span className="text-xs font-semibold text-gray-400 block mb-1.5">Tags & Keywords</span>
+                <span className="text-xs font-semibold text-gray-400 block mb-1.5">Tags &amp; Keywords</span>
                 <div className="flex flex-wrap gap-1.5">
                   {prompt.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-1 rounded-md bg-gray-100 text-gray-600 text-xs font-medium"
+                      className="px-2.5 py-1 rounded-md bg-[#160f33] text-purple-300 text-xs font-medium border border-[#2b1c52]"
                     >
                       #{tag}
                     </span>
@@ -398,18 +398,18 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
             {/* Complete Guide / Description rendered directly below the Copy Prompt Button */}
             {prompt.description && (
-              <div className="pt-5 border-t border-gray-100">
-                <div className="bg-blue-50/40 rounded-2xl p-5 sm:p-6 border border-blue-100/80">
+              <div className="pt-5 border-t border-[#231542]">
+                <div className="bg-[#0e0921] rounded-2xl p-5 sm:p-6 border border-[#241748]">
                   <ReactMarkdown
                     components={{
-                      h1: ({ node, ...props }) => <h2 className="text-lg sm:text-xl font-extrabold text-gray-900 mt-2 mb-3 leading-snug" {...props} />,
-                      h2: ({ node, ...props }) => <h3 className="text-base sm:text-lg font-bold text-gray-900 mt-6 mb-2.5 pb-1 border-b border-blue-200/50" {...props} />,
-                      h3: ({ node, ...props }) => <h4 className="text-sm sm:text-base font-semibold text-gray-900 mt-4 mb-1.5" {...props} />,
-                      p: ({ node, ...props }) => <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-3.5" {...props} />,
-                      ul: ({ node, ...props }) => <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-gray-600 mb-4" {...props} />,
-                      ol: ({ node, ...props }) => <ol className="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm text-gray-600 mb-4" {...props} />,
+                      h1: ({ node, ...props }) => <h2 className="text-lg sm:text-xl font-black text-white mt-2 mb-3 leading-snug" {...props} />,
+                      h2: ({ node, ...props }) => <h3 className="text-base sm:text-lg font-bold text-white mt-6 mb-2.5 pb-1 border-b border-[#2b1b50]" {...props} />,
+                      h3: ({ node, ...props }) => <h4 className="text-sm sm:text-base font-semibold text-purple-200 mt-4 mb-1.5" {...props} />,
+                      p: ({ node, ...props }) => <p className="text-xs sm:text-sm text-gray-300 leading-relaxed mb-3.5" {...props} />,
+                      ul: ({ node, ...props }) => <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-gray-300 mb-4" {...props} />,
+                      ol: ({ node, ...props }) => <ol className="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm text-gray-300 mb-4" {...props} />,
                       li: ({ node, ...props }) => <li className="leading-relaxed" {...props} />,
-                      strong: ({ node, ...props }) => <strong className="font-bold text-gray-900" {...props} />,
+                      strong: ({ node, ...props }) => <strong className="font-bold text-white" {...props} />,
                     }}
                   >
                     {prompt.description}
@@ -429,9 +429,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
       {/* Related Prompts Section (Matching 2-column mobile / 4-column desktop gallery) */}
       {relatedPrompts.length > 0 && (
         <section className="mt-8 mb-6">
-          <div className="flex items-center justify-between mb-4 pb-2 border-b border-gray-200">
-            <h2 className="text-lg sm:text-xl font-bold text-gray-900 flex items-center gap-2">
-              <Layers className="w-5 h-5 text-blue-600" />
+          <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
+            <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+              <Layers className="w-5 h-5 text-pink-400" />
               <span>Related {prompt.category} Prompts</span>
             </h2>
           </div>

@@ -22,7 +22,7 @@ import {
   seedCategoriesIfEmpty,
 } from './services/promptService';
 import { testConnection } from './services/firebase';
-import { CheckCircle2, SearchX, Sparkles } from 'lucide-react';
+import { CheckCircle2, SearchX, Sparkles, Flame, ArrowRight, ChevronRight, Layers, Film } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 8; // Optimal for 2-column mobile and 4-column desktop layout
 
@@ -98,10 +98,9 @@ export default function App() {
     );
 
     const unsubCategories = subscribeToCategories((cats) => {
-      // Top category bar excludes 'diwali' and 'retro' as requested (they remain in Collections below)
-      const order = ['trending', 'all', 'boys', 'couple'];
+      const order = ['trending', 'all', 'boys', 'diwali', 'retro'];
       const filteredCats = cats.filter(
-        (c) => c.id.toLowerCase() !== 'diwali' && c.id.toLowerCase() !== 'retro'
+        (c) => c.id.toLowerCase() !== 'couple' && c.id.toLowerCase() !== 'girls'
       );
       const sorted = order
         .map((id) => filteredCats.find((c) => c.id.toLowerCase() === id) || PROMPTPIN_CATEGORIES.find((c) => c.id.toLowerCase() === id))
@@ -316,10 +315,27 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Curated showcase subsets matching screenshots 4, 7, 8, 10
+  const trendingShowcase = useMemo(() => {
+    return prompts.filter((p) => p.isPinned || p.tags?.some((t) => t.toLowerCase() === 'trending')).slice(0, 3);
+  }, [prompts]);
+
+  const diwaliShowcase = useMemo(() => {
+    return prompts.filter((p) => p.title.toLowerCase().includes('diwali') || p.tags?.some((t) => t.toLowerCase().includes('diwali'))).slice(0, 3);
+  }, [prompts]);
+
+  const retroShowcase = useMemo(() => {
+    return prompts.filter((p) => p.category.toLowerCase() === 'retro' || p.tags?.some((t) => t.toLowerCase().includes('retro') || t.toLowerCase().includes('90s'))).slice(0, 3);
+  }, [prompts]);
+
+  const top10Showcase = useMemo(() => {
+    return prompts.slice(0, 3);
+  }, [prompts]);
+
   return (
-    <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-blue-600 selection:text-white flex flex-col">
+    <div className="min-h-screen bg-[#080512] text-gray-100 font-sans selection:bg-purple-600 selection:text-white flex flex-col">
       
-      {/* 1. Header (Sticky, clean white, logo left, hamburger right) */}
+      {/* 1. Header (Dark, AIPROMPTS.BUZZ style, strictly NO app button) */}
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
         onHomeClick={handleHomeClick}
@@ -327,7 +343,7 @@ export default function App() {
         onOpenModal={(type) => setActiveModal(type)}
       />
 
-      {/* Mobile Drawer Navigation (Matching Screenshot 1) */}
+      {/* Mobile Drawer Navigation */}
       <MobileDrawer
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
@@ -353,15 +369,17 @@ export default function App() {
             allPrompts={prompts}
           />
         ) : (
-          /* HOMEPAGE GALLERY VIEW */
+          /* HOMEPAGE GALLERY VIEW (Matching AIPROMPTS.BUZZ) */
           <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-            {/* 2. Homepage Heading & Search (Matching Screenshots 5 & 6) */}
+            
+            {/* 2. Hero Section matching Screenshot 2: COPY. PASTE. GO VIRAL. + Terminal card */}
             <HeroSearch
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
+              onTagClick={(tag) => handleSelectCategory(tag)}
             />
 
-            {/* 3. Horizontal Category Navigation (Single Line) */}
+            {/* 3. Horizontal Category Navigation (Single Line: Trending, All, Boys, Diwali, Retro) */}
             <CategoryBar
               categories={categories}
               selectedCategory={selectedCategory}
@@ -375,14 +393,374 @@ export default function App() {
               onSelectCategory={handleSelectCategory}
             />
 
-            {/* Sponsored Banner between Slider and Gallery */}
+            {/* Sponsored Banner between Slider and Showcase */}
             <AdBanner label="Featured Partner" className="my-4" />
 
-            {/* 5. Two-Column Image Gallery on Mobile / Multi-column on Desktop */}
-            <section className="mt-4 mb-8">
+            {/* 
+              5. SHOWCASE SECTIONS MATCHING SCREENSHOTS 4, 7, 8, 10
+              (Rendered when on 'All' or 'Trending' without active search query)
+            */}
+            {!searchQuery && (selectedCategory.toLowerCase() === 'all' || selectedCategory.toLowerCase() === 'trending') && (
+              <div className="space-y-12 my-8">
+                
+                {/* SECTION A: 🔥 TRENDING / INSTAGRAM PROMPTS -> (Screenshot 4) */}
+                {trendingShowcase.length > 0 && (
+                  <section>
+                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
+                      <div>
+                        <span className="text-[11px] font-bold text-pink-400 tracking-wider uppercase flex items-center gap-1">
+                          <Flame className="w-3.5 h-3.5 text-pink-500" />
+                          <span>TRENDING</span>
+                        </span>
+                        <h2 
+                          onClick={() => handleSelectCategory('Trending')}
+                          className="text-lg sm:text-2xl font-black text-white hover:text-pink-400 transition-colors cursor-pointer flex items-center gap-2"
+                        >
+                          <span>INSTAGRAM PROMPTS</span>
+                          <ArrowRight className="w-5 h-5 text-pink-400" />
+                        </h2>
+                      </div>
+                      <button
+                        onClick={() => handleSelectCategory('Trending')}
+                        className="text-xs font-bold text-purple-400 hover:text-white transition-colors cursor-pointer hidden sm:flex items-center gap-1"
+                      >
+                        <span>View All</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                      {trendingShowcase.map((prompt) => (
+                        <PromptCard
+                          key={`trending-${prompt.id}`}
+                          prompt={prompt}
+                          onViewDetails={handleViewPrompt}
+                          onCopyPrompt={handleCopyPrompt}
+                        />
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {/* SECTION B: ⭐ TOP 10 / TOP PROMPTS RIGHT NOW -> (Screenshot 7) */}
+                {top10Showcase.length > 0 && (
+                  <section>
+                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
+                      <div>
+                        <span className="text-[11px] font-bold text-amber-400 tracking-wider uppercase flex items-center gap-1">
+                          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                          <span>TOP 10</span>
+                        </span>
+                        <h2 
+                          onClick={() => handleSelectCategory('Boys')}
+                          className="text-lg sm:text-2xl font-black text-white hover:text-pink-400 transition-colors cursor-pointer flex items-center gap-2"
+                        >
+                          <span>TOP PROMPTS RIGHT NOW</span>
+                          <ArrowRight className="w-5 h-5 text-pink-400" />
+                        </h2>
+                      </div>
+                      <button
+                        onClick={() => handleSelectCategory('Boys')}
+                        className="text-xs font-bold text-purple-400 hover:text-white transition-colors cursor-pointer hidden sm:flex items-center gap-1"
+                      >
+                        <span>Explore</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                      {top10Showcase.map((prompt) => (
+                        <PromptCard
+                          key={`top10-${prompt.id}`}
+                          prompt={prompt}
+                          onViewDetails={handleViewPrompt}
+                          onCopyPrompt={handleCopyPrompt}
+                        />
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {/* SECTION C: 📼 THROWBACK / 90S RETRO STYLE -> (Screenshot 8) */}
+                {retroShowcase.length > 0 && (
+                  <section>
+                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
+                      <div>
+                        <span className="text-[11px] font-bold text-purple-400 tracking-wider uppercase flex items-center gap-1">
+                          <Film className="w-3.5 h-3.5 text-purple-400" />
+                          <span>THROWBACK</span>
+                        </span>
+                        <h2 
+                          onClick={() => handleSelectCategory('90s Retro AI Photo Prompts')}
+                          className="text-lg sm:text-2xl font-black text-white hover:text-pink-400 transition-colors cursor-pointer flex items-center gap-2"
+                        >
+                          <span>90S RETRO STYLE</span>
+                          <ArrowRight className="w-5 h-5 text-pink-400" />
+                        </h2>
+                      </div>
+                      <button
+                        onClick={() => handleSelectCategory('90s Retro AI Photo Prompts')}
+                        className="text-xs font-bold text-purple-400 hover:text-white transition-colors cursor-pointer hidden sm:flex items-center gap-1"
+                      >
+                        <span>View Style</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                      {retroShowcase.map((prompt) => (
+                        <PromptCard
+                          key={`retro-${prompt.id}`}
+                          prompt={prompt}
+                          onViewDetails={handleViewPrompt}
+                          onCopyPrompt={handleCopyPrompt}
+                        />
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {/* SECTION D: 🪔 FESTIVE / DIWALI FESTIVE PROMPTS -> */}
+                {diwaliShowcase.length > 0 && (
+                  <section>
+                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
+                      <div>
+                        <span className="text-[11px] font-bold text-amber-300 tracking-wider uppercase flex items-center gap-1">
+                          <span>🪔</span>
+                          <span>FESTIVE</span>
+                        </span>
+                        <h2 
+                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
+                          className="text-lg sm:text-2xl font-black text-white hover:text-amber-300 transition-colors cursor-pointer flex items-center gap-2"
+                        >
+                          <span>DIWALI FESTIVE PROMPTS</span>
+                          <ArrowRight className="w-5 h-5 text-amber-300" />
+                        </h2>
+                      </div>
+                      <button
+                        onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
+                        className="text-xs font-bold text-amber-400 hover:text-white transition-colors cursor-pointer hidden sm:flex items-center gap-1"
+                      >
+                        <span>All Diwali</span>
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                      {diwaliShowcase.map((prompt) => (
+                        <PromptCard
+                          key={`diwali-${prompt.id}`}
+                          prompt={prompt}
+                          onViewDetails={handleViewPrompt}
+                          onCopyPrompt={handleCopyPrompt}
+                        />
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {/* Mid-page Ad Banner */}
+                <AdBanner label="Sponsored Recommendations" className="my-6" />
+
+                {/* 
+                  DIRECTORY ACCORDION / LINK CARDS (MATCHING SCREENSHOTS 1 & 9)
+                  Gradient top border, dark container, clean link lists with arrows
+                */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+                  
+                  {/* DIRECTORY CARD 1: MEN & BOYS (Screenshot 1) */}
+                  <div className="relative rounded-2xl bg-[#120c29] border border-[#271a4f] p-5 shadow-xl overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-pink-500 before:via-purple-500 before:to-indigo-500">
+                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#231542]">
+                      <span className="text-xl">🕺</span>
+                      <h3 className="text-base font-extrabold text-white uppercase tracking-wider">
+                        MEN &amp; BOYS STYLE
+                      </h3>
+                    </div>
+                    <ul className="space-y-2.5 text-xs sm:text-sm">
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Boys')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Trending ChatGPT Prompts for Boys</span>
+                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Boys')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Instagram Lookbook Prompts</span>
+                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Boys')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Top 10 Aesthetic Prompts for Men &amp; Boys</span>
+                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Boys')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Action &amp; Cinema Movie Poster Prompts</span>
+                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Automotive')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Luxury SUV &amp; Motorcycle Photoshoots</span>
+                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* DIRECTORY CARD 2: DIWALI & FESTIVE SPECIAL */}
+                  <div className="relative rounded-2xl bg-[#120c29] border border-[#271a4f] p-5 shadow-xl overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-amber-400 before:via-orange-500 before:to-pink-500">
+                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#231542]">
+                      <span className="text-xl">🪔</span>
+                      <h3 className="text-base font-extrabold text-white uppercase tracking-wider">
+                        DIWALI &amp; FESTIVE SPECIAL
+                      </h3>
+                    </div>
+                    <ul className="space-y-2.5 text-xs sm:text-sm">
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-amber-300 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Diwali AI Photo Editing Prompts</span>
+                          <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-amber-300 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Royal Navy Blue Sherwani Courtyard</span>
+                          <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-amber-300 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Sparkler &amp; Golden Fireworks Terrace</span>
+                          <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-amber-300 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Burgundy Kurta Courtyard Diya Lighting</span>
+                          <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-amber-300 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Ivory Kurta &amp; Antique Brass Lamp Stand</span>
+                          <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* DIRECTORY CARD 3: 90S RETRO STYLE */}
+                  <div className="relative rounded-2xl bg-[#120c29] border border-[#271a4f] p-5 shadow-xl overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-indigo-500 before:via-purple-500 before:to-pink-500">
+                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#231542]">
+                      <span className="text-xl">📼</span>
+                      <h3 className="text-base font-extrabold text-white uppercase tracking-wider">
+                        RETRO &amp; 90S VINTAGE
+                      </h3>
+                    </div>
+                    <ul className="space-y-2.5 text-xs sm:text-sm">
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('90s Retro AI Photo Prompts')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>90s Retro Motorcycle Portrait</span>
+                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('90s Retro AI Photo Prompts')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Acid-Wash Denim with Vintage Bike</span>
+                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('90s Retro AI Photo Prompts')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>35mm Film Grain Analog Aesthetic</span>
+                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('Boys')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Black &amp; White Monochrome Drone Shoot</span>
+                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          onClick={() => handleSelectCategory('All')}
+                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
+                        >
+                          <span>Browse All Handcrafted Prompts</span>
+                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+
+                </div>
+
+              </div>
+            )}
+
+            {/* 6. MAIN ALL PROMPTS GALLERY SECTION (2-Column Mobile, 4-Column Desktop) */}
+            <section className="mt-8 mb-12">
+              <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
+                <div className="flex items-center gap-2">
+                  <Layers className="w-5 h-5 text-pink-400" />
+                  <h2 className="text-base sm:text-xl font-black text-white">
+                    {searchQuery ? `Search Results: "${searchQuery}"` : `${selectedCategory} Prompts Gallery`}
+                  </h2>
+                </div>
+                <span className="text-xs font-semibold text-purple-300/70">
+                  {filteredPrompts.length} Prompts
+                </span>
+              </div>
+
               {isLoading ? (
                 <div className="py-20 flex flex-col items-center justify-center space-y-3">
-                  <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-10 h-10 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
                   <p className="text-xs font-medium text-gray-400">Loading prompts...</p>
                 </div>
               ) : paginatedPrompts.length > 0 ? (
@@ -399,7 +777,7 @@ export default function App() {
                     ))}
                   </div>
 
-                  {/* 5. Pagination (Matching Screenshot 3) */}
+                  {/* Pagination */}
                   <Pagination
                     currentPage={currentPage}
                     totalPages={totalPages}
@@ -410,27 +788,24 @@ export default function App() {
                   <AdBanner label="Sponsored Links" className="mt-6 mb-2" />
                 </>
               ) : prompts.length === 0 ? (
-                /* Store empty state - Ready for user's fresh uploads */
+                /* Store empty state */
                 <div className="py-20 text-center max-w-md mx-auto px-4">
-                  <div className="w-16 h-16 rounded-3xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4 shadow-xs">
+                  <div className="w-16 h-16 rounded-3xl bg-[#150e32] text-pink-400 flex items-center justify-center mx-auto mb-4 border border-[#2b1b50]">
                     <Sparkles className="w-8 h-8" />
                   </div>
-                  <h3 className="font-bold text-gray-900 text-lg mb-2">Ready for New Prompts</h3>
-                  <p className="text-sm text-gray-500 leading-relaxed mb-4">
-                    All previous prompts have been cleared. Send your images, titles, and prompts in chat anytime, and they will be published directly to Piktrio!
+                  <h3 className="font-bold text-white text-lg mb-2">Ready for Prompts</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                    Send your images, titles, and prompts in chat anytime to publish them directly!
                   </p>
-                  <span className="inline-block px-3.5 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 rounded-full border border-blue-200/60">
-                    0 Prompts • Ready to Upload
-                  </span>
                 </div>
               ) : (
                 /* Filter / search empty state */
                 <div className="py-16 text-center max-w-sm mx-auto">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-3">
+                  <div className="w-12 h-12 rounded-full bg-[#150e32] text-pink-400 flex items-center justify-center mx-auto mb-3 border border-[#2b1b50]">
                     <SearchX className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-gray-900 text-base mb-1">No Prompts Found</h3>
-                  <p className="text-xs text-gray-500 mb-4">
+                  <h3 className="font-bold text-white text-base mb-1">No Prompts Found</h3>
+                  <p className="text-xs text-gray-400 mb-4">
                     No prompts matched your search query. Try another keyword or explore other categories.
                   </p>
                   <button
@@ -438,19 +813,20 @@ export default function App() {
                       setSelectedCategory('All');
                       setSearchQuery('');
                     }}
-                    className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors cursor-pointer"
+                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-semibold hover:from-pink-400 hover:to-purple-500 transition-colors cursor-pointer"
                   >
                     Clear Search
                   </button>
                 </div>
               )}
             </section>
+
           </div>
         )}
 
       </main>
 
-      {/* 6. Footer (Matching Screenshots 2, 3, 4 with MENU, COLLECTIONS, FOLLOW US) */}
+      {/* 7. Footer (Dark theme matching AIPROMPTS.BUZZ) */}
       <Footer
         onSelectCategory={(catName) => {
           handleSelectCategory(catName);
@@ -459,14 +835,14 @@ export default function App() {
         onOpenModal={(type) => setActiveModal(type)}
       />
 
-      {/* 7. Lightbox for 100% Full Uncropped Image Preview */}
+      {/* 8. Lightbox for 100% Full Uncropped Image Preview */}
       <LightboxModal
         imageUrl={lightboxImage ? lightboxImage.url : null}
         title={lightboxImage ? lightboxImage.title : ''}
         onClose={() => setLightboxImage(null)}
       />
 
-      {/* 8. Informational & Legal Modal (About Us, Contact Us, Privacy, Terms) */}
+      {/* 9. Informational & Legal Modal (About Us, Contact Us, Privacy, Terms) */}
       <InfoModal
         type={activeModal}
         onClose={() => setActiveModal(null)}
@@ -477,7 +853,7 @@ export default function App() {
 
       {/* Floating Success Toast: "Prompt Copied Successfully!" */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-2xl bg-gray-900 text-white text-xs font-semibold shadow-2xl border border-gray-800 animate-in slide-in-from-bottom-5 duration-200">
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-2xl bg-[#140e2e] text-white text-xs font-semibold shadow-2xl border border-[#2b1b52] animate-in slide-in-from-bottom-5 duration-200">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>

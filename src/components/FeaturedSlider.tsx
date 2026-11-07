@@ -19,7 +19,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
   prompts,
   onSelectPrompt,
 }) => {
-  // Filter for all pinned prompts as requested
+  // Aggregate all pinned prompts as requested
   const pinnedPrompts = useMemo(() => {
     const pinned = prompts.filter((p) => p.isPinned);
     return pinned.length > 0 ? pinned : prompts.slice(0, 6);
@@ -29,7 +29,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
   const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
-  // Keep index within bounds if list length changes
+  // Keep index within bounds
   useEffect(() => {
     if (currentIndex >= pinnedPrompts.length) {
       setCurrentIndex(0);
@@ -76,18 +76,18 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
 
   return (
     <section 
-      aria-label="Pinned Prompts Showcase"
+      aria-label="Pinned Prompts Showcase Slider"
       className="w-full my-4 select-none"
     >
       {/* Top Header Label */}
       <div className="flex items-center justify-between mb-2.5 px-1">
         <div className="flex items-center gap-2">
-          <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-amber-500/15 text-amber-600 border border-amber-300/40">
+          <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-amber-500/15 text-amber-400 border border-amber-400/30">
             <Pin className="w-3.5 h-3.5 rotate-45" />
           </span>
-          <h2 className="text-sm sm:text-base font-extrabold text-gray-900 tracking-tight flex items-center gap-1.5">
+          <h2 className="text-sm sm:text-base font-extrabold text-white tracking-tight flex items-center gap-1.5">
             <span>Pinned Featured Prompts</span>
-            <span className="text-[10px] font-bold text-amber-600 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full uppercase tracking-wider hidden sm:inline-block">
+            <span className="text-[10px] font-bold text-amber-300 bg-amber-500/15 border border-amber-400/30 px-2 py-0.5 rounded-full uppercase tracking-wider hidden sm:inline-block">
               Editor's Choice
             </span>
           </h2>
@@ -95,21 +95,21 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
 
         {/* Slide Counter & Arrows */}
         <div className="flex items-center gap-2">
-          <span className="text-xs font-mono font-semibold text-gray-600">
-            <span className="text-blue-600 font-bold">{currentIndex + 1}</span> / {pinnedPrompts.length}
+          <span className="text-xs font-mono font-semibold text-gray-400">
+            <span className="text-pink-400 font-bold">{currentIndex + 1}</span> / {pinnedPrompts.length}
           </span>
           <div className="flex items-center gap-1">
             <button
               onClick={handlePrev}
               aria-label="Previous pinned photo"
-              className="w-7 h-7 rounded-lg bg-gray-100 hover:bg-blue-50 text-gray-700 hover:text-blue-600 flex items-center justify-center transition-colors cursor-pointer border border-gray-200"
+              className="w-7 h-7 rounded-lg bg-[#140e2d] hover:bg-[#201546] text-gray-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-[#2b1c54]"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
               aria-label="Next pinned photo"
-              className="w-7 h-7 rounded-lg bg-gray-100 hover:bg-blue-50 text-gray-700 hover:text-blue-600 flex items-center justify-center transition-colors cursor-pointer border border-gray-200"
+              className="w-7 h-7 rounded-lg bg-[#140e2d] hover:bg-[#201546] text-gray-300 hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-[#2b1c54]"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -117,57 +117,51 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
         </div>
       </div>
 
-      {/* Main Showcase Hero Card */}
+      {/* Main Showcase Hero Card with Generous Height so Full Image is 100% Uncropped */}
       <div
-        className="relative bg-gradient-to-br from-gray-950 via-slate-900 to-gray-950 text-white rounded-3xl overflow-hidden border border-gray-800 shadow-xl group"
+        className="relative bg-gradient-to-br from-gray-950 via-slate-900 to-gray-950 text-white rounded-3xl border border-gray-800 shadow-xl overflow-hidden group"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Subtle Ambient Background Blurred Glow from the current photo */}
-        <div 
-          className="absolute inset-0 opacity-20 filter blur-3xl scale-125 bg-cover bg-center pointer-events-none transition-all duration-700"
-          style={{ backgroundImage: `url(${current.imageUrl})` }}
-        />
-
-        {/* Ambient Grid Pattern */}
+        {/* Subtle Ambient Grid Pattern */}
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#60a5fa_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
 
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center p-4 sm:p-6 md:p-8">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-center p-4 sm:p-6 md:p-8">
           
-          {/* PHOTO SHOWCASE (Left on desktop, top on mobile) */}
+          {/* PHOTO SHOWCASE: Generous height so entire portrait image (head to toe) is 100% visible */}
           <div 
             onClick={() => onSelectPrompt(current)}
-            className="md:col-span-5 lg:col-span-5 flex items-center justify-center cursor-pointer group/img relative"
+            className="md:col-span-6 lg:col-span-5 flex items-center justify-center cursor-pointer group/img relative"
           >
-            <div className="relative w-full h-[240px] sm:h-[300px] md:h-[320px] bg-black/60 rounded-2xl overflow-hidden border border-white/10 shadow-2xl flex items-center justify-center p-2">
+            <div className="relative w-full h-[340px] sm:h-[400px] md:h-[450px] bg-black/70 rounded-2xl border border-white/10 shadow-2xl flex items-center justify-center p-2.5 sm:p-3 overflow-hidden">
               
-              {/* Uncropped Image Display */}
+              {/* Uncropped Image Display: 100% full view from top to bottom */}
               <img
                 key={current.id}
                 src={current.imageUrl}
                 alt={current.title}
                 style={{ objectFit: 'contain' }}
-                className="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-500 group-hover/img:scale-105"
+                className="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-500 group-hover/img:scale-[1.02]"
               />
 
               {/* Pin Badge on Photo */}
-              <div className="absolute top-2.5 left-2.5 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-amber-500/90 text-white backdrop-blur-md shadow-md border border-amber-300/40">
+              <div className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-amber-500/90 text-white backdrop-blur-md shadow-md border border-amber-300/40">
                 <Pin className="w-3 h-3 rotate-45" />
                 <span>Featured Pin</span>
               </div>
 
-              {/* Quick View Overlay Trigger */}
-              <div className="absolute bottom-2.5 right-2.5 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 text-white text-[10px] font-semibold backdrop-blur-md border border-white/20 opacity-0 group-hover/img:opacity-100 transition-opacity">
-                <Maximize2 className="w-3 h-3" />
-                <span>Open Post</span>
+              {/* Quick View Trigger */}
+              <div className="absolute bottom-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/80 text-white text-[10px] font-semibold backdrop-blur-md border border-white/20 opacity-0 group-hover/img:opacity-100 transition-opacity">
+                <Maximize2 className="w-3.5 h-3.5" />
+                <span>Open Full Details</span>
               </div>
             </div>
           </div>
 
-          {/* SLIDE DETAILS & ACTION (Right on desktop, bottom on mobile) */}
-          <div className="md:col-span-7 lg:col-span-7 flex flex-col justify-between space-y-3 sm:space-y-4">
+          {/* SLIDE DETAILS & ACTION */}
+          <div className="md:col-span-6 lg:col-span-7 flex flex-col justify-between space-y-3.5 sm:space-y-4">
             
             {/* Category, Model & Pinned Tag */}
             <div className="flex flex-wrap items-center gap-2">
@@ -197,7 +191,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
               </h3>
 
               {/* Prompt snippet preview */}
-              <p className="text-xs sm:text-sm text-gray-300 mt-2 line-clamp-2 leading-relaxed font-sans">
+              <p className="text-xs sm:text-sm text-gray-300 mt-2.5 line-clamp-3 leading-relaxed font-sans">
                 {current.prompt}
               </p>
             </div>
@@ -206,19 +200,19 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
             <div className="pt-2 flex flex-wrap items-center gap-3">
               <button
                 onClick={() => onSelectPrompt(current)}
-                className="inline-flex items-center gap-2 px-5 py-2.5 sm:py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-600/40 transition-all transform active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-400 hover:to-purple-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-pink-500/30 transition-all transform active:scale-95 cursor-pointer"
               >
-                <span>View Full Prompt & Copy</span>
+                <span>View Full Prompt &amp; Copy</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
               <span className="text-[11px] text-gray-400 hidden sm:inline-block">
-                Includes 7-second copy countdown & ChatGPT / Gemini prompt
+                Includes 7-second copy countdown &bull; 100% Uncropped Photo
               </span>
             </div>
 
             {/* Dots Navigation */}
-            <div className="flex items-center gap-1.5 pt-1">
+            <div className="flex items-center gap-1.5 pt-2">
               {pinnedPrompts.map((p, idx) => (
                 <button
                   key={p.id}
@@ -226,7 +220,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
                   aria-label={`Go to slide ${idx + 1}`}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                     currentIndex === idx 
-                      ? 'w-7 bg-blue-500 shadow-xs shadow-blue-400' 
+                      ? 'w-7 bg-pink-500 shadow-xs shadow-pink-400' 
                       : 'w-2 bg-white/30 hover:bg-white/60'
                   }`}
                 />
@@ -241,7 +235,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
         <button
           onClick={handlePrev}
           aria-label="Previous slide"
-          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-blue-600 text-white backdrop-blur-md hidden sm:flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer border border-white/20 shadow-lg"
+          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-pink-600 text-white backdrop-blur-md hidden sm:flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer border border-white/20 shadow-lg"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -250,37 +244,40 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
         <button
           onClick={handleNext}
           aria-label="Next slide"
-          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-blue-600 text-white backdrop-blur-md hidden sm:flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer border border-white/20 shadow-lg"
+          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-black/60 hover:bg-pink-600 text-white backdrop-blur-md hidden sm:flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer border border-white/20 shadow-lg"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
 
-      {/* Bottom Horizontal Filmstrip Preview of all Pinned Photos */}
+      {/* Bottom Horizontal Filmstrip Preview of all Pinned Photos (Full Aspect Ratio, Never Cropped) */}
       {pinnedPrompts.length > 1 && (
-        <div className="mt-3 flex items-center gap-2 overflow-x-auto pb-1 pt-0.5 no-scrollbar scroll-smooth">
+        <div className="mt-3 flex items-center gap-2.5 overflow-x-auto pb-2 pt-1 no-scrollbar scroll-smooth">
           {pinnedPrompts.map((p, idx) => {
             const isActive = currentIndex === idx;
             return (
               <button
                 key={p.id}
                 onClick={() => setCurrentIndex(idx)}
-                className={`flex-shrink-0 flex items-center gap-2 px-2.5 py-1.5 rounded-xl border text-left transition-all cursor-pointer ${
+                className={`flex-shrink-0 flex items-center gap-2 p-1.5 pr-3 rounded-xl border text-left transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-blue-50 border-blue-400 shadow-xs ring-1 ring-blue-300'
-                    : 'bg-white border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    ? 'bg-[#1e133d] border-pink-500/80 shadow-md shadow-pink-500/20 ring-1 ring-pink-500/50'
+                    : 'bg-[#120c29] border-[#291b50] hover:border-[#3d2777] hover:bg-[#181035]'
                 }`}
               >
-                <img
-                  src={p.imageUrl}
-                  alt={p.title}
-                  className="w-8 h-8 rounded-lg object-contain bg-gray-900 border border-gray-200"
-                />
-                <div className="flex flex-col max-w-[130px] sm:max-w-[160px]">
-                  <span className={`text-[11px] font-bold line-clamp-1 ${isActive ? 'text-blue-700' : 'text-gray-800'}`}>
+                <div className="w-10 h-14 rounded-lg bg-[#090518] border border-[#2b1c55] overflow-hidden flex items-center justify-center p-0.5">
+                  <img
+                    src={p.imageUrl}
+                    alt={p.title}
+                    style={{ objectFit: 'contain' }}
+                    className="max-w-full max-h-full w-auto h-auto object-contain"
+                  />
+                </div>
+                <div className="flex flex-col max-w-[130px] sm:max-w-[170px]">
+                  <span className={`text-[11px] font-bold line-clamp-1 ${isActive ? 'text-pink-300' : 'text-gray-200'}`}>
                     {p.title}
                   </span>
-                  <span className="text-[9px] text-gray-500 font-medium">
+                  <span className="text-[9px] text-gray-400 font-medium">
                     {p.category}
                   </span>
                 </div>

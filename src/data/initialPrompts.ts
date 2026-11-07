@@ -12,15 +12,16 @@ export const PROMPTPIN_CATEGORIES: CategoryItem[] = [
   { id: 'trending', name: 'Trending', description: 'Viral and popular AI image editing prompts' },
   { id: 'all', name: 'All', description: 'All AI Photo editing prompts' },
   { id: 'boys', name: 'Boys', description: 'AI photo editing prompts for boys and men' },
-  { id: 'couple', name: 'Couple', description: 'Romantic and aesthetic couple AI photo prompts' },
+  { id: 'diwali', name: 'Diwali', description: 'Festive Diwali AI photo editing prompts for boys' },
+  { id: 'retro', name: 'Retro', description: '90s vintage film style AI photo prompts' },
 ];
 
 export const COLLECTIONS_LIST = [
   { label: 'Diwali AI photo editing prompt', cat: 'Diwali AI photo editing prompt' },
   { label: '90s Retro AI Photo Prompts', cat: '90s Retro AI Photo Prompts' },
   { label: 'Trending AI Photo Prompts', cat: 'Trending' },
-  { label: 'Couple AI Photo Prompts', cat: 'Couple' },
   { label: 'AI Photo Prompts for Boys', cat: 'Boys' },
+  { label: 'Luxury Cars & Bikes for Men', cat: 'Automotive' },
 ];
 
 export const STORE_PROMPTS: PromptItem[] = [
