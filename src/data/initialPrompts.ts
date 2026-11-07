@@ -25,6 +25,326 @@ export const COLLECTIONS_LIST = [
 
 export const STORE_PROMPTS: PromptItem[] = [
   {
+    id: 'best-diwali-prompt-for-boys',
+    title: 'Best Diwali prompt for boys',
+    category: 'Boys',
+    description: `# Best Diwali Prompt for Boys – Step-by-Step AI Photo Creation Guide
+
+Learn how to create an authentic, ultra-realistic 4K cinematic Diwali celebration photograph using two uploaded reference images: one for the festive scene composition and one for your authentic personal face and hairstyle.
+
+## What Is This AI Photo Editing Prompt?
+This prompt is designed to produce a professional festive portrait on a traditional stone terrace during Diwali night. It features you in an elegant pure-white traditional kurta pajama with clean white sneakers, holding a brightly glowing phooljhadi (sparkler) with the golden words "Happy Diwali" displayed in 3D metallic typography in the sky.
+
+## Step-by-Step Tutorial: How to Create This Photo
+
+### Step 1: Prepare Two Photographs
+- **First Image (Scene Reference):** Use the preview image shown on this page as the reference for composition, lighting, clothing, terrace, sparkler, and fireworks.
+- **Second Image (Face Reference):** Use your own personal front-facing photograph where your face, eyes, hair texture, and natural expression are clear and well lit.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o image generation) or Google Gemini on your smartphone or web browser.
+
+### Step 3: Attach Both Images
+Upload the scene reference image first, followed by your personal face reference photo in the prompt input field.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy** button below. Wait 5 seconds for the countdown, and the complete prompt will be copied to your clipboard.
+
+### Step 5: Paste & Generate
+Paste the prompt into the message box alongside your uploaded photos and submit. Ask for a vertical 9:16 portrait.
+
+### Step 6: Review & Download
+Verify facial identity preservation, realistic sparkler glow, and clean 3D gold typography. Download your 4K festive photo and share!
+
+---
+
+## SEO Keywords & Search Tags
+Diwali prompt for boys, Diwali boys prompt, Boys Diwali prompt, Diwali prompt, Best Diwali prompt, Best Diwali prompt for boys, Diwali AI photo editing prompt, Happy Diwali 3D text AI photo, White kurta Diwali prompt, ChatGPT Diwali prompt, Gemini Diwali prompt, Realistic festive AI photo`,
+    prompt: `Create a highly realistic, professional 4K cinematic photograph by following the FIRST uploaded image as the exact visual composition and scene reference, while using the SECOND uploaded personal photograph exclusively as the identity reference for the person's real face and hairstyle.
+1. STRICT FACE AND HAIR IDENTITY
+The person must look exactly like the individual in the personal reference photograph. Preserve his real facial features, face shape, eyes, eyebrows, nose, lips, jawline, natural skin tone, hairstyle, hairline, hair length, and hair texture. Do not generate a different face, change his hairstyle, or apply artificial beautification. His identity must remain clearly recognizable.
+2. EXACT BODY POSE AND POSITION
+Recreate the same full-body standing pose shown in the first reference image:
+- Standing naturally in the center of the terrace.
+- One leg casually crossed in front of the other.
+- One hand holding a small, brightly glowing traditional phooljhadi (sparkler).
+- The other hand placed inside the pajama pocket.
+- Head slightly tilted downward, looking happily at the glowing sparkler.
+- A natural, genuine smile.
+3. CLOTHING
+Dress him in a beautiful, elegant, pure-white traditional Indian kurta with matching white pajama trousers and clean white sneakers. Maintain realistic fabric details, natural folds, and an authentic traditional appearance.
+4. BACKGROUND — MATCH THE FIRST IMAGE
+Reproduce the festive terrace atmosphere from the first reference image. Include:
+- A beautiful traditional stone terrace with decorative stone railings.
+- Numerous small, glowing clay diyas arranged along the railing.
+- Additional lit diyas scattered naturally across the terrace floor.
+- A dark nighttime sky filled with spectacular golden, silver, blue, and subtle pink fireworks.
+- Realistic fireworks of different sizes distributed throughout the background.
+- Warm golden light from the diyas illuminating the terrace and the subject.
+Do not replace the traditional terrace with a modern balcony or a city rooftop.
+5. EXACT TEXT
+Place the words "Happy Diwali" prominently at the top of the image in large, luxurious, three-dimensional metallic gold lettering. Use elegant decorative serif typography with realistic golden reflections, subtle highlights, and a beautiful premium festive appearance. The text must be correctly spelled, fully visible, and must not overlap the person's head.
+6. CAMERA AND IMAGE COMPOSITION
+Vertical portrait photography, 9:16 aspect ratio, full-body framing from head to shoes, subject positioned in the center, with sufficient space above the head for the greeting text. Maintain the same camera perspective, subject proportions, and overall visual arrangement as the first reference image.
+Professional DSLR photography, ultra-realistic skin texture, authentic facial details, cinematic nighttime lighting, realistic shadows, natural human anatomy, detailed clothing, balanced exposure, sharp focus, and premium photographic quality.
+7. IMPORTANT FINAL INSTRUCTIONS
+The first image is the scene, pose, clothing, background, and composition reference. The personal photograph is the face and hairstyle identity reference.
+Do not copy the original person's face from the scene reference. Do not use the face of the model shown in the first image. Use only the actual face and hairstyle from the personal photograph.
+Do not change the pose, do not remove the sneakers, do not make the person barefoot, do not change the vertical 9:16 composition, and do not simplify the fireworks or diyas.
+The final result should closely recreate the first reference photograph while featuring the real person from the personal face reference. It must look like an authentic professional photograph, not an AI-generated illustration.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiPg0z2hHAODkb1D_pKFyvvz8yit7m4-Or9JC29wiRwIsJln29uKWSaSwHq7Wy-i7FzessspVShPmKJReIwadGx7ksyJaJgeg4ls0rPPHFMErwRNJ7m2WoYu_6o0WItEISeftR_23auzcenDACsJ4na50uvPShhCDyarKB53fi_hi4xUj48Xeu-oepLQo/s1600/image.png',
+    tags: [
+      'Boys',
+      'Diwali',
+      'Diwali prompt for boys',
+      'Diwali boys prompt',
+      'Boys Diwali prompt',
+      'Diwali prompt',
+      'Best Diwali prompt',
+      'Best Diwali prompt for boys',
+      'Diwali AI photo editing prompt',
+      'Sparkler',
+      'Fireworks',
+      'Happy Diwali',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 0,
+    viewsCount: 0,
+    copyCount: 0,
+    aspectRatio: '9:16',
+    model: 'ChatGPT / Gemini',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'diwali-boys-prompt-burgundy-kurta',
+    title: 'Diwali boys prompt – Deep Burgundy Kurta Courtyard Diya Lighting AI Photo',
+    category: 'Boys',
+    description: `# Diwali Boys Prompt: Deep Burgundy Kurta Courtyard Diya Lighting Guide
+
+Create an exceptionally realistic 4K cinematic Diwali festive photograph featuring you wearing a sophisticated deep burgundy kurta with delicate golden embroidery, lighting an authentic earthen diya in an architectural arched courtyard.
+
+## What Is This AI Photo Editing Prompt?
+This prompt captures an intimate and elegant Diwali celebration moment. Set in an outdoor traditional courtyard with hanging brass lanterns, floral rangoli patterns, and warm-white fairy lights, the focus is on cultural authenticity and preserving your exact facial identity.
+
+## Step-by-Step Tutorial: How to Create This Photo
+
+### Step 1: Select Your Personal Photo
+Choose a high-resolution portrait or selfie where your face shape, skin tone, eyebrows, nose, and hairstyle are clearly visible.
+
+### Step 2: Open ChatGPT or Google Gemini
+Open ChatGPT (GPT-4o) or Google Gemini on your phone or computer.
+
+### Step 3: Attach Your Reference Photo
+Upload your portrait to the chatbox so the AI uses your real features as the exclusive identity anchor.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy** button below. Wait 5 seconds for the countdown, and the full prompt will be copied to your clipboard.
+
+### Step 5: Paste & Generate
+Paste the prompt into the message box alongside your uploaded photo. Instruct the AI to generate a vertical 9:16 aspect ratio portrait.
+
+### Step 6: Review & Download
+Ensure your real face, hands, and the natural diya flame reflection are rendered smoothly. Save the image in full 4K resolution!
+
+---
+
+## SEO Keywords & Search Tags
+Diwali prompt for boys, Diwali boys prompt, Boys Diwali prompt, Diwali prompt, Best Diwali prompt, Best Diwali prompt for boys, Diwali AI photo editing prompt, Burgundy kurta Diwali AI photo, Courtyard diya lighting prompt, Rangoli festive AI photo, ChatGPT Diwali prompt, Gemini Diwali prompt`,
+    prompt: `Create an exceptionally realistic 4K cinematic Diwali celebration photograph using the uploaded personal photograph as the facial identity reference.
+Facial Identity Preservation: Reproduce the same individual from the personal reference photograph. Preserve his original face shape, facial proportions, eyes, eyebrows, nose, lips, jawline, natural skin tone, hairstyle, hairline, and hair texture. Do not replace or redesign his face or hairstyle. Maintain his recognizable natural appearance.
+Outfit and Pose: Show him wearing a sophisticated deep burgundy traditional Indian kurta featuring delicate golden embroidery around the collar, neckline, and cuffs, paired with elegant black trousers and traditional brown leather footwear. He is standing slightly bent forward, carefully lighting a traditional earthen diya using a small flame. Both hands are positioned naturally around the lamp, with his eyes focused on the flame and a gentle, peaceful expression.
+Festive Environment: Place him inside a magnificent outdoor traditional festive courtyard with beautifully carved architectural arches. Decorate the entire space with glowing warm-white fairy lights, hanging brass lanterns, golden decorative lamps, orange marigold flower garlands, and numerous illuminated candles.
+A tall, antique brass oil-lamp stand should be positioned beside him. Beautifully detailed, colorful rangoli patterns made with flower petals and colored powders should decorate the stone floor. Add several small clay diyas around the courtyard to create an authentic Diwali atmosphere.
+Lighting and Photography: Capture the scene with warm golden cinematic illumination, realistic flame reflections, natural skin texture, beautiful depth of field, detailed fabric textures, lifelike shadows, and balanced exposure. Use professional DSLR photography aesthetics with a rich festive color palette and exceptionally realistic environmental details.
+Composition: Vertical 9:16 portrait format, full-body framing, natural human proportions, centered subject, and a beautifully balanced architectural background.
+Final Requirements: The result must resemble a genuine professional festive photograph. Preserve the person's real facial identity and original hairstyle. Avoid artificial facial modifications, cartoon effects, distorted hands, unrealistic anatomy, or excessive visual effects. Prioritize photographic realism and an elegant traditional Diwali atmosphere.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtiduU8Pbig4VEdKB_3Uf2eYzIHwvrsaZudPbzy1uhfv3GKWCiS1i9N_hAyPlIlzILQguIv_7ZVCbVnJtDKAtspdJvbYQqBPtyer0nTZ_2PaXmNV4yj9ZKxfZSTR9i29MCRtJmZPOXOxlaYyUOSh1mbpchTlkSzEvTFAsADVLNlciZUZp4lgPmjE5WKVE/s1600/image.png',
+    tags: [
+      'Boys',
+      'Diwali',
+      'Diwali prompt for boys',
+      'Diwali boys prompt',
+      'Boys Diwali prompt',
+      'Diwali prompt',
+      'Best Diwali prompt',
+      'Best Diwali prompt for boys',
+      'Diwali AI photo editing prompt',
+      'Burgundy Kurta',
+      'Courtyard',
+      'Rangoli',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 0,
+    viewsCount: 0,
+    copyCount: 0,
+    aspectRatio: '9:16',
+    model: 'ChatGPT / Gemini',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'boys-diwali-prompt-ivory-kurta-brass-lamp',
+    title: 'Boys Diwali prompt – Luxury Ivory Kurta & Antique Brass Lamp Stand AI Photo',
+    category: 'Boys',
+    description: `# Boys Diwali Prompt: Luxury Ivory Kurta & Brass Lamp Stand Guide
+
+Create an ultra-realistic 4K professional cinematic Diwali portrait of yourself standing gracefully beside a tall, antique-style brass oil-lamp stand adorned with intricate marigold garlands and colorful rangoli floor art.
+
+## What Is This AI Photo Editing Prompt?
+This prompt emphasizes regal festive elegance. Dressed in a luxurious ivory-colored traditional kurta with woven golden embroidery, you are lighting an ornate brass lamp stand in an opulent festive courtyard while keeping your true facial appearance intact.
+
+## Step-by-Step Tutorial: How to Create This Photo
+
+### Step 1: Select Your Personal Photo
+Pick a clear personal photo with natural lighting showing your face, hairline, eyes, and natural expression.
+
+### Step 2: Open ChatGPT or Google Gemini
+Open ChatGPT or Google Gemini with image generation enabled.
+
+### Step 3: Upload Your Face Reference
+Attach your reference image to the chat prompt input.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy** button below. Wait 5 seconds for the countdown, and the full prompt will be copied to your clipboard.
+
+### Step 5: Paste & Generate
+Paste the prompt into the chat window with your photo. Ask for a vertical 9:16 composition.
+
+### Step 6: Review & Download
+Check the brass lamp stand reflections, intricate rangoli, and skin texture. Download your 4K portrait!
+
+---
+
+## SEO Keywords & Search Tags
+Diwali prompt for boys, Diwali boys prompt, Boys Diwali prompt, Diwali prompt, Best Diwali prompt, Best Diwali prompt for boys, Diwali AI photo editing prompt, Ivory kurta Diwali AI photo, Brass lamp stand prompt, Marigold floral Diwali AI photo, ChatGPT Diwali prompt, Gemini Diwali prompt`,
+    prompt: `Create an ultra-realistic 4K professional cinematic photograph of the person in the uploaded personal reference photo, celebrating Diwali in an elegant traditional festive setting.
+FACE AND HAIR IDENTITY LOCK:
+Use the uploaded personal photograph as the exclusive facial identity reference. Preserve the person's authentic facial appearance, including face shape, eyes, eyebrows, nose, lips, jawline, natural skin tone, hairstyle, hairline, and hair texture. Do not substitute another person's face or artificially alter his natural appearance. Maintain maximum possible facial identity consistency.
+OUTFIT AND APPEARANCE:
+Dress him in a luxurious light ivory-colored traditional Indian kurta with intricate, subtle golden embroidery and detailed woven patterns. Pair it with elegant dark brown or charcoal traditional trousers and classic beige ethnic footwear. The clothing should look premium, natural, and beautifully textured.
+POSE AND ACTION:
+Show him standing gracefully beside a tall, antique-style brass oil-lamp stand. He is carefully lighting one of the small flames using a traditional lighting taper. One hand holds the taper close to the lamp, while the other hand gently supports the decorative brass lamp plate. His head is slightly lowered, with his eyes focused on the flame, creating a peaceful and genuine festive expression.
+BACKGROUND AND DECORATION:
+Create a beautiful, luxurious outdoor-style Diwali courtyard or decorated terrace. Include elegant hanging ornamental lanterns, glowing warm-white fairy lights, orange and yellow marigold flower garlands arranged across the ceiling, decorative floral arrangements, and numerous small illuminated candles.
+Add colorful traditional rangoli artwork made from vibrant flower petals and colored powders on the floor, especially around the base of the brass lamp. Include beautifully arranged flower decorations and traditional festive details throughout the environment.
+LIGHTING AND ATMOSPHERE:
+Use warm amber and golden cinematic lighting. The tiny flames should produce realistic reflections on the brass lamp and softly illuminate the person's face and clothing. Create a beautiful balance between warm decorative lights and the darker background, with natural shadows and realistic depth.
+CAMERA AND COMPOSITION:
+Vertical 9:16 portrait format, full-body photography, eye-level camera perspective, subject positioned prominently in the center, with the entire brass lamp visible from its base to the top. Keep the rangoli and decorative background clearly visible. Professional DSLR photographic quality, realistic skin texture, detailed embroidery, natural anatomy, sharp focus, and cinematic depth of field.
+FINAL QUALITY REQUIREMENTS:
+The final image must look like an authentic high-end festive photoshoot rather than an illustration or artificial digital artwork. Keep the person's real face and original hairstyle recognizable. Avoid distorted fingers, incorrect hand positions, unnatural facial features, excessive skin smoothing, or unrealistic lighting. Prioritize facial identity, photographic realism, and traditional Diwali elegance.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja4ufCjjJj7LMxNF2e8Q8rnbGTt6xnCNz2clrgsajusGKoDLCSAEVDNuX49blc50k2UtYpQ3BTBSE95a6tA6LZ0jeA1q7LavBeCXb1wdvOyPEcezM74Hxb7ymcGtAA12roymGFSYIIhdv0DW-lxiIs9AbSz9gu4M1v-Pgn879KV3v4Dj3-Q3TSqphw1ho/s1600/image.png',
+    tags: [
+      'Boys',
+      'Diwali',
+      'Diwali prompt for boys',
+      'Diwali boys prompt',
+      'Boys Diwali prompt',
+      'Diwali prompt',
+      'Best Diwali prompt',
+      'Best Diwali prompt for boys',
+      'Diwali AI photo editing prompt',
+      'Ivory Kurta',
+      'Brass Lamp',
+      'Rangoli',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 0,
+    viewsCount: 0,
+    copyCount: 0,
+    aspectRatio: '9:16',
+    model: 'ChatGPT / Gemini',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'diwali-prompt-for-boys-cream-silk-dupatta',
+    title: 'Diwali prompt for boys – Cream Silk Dupatta Rooftop Fireworks AI Photo',
+    category: 'Boys',
+    description: `# Diwali Prompt for Boys: Cream Silk Dupatta Rooftop Fireworks Guide
+
+Create an ultra-realistic 4K cinematic full-body portrait on a spacious rooftop terrace during Diwali night, dressed in a cream kurta with a flowing silk dupatta draped across your shoulder, holding a small glowing clay diya under spectacular golden fireworks.
+
+## What Is This AI Photo Editing Prompt?
+This prompt captures modern festive royal charm. Standing in a relaxed, confident pose with one leg crossed in front of the other, you hold a traditional clay diya on an illuminated rooftop terrace while colorful fireworks burst across the deep night sky.
+
+## Step-by-Step Tutorial: How to Create This Photo
+
+### Step 1: Select Your Personal Photo
+Choose a clear, front-facing portrait or selfie showing your natural skin tone, facial proportions, and original hairstyle.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o image generation) or Google Gemini on your device.
+
+### Step 3: Upload Your Face Reference
+Attach your personal photograph to the prompt box.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy** button below. Wait 5 seconds for the countdown, and the complete prompt will be copied to your clipboard.
+
+### Step 5: Paste & Generate
+Paste the prompt into the message box alongside your uploaded photo. Request a vertical 9:16 portrait.
+
+### Step 6: Review & Download
+Check the flowing silk texture, gentle flame reflections on your fingers, and realistic fireworks in the sky. Download your 4K portrait!
+
+---
+
+## SEO Keywords & Search Tags
+Diwali prompt for boys, Diwali boys prompt, Boys Diwali prompt, Diwali prompt, Best Diwali prompt, Best Diwali prompt for boys, Diwali AI photo editing prompt, Silk dupatta kurta AI photo, Rooftop fireworks Diwali AI photo, Modern festive boys portrait, ChatGPT Diwali prompt, Gemini Diwali prompt`,
+    prompt: `Create an ultra-realistic 4K cinematic full-body portrait of the person in the uploaded personal reference photograph.
+FACE AND HAIR PRESERVATION:
+Use the uploaded photograph as the sole facial identity reference. Maintain his original facial structure, eyes, eyebrows, nose, lips, jawline, natural skin tone, hairstyle, hairline, and hair texture. Do not replace, reshape, beautify, or modify his real face. Preserve his recognizable identity with maximum possible accuracy.
+OUTFIT AND STYLING:
+Dress him in an elegant cream-colored traditional kurta with a matching flowing silk dupatta draped gracefully over one shoulder. Add matching cream pajama trousers and clean white sneakers. The silk fabric should have realistic folds, a soft luxurious texture, and subtle natural highlights.
+POSE AND EXPRESSION:
+Position him confidently in the center of a spacious modern rooftop terrace. His legs are casually crossed, creating a relaxed and stylish full-body pose. He gently holds a small traditional clay lamp in one hand while resting the other hand naturally near his waist. His expression is calm, confident, and natural, with his eyes looking directly toward the camera.
+BACKGROUND AND ENVIRONMENT:
+Create a beautiful nighttime rooftop atmosphere with a deep black sky illuminated by spectacular golden fireworks. Decorate the terrace railing with warm glowing fairy lights arranged in elegant patterns. Add subtle decorative floor lighting and colorful geometric floral artwork on the terrace floor. The environment should feel spacious, sophisticated, and festive.
+LIGHTING AND VISUAL DETAILS:
+The small flame in his hand should produce a gentle golden glow across his fingers and clothing. Combine this with soft ambient terrace lighting and realistic fireworks illumination. Maintain natural skin tones, realistic shadows, detailed fabric textures, and balanced cinematic exposure.
+CAMERA AND QUALITY:
+Vertical 9:16 composition, complete head-to-toe framing, professional DSLR photography, realistic human anatomy, sharp facial details, cinematic depth of field, natural proportions, premium 4K photographic quality, and lifelike environmental details.
+STRICT FINAL INSTRUCTIONS:
+The uploaded personal photograph determines the person's real face and hairstyle. Do not generate a different identity. Avoid facial alterations, distorted hands, extra fingers, artificial skin smoothing, incorrect body proportions, or cartoon-like effects. The final output must look like an authentic professional nighttime portrait.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgagzTUZHaOl6WpbQ0DqIUwZQrdzrgNz60aSW0VVR9WXNyM74VP7wY1JKd7wsCPP0vyHtXitssXOWj5gpH01zXzP41B9c4jiZy4znAAz_fdc6Zf5_NFRkcw_Ax1I2j4GYKwRiHtnWHnCOkP30UqPeVdn1J8GbXrmY2p53iu40YwtHL_pLDuDr4yZKGdA-Y/s1600/image.png',
+    tags: [
+      'Boys',
+      'Diwali',
+      'Diwali prompt for boys',
+      'Diwali boys prompt',
+      'Boys Diwali prompt',
+      'Diwali prompt',
+      'Best Diwali prompt',
+      'Best Diwali prompt for boys',
+      'Diwali AI photo editing prompt',
+      'Silk Dupatta',
+      'Cream Kurta',
+      'Rooftop Fireworks',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 0,
+    viewsCount: 0,
+    copyCount: 0,
+    aspectRatio: '9:16',
+    model: 'ChatGPT / Gemini',
+    createdAt: new Date().toISOString(),
+  },
+  {
     id: 'diwali-sparkler-prompt-for-boys',
     title: 'Diwali prompt for boys',
     category: 'Boys',
