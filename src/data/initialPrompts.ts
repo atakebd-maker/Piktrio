@@ -11,8 +11,6 @@ import { CategoryItem, PromptItem } from '../types/prompt';
 export const PROMPTPIN_CATEGORIES: CategoryItem[] = [
   { id: 'trending', name: 'Trending', description: 'Viral and popular AI image editing prompts' },
   { id: 'all', name: 'All', description: 'All AI Photo editing prompts' },
-  { id: 'diwali', name: 'Diwali', description: 'Festive Diwali AI photo editing prompts' },
-  { id: 'retro', name: 'Retro', description: '90s vintage and nostalgic retro street photography AI prompts' },
   { id: 'boys', name: 'Boys', description: 'AI photo editing prompts for boys and men' },
   { id: 'couple', name: 'Couple', description: 'Romantic and aesthetic couple AI photo prompts' },
 ];
@@ -49,7 +47,7 @@ Launch ChatGPT (GPT-4o image generation) or Google Gemini on your smartphone or 
 Upload your personal picture to the chat prompt box so the AI uses your real identity as the facial anchor.
 
 ### Step 4: Copy the AI Prompt
-Click the **Copy** button below. Wait 5 seconds for the security countdown to finish, and the complete prompt will be copied to your clipboard.
+Click the **Copy Full Prompt** button. Wait 7 seconds for the countdown, then click the green **Click to Copy Now** button to copy the complete prompt to your clipboard.
 
 ### Step 5: Paste & Generate
 Paste the prompt into the message box alongside your uploaded photo. Instruct the AI to generate a vertical 3:4 portrait.
@@ -126,7 +124,7 @@ The final result should resemble a genuine professional royal Diwali photoshoot 
     copyCount: 0,
     aspectRatio: '3:4',
     model: 'ChatGPT / Gemini',
-    createdAt: new Date().toISOString(),
+    createdAt: '2026-11-06T17:30:00.000Z',
   },
   {
     id: '90s-retro-motorcycle-vintage-denim',
@@ -151,7 +149,7 @@ Launch ChatGPT (GPT-4o image generation) or Google Gemini on your smartphone or 
 Upload your reference photo into the chatbox so the AI model preserves your exact facial structure and identity.
 
 ### Step 4: Copy the AI Prompt
-Click the **Copy** button below. Wait 5 seconds for the countdown, and the complete prompt will be copied to your clipboard.
+Click the **Copy Full Prompt** button. Wait 7 seconds for the countdown, then click the green **Click to Copy Now** button to copy the complete prompt to your clipboard.
 
 ### Step 5: Paste & Generate
 Paste the prompt into the message box alongside your uploaded photo. Instruct the AI to generate a vertical 4:5 portrait.
@@ -216,7 +214,7 @@ The final image must capture the genuine charm of 1990s youth fashion and motorc
     copyCount: 0,
     aspectRatio: '4:5',
     model: 'ChatGPT / Gemini',
-    createdAt: new Date().toISOString(),
+    createdAt: '2026-11-06T17:20:00.000Z',
   },
   {
     id: 'best-diwali-prompt-for-boys',
@@ -242,7 +240,7 @@ Launch ChatGPT (GPT-4o image generation) or Google Gemini on your smartphone or 
 Upload the scene reference image first, followed by your personal face reference photo in the prompt input field.
 
 ### Step 4: Copy the AI Prompt
-Click the **Copy** button below. Wait 5 seconds for the countdown, and the complete prompt will be copied to your clipboard.
+Click the **Copy Full Prompt** button. Wait 7 seconds for the countdown, then click the green **Click to Copy Now** button to copy the complete prompt to your clipboard.
 
 ### Step 5: Paste & Generate
 Paste the prompt into the message box alongside your uploaded photos and submit. Ask for a vertical 9:16 portrait.
@@ -311,7 +309,7 @@ The final result should closely recreate the first reference photograph while fe
     copyCount: 0,
     aspectRatio: '9:16',
     model: 'ChatGPT / Gemini',
-    createdAt: new Date().toISOString(),
+    createdAt: '2026-11-06T16:00:00.000Z',
   },
   {
     id: 'diwali-boys-prompt-burgundy-kurta',
@@ -336,7 +334,7 @@ Open ChatGPT (GPT-4o) or Google Gemini on your phone or computer.
 Upload your portrait to the chatbox so the AI uses your real features as the exclusive identity anchor.
 
 ### Step 4: Copy the AI Prompt
-Click the **Copy** button below. Wait 5 seconds for the countdown, and the full prompt will be copied to your clipboard.
+Click the **Copy Full Prompt** button. Wait 7 seconds for the countdown, then click the green **Click to Copy Now** button to copy the full prompt to your clipboard.
 
 ### Step 5: Paste & Generate
 Paste the prompt into the message box alongside your uploaded photo. Instruct the AI to generate a vertical 9:16 aspect ratio portrait.
@@ -381,7 +379,7 @@ Final Requirements: The result must resemble a genuine professional festive phot
     copyCount: 0,
     aspectRatio: '9:16',
     model: 'ChatGPT / Gemini',
-    createdAt: new Date().toISOString(),
+    createdAt: '2026-11-06T15:50:00.000Z',
   },
   {
     id: 'boys-diwali-prompt-ivory-kurta-brass-lamp',
@@ -406,7 +404,7 @@ Open ChatGPT or Google Gemini with image generation enabled.
 Attach your reference image to the chat prompt input.
 
 ### Step 4: Copy the AI Prompt
-Click the **Copy** button below. Wait 5 seconds for the countdown, and the full prompt will be copied to your clipboard.
+Click the **Copy Full Prompt** button. Wait 7 seconds for the countdown, then click the green **Click to Copy Now** button to copy the full prompt to your clipboard.
 
 ### Step 5: Paste & Generate
 Paste the prompt into the chat window with your photo. Ask for a vertical 9:16 composition.
@@ -459,7 +457,7 @@ The final image must look like an authentic high-end festive photoshoot rather t
     copyCount: 0,
     aspectRatio: '9:16',
     model: 'ChatGPT / Gemini',
-    createdAt: new Date().toISOString(),
+    createdAt: '2026-11-06T15:40:00.000Z',
   },
   {
     id: 'diwali-prompt-for-boys-cream-silk-dupatta',
@@ -484,7 +482,7 @@ Launch ChatGPT (GPT-4o image generation) or Google Gemini on your device.
 Attach your personal photograph to the prompt box.
 
 ### Step 4: Copy the AI Prompt
-Click the **Copy** button below. Wait 5 seconds for the countdown, and the complete prompt will be copied to your clipboard.
+Click the **Copy Full Prompt** button. Wait 7 seconds for the countdown, then click the green **Click to Copy Now** button to copy the complete prompt to your clipboard.
 
 ### Step 5: Paste & Generate
 Paste the prompt into the message box alongside your uploaded photo. Request a vertical 9:16 portrait.
@@ -536,7 +534,7 @@ The uploaded personal photograph determines the person's real face and hairstyle
     copyCount: 0,
     aspectRatio: '9:16',
     model: 'ChatGPT / Gemini',
-    createdAt: new Date().toISOString(),
+    createdAt: '2026-11-06T15:30:00.000Z',
   },
   {
     id: 'diwali-sparkler-prompt-for-boys',
@@ -562,7 +560,7 @@ Open ChatGPT (with GPT-4o image generation) or Google Gemini on your smartphone 
 Attach your personal photograph to the chat message box so the AI model can analyze your facial structure, features, and authentic identity.
 
 ### Step 4: Copy the AI Prompt
-Click the **Copy** button below. Wait 5 seconds for the security countdown to finish, and the complete English prompt will be copied to your clipboard.
+Click the **Copy Full Prompt** button. Wait 7 seconds for the countdown, then click the green **Click to Copy Now** button to copy the complete English prompt to your clipboard.
 
 ### Step 5: Paste and Generate
 Paste the copied prompt into the message box alongside your uploaded photo. Instruct the AI to generate a vertical full-length portrait (3:4 or 9:16 aspect ratio).
@@ -616,7 +614,7 @@ Important: The final result must look like a genuine professional photograph, no
     copyCount: 0,
     aspectRatio: '3:4',
     model: 'ChatGPT / Gemini',
-    createdAt: new Date().toISOString(),
+    createdAt: '2026-11-06T15:20:00.000Z',
   },
   {
     id: 'diwali-prompt-for-boys',
@@ -649,7 +647,7 @@ Open ChatGPT or Google Gemini on your smartphone or computer. Select the image g
 Attach your personal picture to the chat prompt box so the AI can analyze your facial structure, skin tone, hair, and facial features.
 
 ### Step 4: Copy the AI Prompt
-Click the **Copy** button on this page (wait 5 seconds for the countdown) to copy the complete English prompt text.
+Click the **Copy Full Prompt** button (wait 7 seconds for the countdown, then click **Click to Copy Now**) to copy the complete English prompt text.
 
 ### Step 5: Paste and Generate
 Paste the prompt into the message box alongside your uploaded photo. Ask the AI to generate a vertical full-body portrait (3:4 or 9:16 aspect ratio).
@@ -689,7 +687,7 @@ Create a completely original photographic composition.`,
     copyCount: 0,
     aspectRatio: '3:4',
     model: 'ChatGPT / Gemini',
-    createdAt: new Date().toISOString(),
+    createdAt: '2026-11-06T15:10:00.000Z',
   },
   {
     id: 'orUmpTSCFTyOAc9HOMhV',
@@ -855,7 +853,7 @@ ASPECT RATIO: 9:16`,
     copyCount: 0,
     aspectRatio: '9:16',
     model: 'ChatGPT / Gemini',
-    createdAt: new Date().toISOString(),
+    createdAt: '2026-11-05T12:00:00.000Z',
   },
   {
     id: 'ry1YS0nVUaA7flw02c7J',
@@ -952,6 +950,6 @@ The person must have a completely natural, thick, stylish modern hairstyle, rega
     copyCount: 0,
     aspectRatio: '3:4',
     model: 'ChatGPT / Gemini',
-    createdAt: new Date().toISOString(),
+    createdAt: '2026-11-05T10:00:00.000Z',
   },
 ];

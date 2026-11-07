@@ -10,6 +10,8 @@ import { LightboxModal } from './components/LightboxModal';
 import { Pagination } from './components/Pagination';
 import { Footer } from './components/Footer';
 import { InfoModal, ModalType } from './components/InfoModal';
+import { AdBanner } from './components/AdBanner';
+import { StickyBottomAd } from './components/StickyBottomAd';
 import { PromptItem, CategoryItem } from './types/prompt';
 import { PROMPTPIN_CATEGORIES, STORE_PROMPTS } from './data/initialPrompts';
 import {
@@ -96,9 +98,13 @@ export default function App() {
     );
 
     const unsubCategories = subscribeToCategories((cats) => {
-      const order = ['trending', 'all', 'diwali', 'retro', 'boys', 'couple'];
+      // Top category bar excludes 'diwali' and 'retro' as requested (they remain in Collections below)
+      const order = ['trending', 'all', 'boys', 'couple'];
+      const filteredCats = cats.filter(
+        (c) => c.id.toLowerCase() !== 'diwali' && c.id.toLowerCase() !== 'retro'
+      );
       const sorted = order
-        .map((id) => cats.find((c) => c.id.toLowerCase() === id) || PROMPTPIN_CATEGORIES.find((c) => c.id.toLowerCase() === id))
+        .map((id) => filteredCats.find((c) => c.id.toLowerCase() === id) || PROMPTPIN_CATEGORIES.find((c) => c.id.toLowerCase() === id))
         .filter((c): c is CategoryItem => Boolean(c));
       if (sorted.length > 0) {
         setCategories(sorted);
@@ -125,9 +131,28 @@ export default function App() {
     };
   }, []);
 
-  // Filter prompts by Search Query and Selected Category / Collection
+  // Helper to extract timestamp for reliable date sorting
+  const getPromptTimestamp = (p: PromptItem): number => {
+    if (!p.createdAt) return 0;
+    if (typeof p.createdAt === 'number') return p.createdAt;
+    if (typeof p.createdAt === 'string') {
+      const parsed = Date.parse(p.createdAt);
+      return isNaN(parsed) ? 0 : parsed;
+    }
+    // Firestore Timestamp
+    const anyCreated = p.createdAt as unknown as { toMillis?: () => number; seconds?: number };
+    if (typeof anyCreated.toMillis === 'function') {
+      return anyCreated.toMillis();
+    }
+    if (typeof anyCreated.seconds === 'number') {
+      return anyCreated.seconds * 1000;
+    }
+    return 0;
+  };
+
+  // Filter & Sort prompts: Pinned posts first, then newest posts first
   const filteredPrompts = useMemo(() => {
-    return prompts.filter((p) => {
+    const list = prompts.filter((p) => {
       // Category & Collection filter
       if (selectedCategory && selectedCategory.toLowerCase() !== 'all') {
         const sel = selectedCategory.toLowerCase().trim();
@@ -187,6 +212,21 @@ export default function App() {
       }
 
       return true;
+    });
+
+    // 1) Pinned posts first, 2) Newest posts first
+    return list.sort((a, b) => {
+      const aPinned = a.isPinned ? 1 : 0;
+      const bPinned = b.isPinned ? 1 : 0;
+      if (aPinned !== bPinned) {
+        return bPinned - aPinned; // Pinned (1) comes before unpinned (0)
+      }
+      const aTime = getPromptTimestamp(a);
+      const bTime = getPromptTimestamp(b);
+      if (aTime !== bTime) {
+        return bTime - aTime; // Newest timestamp first
+      }
+      return 0;
     });
   }, [prompts, selectedCategory, searchQuery]);
 
@@ -336,6 +376,9 @@ export default function App() {
               }}
             />
 
+            {/* Sponsored Banner between Slider and Gallery */}
+            <AdBanner label="Featured Partner" className="my-4" />
+
             {/* 5. Two-Column Image Gallery on Mobile / Multi-column on Desktop */}
             <section className="mt-4 mb-8">
               {isLoading ? (
@@ -363,6 +406,9 @@ export default function App() {
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
                   />
+
+                  {/* Sponsored Banner below gallery pagination */}
+                  <AdBanner label="Sponsored Links" className="mt-6 mb-2" />
                 </>
               ) : prompts.length === 0 ? (
                 /* Store empty state - Ready for user's fresh uploads */
@@ -426,6 +472,9 @@ export default function App() {
         type={activeModal}
         onClose={() => setActiveModal(null)}
       />
+
+      {/* Floating Sticky Mobile/Desktop Bottom Ad Banner */}
+      <StickyBottomAd />
 
       {/* Floating Success Toast: "Prompt Copied Successfully!" */}
       {toastMessage && (

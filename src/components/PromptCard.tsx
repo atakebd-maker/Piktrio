@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Copy, Check, Sparkles } from 'lucide-react';
+import { Copy, Sparkles } from 'lucide-react';
 import { PromptItem } from '../types/prompt';
-import { copyToClipboard } from '../utils/clipboard';
 
 interface PromptCardProps {
   prompt: PromptItem;
@@ -12,30 +11,21 @@ interface PromptCardProps {
 export const PromptCard: React.FC<PromptCardProps> = ({
   prompt,
   onViewDetails,
-  onCopyPrompt,
 }) => {
-  const [copied, setCopied] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [mobileActive, setMobileActive] = useState(false);
 
-  const handleCopy = async (e: React.MouseEvent | React.TouchEvent) => {
-    e.stopPropagation(); // Never open the image details page on copy!
-    
-    // Copy ONLY the complete English prompt text
-    const success = await copyToClipboard(prompt.prompt);
-    if (success) {
-      onCopyPrompt(prompt.prompt, prompt.id);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    }
-  };
-
-  const handleCardClick = () => {
-    // If mobile overlay is shown, let clicking image open details
+  const handleCopy = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation();
+    // Open dedicated post page so user sees ads and completes 7-second countdown
     onViewDetails(prompt);
   };
 
-  const handleTouchCard = (e: React.TouchEvent) => {
+  const handleCardClick = () => {
+    onViewDetails(prompt);
+  };
+
+  const handleTouchCard = () => {
     // On touch devices, reveal the Copy Prompt button overlay
     if (!mobileActive) {
       setMobileActive(true);
@@ -50,7 +40,19 @@ export const PromptCard: React.FC<PromptCardProps> = ({
       className="group relative bg-white rounded-2xl overflow-hidden border border-gray-200/90 hover:border-blue-400 hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer"
     >
       {/* 
-        IMAGE DISPLAY CONTAINER:
+        TITLE & CATEGORY HEADER (PLACED ABOVE THE IMAGE AS REQUESTED)
+      */}
+      <div className="p-3 bg-white border-b border-gray-100 flex items-start justify-between gap-2 z-10 min-h-[50px]">
+        <h3 className="text-xs sm:text-sm font-bold text-gray-900 line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors">
+          {prompt.title}
+        </h3>
+        <span className="text-[10px] font-semibold text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-md shrink-0 mt-0.5">
+          {prompt.category}
+        </span>
+      </div>
+
+      {/* 
+        IMAGE DISPLAY CONTAINER (BELOW TITLE):
         Strict adherence to Image Display Rules:
         - Never crop uploaded images.
         - Never cut off any part of an image.
@@ -92,12 +94,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
           )}
         </div>
 
-        {/* =========================================================
-            HOVER-TO-COPY OVERLAY (Desktop & Mobile Touch)
-            - Smooth overlay with beautiful blue Copy Prompt button
-            - Never opens details on copy
-            - Copies strictly the complete English prompt
-            ========================================================= */}
+        {/* HOVER-TO-COPY OVERLAY */}
         <div 
           className={`absolute inset-0 bg-gray-950/40 backdrop-blur-[2px] flex items-center justify-center p-3 transition-opacity duration-300 ${
             mobileActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
@@ -105,36 +102,13 @@ export const PromptCard: React.FC<PromptCardProps> = ({
         >
           <button
             onClick={handleCopy}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-xl transition-all duration-200 cursor-pointer transform active:scale-95 ${
-              copied
-                ? 'bg-emerald-600 text-white shadow-emerald-600/30'
-                : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/40 hover:scale-105'
-            }`}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold shadow-xl transition-all duration-200 cursor-pointer transform active:scale-95 bg-blue-600 hover:bg-blue-700 text-white shadow-blue-600/40 hover:scale-105"
           >
-            {copied ? (
-              <>
-                <Check className="w-4 h-4 animate-bounce" />
-                <span>Prompt Copied!</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4" />
-                <span>Copy Prompt</span>
-              </>
-            )}
+            <Copy className="w-4 h-4" />
+            <span>Copy Prompt</span>
           </button>
         </div>
 
-      </div>
-
-      {/* Subtle bottom info bar */}
-      <div className="p-2.5 sm:p-3 bg-white border-t border-gray-100 flex items-center justify-between">
-        <span className="text-[11px] font-semibold text-gray-700 line-clamp-1">
-          {prompt.title}
-        </span>
-        <span className="text-[10px] text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md font-medium shrink-0 ml-1">
-          {prompt.category}
-        </span>
       </div>
 
     </div>

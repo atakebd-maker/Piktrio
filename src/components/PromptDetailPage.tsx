@@ -9,11 +9,12 @@ import {
   Share2,
   Maximize2,
   CheckCircle2,
-  ExternalLink,
+  Clock,
 } from 'lucide-react';
 import { PromptItem } from '../types/prompt';
 import { copyToClipboard } from '../utils/clipboard';
 import { PromptCard } from './PromptCard';
+import { AdBanner } from './AdBanner';
 import ReactMarkdown from 'react-markdown';
 
 interface PromptDetailPageProps {
@@ -33,33 +34,54 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
   onSelectPrompt,
   allPrompts,
 }) => {
-  const [copied, setCopied] = useState(false);
-  const [copyCountdown, setCopyCountdown] = useState<number | null>(null);
+  // Copy state: 'idle' -> 'counting' (7s countdown) -> 'ready' ("Click to Copy Now" in green) -> 'copied'
+  type CopyStatus = 'idle' | 'counting' | 'ready' | 'copied';
+  const [copyStatus, setCopyStatus] = useState<CopyStatus>('idle');
+  const [countdown, setCountdown] = useState<number>(7);
   const [shareToast, setShareToast] = useState(false);
 
-  // 5-second countdown timer for copying
+  // Reset countdown if switching between prompts
   useEffect(() => {
-    if (copyCountdown === null) return;
-    if (copyCountdown > 0) {
+    setCopyStatus('idle');
+    setCountdown(7);
+  }, [prompt.id]);
+
+  // 7-second countdown timer
+  useEffect(() => {
+    if (copyStatus !== 'counting') return;
+
+    if (countdown > 0) {
       const timer = setTimeout(() => {
-        setCopyCountdown(copyCountdown - 1);
+        setCountdown((prev) => prev - 1);
       }, 1000);
       return () => clearTimeout(timer);
-    } else if (copyCountdown === 0) {
-      copyToClipboard(prompt.prompt).then((success) => {
-        if (success) {
-          onCopyPrompt(prompt.prompt, prompt.id);
-          setCopied(true);
-          setTimeout(() => setCopied(false), 3000);
-        }
-        setCopyCountdown(null);
-      });
+    } else {
+      // Countdown finished -> Show green "Click to Copy Now"
+      setCopyStatus('ready');
     }
-  }, [copyCountdown, prompt.prompt, prompt.id, onCopyPrompt]);
+  }, [copyStatus, countdown]);
 
-  const handleStartCopyCountdown = () => {
-    if (copyCountdown !== null || copied) return;
-    setCopyCountdown(5);
+  const handleCopyButtonClick = () => {
+    if (copyStatus === 'idle') {
+      // Start 7-second countdown
+      setCountdown(7);
+      setCopyStatus('counting');
+    } else if (copyStatus === 'ready' || copyStatus === 'copied') {
+      // User clicked "Click to Copy Now" -> Copy immediately!
+      executeCopy();
+    }
+  };
+
+  const executeCopy = async () => {
+    const success = await copyToClipboard(prompt.prompt);
+    if (success) {
+      onCopyPrompt(prompt.prompt, prompt.id);
+      setCopyStatus('copied');
+      setTimeout(() => {
+        // Keep in green "ready" state so user can re-copy anytime without another countdown
+        setCopyStatus('ready');
+      }, 2500);
+    }
   };
 
   useEffect(() => {
@@ -133,14 +155,6 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
     .filter((p) => p.category === prompt.category && p.id !== prompt.id)
     .slice(0, 4);
 
-  const handleCopyPrompt = async () => {
-    const success = await copyToClipboard(prompt.prompt);
-    if (success) {
-      onCopyPrompt(prompt.prompt, prompt.id);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2500);
-    }
-  };
 
   const handleOpenChatGPT = () => {
     const url = `https://chatgpt.com/?q=${encodeURIComponent(prompt.prompt)}`;
@@ -193,10 +207,35 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
       {/* Main Prompt Details Card */}
       <div className="bg-white rounded-3xl border border-gray-200/90 shadow-sm overflow-hidden p-5 sm:p-8 mb-12">
+        {/* Title Header placed ABOVE the photo and content as requested */}
+        <div className="mb-6 pb-4 border-b border-gray-100">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
+              {prompt.category}
+            </span>
+            {prompt.model && (
+              <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+                {prompt.model}
+              </span>
+            )}
+          </div>
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-900 leading-snug">
+            {prompt.title}
+          </h1>
+          {prompt.description && !prompt.description.startsWith('#') && (
+            <p className="text-sm text-gray-600 leading-relaxed mt-2">
+              {prompt.description}
+            </p>
+          )}
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* LEFT: Large Original Image Preview in Showcase Frame */}
           <div className="lg:col-span-6 flex flex-col items-center">
+            {/* Ad on top of the image (as requested: "ছবির উপরে মানে যেকোনো পোস্ট ওপেন করলে ছবিটির উপরে") */}
+            <AdBanner label="Sponsored Ad" className="mb-3" />
+
             <div className="relative w-full h-[400px] sm:h-[540px] bg-gray-950 rounded-2xl sm:rounded-3xl flex items-center justify-center p-3 overflow-hidden shadow-inner border border-gray-800 group">
               
               {/* Subtle background grid pattern */}
@@ -236,29 +275,8 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
           {/* RIGHT: Prompt Information, Copy, and AI Tools */}
           <div className="lg:col-span-6 flex flex-col space-y-5">
             
-            {/* Category & Title */}
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200">
-                  {prompt.category}
-                </span>
-                {prompt.model && (
-                  <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
-                    {prompt.model}
-                  </span>
-                )}
-              </div>
-
-              <h1 className="text-xl sm:text-2xl font-bold text-gray-900 leading-snug mb-2">
-                {prompt.title}
-              </h1>
-
-              {prompt.description && !prompt.description.startsWith('#') && (
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  {prompt.description}
-                </p>
-              )}
-            </div>
+            {/* Ad above prompt box (as requested: "তারপরে prompt বক্সটির উপরে") */}
+            <AdBanner label="Advertisement" className="my-1" />
 
             {/* Complete English AI Prompt in High Contrast Box */}
             <div className="space-y-2">
@@ -268,10 +286,22 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                   <span>English AI Generation Prompt</span>
                 </label>
                 <button
-                  onClick={handleCopyPrompt}
-                  className="text-xs font-semibold text-blue-600 hover:text-blue-800 transition-colors cursor-pointer"
+                  onClick={handleCopyButtonClick}
+                  className={`text-xs font-semibold transition-colors cursor-pointer ${
+                    copyStatus === 'ready' || copyStatus === 'copied'
+                      ? 'text-emerald-600 hover:text-emerald-700 font-bold'
+                      : copyStatus === 'counting'
+                      ? 'text-amber-600 font-bold'
+                      : 'text-blue-600 hover:text-blue-800'
+                  }`}
                 >
-                  {copied ? 'Copied!' : 'Copy'}
+                  {copyStatus === 'counting'
+                    ? `Wait ${countdown}s...`
+                    : copyStatus === 'ready'
+                    ? 'Click to Copy Now'
+                    : copyStatus === 'copied'
+                    ? 'Copied!'
+                    : 'Copy'}
                 </button>
               </div>
 
@@ -280,18 +310,33 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               </div>
             </div>
 
-            {/* Action Buttons: Copy Full Prompt, ChatGPT, Gemini */}
+            {/* Action Buttons: 7-Second Countdown & Green Click to Copy Now */}
             <div className="space-y-3 pt-2">
               {/* Copy Full Prompt Button */}
               <button
-                onClick={handleCopyPrompt}
-                className={`w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-bold text-sm shadow-md transition-all cursor-pointer ${
-                  copied
+                onClick={handleCopyButtonClick}
+                disabled={copyStatus === 'counting'}
+                className={`w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl font-bold text-sm sm:text-base shadow-md transition-all cursor-pointer ${
+                  copyStatus === 'counting'
+                    ? 'bg-amber-500 text-white cursor-wait opacity-95 shadow-amber-500/20'
+                    : copyStatus === 'ready'
+                    ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-500/30 ring-4 ring-emerald-400/50 active:scale-[0.99] font-extrabold animate-pulse'
+                    : copyStatus === 'copied'
                     ? 'bg-emerald-600 text-white shadow-emerald-500/20'
                     : 'bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/25 active:scale-[0.99]'
                 }`}
               >
-                {copied ? (
+                {copyStatus === 'counting' ? (
+                  <>
+                    <Clock className="w-5 h-5 animate-spin" />
+                    <span>Please wait {countdown}s to copy...</span>
+                  </>
+                ) : copyStatus === 'ready' ? (
+                  <>
+                    <Copy className="w-5 h-5" />
+                    <span className="tracking-wide">Click to Copy Now</span>
+                  </>
+                ) : copyStatus === 'copied' ? (
                   <>
                     <Check className="w-5 h-5 animate-bounce" />
                     <span>Prompt Copied Successfully!</span>
@@ -303,6 +348,16 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                   </>
                 )}
               </button>
+
+              {/* Progress bar during 7-second countdown */}
+              {copyStatus === 'counting' && (
+                <div className="w-full bg-gray-100 rounded-full h-2 overflow-hidden">
+                  <div
+                    className="bg-amber-500 h-full transition-all duration-1000 ease-linear rounded-full"
+                    style={{ width: `${((7 - countdown) / 7) * 100}%` }}
+                  />
+                </div>
+              )}
 
               {/* Open in ChatGPT and Open in Gemini */}
               <div className="grid grid-cols-2 gap-3">
@@ -362,6 +417,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 </div>
               </div>
             )}
+
+            {/* Ad at the end of the post guide (as requested: "এবং শেষে") */}
+            <AdBanner label="Sponsored Link" className="mt-6 mb-2" />
 
           </div>
 

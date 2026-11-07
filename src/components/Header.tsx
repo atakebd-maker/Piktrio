@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Sparkles } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { ModalType } from './InfoModal';
 
 interface HeaderProps {
@@ -41,15 +41,6 @@ export const Header: React.FC<HeaderProps> = ({
               Home
             </button>
 
-            {/* Glowing Diwali Special Collection Link */}
-            <button
-              onClick={() => onSelectCategory?.('Diwali AI photo editing prompt')}
-              className="px-3.5 py-1.5 rounded-xl text-xs lg:text-sm font-bold bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-amber-500/15 text-amber-800 border border-amber-300/80 hover:bg-amber-100/70 transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
-              <span>Diwali Prompts</span>
-              <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.2 bg-amber-600 text-white rounded-full">New</span>
-            </button>
 
             <button
               onClick={() => onSelectCategory?.('Trending')}
