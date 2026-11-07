@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
-import { X, ChevronDown, ChevronUp } from 'lucide-react';
-import { PROMPTPIN_CATEGORIES } from '../data/initialPrompts';
+import { X, ChevronDown, ChevronUp, Sparkles, FolderHeart } from 'lucide-react';
+import { PROMPTPIN_CATEGORIES, COLLECTIONS_LIST } from '../data/initialPrompts';
+import { ModalType } from './InfoModal';
 
 interface MobileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectCategory: (categoryName: string) => void;
+  onOpenModal?: (type: ModalType) => void;
 }
-
-const COLLECTIONS_LIST = [
-  { label: 'Trending AI Photo Prompts', cat: 'Trending' },
-  { label: 'Couple AI Photo Prompts', cat: 'Couple' },
-  { label: 'AI Photo Prompts for Boys', cat: 'Boys' },
-];
 
 export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   isOpen,
   onClose,
   onSelectCategory,
+  onOpenModal,
 }) => {
-  const [categoriesOpen, setCategoriesOpen] = useState(false);
-  const [collectionsOpen, setCollectionsOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(true);
+  const [collectionsOpen, setCollectionsOpen] = useState(true);
   const [aboutOpen, setAboutOpen] = useState(false);
 
   if (!isOpen) return null;
+
+  const handleOpenInfoModal = (type: ModalType) => {
+    onClose();
+    onOpenModal?.(type);
+  };
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden animate-in fade-in duration-200">
@@ -56,7 +58,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         </div>
 
         {/* Drawer Nav Items */}
-        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4 text-gray-900 font-semibold text-lg">
+        <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4 text-gray-900 font-semibold text-base sm:text-lg">
           
           {/* Home */}
           <div>
@@ -65,26 +67,75 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 onSelectCategory('All');
                 onClose();
               }}
-              className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer"
+              className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer flex items-center justify-between"
             >
-              Home
+              <span>Home</span>
+              <span className="text-xs font-normal text-gray-400">Main Gallery</span>
             </button>
+          </div>
+
+          {/* Featured Collections Section (With Diwali Prompts highlighted) */}
+          <div className="border-t border-gray-100 pt-3">
+            <div 
+              onClick={() => setCollectionsOpen(!collectionsOpen)}
+              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-600 transition-colors select-none"
+            >
+              <div className="flex items-center gap-2">
+                <FolderHeart className="w-5 h-5 text-blue-600" />
+                <span>Collections</span>
+              </div>
+              <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+                {collectionsOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </div>
+            </div>
+
+            {collectionsOpen && (
+              <div className="pl-2 pr-1 py-2 space-y-1.5 text-xs font-medium text-gray-700 bg-gray-50/80 rounded-2xl my-2 border border-gray-100">
+                {COLLECTIONS_LIST.map((col) => {
+                  const isDiwali = col.label.toLowerCase().includes('diwali');
+                  return (
+                    <button
+                      key={col.label}
+                      onClick={() => {
+                        onSelectCategory(col.cat);
+                        onClose();
+                      }}
+                      className={`w-full text-left py-2 px-3 rounded-xl transition-all cursor-pointer flex items-center justify-between ${
+                        isDiwali
+                          ? 'bg-amber-100/80 text-amber-900 font-bold hover:bg-amber-200/90 shadow-2xs border border-amber-200'
+                          : 'hover:bg-blue-100/70 hover:text-blue-700'
+                      }`}
+                    >
+                      <span className="flex items-center gap-1.5">
+                        {isDiwali && <Sparkles className="w-3.5 h-3.5 text-amber-600 shrink-0" />}
+                        <span>{col.label}</span>
+                      </span>
+                      {isDiwali && (
+                        <span className="text-[10px] font-extrabold bg-amber-600 text-white px-1.5 py-0.2 rounded-full uppercase">
+                          New
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Categories with Expandable Dropdown */}
           <div className="border-t border-gray-100 pt-3">
             <div 
               onClick={() => setCategoriesOpen(!categoriesOpen)}
-              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-600 transition-colors"
+              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-600 transition-colors select-none"
             >
               <span>Categories</span>
-              <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
                 {categoriesOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </div>
             </div>
 
             {categoriesOpen && (
-              <div className="pl-3 pr-2 py-2 space-y-1.5 text-sm font-medium text-gray-600 bg-gray-50/70 rounded-xl my-2">
+              <div className="pl-2 pr-1 py-2 space-y-1 text-xs font-medium text-gray-700 bg-gray-50/80 rounded-2xl my-2 border border-gray-100">
                 {PROMPTPIN_CATEGORIES.map((cat) => (
                   <button
                     key={cat.id}
@@ -92,7 +143,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                       onSelectCategory(cat.name);
                       onClose();
                     }}
-                    className="w-full text-left py-1.5 px-3 rounded-lg hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer block"
+                    className="w-full text-left py-1.5 px-3 rounded-xl hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer block"
                   >
                     {cat.name}
                   </button>
@@ -101,81 +152,53 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             )}
           </div>
 
-          {/* Collections with Expandable Dropdown */}
+          {/* About Us with Quick Action */}
           <div className="border-t border-gray-100 pt-3">
-            <div 
-              onClick={() => setCollectionsOpen(!collectionsOpen)}
-              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-600 transition-colors"
-            >
-              <span>Collections</span>
-              <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
-                {collectionsOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-              </div>
-            </div>
-
-            {collectionsOpen && (
-              <div className="pl-3 pr-2 py-2 space-y-1 text-xs font-medium text-gray-600 bg-gray-50/70 rounded-xl my-2">
-                {COLLECTIONS_LIST.map((col) => (
-                  <button
-                    key={col.label}
-                    onClick={() => {
-                      onSelectCategory(col.cat);
-                      onClose();
-                    }}
-                    className="w-full text-left py-1.5 px-3 rounded-lg hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer block"
-                  >
-                    {col.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* About Us with Expandable Dropdown */}
-          <div className="border-t border-gray-100 pt-3">
-            <div 
-              onClick={() => setAboutOpen(!aboutOpen)}
-              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-600 transition-colors"
+            <button
+              onClick={() => handleOpenInfoModal('about')}
+              className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer flex items-center justify-between"
             >
               <span>About Us</span>
-              <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
-                {aboutOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-              </div>
-            </div>
-
-            {aboutOpen && (
-              <div className="pl-3 pr-2 py-2 space-y-1.5 text-sm font-medium text-gray-600 bg-gray-50/70 rounded-xl my-2">
-                <p className="px-3 py-1.5 text-xs text-gray-500 leading-relaxed">
-                  Piktrio curates the finest AI photo editing prompts for ChatGPT and Gemini with 100% uncropped full visual reference.
-                </p>
-                <div className="border-t border-gray-200/60 pt-1">
-                  <a href="#privacy" onClick={onClose} className="block px-3 py-1 text-xs text-blue-600 hover:underline">
-                    Privacy Policy
-                  </a>
-                  <a href="#terms" onClick={onClose} className="block px-3 py-1 text-xs text-blue-600 hover:underline">
-                    Terms & Conditions
-                  </a>
-                </div>
-              </div>
-            )}
+              <span className="text-xs font-normal text-blue-600">Learn more &rarr;</span>
+            </button>
           </div>
 
           {/* Contact Us */}
           <div className="border-t border-gray-100 pt-3">
-            <a
-              href="mailto:support@piktrio.com"
-              onClick={onClose}
-              className="block w-full text-left py-2 hover:text-blue-600 transition-colors"
+            <button
+              onClick={() => handleOpenInfoModal('contact')}
+              className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer flex items-center justify-between"
             >
-              Contact Us
-            </a>
+              <span>Contact Us</span>
+              <span className="text-xs font-normal text-blue-600">Get in touch &rarr;</span>
+            </button>
+          </div>
+
+          {/* Privacy Policy */}
+          <div className="border-t border-gray-100 pt-3">
+            <button
+              onClick={() => handleOpenInfoModal('privacy')}
+              className="w-full text-left py-2 text-sm text-gray-600 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </button>
+          </div>
+
+          {/* Terms & Conditions */}
+          <div className="border-t border-gray-100 pt-3">
+            <button
+              onClick={() => handleOpenInfoModal('terms')}
+              className="w-full text-left py-2 text-sm text-gray-600 hover:text-blue-600 transition-colors cursor-pointer"
+            >
+              Terms & Conditions
+            </button>
           </div>
 
         </div>
 
         {/* Drawer Footer */}
-        <div className="p-6 border-t border-gray-100 bg-gray-50">
-          <p className="text-xs text-gray-500 text-center">
+        <div className="p-5 border-t border-gray-100 bg-gray-50 text-center">
+          <p className="text-xs text-gray-500">
             &copy; {new Date().getFullYear()} Piktrio. All rights reserved.
           </p>
         </div>

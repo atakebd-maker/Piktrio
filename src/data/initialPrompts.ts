@@ -11,11 +11,99 @@ import { CategoryItem, PromptItem } from '../types/prompt';
 export const PROMPTPIN_CATEGORIES: CategoryItem[] = [
   { id: 'trending', name: 'Trending', description: 'Viral and popular AI image editing prompts' },
   { id: 'all', name: 'All', description: 'All AI Photo editing prompts' },
+  { id: 'diwali', name: 'Diwali', description: 'Festive Diwali AI photo editing prompts' },
   { id: 'boys', name: 'Boys', description: 'AI photo editing prompts for boys and men' },
   { id: 'couple', name: 'Couple', description: 'Romantic and aesthetic couple AI photo prompts' },
 ];
 
+export const COLLECTIONS_LIST = [
+  { label: 'Diwali AI photo editing prompt', cat: 'Diwali AI photo editing prompt' },
+  { label: 'Trending AI Photo Prompts', cat: 'Trending' },
+  { label: 'Couple AI Photo Prompts', cat: 'Couple' },
+  { label: 'AI Photo Prompts for Boys', cat: 'Boys' },
+];
+
 export const STORE_PROMPTS: PromptItem[] = [
+  {
+    id: 'diwali-sparkler-prompt-for-boys',
+    title: 'Diwali prompt for boys',
+    category: 'Boys',
+    description: `# How to Create a Realistic Diwali Festival Fireworks AI Photo Using Your Own Picture
+
+Learn how to create an ultra-realistic, cinematic Diwali celebration portrait holding a glowing sparkler (phooljhadi) with stunning fireworks and 3D metallic "Happy Diwali" lettering in the background using ChatGPT (GPT-4o) or Google Gemini with your own reference photograph.
+
+## What Is This AI Photo Editing Prompt?
+
+This Diwali AI photo editing prompt places you on an authentic festive rooftop terrace at night with glowing clay diyas, holding a sparkling phooljhadi in a crisp pure-white embroidered kurta, while preserving 100% of your real facial identity, hairstyle, and expression.
+
+## Step-by-Step Tutorial: How to Create This Photo
+
+### Step 1: Select Your Reference Photo
+Choose a clear, front-facing personal photo or selfie where your face, hairstyle, skin tone, and natural expression are well lit and clearly visible.
+
+### Step 2: Open ChatGPT or Google Gemini
+Open ChatGPT (with GPT-4o image generation) or Google Gemini on your smartphone or computer, and ensure the image upload feature is active.
+
+### Step 3: Upload Your Photo
+Attach your personal photograph to the chat message box so the AI model can analyze your facial structure, features, and authentic identity.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy** button below. Wait 5 seconds for the security countdown to finish, and the complete English prompt will be copied to your clipboard.
+
+### Step 5: Paste and Generate
+Paste the copied prompt into the message box alongside your uploaded photo. Instruct the AI to generate a vertical full-length portrait (3:4 or 9:16 aspect ratio).
+
+### Step 6: Review & Save
+Examine the face fidelity, sparkling light reflections, and background festive fireworks. Once satisfied, download your ultra-realistic 4K festive Diwali photo and share it on Instagram, WhatsApp, or Facebook!
+
+---
+
+## Key Highlights of This Prompt
+- **Face & Hair Identity Preservation:** Maintains your exact facial structure, skin tone, eyebrows, lips, and hairstyle without artificial distortion.
+- **Outfit & Posing:** Elegant Indian pure-white kurta pajama with clean white sneakers in a natural, relaxed leaning pose.
+- **Festive Atmosphere:** Glowing sparkler (phooljhadi), illuminated clay oil lamps (diyas), and colorful night fireworks.
+- **3D Typography:** Sophisticated 3D metallic gold "Happy Diwali" typography in the upper background.
+
+---
+
+## SEO Keywords & Tags
+Diwali prompt for boys, Diwali AI Photo Prompt, Diwali Sparkler AI Photo, Phooljhadi Diwali AI Prompt, Happy Diwali 3D AI Photo, ChatGPT Diwali Prompt, Gemini Diwali Prompt, Realistic Indian Festival AI Photo, Boys Kurta Diwali Photo Editing`,
+    prompt: `Create an ultra-realistic, premium-quality 4K cinematic festive photograph using the uploaded reference photo as the primary identity reference.
+Face & Hair Identity Preservation:
+Reproduce the exact same person from the uploaded reference photo. Preserve his original facial structure, facial proportions, eyes, eyebrows, nose, lips, jawline, skin tone, hairstyle, hair texture, and natural facial expression. His face and hair must remain completely recognizable and consistent with the reference image. Do not replace, redesign, beautify, or artificially modify his facial appearance. Prioritize authentic identity preservation over artistic styling.
+Pose & Clothing:
+Show him standing naturally on a beautifully decorated terrace during Diwali night. He is wearing an elegant, traditional, pure-white Indian kurta with matching white pajama trousers and clean white sneakers. One hand holds a brightly glowing phooljhadi (sparkler), while his other hand rests casually inside his pajama pocket. His body posture is relaxed, with one leg slightly crossed in front of the other. He looks down at the sparkling light with a genuine, joyful smile.
+Background & Festive Atmosphere:
+Create a breathtaking night sky filled with colorful, realistic fireworks in golden, silver, blue, and subtle pink shades. A beautiful stone terrace railing runs behind him, decorated with multiple glowing traditional clay diyas. Additional illuminated diyas are scattered naturally across the terrace floor, creating a warm and authentic festive environment.
+Typography:
+Add the exact words "Happy Diwali" in large, elegant, three-dimensional metallic gold lettering in the upper background. Use sophisticated decorative typography with realistic golden reflections and subtle glowing highlights. Keep the text clearly readable without covering the person's face.
+Photography & Quality:
+Professional DSLR photography, cinematic composition, realistic human anatomy, natural skin texture, authentic facial details, detailed fabric texture, realistic fireworks illumination, warm golden ambient lighting, beautiful depth of field, balanced exposure, lifelike shadows, rich festive colors, high dynamic range, and exceptionally realistic details.
+Important: The final result must look like a genuine professional photograph, not a digital painting, cartoon, or artificial-looking AI portrait. Maintain the original person's real face and hairstyle with maximum identity consistency.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgankApmajhvzriG4_RFThRuV5LOmYqNzm3lLqNIBE4w7rfPLV7l54gyTplnBwrnBGDkgzjkCTAcd-bO6iuyYJXbODZqeYysOjbVfsCg8QSpwJHXejtQrfJ6knIkDcBPWsh8-CT-4YpRHT6zfq0gPFAIkLSmyunp5vbcko1Kns-By8BaSCqGvQgcCX5vD8/s1600/image.png',
+    tags: [
+      'Boys',
+      'Diwali',
+      'Diwali AI photo editing prompt',
+      'Sparkler',
+      'Fireworks',
+      'Festival',
+      'Kurta',
+      'Cinematic',
+      'ChatGPT',
+      'Gemini',
+      'Trending',
+      'Diya',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 0,
+    viewsCount: 0,
+    copyCount: 0,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: new Date().toISOString(),
+  },
   {
     id: 'diwali-prompt-for-boys',
     title: 'Diwali prompt for boys',
@@ -71,6 +159,7 @@ Create a completely original photographic composition.`,
     tags: [
       'Boys',
       'Diwali',
+      'Diwali AI photo editing prompt',
       'Festival',
       'Kurta',
       'Cinematic',

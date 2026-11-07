@@ -41,7 +41,20 @@ const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
     <priority>1.0</priority>
   </url>
 
-  <!-- Prompt: Diwali prompt for boys -->
+  <!-- Prompt: Diwali prompt for boys (Sparkler & Fireworks) -->
+  <url>
+    <loc>${siteUrl}/?prompt=diwali-sparkler-prompt-for-boys</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgankApmajhvzriG4_RFThRuV5LOmYqNzm3lLqNIBE4w7rfPLV7l54gyTplnBwrnBGDkgzjkCTAcd-bO6iuyYJXbODZqeYysOjbVfsCg8QSpwJHXejtQrfJ6knIkDcBPWsh8-CT-4YpRHT6zfq0gPFAIkLSmyunp5vbcko1Kns-By8BaSCqGvQgcCX5vD8/s1600/image.png</image:loc>
+      <image:title>Diwali prompt for boys – Sparkler &amp; Fireworks 4K AI Photo Prompt</image:title>
+      <image:caption>Ultra-realistic 4K festive Diwali celebration portrait AI photo prompt for boys with ChatGPT and Gemini</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Prompt: Diwali prompt for boys (Balcony Diya) -->
   <url>
     <loc>${siteUrl}/?prompt=diwali-prompt-for-boys</loc>
     <lastmod>2026-11-06</lastmod>
@@ -78,6 +91,14 @@ const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
       <image:title>Black &amp; White Luxury Car Photoshoot AI Prompt</image:title>
       <image:caption>Ultra realistic Mahindra Scorpio portrait AI prompt with ChatGPT and Gemini</image:caption>
     </image:image>
+  </url>
+
+  <!-- Category & Collection: Diwali AI photo editing prompt -->
+  <url>
+    <loc>${siteUrl}/?category=diwali</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <!-- Category: Trending -->

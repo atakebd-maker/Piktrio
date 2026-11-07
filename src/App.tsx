@@ -9,6 +9,7 @@ import { PromptDetailPage } from './components/PromptDetailPage';
 import { LightboxModal } from './components/LightboxModal';
 import { Pagination } from './components/Pagination';
 import { Footer } from './components/Footer';
+import { InfoModal, ModalType } from './components/InfoModal';
 import { PromptItem, CategoryItem } from './types/prompt';
 import { PROMPTPIN_CATEGORIES, STORE_PROMPTS } from './data/initialPrompts';
 import {
@@ -33,6 +34,7 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState<ModalType | null>(null);
 
   // Dedicated Prompt Details Page State
   const [selectedPrompt, setSelectedPrompt] = useState<PromptItem | null>(null);
@@ -94,7 +96,7 @@ export default function App() {
     );
 
     const unsubCategories = subscribeToCategories((cats) => {
-      const order = ['trending', 'all', 'boys', 'couple'];
+      const order = ['trending', 'all', 'diwali', 'boys', 'couple'];
       const sorted = order
         .map((id) => cats.find((c) => c.id.toLowerCase() === id) || PROMPTPIN_CATEGORIES.find((c) => c.id.toLowerCase() === id))
         .filter((c): c is CategoryItem => Boolean(c));
@@ -123,15 +125,37 @@ export default function App() {
     };
   }, []);
 
-  // Filter prompts by Search Query and Selected Category
+  // Filter prompts by Search Query and Selected Category / Collection
   const filteredPrompts = useMemo(() => {
     return prompts.filter((p) => {
-      // Category filter
+      // Category & Collection filter
       if (selectedCategory && selectedCategory.toLowerCase() !== 'all') {
-        const catMatch =
-          p.category.toLowerCase() === selectedCategory.toLowerCase() ||
-          p.tags?.some((t) => t.toLowerCase() === selectedCategory.toLowerCase());
-        if (!catMatch) return false;
+        const sel = selectedCategory.toLowerCase().trim();
+        const cat = p.category.toLowerCase().trim();
+        const title = p.title.toLowerCase().trim();
+        const promptText = p.prompt.toLowerCase();
+
+        // Check if user selected Diwali or Diwali AI photo editing prompt collection
+        const isDiwaliFilter = sel.includes('diwali');
+        const matchesDiwali = isDiwaliFilter && (
+          cat.includes('diwali') ||
+          title.includes('diwali') ||
+          promptText.includes('diwali') ||
+          p.tags?.some((t) => t.toLowerCase().includes('diwali'))
+        );
+
+        // Standard category matching
+        const matchesStandard =
+          cat === sel ||
+          p.tags?.some((t) => {
+            const tag = t.toLowerCase();
+            return tag === sel || sel.includes(tag) || tag.includes(sel);
+          }) ||
+          sel.includes(cat);
+
+        if (!matchesDiwali && !matchesStandard) {
+          return false;
+        }
       }
 
       // Search Query filter
@@ -245,6 +269,8 @@ export default function App() {
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
         onHomeClick={handleHomeClick}
+        onSelectCategory={handleSelectCategory}
+        onOpenModal={(type) => setActiveModal(type)}
       />
 
       {/* Mobile Drawer Navigation (Matching Screenshot 1) */}
@@ -255,6 +281,7 @@ export default function App() {
           handleSelectCategory(catName);
           window.scrollTo({ top: 240, behavior: 'smooth' });
         }}
+        onOpenModal={(type) => setActiveModal(type)}
       />
 
       {/* Main Content Area */}
@@ -370,6 +397,7 @@ export default function App() {
           handleSelectCategory(catName);
           window.scrollTo({ top: 220, behavior: 'smooth' });
         }}
+        onOpenModal={(type) => setActiveModal(type)}
       />
 
       {/* 7. Lightbox for 100% Full Uncropped Image Preview */}
@@ -377,6 +405,12 @@ export default function App() {
         imageUrl={lightboxImage ? lightboxImage.url : null}
         title={lightboxImage ? lightboxImage.title : ''}
         onClose={() => setLightboxImage(null)}
+      />
+
+      {/* 8. Informational & Legal Modal (About Us, Contact Us, Privacy, Terms) */}
+      <InfoModal
+        type={activeModal}
+        onClose={() => setActiveModal(null)}
       />
 
       {/* Floating Success Toast: "Prompt Copied Successfully!" */}

@@ -17,6 +17,15 @@ interface FeaturedSliderProps {
 
 const SLIDES: SlideItem[] = [
   {
+    id: 'diwali',
+    badge: 'Diwali Special',
+    title: 'Diwali AI Photo Editing Prompts',
+    subtitle: 'Golden glowing diyas, sparkling phooljhadi, vibrant fireworks & festive portraits.',
+    category: 'Diwali AI photo editing prompt',
+    gradient: 'from-amber-600 via-orange-600 to-amber-700',
+    accentColor: 'bg-amber-400/30 text-amber-100',
+  },
+  {
     id: 'trending',
     badge: 'Trending Prompts',
     title: 'Viral AI Photo Editing Prompts',
