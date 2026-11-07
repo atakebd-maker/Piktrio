@@ -20,30 +20,16 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* Brand Logo & Wordmark matching AIPROMPTS.BUZZ style */}
+          {/* User's Website Logo */}
           <div 
             onClick={onHomeClick}
-            className="flex items-center gap-2.5 sm:gap-3 cursor-pointer select-none group py-1"
+            className="flex items-center cursor-pointer select-none group py-1"
           >
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-500 p-0.5 shadow-md shadow-purple-900/30">
-              <div className="w-full h-full bg-[#0d0922] rounded-[10px] flex items-center justify-center overflow-hidden">
-                <img
-                  src="/assets/aistudio/image_bad50ca2.png"
-                  alt="Piktrio"
-                  className="w-7 h-7 sm:w-8 sm:h-8 object-contain transition-transform group-hover:scale-110"
-                />
-              </div>
-            </div>
-            
-            <div className="flex flex-col">
-              <div className="text-lg sm:text-2xl font-black tracking-tight text-white flex items-center leading-none">
-                <span className="tracking-tight uppercase">PIKTRIO</span>
-                <span className="text-pink-500 font-extrabold uppercase">.BUZZ</span>
-              </div>
-              <span className="text-[9px] sm:text-[10px] font-medium text-purple-300/70 tracking-wider uppercase hidden sm:block">
-                AI Photo Prompts &bull; Boys &bull; Festival &bull; Retro
-              </span>
-            </div>
+            <img
+              src="/assets/aistudio/1000050243-removebg-preview_62525162.png"
+              alt="Piktrio"
+              className="h-9 sm:h-11 md:h-12 w-auto max-w-[190px] sm:max-w-[240px] object-contain transition-transform group-hover:scale-[1.02] filter drop-shadow-[0_0_8px_rgba(255,255,255,0.45)] drop-shadow-[0_2px_12px_rgba(59,130,246,0.4)]"
+            />
           </div>
 
           {/* Desktop Navigation Links */}

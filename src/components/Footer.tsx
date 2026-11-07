@@ -83,7 +83,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onOpenModal })
         {/* SECTION 3: COPYRIGHT */}
         <div className="pt-6 border-t border-[#1c1236] flex flex-col items-center gap-3 text-xs text-gray-400">
           <p className="max-w-xl text-center leading-relaxed">
-            &copy; {new Date().getFullYear()} Piktrio. Buzz. All rights reserved. Curated AI image prompts for ChatGPT &amp; Gemini. &mdash;{' '}
+            &copy; {new Date().getFullYear()} Piktrio. All rights reserved. Curated AI image prompts for ChatGPT &amp; Gemini. &mdash;{' '}
             <span
               onClick={() => onOpenModal?.('terms')}
               className="text-purple-300 hover:text-white cursor-pointer underline font-medium"

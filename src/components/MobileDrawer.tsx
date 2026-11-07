@@ -37,22 +37,14 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
       {/* Drawer Panel */}
       <div className="absolute inset-y-0 right-0 max-w-full w-full sm:w-96 bg-[#0c081e] border-l border-[#241748] shadow-2xl flex flex-col z-10 text-gray-100">
         
-        {/* Drawer Header with Logo */}
+        {/* Drawer Header with User's Logo */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#21153f]">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-purple-600 to-pink-500 p-0.5">
-              <div className="w-full h-full bg-[#0d0922] rounded-[6px] flex items-center justify-center overflow-hidden">
-                <img
-                  src="/assets/aistudio/image_bad50ca2.png"
-                  alt="Piktrio"
-                  className="w-6 h-6 object-contain"
-                />
-              </div>
-            </div>
-            <div className="text-lg font-black tracking-tight text-white flex items-center">
-              <span>PIKTRIO</span>
-              <span className="text-pink-500 font-extrabold">.BUZZ</span>
-            </div>
+          <div className="flex items-center">
+            <img
+              src="/assets/aistudio/1000050243-removebg-preview_62525162.png"
+              alt="Piktrio"
+              className="h-10 sm:h-12 w-auto max-w-[220px] object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.45)] drop-shadow-[0_2px_12px_rgba(59,130,246,0.4)]"
+            />
           </div>
 
           <button
@@ -206,7 +198,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         {/* Drawer Footer */}
         <div className="p-5 border-t border-[#21153f] bg-[#090518] text-center">
           <p className="text-xs text-gray-400">
-            &copy; {new Date().getFullYear()} Piktrio. Buzz. All rights reserved.
+            &copy; {new Date().getFullYear()} Piktrio. All rights reserved.
           </p>
         </div>
 

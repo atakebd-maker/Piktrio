@@ -22,13 +22,15 @@ import {
   seedCategoriesIfEmpty,
 } from './services/promptService';
 import { testConnection } from './services/firebase';
-import { CheckCircle2, SearchX, Sparkles, Flame, ArrowRight, ChevronRight, Layers, Film } from 'lucide-react';
+import { CheckCircle2, SearchX, Sparkles, Layers } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 8; // Optimal for 2-column mobile and 4-column desktop layout
 
 export default function App() {
   const [prompts, setPrompts] = useState<PromptItem[]>(STORE_PROMPTS);
-  const [categories, setCategories] = useState<CategoryItem[]>(PROMPTPIN_CATEGORIES);
+  const [categories, setCategories] = useState<CategoryItem[]>(
+    PROMPTPIN_CATEGORIES.filter((c) => c.id !== 'diwali' && c.id !== 'retro')
+  );
   const [isLoading, setIsLoading] = useState(true);
   
   // Navigation & Search State
@@ -98,9 +100,10 @@ export default function App() {
     );
 
     const unsubCategories = subscribeToCategories((cats) => {
-      const order = ['trending', 'all', 'boys', 'diwali', 'retro'];
+      // Top category bar excludes 'diwali' and 'retro' as requested (they remain in Collections below)
+      const order = ['trending', 'all', 'boys'];
       const filteredCats = cats.filter(
-        (c) => c.id.toLowerCase() !== 'couple' && c.id.toLowerCase() !== 'girls'
+        (c) => c.id.toLowerCase() !== 'couple' && c.id.toLowerCase() !== 'girls' && c.id.toLowerCase() !== 'diwali' && c.id.toLowerCase() !== 'retro'
       );
       const sorted = order
         .map((id) => filteredCats.find((c) => c.id.toLowerCase() === id) || PROMPTPIN_CATEGORIES.find((c) => c.id.toLowerCase() === id))
@@ -108,7 +111,7 @@ export default function App() {
       if (sorted.length > 0) {
         setCategories(sorted);
       } else {
-        setCategories(PROMPTPIN_CATEGORIES);
+        setCategories(PROMPTPIN_CATEGORIES.filter((c) => c.id !== 'diwali' && c.id !== 'retro'));
       }
     });
 
@@ -315,23 +318,6 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Curated showcase subsets matching screenshots 4, 7, 8, 10
-  const trendingShowcase = useMemo(() => {
-    return prompts.filter((p) => p.isPinned || p.tags?.some((t) => t.toLowerCase() === 'trending')).slice(0, 3);
-  }, [prompts]);
-
-  const diwaliShowcase = useMemo(() => {
-    return prompts.filter((p) => p.title.toLowerCase().includes('diwali') || p.tags?.some((t) => t.toLowerCase().includes('diwali'))).slice(0, 3);
-  }, [prompts]);
-
-  const retroShowcase = useMemo(() => {
-    return prompts.filter((p) => p.category.toLowerCase() === 'retro' || p.tags?.some((t) => t.toLowerCase().includes('retro') || t.toLowerCase().includes('90s'))).slice(0, 3);
-  }, [prompts]);
-
-  const top10Showcase = useMemo(() => {
-    return prompts.slice(0, 3);
-  }, [prompts]);
-
   return (
     <div className="min-h-screen bg-[#080512] text-gray-100 font-sans selection:bg-purple-600 selection:text-white flex flex-col">
       
@@ -396,356 +382,8 @@ export default function App() {
             {/* Sponsored Banner between Slider and Showcase */}
             <AdBanner label="Featured Partner" className="my-4" />
 
-            {/* 
-              5. SHOWCASE SECTIONS MATCHING SCREENSHOTS 4, 7, 8, 10
-              (Rendered when on 'All' or 'Trending' without active search query)
-            */}
-            {!searchQuery && (selectedCategory.toLowerCase() === 'all' || selectedCategory.toLowerCase() === 'trending') && (
-              <div className="space-y-12 my-8">
-                
-                {/* SECTION A: 🔥 TRENDING / INSTAGRAM PROMPTS -> (Screenshot 4) */}
-                {trendingShowcase.length > 0 && (
-                  <section>
-                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
-                      <div>
-                        <span className="text-[11px] font-bold text-pink-400 tracking-wider uppercase flex items-center gap-1">
-                          <Flame className="w-3.5 h-3.5 text-pink-500" />
-                          <span>TRENDING</span>
-                        </span>
-                        <h2 
-                          onClick={() => handleSelectCategory('Trending')}
-                          className="text-lg sm:text-2xl font-black text-white hover:text-pink-400 transition-colors cursor-pointer flex items-center gap-2"
-                        >
-                          <span>INSTAGRAM PROMPTS</span>
-                          <ArrowRight className="w-5 h-5 text-pink-400" />
-                        </h2>
-                      </div>
-                      <button
-                        onClick={() => handleSelectCategory('Trending')}
-                        className="text-xs font-bold text-purple-400 hover:text-white transition-colors cursor-pointer hidden sm:flex items-center gap-1"
-                      >
-                        <span>View All</span>
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                      {trendingShowcase.map((prompt) => (
-                        <PromptCard
-                          key={`trending-${prompt.id}`}
-                          prompt={prompt}
-                          onViewDetails={handleViewPrompt}
-                          onCopyPrompt={handleCopyPrompt}
-                        />
-                      ))}
-                    </div>
-                  </section>
-                )}
-
-                {/* SECTION B: ⭐ TOP 10 / TOP PROMPTS RIGHT NOW -> (Screenshot 7) */}
-                {top10Showcase.length > 0 && (
-                  <section>
-                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
-                      <div>
-                        <span className="text-[11px] font-bold text-amber-400 tracking-wider uppercase flex items-center gap-1">
-                          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                          <span>TOP 10</span>
-                        </span>
-                        <h2 
-                          onClick={() => handleSelectCategory('Boys')}
-                          className="text-lg sm:text-2xl font-black text-white hover:text-pink-400 transition-colors cursor-pointer flex items-center gap-2"
-                        >
-                          <span>TOP PROMPTS RIGHT NOW</span>
-                          <ArrowRight className="w-5 h-5 text-pink-400" />
-                        </h2>
-                      </div>
-                      <button
-                        onClick={() => handleSelectCategory('Boys')}
-                        className="text-xs font-bold text-purple-400 hover:text-white transition-colors cursor-pointer hidden sm:flex items-center gap-1"
-                      >
-                        <span>Explore</span>
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                      {top10Showcase.map((prompt) => (
-                        <PromptCard
-                          key={`top10-${prompt.id}`}
-                          prompt={prompt}
-                          onViewDetails={handleViewPrompt}
-                          onCopyPrompt={handleCopyPrompt}
-                        />
-                      ))}
-                    </div>
-                  </section>
-                )}
-
-                {/* SECTION C: 📼 THROWBACK / 90S RETRO STYLE -> (Screenshot 8) */}
-                {retroShowcase.length > 0 && (
-                  <section>
-                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
-                      <div>
-                        <span className="text-[11px] font-bold text-purple-400 tracking-wider uppercase flex items-center gap-1">
-                          <Film className="w-3.5 h-3.5 text-purple-400" />
-                          <span>THROWBACK</span>
-                        </span>
-                        <h2 
-                          onClick={() => handleSelectCategory('90s Retro AI Photo Prompts')}
-                          className="text-lg sm:text-2xl font-black text-white hover:text-pink-400 transition-colors cursor-pointer flex items-center gap-2"
-                        >
-                          <span>90S RETRO STYLE</span>
-                          <ArrowRight className="w-5 h-5 text-pink-400" />
-                        </h2>
-                      </div>
-                      <button
-                        onClick={() => handleSelectCategory('90s Retro AI Photo Prompts')}
-                        className="text-xs font-bold text-purple-400 hover:text-white transition-colors cursor-pointer hidden sm:flex items-center gap-1"
-                      >
-                        <span>View Style</span>
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                      {retroShowcase.map((prompt) => (
-                        <PromptCard
-                          key={`retro-${prompt.id}`}
-                          prompt={prompt}
-                          onViewDetails={handleViewPrompt}
-                          onCopyPrompt={handleCopyPrompt}
-                        />
-                      ))}
-                    </div>
-                  </section>
-                )}
-
-                {/* SECTION D: 🪔 FESTIVE / DIWALI FESTIVE PROMPTS -> */}
-                {diwaliShowcase.length > 0 && (
-                  <section>
-                    <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
-                      <div>
-                        <span className="text-[11px] font-bold text-amber-300 tracking-wider uppercase flex items-center gap-1">
-                          <span>🪔</span>
-                          <span>FESTIVE</span>
-                        </span>
-                        <h2 
-                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
-                          className="text-lg sm:text-2xl font-black text-white hover:text-amber-300 transition-colors cursor-pointer flex items-center gap-2"
-                        >
-                          <span>DIWALI FESTIVE PROMPTS</span>
-                          <ArrowRight className="w-5 h-5 text-amber-300" />
-                        </h2>
-                      </div>
-                      <button
-                        onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
-                        className="text-xs font-bold text-amber-400 hover:text-white transition-colors cursor-pointer hidden sm:flex items-center gap-1"
-                      >
-                        <span>All Diwali</span>
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-                      {diwaliShowcase.map((prompt) => (
-                        <PromptCard
-                          key={`diwali-${prompt.id}`}
-                          prompt={prompt}
-                          onViewDetails={handleViewPrompt}
-                          onCopyPrompt={handleCopyPrompt}
-                        />
-                      ))}
-                    </div>
-                  </section>
-                )}
-
-                {/* Mid-page Ad Banner */}
-                <AdBanner label="Sponsored Recommendations" className="my-6" />
-
-                {/* 
-                  DIRECTORY ACCORDION / LINK CARDS (MATCHING SCREENSHOTS 1 & 9)
-                  Gradient top border, dark container, clean link lists with arrows
-                */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
-                  
-                  {/* DIRECTORY CARD 1: MEN & BOYS (Screenshot 1) */}
-                  <div className="relative rounded-2xl bg-[#120c29] border border-[#271a4f] p-5 shadow-xl overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-pink-500 before:via-purple-500 before:to-indigo-500">
-                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#231542]">
-                      <span className="text-xl">🕺</span>
-                      <h3 className="text-base font-extrabold text-white uppercase tracking-wider">
-                        MEN &amp; BOYS STYLE
-                      </h3>
-                    </div>
-                    <ul className="space-y-2.5 text-xs sm:text-sm">
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Boys')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Trending ChatGPT Prompts for Boys</span>
-                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Boys')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Instagram Lookbook Prompts</span>
-                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Boys')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Top 10 Aesthetic Prompts for Men &amp; Boys</span>
-                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Boys')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Action &amp; Cinema Movie Poster Prompts</span>
-                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Automotive')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Luxury SUV &amp; Motorcycle Photoshoots</span>
-                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* DIRECTORY CARD 2: DIWALI & FESTIVE SPECIAL */}
-                  <div className="relative rounded-2xl bg-[#120c29] border border-[#271a4f] p-5 shadow-xl overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-amber-400 before:via-orange-500 before:to-pink-500">
-                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#231542]">
-                      <span className="text-xl">🪔</span>
-                      <h3 className="text-base font-extrabold text-white uppercase tracking-wider">
-                        DIWALI &amp; FESTIVE SPECIAL
-                      </h3>
-                    </div>
-                    <ul className="space-y-2.5 text-xs sm:text-sm">
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-amber-300 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Diwali AI Photo Editing Prompts</span>
-                          <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-amber-300 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Royal Navy Blue Sherwani Courtyard</span>
-                          <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-amber-300 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Sparkler &amp; Golden Fireworks Terrace</span>
-                          <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-amber-300 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Burgundy Kurta Courtyard Diya Lighting</span>
-                          <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Diwali AI photo editing prompt')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-amber-300 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Ivory Kurta &amp; Antique Brass Lamp Stand</span>
-                          <ChevronRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* DIRECTORY CARD 3: 90S RETRO STYLE */}
-                  <div className="relative rounded-2xl bg-[#120c29] border border-[#271a4f] p-5 shadow-xl overflow-hidden before:absolute before:top-0 before:left-0 before:right-0 before:h-1 before:bg-gradient-to-r before:from-indigo-500 before:via-purple-500 before:to-pink-500">
-                    <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#231542]">
-                      <span className="text-xl">📼</span>
-                      <h3 className="text-base font-extrabold text-white uppercase tracking-wider">
-                        RETRO &amp; 90S VINTAGE
-                      </h3>
-                    </div>
-                    <ul className="space-y-2.5 text-xs sm:text-sm">
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('90s Retro AI Photo Prompts')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>90s Retro Motorcycle Portrait</span>
-                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('90s Retro AI Photo Prompts')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Acid-Wash Denim with Vintage Bike</span>
-                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('90s Retro AI Photo Prompts')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>35mm Film Grain Analog Aesthetic</span>
-                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('Boys')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Black &amp; White Monochrome Drone Shoot</span>
-                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          onClick={() => handleSelectCategory('All')}
-                          className="w-full flex items-center justify-between text-gray-300 hover:text-pink-400 transition-colors py-1 group cursor-pointer text-left"
-                        >
-                          <span>Browse All Handcrafted Prompts</span>
-                          <ChevronRight className="w-4 h-4 text-purple-400 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-
-                </div>
-
-              </div>
-            )}
-
-            {/* 6. MAIN ALL PROMPTS GALLERY SECTION (2-Column Mobile, 4-Column Desktop) */}
-            <section className="mt-8 mb-12">
+            {/* 5. MAIN PROMPTS GALLERY (Strictly 2 columns on mobile: grid-cols-2) */}
+            <section className="mt-4 mb-12">
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
                 <div className="flex items-center gap-2">
                   <Layers className="w-5 h-5 text-pink-400" />
