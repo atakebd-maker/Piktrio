@@ -368,12 +368,11 @@ export default function App() {
               onSelectCategory={handleSelectCategory}
             />
 
-            {/* 4. Long Horizontal Featured Banner Slider below categories */}
+            {/* 4. Beautiful Pinned Photos Slider below categories */}
             <FeaturedSlider
-              onSelectCategory={(name) => {
-                handleSelectCategory(name);
-                window.scrollTo({ top: 340, behavior: 'smooth' });
-              }}
+              prompts={prompts}
+              onSelectPrompt={handleViewPrompt}
+              onSelectCategory={handleSelectCategory}
             />
 
             {/* Sponsored Banner between Slider and Gallery */}
