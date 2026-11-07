@@ -14,10 +14,10 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
   const QUICK_TAGS = [
     'Diwali prompt for boys',
     'Royal Sherwani',
-    '90s retro motorcycle',
     'Courtyard Diya lighting',
-    'Luxury SUV photoshoot',
-    'Jailer 2 movie poster',
+    'Sparkler Fireworks',
+    'Mahindra Scorpio',
+    'Jailer 2',
   ];
 
   return (
@@ -40,7 +40,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
 
       {/* 3. Subtitle description */}
       <p className="text-xs sm:text-sm md:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed mb-6 font-normal">
-        Handcrafted realistic prompts for boys, royal Diwali celebrations, 90s vintage analog film &amp; luxury automotive photoshoots. Tap copy, paste into Gemini or ChatGPT, done.
+        Handcrafted realistic prompts for boys, royal Diwali celebrations &amp; realistic portraits. Tap copy, paste into Gemini or ChatGPT, done.
       </p>
 
       {/* 4. Sleek Dark Search Bar */}
@@ -51,7 +51,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Search prompts (e.g. diwali, sherwani, retro, scorpio)..."
+            placeholder="Search prompts (e.g. diwali, sherwani, scorpio, jailer 2)..."
             className="w-full py-2.5 px-1 text-xs sm:text-sm text-gray-100 placeholder:text-gray-500 bg-transparent focus:outline-none"
           />
           {searchQuery && (

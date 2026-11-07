@@ -16,11 +16,11 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenModal,
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-[#0a0618]/95 backdrop-blur-md border-b border-[#21163e] shadow-lg shadow-black/40 transition-all">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-md shadow-black/10 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* User's Website Logo */}
+          {/* User's Website Logo (100% crystal-clear on light background) */}
           <div 
             onClick={onHomeClick}
             className="flex items-center cursor-pointer select-none group py-1"
@@ -28,7 +28,7 @@ export const Header: React.FC<HeaderProps> = ({
             <img
               src="/assets/aistudio/1000050243-removebg-preview_62525162.png"
               alt="Piktrio"
-              className="h-9 sm:h-11 md:h-12 w-auto max-w-[190px] sm:max-w-[240px] object-contain transition-transform group-hover:scale-[1.02] filter drop-shadow-[0_0_8px_rgba(255,255,255,0.45)] drop-shadow-[0_2px_12px_rgba(59,130,246,0.4)]"
+              className="h-10 sm:h-12 md:h-14 w-auto max-w-[210px] sm:max-w-[260px] object-contain transition-transform group-hover:scale-[1.02]"
             />
           </div>
 
@@ -36,43 +36,36 @@ export const Header: React.FC<HeaderProps> = ({
           <nav className="hidden md:flex items-center gap-1 lg:gap-2">
             <button
               onClick={onHomeClick}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-colors cursor-pointer"
             >
               Home
             </button>
 
             <button
               onClick={() => onSelectCategory?.('Trending')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-pink-400 hover:bg-white/5 transition-colors cursor-pointer flex items-center gap-1.5"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-pink-600 hover:text-pink-700 hover:bg-pink-50 transition-colors cursor-pointer flex items-center gap-1.5"
             >
-              <Sparkles className="w-3.5 h-3.5 text-pink-400" />
+              <Sparkles className="w-3.5 h-3.5 text-pink-500" />
               <span>Trending</span>
             </button>
 
             <button
               onClick={() => onSelectCategory?.('Boys')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-purple-300 hover:bg-white/5 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-purple-700 hover:text-purple-900 hover:bg-purple-50 transition-colors cursor-pointer"
             >
-              Boys & Men
+              Boys &amp; Men
             </button>
 
             <button
               onClick={() => onSelectCategory?.('Diwali AI photo editing prompt')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-amber-300 hover:text-amber-200 hover:bg-amber-500/10 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-300 transition-colors cursor-pointer"
             >
               Diwali Prompts
             </button>
 
             <button
-              onClick={() => onSelectCategory?.('90s Retro AI Photo Prompts')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-300 hover:text-purple-300 hover:bg-white/5 transition-colors cursor-pointer"
-            >
-              Retro 90s
-            </button>
-
-            <button
               onClick={() => onOpenModal?.('about')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-gray-400 hover:text-gray-200 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
             >
               About
             </button>
@@ -82,10 +75,10 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onOpenMenu}
             aria-label="Open menu"
-            className="p-2 sm:px-3 sm:py-2 rounded-xl text-gray-300 hover:text-white hover:bg-[#1a1238] border border-[#26184a] transition-all cursor-pointer flex items-center gap-1.5"
+            className="p-2 sm:px-3.5 sm:py-2 rounded-xl text-slate-800 hover:text-black bg-slate-100 hover:bg-slate-200 border border-slate-300 transition-all cursor-pointer flex items-center gap-1.5 shadow-xs"
           >
-            <span className="text-xs font-semibold text-gray-300 hidden sm:inline-block">Categories</span>
-            <Menu className="w-5 h-5 stroke-[2]" />
+            <span className="text-xs sm:text-sm font-bold text-slate-700 hidden sm:inline-block">Categories</span>
+            <Menu className="w-5 h-5 stroke-[2] text-slate-800" />
           </button>
 
         </div>

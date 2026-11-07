@@ -16,7 +16,7 @@ export const CategoryBar: React.FC<CategoryBarProps> = ({
     <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-3 pb-2">
       {/* 
         Single-line enclosed category pill bar matching dark theme:
-        Fits All, Trending, Boys, Diwali, Retro cleanly
+        Fits Trending, All, Boys cleanly
       */}
       <div className="bg-[#120c29] p-1 sm:p-1.5 rounded-2xl border border-[#2b1b50] flex items-center justify-between gap-1 sm:gap-2 overflow-x-auto no-scrollbar shadow-lg shadow-purple-950/20">
         {categories.map((cat) => {

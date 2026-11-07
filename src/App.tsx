@@ -29,7 +29,7 @@ const ITEMS_PER_PAGE = 8; // Optimal for 2-column mobile and 4-column desktop la
 export default function App() {
   const [prompts, setPrompts] = useState<PromptItem[]>(STORE_PROMPTS);
   const [categories, setCategories] = useState<CategoryItem[]>(
-    PROMPTPIN_CATEGORIES.filter((c) => c.id !== 'diwali' && c.id !== 'retro')
+    PROMPTPIN_CATEGORIES.filter((c) => c.id !== 'diwali')
   );
   const [isLoading, setIsLoading] = useState(true);
   
@@ -100,10 +100,10 @@ export default function App() {
     );
 
     const unsubCategories = subscribeToCategories((cats) => {
-      // Top category bar excludes 'diwali' and 'retro' as requested (they remain in Collections below)
+      // Top category bar strictly has: 'trending', 'all', 'boys' (Diwali is in collections)
       const order = ['trending', 'all', 'boys'];
       const filteredCats = cats.filter(
-        (c) => c.id.toLowerCase() !== 'couple' && c.id.toLowerCase() !== 'girls' && c.id.toLowerCase() !== 'diwali' && c.id.toLowerCase() !== 'retro'
+        (c) => c.id.toLowerCase() !== 'couple' && c.id.toLowerCase() !== 'girls' && c.id.toLowerCase() !== 'diwali'
       );
       const sorted = order
         .map((id) => filteredCats.find((c) => c.id.toLowerCase() === id) || PROMPTPIN_CATEGORIES.find((c) => c.id.toLowerCase() === id))
@@ -111,7 +111,7 @@ export default function App() {
       if (sorted.length > 0) {
         setCategories(sorted);
       } else {
-        setCategories(PROMPTPIN_CATEGORIES.filter((c) => c.id !== 'diwali' && c.id !== 'retro'));
+        setCategories(PROMPTPIN_CATEGORIES.filter((c) => c.id !== 'diwali'));
       }
     });
 
@@ -171,20 +171,6 @@ export default function App() {
           p.tags?.some((t) => t.toLowerCase().includes('diwali'))
         );
 
-        // Check if user selected Retro / 90s collection
-        const isRetroFilter = sel.includes('retro') || sel.includes('vintage') || sel.includes('90s');
-        const matchesRetro = isRetroFilter && (
-          cat.includes('retro') ||
-          cat.includes('vintage') ||
-          title.includes('retro') ||
-          title.includes('vintage') ||
-          title.includes('90s') ||
-          p.tags?.some((t) => {
-            const tag = t.toLowerCase();
-            return tag.includes('retro') || tag.includes('vintage') || tag.includes('90s');
-          })
-        );
-
         // Standard category matching
         const matchesStandard =
           cat === sel ||
@@ -194,7 +180,7 @@ export default function App() {
           }) ||
           sel.includes(cat);
 
-        if (!matchesDiwali && !matchesRetro && !matchesStandard) {
+        if (!matchesDiwali && !matchesStandard) {
           return false;
         }
       }
@@ -365,7 +351,7 @@ export default function App() {
               onTagClick={(tag) => handleSelectCategory(tag)}
             />
 
-            {/* 3. Horizontal Category Navigation (Single Line: Trending, All, Boys, Diwali, Retro) */}
+            {/* 3. Horizontal Category Navigation (Single Line: Trending, All, Boys) */}
             <CategoryBar
               categories={categories}
               selectedCategory={selectedCategory}

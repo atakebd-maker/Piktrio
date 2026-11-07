@@ -26,6 +26,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
   }, [prompts]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
@@ -36,23 +37,38 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
     }
   }, [pinnedPrompts.length, currentIndex]);
 
-  // Auto-advance every 5 seconds unless hovered/touched
+  const transitionTo = (newIndex: number) => {
+    if (newIndex === currentIndex || isTransitioning) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex(newIndex);
+      setIsTransitioning(false);
+    }, 240);
+  };
+
+  // Auto-advance every 6 seconds smoothly unless hovered/touched
   useEffect(() => {
     if (isPaused || pinnedPrompts.length <= 1) return;
     const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % pinnedPrompts.length);
-    }, 5000);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % pinnedPrompts.length);
+        setIsTransitioning(false);
+      }, 240);
+    }, 6000);
     return () => clearInterval(timer);
   }, [isPaused, pinnedPrompts.length]);
 
   const handlePrev = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    setCurrentIndex((prev) => (prev === 0 ? pinnedPrompts.length - 1 : prev - 1));
+    const nextIdx = currentIndex === 0 ? pinnedPrompts.length - 1 : currentIndex - 1;
+    transitionTo(nextIdx);
   };
 
   const handleNext = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    setCurrentIndex((prev) => (prev + 1) % pinnedPrompts.length);
+    const nextIdx = (currentIndex + 1) % pinnedPrompts.length;
+    transitionTo(nextIdx);
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -128,7 +144,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
         {/* Subtle Ambient Grid Pattern */}
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#60a5fa_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
 
-        <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-center p-4 sm:p-6 md:p-8">
+        <div className={`relative z-10 grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-center p-4 sm:p-6 md:p-8 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 scale-[0.99]' : 'opacity-100 scale-100'}`}>
           
           {/* PHOTO SHOWCASE: Generous height so entire portrait image (head to toe) is 100% visible */}
           <div 
@@ -139,7 +155,6 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
               
               {/* Uncropped Image Display: 100% full view from top to bottom */}
               <img
-                key={current.id}
                 src={current.imageUrl}
                 alt={current.title}
                 style={{ objectFit: 'contain' }}
@@ -216,7 +231,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
               {pinnedPrompts.map((p, idx) => (
                 <button
                   key={p.id}
-                  onClick={() => setCurrentIndex(idx)}
+                  onClick={() => transitionTo(idx)}
                   aria-label={`Go to slide ${idx + 1}`}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                     currentIndex === idx 
@@ -258,7 +273,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
             return (
               <button
                 key={p.id}
-                onClick={() => setCurrentIndex(idx)}
+                onClick={() => transitionTo(idx)}
                 className={`flex-shrink-0 flex items-center gap-2 p-1.5 pr-3 rounded-xl border text-left transition-all cursor-pointer ${
                   isActive
                     ? 'bg-[#1e133d] border-pink-500/80 shadow-md shadow-pink-500/20 ring-1 ring-pink-500/50'

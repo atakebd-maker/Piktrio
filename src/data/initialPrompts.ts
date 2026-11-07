@@ -13,15 +13,12 @@ export const PROMPTPIN_CATEGORIES: CategoryItem[] = [
   { id: 'all', name: 'All', description: 'All AI Photo editing prompts' },
   { id: 'boys', name: 'Boys', description: 'AI photo editing prompts for boys and men' },
   { id: 'diwali', name: 'Diwali', description: 'Festive Diwali AI photo editing prompts for boys' },
-  { id: 'retro', name: 'Retro', description: '90s vintage film style AI photo prompts' },
 ];
 
 export const COLLECTIONS_LIST = [
   { label: 'Diwali AI photo editing prompt', cat: 'Diwali AI photo editing prompt' },
-  { label: '90s Retro AI Photo Prompts', cat: '90s Retro AI Photo Prompts' },
-  { label: 'Trending AI Photo Prompts', cat: 'Trending' },
   { label: 'AI Photo Prompts for Boys', cat: 'Boys' },
-  { label: 'Luxury Cars & Bikes for Men', cat: 'Automotive' },
+  { label: 'Trending AI Photo Prompts', cat: 'Trending' },
 ];
 
 export const STORE_PROMPTS: PromptItem[] = [
@@ -128,15 +125,15 @@ The final result should resemble a genuine professional royal Diwali photoshoot 
     createdAt: '2026-11-06T17:30:00.000Z',
   },
   {
-    id: '90s-retro-motorcycle-vintage-denim',
-    title: '90s Retro Motorcycle Portrait – Vintage Denim Style with Classic Bike',
-    category: 'Retro',
-    description: `# 90s Retro Motorcycle Portrait: Vintage Denim Style Guide
+    id: 'vintage-motorcycle-classic-denim',
+    title: 'Vintage Denim Motorcycle Portrait – Classic Bike Street Style',
+    category: 'Boys',
+    description: `# Vintage Denim Motorcycle Portrait: Classic Bike Style Guide
 
-Create an authentic, ultra-realistic 8K vintage-inspired 1990s street-style portrait leaning casually against a classic black motorcycle in full acid-wash denim with 35mm film aesthetics using ChatGPT (GPT-4o) or Google Gemini with your own reference photograph.
+Create an authentic, ultra-realistic 8K vintage-inspired street-style portrait leaning casually against a classic black motorcycle in full acid-wash denim with 35mm film aesthetics using ChatGPT (GPT-4o) or Google Gemini with your own reference photograph.
 
 ## What Is This AI Photo Editing Prompt?
-This prompt transports you straight into the nostalgic 1990s analog film era. Styled in an iconic oversized acid-wash denim jacket, vintage graphic tee, dark sunglasses, and leaning against an authentic classic 1980s Japanese commuter bike, it crafts a genuine 35mm film photograph with warm sepia daylight and subtle analog film grain while preserving your true facial features and hairstyle.
+This prompt captures an iconic street portrait leaning against an authentic classic Japanese commuter bike in an oversized acid-wash denim jacket, vintage graphic tee, and dark sunglasses, crafting a genuine 35mm film photograph with warm sepia daylight and subtle analog film grain while preserving your true facial features and hairstyle.
 
 ## Step-by-Step Tutorial: How to Create This Photo
 
@@ -156,12 +153,12 @@ Click the **Copy Full Prompt** button. Wait 7 seconds for the countdown, then cl
 Paste the prompt into the message box alongside your uploaded photo. Instruct the AI to generate a vertical 4:5 portrait.
 
 ### Step 6: Review & Download
-Examine the authentic faded denim fabric texture, chrome motorcycle reflections, and analog 35mm film tone. Download your high-resolution retro street portrait!
+Examine the authentic faded denim fabric texture, chrome motorcycle reflections, and analog 35mm film tone. Download your high-resolution vintage street portrait!
 
 ---
 
 ## Key Highlights of This Prompt
-- **90s Retro Fashion:** Oversized acid-wash denim jacket with rolled sleeves, graphic tee, matching jeans, dark sunglasses, and leather belt.
+- **Vintage Street Fashion:** Oversized acid-wash denim jacket with rolled sleeves, graphic tee, matching jeans, dark sunglasses, and leather belt.
 - **Classic Vintage Motorcycle:** Black 1980s Japanese-style commuter bike with visible chrome details, round headlight, and engine.
 - **Analog 35mm Film Aesthetic:** Warm sepia daylight, gentle photographic grain, faded highlights, and realistic street roadside setting.
 - **Identity Lock:** Preserves natural skin texture, hair length, and recognizable facial characteristics without digital smoothing.
@@ -169,19 +166,19 @@ Examine the authentic faded denim fabric texture, chrome motorcycle reflections,
 ---
 
 ## SEO Keywords & Search Tags
-90s retro prompt, 90s retro motorcycle portrait, Vintage denim AI photo, 90s street style AI prompt, Classic bike portrait prompt, 35mm film aesthetic AI photo, Vintage motorcycle photoshoot, Retro AI photo editing prompt, ChatGPT 90s prompt, Gemini vintage prompt`,
+Vintage denim prompt, Vintage motorcycle portrait, Vintage denim AI photo, 90s street style AI prompt, Classic bike portrait prompt, 35mm film aesthetic AI photo, Vintage motorcycle photoshoot, Boys AI photo editing prompt, ChatGPT vintage prompt, Gemini vintage prompt`,
     prompt: `Create an ultra-realistic 8K vintage-inspired 1990s street-style portrait using the uploaded personal photograph as the facial identity reference.
 FACE AND HAIRSTYLE PRESERVATION:
 Use the uploaded reference photo to maintain the person's authentic facial identity. Preserve his original facial structure, eyes, nose, lips, jawline, natural skin tone, and recognizable facial characteristics. Give special attention to maintaining his natural hairstyle and facial hair as closely as possible. Do not replace his identity with a different person or apply artificial facial beautification.
-90s RETRO FASHION:
+90s VINTAGE STREET FASHION:
 Dress him in a classic acid-wash denim outfit inspired by authentic 1990s street fashion. Include:
 - A slightly oversized blue vintage denim jacket with rolled-up sleeves.
-- A plain white casual T-shirt featuring a small original retro-inspired graphic without any brand logo.
+- A plain white casual T-shirt featuring a small original vintage-inspired graphic without any brand logo.
 - Matching high-waisted acid-wash denim jeans.
 - A classic dark leather belt.
 - Stylish vintage dark-tinted sunglasses.
 - A simple vintage wristwatch.
-The clothing should have authentic faded denim textures, natural wrinkles, and a relaxed retro fit.
+The clothing should have authentic faded denim textures, natural wrinkles, and a relaxed vintage fit.
 POSE AND MOTORCYCLE:
 Position him casually leaning against a classic black 1980s-style vintage motorcycle inspired by the traditional Japanese commuter bikes of that era. Keep the motorcycle's fuel tank, chrome details, round headlight, engine, handlebars, and seat clearly visible.
 Both hands should rest naturally inside his front jean pockets. His body should lean slightly against the motorcycle, with a relaxed and confident posture. His head should turn slightly to one side, creating a stylish candid street-photography expression.
@@ -196,12 +193,10 @@ FINAL REQUIREMENTS:
 The final image must capture the genuine charm of 1990s youth fashion and motorcycle culture. Maintain the person's recognizable identity, natural appearance, and realistic proportions. Avoid modern fashion elements, cartoon effects, excessive digital sharpening, distorted hands, artificial skin, and recognizable third-party brand logos.`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfHGavzFK-xB5wCGq3k80KcNrzYHd3RmEy1HlC8-rngXHf7255HxUFGqeU727RGXKlHChGH8eUi1-jCGJXwEBdT_FoMRFLPFIHRkRsd3ZBI2cmVXCnbSlQ3Y2CBo0TN8t0zAChhGQpnkfo-11wXRI6XhmAXz4sfqsljm8mwmTbLv5Ddl54ZdCPDD3kJGE/s1600/image.png',
     tags: [
-      'Retro',
-      '90s Retro AI Photo Prompts',
-      'Vintage',
-      '90s',
-      'Motorcycle',
       'Boys',
+      'Vintage',
+      'Motorcycle',
+      'Classic Bike',
       'Acid Wash Denim',
       '35mm Film',
       'Trending',

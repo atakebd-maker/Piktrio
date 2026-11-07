@@ -39,11 +39,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         
         {/* Drawer Header with User's Logo */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#21153f]">
-          <div className="flex items-center">
+          <div className="flex items-center bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-xs">
             <img
               src="/assets/aistudio/1000050243-removebg-preview_62525162.png"
               alt="Piktrio"
-              className="h-10 sm:h-12 w-auto max-w-[220px] object-contain filter drop-shadow-[0_0_8px_rgba(255,255,255,0.45)] drop-shadow-[0_2px_12px_rgba(59,130,246,0.4)]"
+              className="h-8 sm:h-10 w-auto max-w-[190px] object-contain"
             />
           </div>
 
