@@ -96,7 +96,7 @@ export default function App() {
     );
 
     const unsubCategories = subscribeToCategories((cats) => {
-      const order = ['trending', 'all', 'diwali', 'boys', 'couple'];
+      const order = ['trending', 'all', 'diwali', 'retro', 'boys', 'couple'];
       const sorted = order
         .map((id) => cats.find((c) => c.id.toLowerCase() === id) || PROMPTPIN_CATEGORIES.find((c) => c.id.toLowerCase() === id))
         .filter((c): c is CategoryItem => Boolean(c));
@@ -144,6 +144,20 @@ export default function App() {
           p.tags?.some((t) => t.toLowerCase().includes('diwali'))
         );
 
+        // Check if user selected Retro / 90s collection
+        const isRetroFilter = sel.includes('retro') || sel.includes('vintage') || sel.includes('90s');
+        const matchesRetro = isRetroFilter && (
+          cat.includes('retro') ||
+          cat.includes('vintage') ||
+          title.includes('retro') ||
+          title.includes('vintage') ||
+          title.includes('90s') ||
+          p.tags?.some((t) => {
+            const tag = t.toLowerCase();
+            return tag.includes('retro') || tag.includes('vintage') || tag.includes('90s');
+          })
+        );
+
         // Standard category matching
         const matchesStandard =
           cat === sel ||
@@ -153,7 +167,7 @@ export default function App() {
           }) ||
           sel.includes(cat);
 
-        if (!matchesDiwali && !matchesStandard) {
+        if (!matchesDiwali && !matchesRetro && !matchesStandard) {
           return false;
         }
       }

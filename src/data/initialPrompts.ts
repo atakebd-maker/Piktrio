@@ -12,18 +12,212 @@ export const PROMPTPIN_CATEGORIES: CategoryItem[] = [
   { id: 'trending', name: 'Trending', description: 'Viral and popular AI image editing prompts' },
   { id: 'all', name: 'All', description: 'All AI Photo editing prompts' },
   { id: 'diwali', name: 'Diwali', description: 'Festive Diwali AI photo editing prompts' },
+  { id: 'retro', name: 'Retro', description: '90s vintage and nostalgic retro street photography AI prompts' },
   { id: 'boys', name: 'Boys', description: 'AI photo editing prompts for boys and men' },
   { id: 'couple', name: 'Couple', description: 'Romantic and aesthetic couple AI photo prompts' },
 ];
 
 export const COLLECTIONS_LIST = [
   { label: 'Diwali AI photo editing prompt', cat: 'Diwali AI photo editing prompt' },
+  { label: '90s Retro AI Photo Prompts', cat: '90s Retro AI Photo Prompts' },
   { label: 'Trending AI Photo Prompts', cat: 'Trending' },
   { label: 'Couple AI Photo Prompts', cat: 'Couple' },
   { label: 'AI Photo Prompts for Boys', cat: 'Boys' },
 ];
 
 export const STORE_PROMPTS: PromptItem[] = [
+  {
+    id: 'royal-diwali-navy-blue-sherwani-palace',
+    title: 'Royal Diwali Portrait – Elegant Navy Blue Sherwani & Palace Courtyard Look',
+    category: 'Boys',
+    description: `# Royal Diwali Portrait: Navy Blue Sherwani & Palace Courtyard Guide
+
+Learn how to create an ultra-realistic, premium-quality 4K royal festive portrait featuring an elegant deep navy-blue traditional sherwani with antique-gold embroidery and a silk stole in a majestic palace courtyard using ChatGPT (GPT-4o) or Google Gemini with your own reference photograph.
+
+## What Is This AI Photo Editing Prompt?
+This prompt captures the grand majesty of a royal Diwali celebration. Positioned inside an authentic traditional palace courtyard with carved sandstone pillars, decorative arches, glowing clay diyas, and hanging lanterns at dusk, it turns your portrait into an editorial-grade royal festive photoshoot while preserving 100% of your real facial features.
+
+## Step-by-Step Tutorial: How to Create This Photo
+
+### Step 1: Select Your Personal Photo
+Choose a clear, front-facing photograph where your face structure, eyes, eyebrows, nose, lips, jawline, and natural hairstyle are clearly visible.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o image generation) or Google Gemini on your smartphone or web browser.
+
+### Step 3: Attach Your Face Reference
+Upload your personal picture to the chat prompt box so the AI uses your real identity as the facial anchor.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy** button below. Wait 5 seconds for the security countdown to finish, and the complete prompt will be copied to your clipboard.
+
+### Step 5: Paste & Generate
+Paste the prompt into the message box alongside your uploaded photo. Instruct the AI to generate a vertical 3:4 portrait.
+
+### Step 6: Review & Download
+Verify the intricate antique-gold embroidery, realistic fabric folds, warm lantern reflections, and dusk atmosphere. Download your 4K royal festive portrait!
+
+---
+
+## Key Highlights of This Prompt
+- **Royal Sherwani Outfit:** Deep navy-blue sherwani with elaborate antique-gold embroidery and matching silk stole.
+- **Palace Courtyard Setting:** Carved sandstone pillars, traditional arches, clay diyas along pathways, and glowing brass lanterns.
+- **Atmospheric Dusk Lighting:** Soft purple-blue dusk sky combined with warm golden flame illumination.
+- **Face Identity Preservation:** Locks your natural skin tone, facial proportions, hairline, and expression.
+
+---
+
+## SEO Keywords & Search Tags
+Diwali prompt for boys, Royal Diwali portrait, Navy blue sherwani AI photo, Palace courtyard Diwali photoshoot, Boys Diwali prompt, Diwali AI photo editing prompt, Best Diwali prompt for boys, Indian royal traditional portrait, ChatGPT Diwali prompt, Gemini Diwali prompt`,
+    prompt: `Generate an ultra-realistic, premium-quality 4K royal festive portrait using the uploaded personal photograph as the facial identity reference.
+
+**1. FACIAL IDENTITY PRESERVATION**
+
+Reproduce the exact same person from the uploaded personal photograph. Preserve his original facial structure, eyes, eyebrows, nose, lips, jawline, natural skin tone, hairstyle, hairline, and hair texture. Maintain his authentic facial appearance and recognizable identity. Do not replace his face, change his hairstyle, apply artificial beautification, or modify his natural expression.
+
+**2. ROYAL TRADITIONAL OUTFIT**
+
+Dress him in a luxurious deep navy-blue traditional Indian sherwani featuring elaborate antique-gold embroidery along the collar, front panel, chest, and sleeve cuffs. Add a matching navy-blue silk stole draped elegantly over his shoulders. The fabric should have a premium woven texture with intricate embroidery and realistic natural folds.
+
+**3. POSE AND BODY LANGUAGE**
+
+Show him standing confidently in a graceful royal pose, facing the camera. One hand rests naturally near his waist while the other hangs comfortably beside his body. His posture should look elegant, relaxed, and dignified. Maintain natural body proportions and realistic hand positioning.
+
+**4. PALACE-STYLE BACKGROUND**
+
+Place him inside a magnificent traditional palace courtyard featuring beautifully carved sandstone pillars, decorative arches, ornate stone railings, and elegant architectural details.
+
+Decorate the courtyard with numerous traditional clay diyas arranged along the pathways, railings, and architectural edges. Include beautiful hanging decorative lanterns emitting warm golden light. The entire environment should feel luxurious, festive, and visually captivating.
+
+**5. SKY AND ATMOSPHERE**
+
+Create a beautiful dusk atmosphere with a soft blue and purple evening sky visible through the palace architecture. Warm lights from the diyas and lanterns should illuminate the surrounding stone surfaces, creating a magical yet natural festive environment.
+
+**6. CINEMATIC PHOTOGRAPHY**
+
+Professional DSLR portrait photography, realistic facial texture, natural skin tones, intricate clothing details, cinematic golden lighting, balanced shadows, realistic depth of field, sharp focus, lifelike colors, and premium photographic quality.
+
+**7. IMAGE COMPOSITION**
+
+Vertical 3:4 portrait aspect ratio, elegant medium-to-full-body framing, subject positioned centrally, with palace architecture and decorative lights clearly visible in the background.
+
+**FINAL INSTRUCTIONS:**
+
+Prioritize authentic facial identity and photographic realism. The personal photograph must determine the person's face and hairstyle. Avoid facial distortion, artificial skin smoothing, unrealistic anatomy, extra fingers, cartoon effects, or excessive visual enhancement.
+
+The final result should resemble a genuine professional royal Diwali photoshoot captured with a high-end DSLR camera.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjsOPQ-pN-BZIvKlkFHrgH_kHSf2ltWw7c86bpN4ooTzhglgzOsZqEAqoyX1IBAN0udLAnAIFFW580TziPwYvrbwvNHzALPsCz3K8euKekchKigVX7SkPV66E2ZcF8aVvcqakB9Agojl2TkBseDyvnv5oHw6HcrapZejbHf8nDQfQdt3-HCf0kynkiE_g/s1600/image.png',
+    tags: [
+      'Boys',
+      'Diwali',
+      'Diwali prompt for boys',
+      'Diwali AI photo editing prompt',
+      'Royal Sherwani',
+      'Palace Courtyard',
+      'Navy Blue',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 0,
+    viewsCount: 0,
+    copyCount: 0,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: '90s-retro-motorcycle-vintage-denim',
+    title: '90s Retro Motorcycle Portrait – Vintage Denim Style with Classic Bike',
+    category: 'Retro',
+    description: `# 90s Retro Motorcycle Portrait: Vintage Denim Style Guide
+
+Create an authentic, ultra-realistic 8K vintage-inspired 1990s street-style portrait leaning casually against a classic black motorcycle in full acid-wash denim with 35mm film aesthetics using ChatGPT (GPT-4o) or Google Gemini with your own reference photograph.
+
+## What Is This AI Photo Editing Prompt?
+This prompt transports you straight into the nostalgic 1990s analog film era. Styled in an iconic oversized acid-wash denim jacket, vintage graphic tee, dark sunglasses, and leaning against an authentic classic 1980s Japanese commuter bike, it crafts a genuine 35mm film photograph with warm sepia daylight and subtle analog film grain while preserving your true facial features and hairstyle.
+
+## Step-by-Step Tutorial: How to Create This Photo
+
+### Step 1: Select Your Personal Photo
+Select a clear photograph of yourself with natural lighting showing your face, hairline, eyes, and natural facial hair.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o image generation) or Google Gemini on your smartphone or web browser.
+
+### Step 3: Attach Your Personal Photo
+Upload your reference photo into the chatbox so the AI model preserves your exact facial structure and identity.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy** button below. Wait 5 seconds for the countdown, and the complete prompt will be copied to your clipboard.
+
+### Step 5: Paste & Generate
+Paste the prompt into the message box alongside your uploaded photo. Instruct the AI to generate a vertical 4:5 portrait.
+
+### Step 6: Review & Download
+Examine the authentic faded denim fabric texture, chrome motorcycle reflections, and analog 35mm film tone. Download your high-resolution retro street portrait!
+
+---
+
+## Key Highlights of This Prompt
+- **90s Retro Fashion:** Oversized acid-wash denim jacket with rolled sleeves, graphic tee, matching jeans, dark sunglasses, and leather belt.
+- **Classic Vintage Motorcycle:** Black 1980s Japanese-style commuter bike with visible chrome details, round headlight, and engine.
+- **Analog 35mm Film Aesthetic:** Warm sepia daylight, gentle photographic grain, faded highlights, and realistic street roadside setting.
+- **Identity Lock:** Preserves natural skin texture, hair length, and recognizable facial characteristics without digital smoothing.
+
+---
+
+## SEO Keywords & Search Tags
+90s retro prompt, 90s retro motorcycle portrait, Vintage denim AI photo, 90s street style AI prompt, Classic bike portrait prompt, 35mm film aesthetic AI photo, Vintage motorcycle photoshoot, Retro AI photo editing prompt, ChatGPT 90s prompt, Gemini vintage prompt`,
+    prompt: `Create an ultra-realistic 8K vintage-inspired 1990s street-style portrait using the uploaded personal photograph as the facial identity reference.
+FACE AND HAIRSTYLE PRESERVATION:
+Use the uploaded reference photo to maintain the person's authentic facial identity. Preserve his original facial structure, eyes, nose, lips, jawline, natural skin tone, and recognizable facial characteristics. Give special attention to maintaining his natural hairstyle and facial hair as closely as possible. Do not replace his identity with a different person or apply artificial facial beautification.
+90s RETRO FASHION:
+Dress him in a classic acid-wash denim outfit inspired by authentic 1990s street fashion. Include:
+- A slightly oversized blue vintage denim jacket with rolled-up sleeves.
+- A plain white casual T-shirt featuring a small original retro-inspired graphic without any brand logo.
+- Matching high-waisted acid-wash denim jeans.
+- A classic dark leather belt.
+- Stylish vintage dark-tinted sunglasses.
+- A simple vintage wristwatch.
+The clothing should have authentic faded denim textures, natural wrinkles, and a relaxed retro fit.
+POSE AND MOTORCYCLE:
+Position him casually leaning against a classic black 1980s-style vintage motorcycle inspired by the traditional Japanese commuter bikes of that era. Keep the motorcycle's fuel tank, chrome details, round headlight, engine, handlebars, and seat clearly visible.
+Both hands should rest naturally inside his front jean pockets. His body should lean slightly against the motorcycle, with a relaxed and confident posture. His head should turn slightly to one side, creating a stylish candid street-photography expression.
+BACKGROUND AND SETTING:
+Create a nostalgic outdoor roadside environment inspired by small-town streets in the 1990s. Include an old-fashioned roadside building, faded painted signboards with original generic wording, distant trees, and a quiet dusty road. Keep the environment authentic, simple, and naturally aged.
+VINTAGE PHOTOGRAPHIC STYLE:
+Use warm faded sepia tones mixed with muted earthy colors, subtle analog film grain, gentle photographic imperfections, slightly faded highlights, soft natural daylight, and realistic shadows.
+Give the photograph the appearance of an authentic 35mm film photograph captured with a classic analog camera during the 1990s. Include subtle aged-film texture and delicate vintage print borders without making the image look artificially damaged.
+CAMERA AND COMPOSITION:
+Vertical 4:5 portrait composition, medium-to-full-body framing, subject prominently positioned in the center, motorcycle clearly visible beside and behind him. Professional vintage street photography, realistic anatomy, detailed skin texture, authentic denim fabric, natural lighting, and exceptionally lifelike details.
+FINAL REQUIREMENTS:
+The final image must capture the genuine charm of 1990s youth fashion and motorcycle culture. Maintain the person's recognizable identity, natural appearance, and realistic proportions. Avoid modern fashion elements, cartoon effects, excessive digital sharpening, distorted hands, artificial skin, and recognizable third-party brand logos.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfHGavzFK-xB5wCGq3k80KcNrzYHd3RmEy1HlC8-rngXHf7255HxUFGqeU727RGXKlHChGH8eUi1-jCGJXwEBdT_FoMRFLPFIHRkRsd3ZBI2cmVXCnbSlQ3Y2CBo0TN8t0zAChhGQpnkfo-11wXRI6XhmAXz4sfqsljm8mwmTbLv5Ddl54ZdCPDD3kJGE/s1600/image.png',
+    tags: [
+      'Retro',
+      '90s Retro AI Photo Prompts',
+      'Vintage',
+      '90s',
+      'Motorcycle',
+      'Boys',
+      'Acid Wash Denim',
+      '35mm Film',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 0,
+    viewsCount: 0,
+    copyCount: 0,
+    aspectRatio: '4:5',
+    model: 'ChatGPT / Gemini',
+    createdAt: new Date().toISOString(),
+  },
   {
     id: 'best-diwali-prompt-for-boys',
     title: 'Best Diwali prompt for boys',

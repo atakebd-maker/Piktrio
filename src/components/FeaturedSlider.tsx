@@ -26,6 +26,15 @@ const SLIDES: SlideItem[] = [
     accentColor: 'bg-amber-400/30 text-amber-100',
   },
   {
+    id: 'retro',
+    badge: '90s Retro Style',
+    title: '90s Retro & Vintage AI Prompts',
+    subtitle: 'Classic motorcycles, acid-wash denim jackets, sepia daylight & 35mm film vibes.',
+    category: '90s Retro AI Photo Prompts',
+    gradient: 'from-amber-800 via-stone-800 to-amber-950',
+    accentColor: 'bg-amber-500/30 text-amber-200',
+  },
+  {
     id: 'trending',
     badge: 'Trending Prompts',
     title: 'Viral AI Photo Editing Prompts',
