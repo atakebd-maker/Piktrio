@@ -355,6 +355,7 @@ export default function App() {
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
               onTagClick={(tag) => handleSelectCategory(tag)}
+              onCopySuccess={(msg) => showToast(msg)}
             />
 
             {/* 3. Horizontal Category Navigation */}
