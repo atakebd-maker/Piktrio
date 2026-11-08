@@ -23,6 +23,448 @@ export const COLLECTIONS_LIST = [
 
 export const STORE_PROMPTS: PromptItem[] = [
   {
+    id: 'ajmal-bold-red-editorial-magazine-cover',
+    title: 'AJMAL – Bold Red Editorial Magazine Cover',
+    category: 'Boys',
+    description: `# AJMAL Bold Red Editorial Magazine Cover Guide
+
+Create an original, high-end editorial magazine cover poster in a bold, modern graphic design style using your own facial reference photo with ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+To achieve 100% facial identity preservation, you must follow these photo upload rules:
+- **High Resolution:** Upload a sharp, high-resolution original photograph of yourself.
+- **Front-Facing Angle:** Choose a front-facing or slight three-quarter angle where both eyes, eyebrows, nose, lips, jawline, and natural hairline are clearly visible.
+- **Good Lighting:** Ensure your face is evenly lit with natural lighting or soft indoor lights. Avoid harsh shadows or overexposed glares.
+- **Natural Hairstyle:** Use a photo with your authentic, natural hairstyle and natural hair texture.
+- **No Filters or Sunglasses:** Do not use photos with heavy beauty filters, sunglasses, masks, or extreme cartoon edits.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Clear Personal Photo
+Select a clear, front-facing personal photo from your phone or computer following the rules above.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch the ChatGPT app/website (select GPT-4o with image generation) or Google Gemini on your smartphone or desktop.
+
+### Step 3: Upload Your Face Reference Photo
+Attach your personal picture to the chat prompt window so the AI algorithm locks your real identity.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click the green **Click to Copy Now** button to copy the prompt to your clipboard.
+
+### Step 5: Paste & Instruct the AI
+Paste the prompt into the message box alongside your uploaded photo. Instruct the AI model to generate a 3:4 vertical editorial portrait.
+
+### Step 6: Review & Save
+Verify that the AI preserved your facial identity, textured dark hair, and realistic shirt fabric against the crimson background and magazine typography. Download your 4K magazine cover!
+
+---
+
+## Key Highlights of This Prompt
+- **Editorial Graphic Layout:** High-contrast crimson red studio backdrop with bold typography, magazine headlines, and barcode accents.
+- **Sophisticated Stance:** Confident contrapposto posture with natural fabric folds on an elegant button-down shirt.
+- **Photographic Realism:** Crisp 35mm portrait lighting, realistic skin pores, and natural hair strands without plastic smoothing.
+
+---
+
+## SEO Keywords & Search Tags
+Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prompt, AI image editing prompt for boys, AI photo editing prompt for boy, AI image editing prompt for boy, AI prompt, boys prompt, boy AI prompt, boys AI prompt, boy prompt, chat GPT prompt, Gemini prompt, Chat gpt prompt for boys, Gemini prompt for boys, chat GPT prompt boy, Gemini prompt boy, AJMAL magazine cover prompt, bold red editorial AI photo, boy magazine cover photo editing, ChatGPT prompt for boys, Gemini prompt for boys`,
+    prompt: `Create an original, high-end editorial magazine cover poster in a bold, modern graphic design style, using the uploaded poster as the primary visual reference.
+FACE IDENTITY REFERENCE: Use the separately uploaded face-reference photograph for the person's facial identity. Preserve the person's natural facial structure, eyes, eyebrows, nose, lips, skin tone, and other recognizable facial characteristics as closely as possible. Do not create a different-looking person.
+SUBJECT & POSE: Show the person in a confident, sophisticated contrapposto stance, with the upper body slightly turned and the head looking off-camera. Give him naturally styled, thick, dark black, textured swept-back hair and a calm, confident expression. He wears a fitted, elegant, light beige-white button-down shirt with natural fabric folds and realistic details.
+BACKGROUND & COLOR: Create a vibrant, deep crimson-red background featuring subtle vintage halftone dot textures, high-contrast typography, and bold magazine headline lettering.
+TYPOGRAPHY & GRAPHICS: Bold editorial masthead text "AJMAL" positioned across the top with minimalist magazine subtitles, barcodes, and date stamp accents.
+LIGHTING & AESTHETIC: High-contrast studio lighting, sharp rim highlights, clean soft shadows, 35mm crisp photographic realism with graphic poster sensibilities.
+CAMERA & COMPOSITION: Vertical 3:4 portrait aspect ratio, medium-to-full-body framing, subject positioned centrally, razor-sharp focus on facial details, authentic skin texture without artificial plastic smoothing.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPe61bVEkpQwCqSyEiuJaO3-Q0KTPdzXl2gXFadvfE1lZtejQxWOHBxBMYHwzkRGqp7OxHSQWBT0zBe2GwcqU8mBmd4Nfu47rscPhBy-SAr4oXulC9tHTKLh_3Tp-xMvJscb87_jaBMgfLddy0NDwVyKZK7pXPMlchp_iFOA8rCCTluF0PPE2kMayrJlk/s1600/image.png',
+    tags: [
+      'Boys',
+      'Editorial',
+      'Magazine Cover',
+      'AJMAL',
+      'Red Theme',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+      'Ai photo editing prompt',
+      'AI photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 142,
+    viewsCount: 1280,
+    copyCount: 384,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-08T10:00:00.000Z',
+  },
+  {
+    id: 'romantic-pink-roses-blue-sky-portrait',
+    title: 'Romantic Pink Roses – Blue Sky Portrait Photography',
+    category: 'Boys',
+    description: `# Romantic Pink Roses & Blue Sky Portrait Guide
+
+Create a stunning, ultra-realistic aesthetic portrait holding a bouquet of fresh pink roses against a deep blue sky with gentle clouds using your personal photo with ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+To make sure the AI generates an authentic likeness:
+- **Sharp & Well-Lit:** Use a clear, well-focused photo taken in bright daylight or crisp indoor lighting.
+- **Frontal View:** Ensure your face, jawline, eyes, nose, and lips are clearly visible without being blocked.
+- **Preserve Hairstyle:** Use a photo displaying your current hairstyle and natural hair volume.
+- **No Heavy Filters:** Avoid pre-filtered or heavily edited photos; natural camera shots provide the best reference.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Prepare Your Face Photo
+Choose a clear, front-facing personal photo where your facial features and hair are distinct.
+
+### Step 2: Open ChatGPT or Google Gemini
+Open ChatGPT (GPT-4o) or Google Gemini in your mobile app or browser.
+
+### Step 3: Attach Your Face Reference Photo
+Click the attach image icon and upload your photo directly to the conversation.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click the green **Click to Copy Now** button.
+
+### Step 5: Send the Prompt
+Paste the copied prompt into the message box with your uploaded photo and press Send.
+
+### Step 6: Download & Share
+Review the natural facial realism, soft petal textures, and brilliant blue sky with fluffy clouds. Save the vertical image in high resolution!
+
+---
+
+## Key Highlights of This Prompt
+- **Aesthetic Floral Theme:** Lush bouquet of fresh pink blooming roses wrapped neatly in neutral kraft paper.
+- **Sunny Blue Sky Background:** Deep azure blue sky with soft white clouds and golden sunlight rim lighting.
+- **Authentic Portrait Details:** Natural skin tones, authentic hair texture, and relaxed casual styling.
+
+---
+
+## SEO Keywords & Search Tags
+Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prompt, AI image editing prompt for boys, AI photo editing prompt for boy, AI image editing prompt for boy, AI prompt, boys prompt, boy AI prompt, boys AI prompt, boy prompt, chat GPT prompt, Gemini prompt, Chat gpt prompt for boys, Gemini prompt for boys, chat GPT prompt boy, Gemini prompt boy, Pink roses boy portrait, Blue sky aesthetic prompt`,
+    prompt: `Create an ultra-realistic, cinematic portrait photograph of a young man holding a lush bouquet of delicate pink roses against a brilliant clear blue sky with fluffy white clouds, using the uploaded photograph as the facial identity reference.
+FACE IDENTITY REFERENCE: Use the uploaded photo to preserve the person's exact facial structure, eyes, eyebrows, nose, lips, jawline, natural skin tone, and recognizable facial features. Retain his natural dark hair texture and realistic facial expression. Do not create a different-looking person or apply excessive beautification.
+SUBJECT & POSE: The young man stands outdoors with an elegant, gentle expression, holding a fresh bouquet of blooming pink roses wrapped neatly in kraft paper in front of his chest. He wears a stylish relaxed casual outfit with natural fabric folds and authentic textile detail.
+BACKGROUND & LIGHTING: A bright open sky with vibrant azure blue tones, gentle sunlit white clouds, and soft golden-hour daylight casting warm natural highlights on his hair, shoulders, and rose petals. Beautiful shallow depth-of-field with creamy background bokeh.
+CAMERA & COMPOSITION: Vertical 3:4 portrait composition, crisp 8K DSLR portrait quality, realistic skin pores and texture, natural eye reflections, vibrant lifelike colors, and fine botanical details on the roses.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyRhtPmUoWFSRJDeNEyFBLrDZG7blZuRS9rvfQhtPemXHocLJ4qGijezErko6CQ2nBNE6Uw34u3OIvO0lzsHXXu_9WromTngXVi2WVKn7UuooYMJijyKmeLS4mNbgTCN4QdmWg52gAy3izWaetEDtKfc8cRzYQ-eCtylhTdsZeNsDN9zWalmbOOKGiugs/s1600/image.png',
+    tags: [
+      'Boys',
+      'Pink Roses',
+      'Blue Sky',
+      'Romantic Portrait',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+      'Ai photo editing prompt',
+      'AI photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 168,
+    viewsCount: 1420,
+    copyCount: 420,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-08T09:50:00.000Z',
+  },
+  {
+    id: 'dreamy-blue-pixel-stretch-cinematic-art',
+    title: 'Dreamy Blue Pixel Stretch – Cinematic Back View Art',
+    category: 'Boys',
+    description: `# Dreamy Blue Pixel Stretch: Cinematic Back View Art Guide
+
+Generate an avant-garde, ultra-modern digital art portrait featuring dramatic cyan and sapphire blue pixel-stretch trails and back-profile aesthetics using ChatGPT (GPT-4o) or Google Gemini with your reference photo.
+
+## Important Rules for Uploading Your Personal Photo
+- **Clear Head & Profile View:** Upload a photo where your profile or three-quarter view, hairstyle, ear contours, and jawline are clearly visible.
+- **Accurate Hairstyle:** Ensure your natural haircut and hairline are clearly shown so the AI accurately reconstructs your hair in the back view.
+- **High Clarity:** Do not use pixelated or compressed photos; clean input produces pristine art.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Personal Photo
+Choose a high-clarity photo showing your facial structure and hairstyle.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o) or Google Gemini on your phone or web browser.
+
+### Step 3: Attach Your Personal Photo
+Attach the reference photo into the AI prompt box.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click the green **Click to Copy Now** button.
+
+### Step 5: Paste & Submit
+Paste the prompt into the chat together with your attached photo and submit.
+
+### Step 6: Download Your Artwork
+Inspect the smooth horizontal pixel streak gradients, neon rim highlights, and deep shadows. Download your high-res digital artwork!
+
+---
+
+## Key Highlights of This Prompt
+- **Avant-Garde Pixel Stretch:** Slit-scan motion streaks flowing in electric blue, cyan, and deep navy tones across the frame.
+- **Cinematic Moody Aesthetic:** Atmospheric neon rim lighting, rich shadows, and album-cover-grade visual styling.
+- **Streetwear Fashion:** Contemporary jacket/hoodie textures and textured hair detailing.
+
+---
+
+## SEO Keywords & Search Tags
+Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prompt, AI image editing prompt for boys, AI photo editing prompt for boy, AI image editing prompt for boy, AI prompt, boys prompt, boy AI prompt, boys AI prompt, boy prompt, chat GPT prompt, Gemini prompt, Chat gpt prompt for boys, Gemini prompt for boys, chat GPT prompt boy, Gemini prompt boy, Blue pixel stretch prompt, Cinematic back view art boy`,
+    prompt: `Create an artistic, ultra-modern cinematic digital portrait featuring a dramatic blue pixel-stretch and motion distortion effect, using the uploaded photograph as reference.
+SUBJECT & COMPOSITION: A young man captured in a moody, cinematic back-three-quarter view or profile angle, looking into the distance with contemplative energy. He sports modern textured dark hair and wears an oversized dark streetwear jacket or minimalist hoodie with realistic fabric textures.
+ARTISTIC VISUAL EFFECT: An avant-garde horizontal pixel stretch and slit-scan chromatic streak effect radiating from the subject across the background in vivid sapphire blue, cyan, and deep midnight navy tones, blending digital glitch art with high-fashion portraiture.
+ATMOSPHERE & LIGHTING: Moody cinematic neon rim lighting highlighting his silhouette, jawline, and shoulders, with deep rich shadows and atmospheric haze.
+CAMERA & QUALITY: Vertical 3:4 aspect ratio, high-resolution digital artwork, sharp foreground details contrasting with artistic fluid pixel trails, professional album cover aesthetic.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKMr6Gm0sbDyRE0TsSkSnk4SHEaTGi4ay4Nq9xJnBvKzZUCx8jdQJ9c1XsxqbYd01fjW0N1xhv61zfHkQjeOxdIiN3IBSgVz1_BCqfLUolni6-dZjIVI5OtwfVcBNeJ0NMu-7XhGar6w7BXmew9u4damP7URLrHlhlMC84pASSS3gLBOYgC-ySR6BEov0/s1600/image.png',
+    tags: [
+      'Boys',
+      'Pixel Stretch',
+      'Cinematic Art',
+      'Back View',
+      'Blue Aesthetic',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+      'Ai photo editing prompt',
+      'AI photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 195,
+    viewsCount: 1590,
+    copyCount: 460,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-08T09:40:00.000Z',
+  },
+  {
+    id: 'dreamy-wildflower-paradise-golden-hour-portrait',
+    title: 'Dreamy Wildflower Paradise – Golden Hour Cinematic Portrait',
+    category: 'Boys',
+    description: `# Dreamy Wildflower Paradise: Golden Hour Portrait Guide
+
+Create a magnificent, ultra-realistic portrait standing inside an endless wildflower meadow during golden hour using ChatGPT (GPT-4o) or Google Gemini with your facial identity reference.
+
+## Important Rules for Uploading Your Personal Photo
+- **Clear Face Shot:** Choose a sharp photo showing your eyes, smile or serene expression, jawline, and natural skin tone.
+- **Natural Light:** Photos taken with even daylight help the AI match golden-hour sunlight naturally.
+- **Real Hair:** Ensure your natural haircut and hair texture are easily visible.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Photo
+Choose a high-definition personal portrait photo following the rules above.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o) or Google Gemini on your mobile device or web browser.
+
+### Step 3: Attach the Photo
+Upload your face reference picture to the prompt input.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click the green **Click to Copy Now** button.
+
+### Step 5: Paste & Generate
+Paste the prompt into the AI chat box alongside your photo and generate.
+
+### Step 6: Download in High Resolution
+Check the soft flower petals, warm golden sunlight flares, and crisp facial details. Download your 4K portrait!
+
+---
+
+## Key Highlights of This Prompt
+- **Panoramic Wildflower Field:** Carpet of yellow, purple, coral, and white blooming blossoms stretching to the horizon.
+- **Golden Hour Backlighting:** Warm golden sunset rays creating natural lens flares and glowing bokeh.
+- **Casual Linen Style:** Relaxed cream linen button-down shirt with natural textile textures.
+
+---
+
+## SEO Keywords & Search Tags
+Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prompt, AI image editing prompt for boys, AI photo editing prompt for boy, AI image editing prompt for boy, AI prompt, boys prompt, boy AI prompt, boys AI prompt, boy prompt, chat GPT prompt, Gemini prompt, Chat gpt prompt for boys, Gemini prompt for boys, chat GPT prompt boy, Gemini prompt boy, Wildflower golden hour prompt, Boys meadow photoshoot AI`,
+    prompt: `Create a breathtaking, ultra-realistic cinematic portrait of a young man immersed in a dreamy wildflower meadow during golden hour, using the uploaded photograph as the facial identity reference.
+FACE IDENTITY REFERENCE: Preserve the person's exact facial structure, eyes, eyebrows, nose, lips, skin tone, and authentic facial proportions. Keep his natural dark hair styled naturally in the gentle outdoor breeze.
+SUBJECT & POSE: The young man stands amidst a dense sea of vibrant blooming wildflowers, surrounded by colorful blossoms in shades of yellow, purple, white, and coral. He wears a stylish earth-toned or cream relaxed-fit linen shirt with rolled-up sleeves. His expression is serene and contemplative, looking towards the warm sun.
+BACKGROUND & LIGHTING: A magical panoramic wildflower field under a warm golden sunset sky, with glowing sun rays piercing through the blossoms, creating lens flares, dust motes, and soft glowing bokeh.
+CAMERA & COMPOSITION: Vertical 3:4 portrait, professional 85mm f/1.4 lens aesthetic, rich dynamic range, lifelike skin texture, and razor-sharp focal clarity on the subject.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwMo2xARdrEB7yyDiZIBprmWdrQBK1g7x62vG5y5Q0fxBXKpvdRMsA_p2nI4hSSwl3eEOkj5hIK_b7gkeQOsBwnAsbKpVd7OHtZgAq-XzRuVYybnf30O4BxAt1kvWJU_oOgIsVdZuYR4fYJC0Ovoo_r_f5_L4brG5_HehRMhRrMP-taD1rtZlb-sBodfM/s1600/image.png',
+    tags: [
+      'Boys',
+      'Wildflower Paradise',
+      'Golden Hour',
+      'Meadow Portrait',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+      'Ai photo editing prompt',
+      'AI photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 182,
+    viewsCount: 1350,
+    copyCount: 395,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-08T09:30:00.000Z',
+  },
+  {
+    id: 'purple-water-lilies-cinematic-boat-portrait',
+    title: 'Purple Water Lilies – Cinematic Boat Portrait in Sapphire Blue Sky',
+    category: 'Boys',
+    description: `# Purple Water Lilies & Boat Portrait Guide
+
+Create an enchanting, ultra-realistic portrait of a young man on a handcrafted wooden boat floating across a serene lake filled with blooming purple water lilies under a sapphire sky using ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **Front Face Clarity:** Provide a sharp photo showing clear facial features, eyes, nose, and lips.
+- **Authentic Hair:** Make sure hair length and styling are visible for realistic reproduction.
+- **Even Illumination:** Avoid extreme dark shadows across one half of the face.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Clear Photo
+Choose a high-quality picture where your face is clearly visible.
+
+### Step 2: Open ChatGPT or Google Gemini
+Open ChatGPT (GPT-4o) or Google Gemini on your device.
+
+### Step 3: Attach the Face Reference Photo
+Upload the photo into the message input field.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click the green **Click to Copy Now** button.
+
+### Step 5: Paste & Generate
+Paste the prompt alongside your photo and send.
+
+### Step 6: Download Your Photo
+Verify the vivid purple water lilies, sparkling water reflections, and natural skin details. Save your high-resolution portrait!
+
+---
+
+## Key Highlights of This Prompt
+- **Scenic Lake Environment:** Traditional wooden canoe surrounded by green lily pads and vivid purple water lilies.
+- **Sapphire Sky & Water Reflections:** Crystal water caustics, soft morning clouds, and lush horizon landscape.
+- **Crisp Casual Attire:** Clean white button-down shirt with natural fabric creases.
+
+---
+
+## SEO Keywords & Search Tags
+Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prompt, AI image editing prompt for boys, AI photo editing prompt for boy, AI image editing prompt for boy, AI prompt, boys prompt, boy AI prompt, boys AI prompt, boy prompt, chat GPT prompt, Gemini prompt, Chat gpt prompt for boys, Gemini prompt for boys, chat GPT prompt boy, Gemini prompt boy, Purple water lily prompt, Boat lake portrait prompt`,
+    prompt: `Create an enchanting, ultra-realistic cinematic portrait of a young man sitting aboard a traditional wooden boat floating across a calm serene lake completely covered with blooming purple water lilies, using the uploaded photo as the facial identity reference.
+FACE IDENTITY REFERENCE: Faithfully preserve the subject's exact facial features, natural skin tone, eyes, eyebrows, nose, lips, jawline, and authentic hairstyle from the reference photo.
+SUBJECT & POSE: The young man is seated gracefully at the front of a handcrafted wooden boat, wearing a stylish crisp white or light blue casual button-down shirt. One hand rests on the boat edge or gently touches a water lily blossom. He has a calm, introspective gaze toward the horizon.
+SETTING & WATER: A vast tranquil lake overflowing with lush green lily pads and vivid purple and violet lotus flowers floating gracefully on crystal-clear water reflections. In the background, a breathtaking sapphire-blue sky with soft wispy clouds and calm distant mountains or tree lines.
+CAMERA & LIGHTING: Vertical 3:4 framing, natural morning daylight with soft sparkling water caustics, cinematic color grading, rich vibrant colors, high-detail water ripples, and crisp photographic depth.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwTIUdam1AEB85BbGrpPk3sH_5P-AJgcxSU7Rb1QqMHSwPQdP2vvOMQlNdIcfXgOUJ7I4p1Z8pABqovvu5e-Iz_ZNiSvodg2-SM3CbawFZ8eYRxl8jH6XBFYByjFl6Dsyn2OL0Dzo6ykmNGS-s0QkUyrEf33zA9s6r_mFcfa8PbmhEp9iD4LSWwqn8WhI/s1600/image.png',
+    tags: [
+      'Boys',
+      'Water Lilies',
+      'Boat Portrait',
+      'Sapphire Sky',
+      'Lake Scenery',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+      'Ai photo editing prompt',
+      'AI photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 174,
+    viewsCount: 1410,
+    copyCount: 412,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-08T09:20:00.000Z',
+  },
+  {
+    id: 'pink-bougainvillea-garden-yellow-shirt-portrait',
+    title: 'Pink Bougainvillea Garden – Elegant Yellow Shirt Portrait',
+    category: 'Boys',
+    description: `# Pink Bougainvillea Garden Portrait Guide
+
+Create a stunning, sun-drenched outdoor portrait leaning against a Mediterranean stone wall covered with cascading pink bougainvillea flowers wearing an elegant pastel yellow shirt using ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **High Quality:** Use an original photo from your camera gallery, not a blurry screenshot.
+- **Visible Facial Features:** Ensure both eyes, eyebrows, nose bridge, lips, and facial contours are sharp.
+- **Natural Hairstyle:** Keep hair unhidden so the AI matches your exact haircut.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Clear Photo
+Choose a high-resolution front-facing photo showing your natural features.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch the ChatGPT application (GPT-4o) or Google Gemini.
+
+### Step 3: Attach the Photo
+Upload your personal reference photo to the prompt input.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click the green **Click to Copy Now** button.
+
+### Step 5: Paste & Submit
+Paste the prompt into the conversation and request a 3:4 portrait.
+
+### Step 6: Review & Download
+Admire the sun-dappled shadows, rich bougainvillea blossoms, and lifelike skin pores. Download your 4K portrait!
+
+---
+
+## Key Highlights of This Prompt
+- **Vibrant Bougainvillea Floral Wall:** Dense cascades of hot pink and magenta flowers against sun-warmed stone.
+- **Summer Fashion:** Tailored pastel yellow/mustard linen shirt with rolled sleeves and classic wristwatch.
+- **Dappled Sunlight:** Warm Mediterranean morning lighting filtering through the petals.
+
+---
+
+## SEO Keywords & Search Tags
+Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prompt, AI image editing prompt for boys, AI photo editing prompt for boy, AI image editing prompt for boy, AI prompt, boys prompt, boy AI prompt, boys AI prompt, boy prompt, chat GPT prompt, Gemini prompt, Chat gpt prompt for boys, Gemini prompt for boys, chat GPT prompt boy, Gemini prompt boy, Bougainvillea flower prompt, Yellow shirt boy photoshoot AI`,
+    prompt: `Create an ultra-realistic, aesthetically pleasing outdoor portrait of a young man standing beside an overflowing wall of vibrant pink bougainvillea flowers, using the uploaded photograph as the facial identity reference.
+FACE IDENTITY REFERENCE: Accurately replicate the person's authentic facial identity, facial structure, eyes, eyebrows, nose, lips, and natural skin tone. Keep his natural dark hairstyle with realistic strands and texture.
+SUBJECT & POSE: The young man stands in a relaxed, handsome pose leaning gently against an ancient sun-bleached stone archway or white stucco wall draped in cascades of blooming pink and magenta bougainvillea. He wears an elegant, fitted pastel yellow or mustard linen shirt with the top buttons unbuttoned and sleeves rolled up, paired with stylish trousers and a classic watch.
+ATMOSPHERE & LIGHTING: Mediterranean summer morning sunlight filtering through the bougainvillea petals, casting soft dappled shadows and a warm luminous glow across the subject.
+CAMERA & QUALITY: Vertical 3:4 composition, 8K professional DSLR photography, natural skin pores, realistic textile folds, vibrant floral tones, and creamy bokeh in the background.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgnbflFXxTuX2sQ4-e0lfClbTSwO9nprf3mPKYgwPFk4OikmbhhdDgf5h_J-KkgDp11IHv_JHWHO5iRmbw7St786uFFR7QPshW_R7GXcm2Po_Da4kprr0ZWFDTxZ6Uc61b3UA9YuBgg7FKMye5s5XJBcJbSUpITMXTztzk4uRb3hbTi74_qgunzxRWClv0/s1600/image.png',
+    tags: [
+      'Boys',
+      'Bougainvillea',
+      'Yellow Shirt',
+      'Garden Portrait',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+      'Ai photo editing prompt',
+      'AI photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 161,
+    viewsCount: 1390,
+    copyCount: 378,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-08T09:10:00.000Z',
+  },
+  {
     id: 'royal-diwali-navy-blue-sherwani-palace',
     title: 'Royal Diwali Portrait – Elegant Navy Blue Sherwani & Palace Courtyard Look',
     category: 'Boys',

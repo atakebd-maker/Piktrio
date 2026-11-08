@@ -86,7 +86,13 @@ export default function App() {
 
     const unsubPrompts = subscribeToPrompts(
       (items) => {
-        const activeItems = items.length > 0 ? items : STORE_PROMPTS;
+        const map = new Map<string, PromptItem>();
+        STORE_PROMPTS.forEach((p) => map.set(p.id, p));
+        items.forEach((p) => {
+          const local = map.get(p.id);
+          map.set(p.id, { ...(local || {}), ...p });
+        });
+        const activeItems = Array.from(map.values());
         setPrompts(activeItems);
         setIsLoading(false);
         syncRouteFromLocation(activeItems);
