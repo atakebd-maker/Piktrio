@@ -16,19 +16,19 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenModal,
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-md shadow-black/10 transition-all">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm shadow-slate-900/5 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center justify-between h-20 sm:h-24">
           
-          {/* User's Website Logo (100% crystal-clear on light background) */}
+          {/* User's Website Logo (Enlarged and crisp on white header) */}
           <div 
             onClick={onHomeClick}
-            className="flex items-center cursor-pointer select-none group py-1"
+            className="flex items-center cursor-pointer select-none group py-1.5"
           >
             <img
-              src="/assets/aistudio/1000050243-removebg-preview_62525162.png"
-              alt="Piktrio"
-              className="h-10 sm:h-12 md:h-14 w-auto max-w-[210px] sm:max-w-[260px] object-contain transition-transform group-hover:scale-[1.02]"
+              src="/assets/aistudio/1000050956-removebg-preview_1d3a3740.png"
+              alt="Piktrio - Discover. Copy. Create."
+              className="h-12 sm:h-14 md:h-16 w-auto max-w-[240px] sm:max-w-[300px] md:max-w-[340px] object-contain transition-transform group-hover:scale-[1.02]"
             />
           </div>
 

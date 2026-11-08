@@ -35,24 +35,24 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
       />
 
       {/* Drawer Panel */}
-      <div className="absolute inset-y-0 right-0 max-w-full w-full sm:w-96 bg-[#0c081e] border-l border-[#241748] shadow-2xl flex flex-col z-10 text-gray-100">
+      <div className="absolute inset-y-0 right-0 max-w-full w-full sm:w-96 bg-[#070e22] border-l border-[#18284c] shadow-2xl flex flex-col z-10 text-gray-100">
         
-        {/* Drawer Header with User's Logo */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-[#21153f]">
-          <div className="flex items-center bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-xs">
+        {/* Drawer Header: Seamless FULL-WIDTH white bar matching main header */}
+        <div className="flex items-center justify-between px-5 sm:px-6 py-4 bg-white border-b border-slate-200">
+          <div className="flex items-center">
             <img
-              src="/assets/aistudio/1000050243-removebg-preview_62525162.png"
-              alt="Piktrio"
-              className="h-8 sm:h-10 w-auto max-w-[190px] object-contain"
+              src="/assets/aistudio/1000050956-removebg-preview_1d3a3740.png"
+              alt="Piktrio - Discover. Copy. Create."
+              className="h-10 sm:h-12 w-auto max-w-[220px] object-contain"
             />
           </div>
 
           <button
             onClick={onClose}
             aria-label="Close menu"
-            className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="p-2 rounded-xl text-slate-700 hover:text-black hover:bg-slate-100 transition-colors cursor-pointer"
           >
-            <X className="w-6 h-6" />
+            <X className="w-6 h-6 stroke-[2.5]" />
           </button>
         </div>
 
@@ -66,30 +66,30 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 onSelectCategory('All');
                 onClose();
               }}
-              className="w-full text-left py-2 hover:text-pink-400 transition-colors cursor-pointer flex items-center justify-between text-white"
+              className="w-full text-left py-2 hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-between text-white"
             >
               <span>Home</span>
-              <span className="text-xs font-normal text-purple-300/60">Main Gallery</span>
+              <span className="text-xs font-normal text-blue-300/60">Main Gallery</span>
             </button>
           </div>
 
           {/* Featured Collections Section (With Diwali Prompts highlighted) */}
-          <div className="border-t border-[#21153f] pt-3">
+          <div className="border-t border-[#162544] pt-3">
             <div 
               onClick={() => setCollectionsOpen(!collectionsOpen)}
-              className="flex items-center justify-between py-2 cursor-pointer hover:text-pink-400 transition-colors select-none text-white"
+              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-400 transition-colors select-none text-white"
             >
               <div className="flex items-center gap-2">
-                <FolderHeart className="w-5 h-5 text-pink-400" />
+                <FolderHeart className="w-5 h-5 text-blue-400" />
                 <span>Collections</span>
               </div>
-              <div className="w-7 h-7 rounded-lg bg-[#181035] text-purple-300 flex items-center justify-center border border-[#2c1d53]">
+              <div className="w-7 h-7 rounded-lg bg-[#0e1b38] text-blue-300 flex items-center justify-center border border-[#1b2f5c]">
                 {collectionsOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </div>
             </div>
 
             {collectionsOpen && (
-              <div className="pl-2 pr-1 py-2 space-y-1.5 text-xs font-medium bg-[#140e2e] rounded-2xl my-2 border border-[#271a4f]">
+              <div className="pl-2 pr-1 py-2 space-y-1.5 text-xs font-medium bg-[#0b1632] rounded-2xl my-2 border border-[#172b54]">
                 {COLLECTIONS_LIST.map((col) => {
                   const isDiwali = col.label.toLowerCase().includes('diwali');
                   return (
@@ -102,7 +102,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                       className={`w-full text-left py-2 px-3 rounded-xl transition-all cursor-pointer flex items-center justify-between ${
                         isDiwali
                           ? 'bg-amber-500/20 text-amber-300 font-bold hover:bg-amber-500/30 border border-amber-400/40'
-                          : 'text-gray-300 hover:bg-[#201546] hover:text-white'
+                          : 'text-slate-300 hover:bg-[#13234d] hover:text-white'
                       }`}
                     >
                       <span className="flex items-center gap-1.5">
@@ -122,19 +122,19 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           </div>
 
           {/* Categories with Expandable Dropdown */}
-          <div className="border-t border-[#21153f] pt-3">
+          <div className="border-t border-[#162544] pt-3">
             <div 
               onClick={() => setCategoriesOpen(!categoriesOpen)}
-              className="flex items-center justify-between py-2 cursor-pointer hover:text-pink-400 transition-colors select-none text-white"
+              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-400 transition-colors select-none text-white"
             >
               <span>Categories</span>
-              <div className="w-7 h-7 rounded-lg bg-[#181035] text-purple-300 flex items-center justify-center border border-[#2c1d53]">
+              <div className="w-7 h-7 rounded-lg bg-[#0e1b38] text-blue-300 flex items-center justify-center border border-[#1b2f5c]">
                 {categoriesOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </div>
             </div>
 
             {categoriesOpen && (
-              <div className="pl-2 pr-1 py-2 space-y-1 text-xs font-medium bg-[#140e2e] rounded-2xl my-2 border border-[#271a4f]">
+              <div className="pl-2 pr-1 py-2 space-y-1 text-xs font-medium bg-[#0b1632] rounded-2xl my-2 border border-[#172b54]">
                 {PROMPTPIN_CATEGORIES.map((cat) => (
                   <button
                     key={cat.id}
@@ -142,7 +142,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                       onSelectCategory(cat.name);
                       onClose();
                     }}
-                    className="w-full text-left py-2 px-3 rounded-xl text-gray-300 hover:bg-[#201546] hover:text-white transition-colors cursor-pointer block"
+                    className="w-full text-left py-2 px-3 rounded-xl text-slate-300 hover:bg-[#13234d] hover:text-white transition-colors cursor-pointer block"
                   >
                     {cat.name}
                   </button>
@@ -152,42 +152,42 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           </div>
 
           {/* About Us with Quick Action */}
-          <div className="border-t border-[#21153f] pt-3">
+          <div className="border-t border-[#162544] pt-3">
             <button
               onClick={() => handleOpenInfoModal('about')}
-              className="w-full text-left py-2 hover:text-pink-400 transition-colors cursor-pointer flex items-center justify-between text-gray-300"
+              className="w-full text-left py-2 hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-between text-slate-300"
             >
               <span>About Us</span>
-              <span className="text-xs font-normal text-pink-400">Learn more &rarr;</span>
+              <span className="text-xs font-normal text-blue-400">Learn more &rarr;</span>
             </button>
           </div>
 
           {/* Contact Us */}
-          <div className="border-t border-[#21153f] pt-3">
+          <div className="border-t border-[#162544] pt-3">
             <button
               onClick={() => handleOpenInfoModal('contact')}
-              className="w-full text-left py-2 hover:text-pink-400 transition-colors cursor-pointer flex items-center justify-between text-gray-300"
+              className="w-full text-left py-2 hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-between text-slate-300"
             >
               <span>Contact Us</span>
-              <span className="text-xs font-normal text-pink-400">Get in touch &rarr;</span>
+              <span className="text-xs font-normal text-blue-400">Get in touch &rarr;</span>
             </button>
           </div>
 
           {/* Privacy Policy */}
-          <div className="border-t border-[#21153f] pt-3">
+          <div className="border-t border-[#162544] pt-3">
             <button
               onClick={() => handleOpenInfoModal('privacy')}
-              className="w-full text-left py-2 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer"
+              className="w-full text-left py-2 text-sm text-slate-400 hover:text-white transition-colors cursor-pointer"
             >
               Privacy Policy
             </button>
           </div>
 
           {/* Terms & Conditions */}
-          <div className="border-t border-[#21153f] pt-3">
+          <div className="border-t border-[#162544] pt-3">
             <button
               onClick={() => handleOpenInfoModal('terms')}
-              className="w-full text-left py-2 text-sm text-gray-400 hover:text-white transition-colors cursor-pointer"
+              className="w-full text-left py-2 text-sm text-slate-400 hover:text-white transition-colors cursor-pointer"
             >
               Terms &amp; Conditions
             </button>
@@ -196,8 +196,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         </div>
 
         {/* Drawer Footer */}
-        <div className="p-5 border-t border-[#21153f] bg-[#090518] text-center">
-          <p className="text-xs text-gray-400">
+        <div className="p-5 border-t border-[#162544] bg-[#050b1a] text-center">
+          <p className="text-xs text-slate-400">
             &copy; {new Date().getFullYear()} Piktrio. All rights reserved.
           </p>
         </div>
