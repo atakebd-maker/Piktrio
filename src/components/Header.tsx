@@ -43,15 +43,15 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => onSelectCategory?.('Trending')}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-pink-600 hover:text-pink-700 hover:bg-pink-50 transition-colors cursor-pointer flex items-center gap-1.5"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-colors cursor-pointer flex items-center gap-1.5"
             >
-              <Sparkles className="w-3.5 h-3.5 text-pink-500" />
+              <Sparkles className="w-3.5 h-3.5 text-blue-500" />
               <span>Trending</span>
             </button>
 
             <button
               onClick={() => onSelectCategory?.('Boys')}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-purple-700 hover:text-purple-900 hover:bg-purple-50 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-blue-700 hover:text-blue-900 hover:bg-blue-50 transition-colors cursor-pointer"
             >
               Boys &amp; Men
             </button>
@@ -75,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onOpenMenu}
             aria-label="Open menu"
-            className="p-2 sm:px-3.5 sm:py-2 rounded-xl text-slate-800 hover:text-black bg-slate-100 hover:bg-slate-200 border border-slate-300 transition-all cursor-pointer flex items-center gap-1.5 shadow-xs"
+            className="p-2 sm:px-3.5 sm:py-2 rounded-xl text-slate-800 hover:text-blue-600 bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 transition-all cursor-pointer flex items-center gap-1.5 shadow-xs"
           >
             <span className="text-xs sm:text-sm font-bold text-slate-700 hidden sm:inline-block">Categories</span>
             <Menu className="w-5 h-5 stroke-[2] text-slate-800" />

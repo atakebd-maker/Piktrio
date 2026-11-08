@@ -37,33 +37,33 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
       <div className="fixed inset-0" onClick={onClose} />
 
       {/* Modal Card */}
-      <div className="relative bg-[#0e0922] rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col border border-[#271a4f] z-10 overflow-hidden text-gray-200">
+      <div className="relative bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col border border-slate-200 z-10 overflow-hidden text-slate-800">
         
         {/* Modal Header & Navigation Tabs */}
-        <div className="border-b border-[#21153f] bg-[#0a0618] px-4 sm:px-6 pt-5 pb-3">
+        <div className="border-b border-slate-200 bg-slate-50 px-4 sm:px-6 pt-5 pb-3">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-500 text-white flex items-center justify-center shadow-md">
+              <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md">
                 {activeTab === 'about' && <Info className="w-5 h-5" />}
                 {activeTab === 'contact' && <Mail className="w-5 h-5" />}
                 {activeTab === 'privacy' && <Shield className="w-5 h-5" />}
                 {activeTab === 'terms' && <FileText className="w-5 h-5" />}
               </div>
               <div>
-                <h3 className="font-bold text-white text-base sm:text-lg">
+                <h3 className="font-bold text-slate-900 text-base sm:text-lg">
                   {activeTab === 'about' && 'About Piktrio'}
                   {activeTab === 'contact' && 'Contact Us'}
                   {activeTab === 'privacy' && 'Privacy Policy'}
                   {activeTab === 'terms' && 'Terms & Conditions'}
                 </h3>
-                <p className="text-[11px] text-purple-300/60">Official Piktrio Information &amp; Guidelines</p>
+                <p className="text-[11px] text-slate-500">Official Piktrio Information &amp; Guidelines</p>
               </div>
             </div>
 
             <button
               onClick={onClose}
               aria-label="Close modal"
-              className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -75,8 +75,8 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
               onClick={() => setActiveTab('about')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'about'
-                  ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xs'
-                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:bg-slate-200/50 hover:text-slate-900'
               }`}
             >
               About Us
@@ -85,8 +85,8 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
               onClick={() => setActiveTab('contact')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'contact'
-                  ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xs'
-                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:bg-slate-200/50 hover:text-slate-900'
               }`}
             >
               Contact Us
@@ -95,8 +95,8 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
               onClick={() => setActiveTab('privacy')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'privacy'
-                  ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xs'
-                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:bg-slate-200/50 hover:text-slate-900'
               }`}
             >
               Privacy Policy
@@ -105,8 +105,8 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
               onClick={() => setActiveTab('terms')}
               className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer whitespace-nowrap ${
                 activeTab === 'terms'
-                  ? 'bg-gradient-to-r from-pink-500 to-purple-600 text-white shadow-xs'
-                  : 'text-gray-300 hover:bg-white/5 hover:text-white'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:bg-slate-200/50 hover:text-slate-900'
               }`}
             >
               Terms &amp; Conditions

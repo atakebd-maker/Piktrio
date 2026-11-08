@@ -53,7 +53,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
           {label}
         </span>
       )}
-      <div className="w-[320px] h-[50px] max-w-full overflow-hidden rounded-lg bg-[#0e0921] border border-[#2b1c52] shadow-xs flex items-center justify-center">
+      <div className="w-[320px] h-[50px] max-w-full overflow-hidden rounded-lg bg-slate-50 border border-slate-200 shadow-xs flex items-center justify-center">
         <iframe
           id={adId}
           title={label}

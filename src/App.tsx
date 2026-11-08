@@ -311,9 +311,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#080512] text-gray-100 font-sans selection:bg-purple-600 selection:text-white flex flex-col">
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-600 selection:text-white flex flex-col">
       
-      {/* 1. Header (Dark, AIPROMPTS.BUZZ style, strictly NO app button) */}
+      {/* 1. Header (Clean White & Blue, strictly NO app button) */}
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
         onHomeClick={handleHomeClick}
@@ -347,17 +347,17 @@ export default function App() {
             allPrompts={prompts}
           />
         ) : (
-          /* HOMEPAGE GALLERY VIEW (Matching AIPROMPTS.BUZZ) */
+          /* HOMEPAGE GALLERY VIEW (Matching Clean White & Blue) */
           <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             
-            {/* 2. Hero Section matching Screenshot 2: COPY. PASTE. GO VIRAL. + Terminal card */}
+            {/* 2. Hero Section: Clean White & Blue */}
             <HeroSearch
               searchQuery={searchQuery}
               onSearchChange={setSearchQuery}
               onTagClick={(tag) => handleSelectCategory(tag)}
             />
 
-            {/* 3. Horizontal Category Navigation (Single Line: Trending, All, Boys) */}
+            {/* 3. Horizontal Category Navigation */}
             <CategoryBar
               categories={categories}
               selectedCategory={selectedCategory}
@@ -376,22 +376,22 @@ export default function App() {
 
             {/* 5. MAIN PROMPTS GALLERY (Strictly 2 columns on mobile: grid-cols-2) */}
             <section className="mt-4 mb-12">
-              <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#21163e]">
+              <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
                 <div className="flex items-center gap-2">
-                  <Layers className="w-5 h-5 text-pink-400" />
-                  <h2 className="text-base sm:text-xl font-black text-white">
+                  <Layers className="w-5 h-5 text-blue-600" />
+                  <h2 className="text-base sm:text-xl font-black text-slate-900">
                     {searchQuery ? `Search Results: "${searchQuery}"` : `${selectedCategory} Prompts Gallery`}
                   </h2>
                 </div>
-                <span className="text-xs font-semibold text-purple-300/70">
+                <span className="text-xs font-semibold text-slate-500">
                   {filteredPrompts.length} Prompts
                 </span>
               </div>
 
               {isLoading ? (
                 <div className="py-20 flex flex-col items-center justify-center space-y-3">
-                  <div className="w-10 h-10 border-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
-                  <p className="text-xs font-medium text-gray-400">Loading prompts...</p>
+                  <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                  <p className="text-xs font-medium text-slate-500">Loading prompts...</p>
                 </div>
               ) : paginatedPrompts.length > 0 ? (
                 <>
@@ -420,22 +420,22 @@ export default function App() {
               ) : prompts.length === 0 ? (
                 /* Store empty state */
                 <div className="py-20 text-center max-w-md mx-auto px-4">
-                  <div className="w-16 h-16 rounded-3xl bg-[#150e32] text-pink-400 flex items-center justify-center mx-auto mb-4 border border-[#2b1b50]">
+                  <div className="w-16 h-16 rounded-3xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4 border border-blue-200">
                     <Sparkles className="w-8 h-8" />
                   </div>
-                  <h3 className="font-bold text-white text-lg mb-2">Ready for Prompts</h3>
-                  <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                  <h3 className="font-bold text-slate-900 text-lg mb-2">Ready for Prompts</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4">
                     Send your images, titles, and prompts in chat anytime to publish them directly!
                   </p>
                 </div>
               ) : (
                 /* Filter / search empty state */
                 <div className="py-16 text-center max-w-sm mx-auto">
-                  <div className="w-12 h-12 rounded-full bg-[#150e32] text-pink-400 flex items-center justify-center mx-auto mb-3 border border-[#2b1b50]">
+                  <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-3 border border-blue-200">
                     <SearchX className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-white text-base mb-1">No Prompts Found</h3>
-                  <p className="text-xs text-gray-400 mb-4">
+                  <h3 className="font-bold text-slate-900 text-base mb-1">No Prompts Found</h3>
+                  <p className="text-xs text-slate-600 mb-4">
                     No prompts matched your search query. Try another keyword or explore other categories.
                   </p>
                   <button
@@ -443,7 +443,7 @@ export default function App() {
                       setSelectedCategory('All');
                       setSearchQuery('');
                     }}
-                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs font-semibold hover:from-pink-400 hover:to-purple-500 transition-colors cursor-pointer"
+                    className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors cursor-pointer shadow-sm"
                   >
                     Clear Search
                   </button>
@@ -483,7 +483,7 @@ export default function App() {
 
       {/* Floating Success Toast: "Prompt Copied Successfully!" */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-2xl bg-[#140e2e] text-white text-xs font-semibold shadow-2xl border border-[#2b1b52] animate-in slide-in-from-bottom-5 duration-200">
+        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-2xl bg-slate-900 text-white text-xs font-semibold shadow-2xl border border-slate-800 animate-in slide-in-from-bottom-5 duration-200">
           <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>

@@ -35,7 +35,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
       />
 
       {/* Drawer Panel */}
-      <div className="absolute inset-y-0 right-0 max-w-full w-full sm:w-96 bg-[#070e22] border-l border-[#18284c] shadow-2xl flex flex-col z-10 text-gray-100">
+      <div className="absolute inset-y-0 right-0 max-w-full w-full sm:w-96 bg-white border-l border-slate-200 shadow-2xl flex flex-col z-10 text-slate-800">
         
         {/* Drawer Header: Seamless FULL-WIDTH white bar matching main header */}
         <div className="flex items-center justify-between px-5 sm:px-6 py-4 bg-white border-b border-slate-200">
@@ -66,30 +66,30 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 onSelectCategory('All');
                 onClose();
               }}
-              className="w-full text-left py-2 hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-between text-white"
+              className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer flex items-center justify-between text-slate-900"
             >
               <span>Home</span>
-              <span className="text-xs font-normal text-blue-300/60">Main Gallery</span>
+              <span className="text-xs font-normal text-blue-600">Main Gallery</span>
             </button>
           </div>
 
           {/* Featured Collections Section (With Diwali Prompts highlighted) */}
-          <div className="border-t border-[#162544] pt-3">
+          <div className="border-t border-slate-200 pt-3">
             <div 
               onClick={() => setCollectionsOpen(!collectionsOpen)}
-              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-400 transition-colors select-none text-white"
+              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-600 transition-colors select-none text-slate-900"
             >
               <div className="flex items-center gap-2">
-                <FolderHeart className="w-5 h-5 text-blue-400" />
+                <FolderHeart className="w-5 h-5 text-blue-600" />
                 <span>Collections</span>
               </div>
-              <div className="w-7 h-7 rounded-lg bg-[#0e1b38] text-blue-300 flex items-center justify-center border border-[#1b2f5c]">
+              <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center border border-slate-200">
                 {collectionsOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </div>
             </div>
 
             {collectionsOpen && (
-              <div className="pl-2 pr-1 py-2 space-y-1.5 text-xs font-medium bg-[#0b1632] rounded-2xl my-2 border border-[#172b54]">
+              <div className="pl-2 pr-1 py-2 space-y-1.5 text-xs font-medium bg-slate-50 rounded-2xl my-2 border border-slate-200">
                 {COLLECTIONS_LIST.map((col) => {
                   const isDiwali = col.label.toLowerCase().includes('diwali');
                   return (
@@ -101,16 +101,16 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                       }}
                       className={`w-full text-left py-2 px-3 rounded-xl transition-all cursor-pointer flex items-center justify-between ${
                         isDiwali
-                          ? 'bg-amber-500/20 text-amber-300 font-bold hover:bg-amber-500/30 border border-amber-400/40'
-                          : 'text-slate-300 hover:bg-[#13234d] hover:text-white'
+                          ? 'bg-amber-50 text-amber-800 font-bold hover:bg-amber-100 border border-amber-300'
+                          : 'text-slate-700 hover:bg-blue-50 hover:text-blue-700'
                       }`}
                     >
                       <span className="flex items-center gap-1.5">
-                        {isDiwali && <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />}
+                        {isDiwali && <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />}
                         <span>{col.label}</span>
                       </span>
                       {isDiwali && (
-                        <span className="text-[10px] font-extrabold bg-amber-500 text-black px-1.5 py-0.2 rounded-full uppercase">
+                        <span className="text-[10px] font-extrabold bg-amber-500 text-white px-1.5 py-0.2 rounded-full uppercase">
                           Hot
                         </span>
                       )}
@@ -122,19 +122,19 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           </div>
 
           {/* Categories with Expandable Dropdown */}
-          <div className="border-t border-[#162544] pt-3">
+          <div className="border-t border-slate-200 pt-3">
             <div 
               onClick={() => setCategoriesOpen(!categoriesOpen)}
-              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-400 transition-colors select-none text-white"
+              className="flex items-center justify-between py-2 cursor-pointer hover:text-blue-600 transition-colors select-none text-slate-900"
             >
               <span>Categories</span>
-              <div className="w-7 h-7 rounded-lg bg-[#0e1b38] text-blue-300 flex items-center justify-center border border-[#1b2f5c]">
+              <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center border border-slate-200">
                 {categoriesOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </div>
             </div>
 
             {categoriesOpen && (
-              <div className="pl-2 pr-1 py-2 space-y-1 text-xs font-medium bg-[#0b1632] rounded-2xl my-2 border border-[#172b54]">
+              <div className="pl-2 pr-1 py-2 space-y-1 text-xs font-medium bg-slate-50 rounded-2xl my-2 border border-slate-200">
                 {PROMPTPIN_CATEGORIES.map((cat) => (
                   <button
                     key={cat.id}
@@ -142,7 +142,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                       onSelectCategory(cat.name);
                       onClose();
                     }}
-                    className="w-full text-left py-2 px-3 rounded-xl text-slate-300 hover:bg-[#13234d] hover:text-white transition-colors cursor-pointer block"
+                    className="w-full text-left py-2 px-3 rounded-xl text-slate-700 hover:bg-blue-50 hover:text-blue-700 transition-colors cursor-pointer block"
                   >
                     {cat.name}
                   </button>
@@ -152,42 +152,42 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           </div>
 
           {/* About Us with Quick Action */}
-          <div className="border-t border-[#162544] pt-3">
+          <div className="border-t border-slate-200 pt-3">
             <button
               onClick={() => handleOpenInfoModal('about')}
-              className="w-full text-left py-2 hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-between text-slate-300"
+              className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer flex items-center justify-between text-slate-700"
             >
               <span>About Us</span>
-              <span className="text-xs font-normal text-blue-400">Learn more &rarr;</span>
+              <span className="text-xs font-normal text-blue-600">Learn more &rarr;</span>
             </button>
           </div>
 
           {/* Contact Us */}
-          <div className="border-t border-[#162544] pt-3">
+          <div className="border-t border-slate-200 pt-3">
             <button
               onClick={() => handleOpenInfoModal('contact')}
-              className="w-full text-left py-2 hover:text-blue-400 transition-colors cursor-pointer flex items-center justify-between text-slate-300"
+              className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer flex items-center justify-between text-slate-700"
             >
               <span>Contact Us</span>
-              <span className="text-xs font-normal text-blue-400">Get in touch &rarr;</span>
+              <span className="text-xs font-normal text-blue-600">Get in touch &rarr;</span>
             </button>
           </div>
 
           {/* Privacy Policy */}
-          <div className="border-t border-[#162544] pt-3">
+          <div className="border-t border-slate-200 pt-3">
             <button
               onClick={() => handleOpenInfoModal('privacy')}
-              className="w-full text-left py-2 text-sm text-slate-400 hover:text-white transition-colors cursor-pointer"
+              className="w-full text-left py-2 text-sm text-slate-500 hover:text-blue-600 transition-colors cursor-pointer"
             >
               Privacy Policy
             </button>
           </div>
 
           {/* Terms & Conditions */}
-          <div className="border-t border-[#162544] pt-3">
+          <div className="border-t border-slate-200 pt-3">
             <button
               onClick={() => handleOpenInfoModal('terms')}
-              className="w-full text-left py-2 text-sm text-slate-400 hover:text-white transition-colors cursor-pointer"
+              className="w-full text-left py-2 text-sm text-slate-500 hover:text-blue-600 transition-colors cursor-pointer"
             >
               Terms &amp; Conditions
             </button>
@@ -196,8 +196,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         </div>
 
         {/* Drawer Footer */}
-        <div className="p-5 border-t border-[#162544] bg-[#050b1a] text-center">
-          <p className="text-xs text-slate-400">
+        <div className="p-5 border-t border-slate-200 bg-slate-50 text-center">
+          <p className="text-xs text-slate-500">
             &copy; {new Date().getFullYear()} Piktrio. All rights reserved.
           </p>
         </div>
