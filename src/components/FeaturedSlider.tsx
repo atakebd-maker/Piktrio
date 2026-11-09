@@ -163,6 +163,9 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
               <img
                 src={current.imageUrl}
                 alt={current.title}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = '/assets/aistudio/1000050956-removebg-preview_1d3a3740.png';
+                }}
                 style={{ objectFit: 'contain' }}
                 className="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-500 group-hover/img:scale-[1.02]"
               />
@@ -304,6 +307,9 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
                   <img
                     src={p.imageUrl}
                     alt={p.title}
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = '/assets/aistudio/1000050956-removebg-preview_1d3a3740.png';
+                    }}
                     style={{ objectFit: 'contain' }}
                     className="max-w-full max-h-full w-auto h-auto object-contain"
                   />

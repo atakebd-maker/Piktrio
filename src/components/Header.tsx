@@ -21,47 +21,77 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center justify-between h-20 sm:h-24">
           
           {/* User's Website Logo (Enlarged and crisp on white header) */}
-          <div 
-            onClick={onHomeClick}
-            className="flex items-center cursor-pointer select-none group py-1.5"
+          <a 
+            href="/"
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                onHomeClick();
+              }
+            }}
+            className="flex items-center cursor-pointer select-none group py-1.5 no-underline"
           >
             <img
               src="/assets/aistudio/1000050956-removebg-preview_1d3a3740.png"
               alt="Piktrio - Discover. Copy. Create."
               className="h-12 sm:h-14 md:h-16 w-auto max-w-[240px] sm:max-w-[300px] md:max-w-[340px] object-contain transition-transform group-hover:scale-[1.02]"
             />
-          </div>
+          </a>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-1 lg:gap-2">
-            <button
-              onClick={onHomeClick}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-colors cursor-pointer"
+            <a
+              href="/"
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  onHomeClick();
+                }
+              }}
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-colors cursor-pointer no-underline"
             >
               Home
-            </button>
+            </a>
 
-            <button
-              onClick={() => onSelectCategory?.('Trending')}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-colors cursor-pointer flex items-center gap-1.5"
+            <a
+              href="/?category=trending"
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  onSelectCategory?.('Trending');
+                }
+              }}
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-colors cursor-pointer flex items-center gap-1.5 no-underline"
             >
               <Sparkles className="w-3.5 h-3.5 text-blue-500" />
               <span>Trending</span>
-            </button>
+            </a>
 
-            <button
-              onClick={() => onSelectCategory?.('Boys')}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-blue-700 hover:text-blue-900 hover:bg-blue-50 transition-colors cursor-pointer"
+            <a
+              href="/?category=boys"
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  onSelectCategory?.('Boys');
+                }
+              }}
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-blue-700 hover:text-blue-900 hover:bg-blue-50 transition-colors cursor-pointer no-underline"
             >
               Boys &amp; Men
-            </button>
+            </a>
 
-            <button
-              onClick={() => onSelectCategory?.('Diwali AI photo editing prompt')}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-300 transition-colors cursor-pointer"
+            <a
+              href="/?category=diwali"
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  onSelectCategory?.('Diwali AI photo editing prompt');
+                }
+              }}
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-300 transition-colors cursor-pointer no-underline"
             >
               Diwali Prompts
-            </button>
+            </a>
 
             <button
               onClick={() => onOpenModal?.('about')}

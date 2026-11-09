@@ -156,15 +156,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
     .slice(0, 4);
 
 
-  const handleOpenChatGPT = () => {
-    const url = `https://chatgpt.com/?q=${encodeURIComponent(prompt.prompt)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
 
-  const handleOpenGemini = () => {
-    const url = `https://gemini.google.com/?q=${encodeURIComponent(prompt.prompt)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
 
   const handleShare = () => {
     const url = window.location.href;
@@ -246,6 +238,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               <img
                 src={prompt.imageUrl}
                 alt={prompt.title}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = '/assets/aistudio/1000050956-removebg-preview_1d3a3740.png';
+                }}
                 style={{ objectFit: 'contain' }}
                 className="max-w-full max-h-full w-auto h-auto object-contain cursor-zoom-in transition-transform duration-300 group-hover:scale-[1.01]"
                 onClick={() => onOpenLightbox(prompt.imageUrl, prompt.title)}
@@ -361,21 +356,25 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
               {/* Open in ChatGPT and Open in Gemini */}
               <div className="grid grid-cols-2 gap-3">
-                <button
-                  onClick={handleOpenChatGPT}
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-xs"
+                <a
+                  href={`https://chatgpt.com/?q=${encodeURIComponent(prompt.prompt)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-xs no-underline"
                 >
                   <Bot className="w-4 h-4 text-emerald-600" />
                   <span>Open in ChatGPT</span>
-                </button>
+                </a>
 
-                <button
-                  onClick={handleOpenGemini}
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-xs"
+                <a
+                  href={`https://gemini.google.com/?q=${encodeURIComponent(prompt.prompt)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-xs no-underline"
                 >
                   <Sparkles className="w-4 h-4 text-blue-600" />
                   <span>Open in Gemini</span>
-                </button>
+                </a>
               </div>
             </div>
 

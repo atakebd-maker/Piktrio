@@ -115,7 +115,7 @@ export const InfoModal: React.FC<InfoModalProps> = ({ type, onClose }) => {
         </div>
 
         {/* Modal Scrollable Content */}
-        <div className="flex-1 overflow-y-auto px-5 sm:px-7 py-6 text-gray-300 text-sm leading-relaxed space-y-4">
+        <div className="flex-1 overflow-y-auto px-5 sm:px-7 py-6 text-slate-600 text-sm leading-relaxed space-y-4">
           
           {/* 1. ABOUT US */}
           {activeTab === 'about' && (

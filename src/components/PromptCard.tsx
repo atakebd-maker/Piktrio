@@ -75,6 +75,10 @@ export const PromptCard: React.FC<PromptCardProps> = ({
           alt={prompt.title}
           loading="lazy"
           onLoad={() => setImageLoaded(true)}
+          onError={(e) => {
+            setImageLoaded(true);
+            (e.currentTarget as HTMLImageElement).src = '/assets/aistudio/1000050956-removebg-preview_1d3a3740.png';
+          }}
           style={{ objectFit: 'contain' }}
           className={`w-full h-auto max-h-[540px] object-contain rounded-xl transition-transform duration-300 group-hover:scale-[1.01] ${
             imageLoaded ? 'opacity-100' : 'opacity-90'

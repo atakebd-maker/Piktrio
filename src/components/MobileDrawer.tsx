@@ -37,8 +37,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
       {/* Drawer Panel */}
       <div className="absolute inset-y-0 right-0 max-w-full w-full sm:w-96 bg-white border-l border-slate-200 shadow-2xl flex flex-col z-10 text-slate-800">
         
-        {/* Drawer Header: Seamless FULL-WIDTH white bar matching main header */}
-        <div className="flex items-center justify-between px-5 sm:px-6 py-4 bg-white border-b border-slate-200">
+        {/* Drawer Header: Seamless pure white bar matching main header without dividing gray lines */}
+        <div className="flex items-center justify-between px-5 sm:px-6 py-4 bg-white border-b border-white">
           <div className="flex items-center">
             <img
               src="/assets/aistudio/1000050956-removebg-preview_1d3a3740.png"
