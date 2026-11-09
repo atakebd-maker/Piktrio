@@ -26,6 +26,18 @@ import { CheckCircle2, SearchX, Sparkles, Layers } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 8; // Optimal for 2-column mobile and 4-column desktop layout
 
+const resetHomeMeta = () => {
+  document.title = 'Piktrio – AI Photo Editing Prompts for ChatGPT & Gemini';
+  const desc = document.querySelector('meta[name="description"]');
+  if (desc) desc.setAttribute('content', 'Piktrio: Discover, copy, and create stunning AI photo editing prompts for ChatGPT, Gemini, Flux, and Midjourney with 100% uncropped original gallery previews.');
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.setAttribute('href', `${window.location.origin}/`);
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) ogTitle.setAttribute('content', 'Piktrio – AI Photo Editing Prompts for ChatGPT & Gemini');
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) ogUrl.setAttribute('content', `${window.location.origin}/`);
+};
+
 export default function App() {
   const [prompts, setPrompts] = useState<PromptItem[]>(STORE_PROMPTS);
   const [categories, setCategories] = useState<CategoryItem[]>(
@@ -75,7 +87,7 @@ export default function App() {
         }
       } else {
         setSelectedPrompt(null);
-        document.title = 'Piktrio – AI Photo Editing Prompts for ChatGPT & Gemini';
+        resetHomeMeta();
       }
 
       if (catParam) {
@@ -260,7 +272,7 @@ export default function App() {
     const newSearch = searchParams.toString();
     const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '');
     window.history.pushState({}, '', newUrl);
-    document.title = 'Piktrio – AI Photo Editing Prompts for ChatGPT & Gemini';
+    resetHomeMeta();
     window.scrollTo({ top: 240, behavior: 'smooth' });
   };
 
@@ -306,7 +318,7 @@ export default function App() {
     setCurrentPage(1);
     window.history.pushState({}, '', window.location.pathname);
     window.location.hash = '';
-    document.title = 'Piktrio – AI Photo Editing Prompts for ChatGPT & Gemini';
+    resetHomeMeta();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 

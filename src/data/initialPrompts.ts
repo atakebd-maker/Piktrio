@@ -23,6 +23,326 @@ export const COLLECTIONS_LIST = [
 
 export const STORE_PROMPTS: PromptItem[] = [
   {
+    id: 'golden-hour-wildflower-hillside-korean-hair',
+    title: 'Golden Hour Wildflower Hillside – Korean Messy Hair Aesthetic',
+    category: 'Boys',
+    description: `# Golden Hour Wildflower Hillside Guide – Korean Messy Hair Aesthetic
+
+Create an ultra-realistic, cinematic outdoor portrait on a lush green hillside filled with colorful wildflowers during golden hour using your personal photo with ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+To achieve 100% facial identity preservation, you must follow these photo upload rules:
+- **High Resolution:** Upload a sharp, high-resolution original photograph of yourself.
+- **Front-Facing Angle:** Choose a front-facing or slight three-quarter angle where your natural facial structure, eyes, eyebrows, nose, lips, jawline, and natural hairline are clearly visible.
+- **Good Lighting:** Ensure your face is evenly lit with natural lighting or soft indoor lights. Avoid harsh shadows or overexposed glares.
+- **Facial Hair:** Your natural beard or moustache in the photo will be preserved exactly as you have it.
+- **No Filters or Sunglasses:** Do not use photos with heavy beauty filters, sunglasses, masks, or extreme cartoon edits.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Clear Personal Photo
+Select a clear, front-facing personal photo from your phone or computer following the rules above.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch the ChatGPT app/website (select GPT-4o with image generation) or Google Gemini on your smartphone or desktop.
+
+### Step 3: Upload Your Face Reference Photo
+Attach your personal picture to the chat prompt window so the AI algorithm locks your real identity.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click the green **Click to Copy Now** button to copy the prompt to your clipboard.
+
+### Step 5: Paste & Instruct the AI
+Paste the prompt into the message box alongside your uploaded photo. Instruct the AI model to generate a 3:4 vertical editorial portrait.
+
+### Step 6: Review & Save
+Verify that the AI preserved your facial identity, styled voluminous Korean textured hair, and placed you on the blooming wildflower hillside with giant golden clouds. Download your 8K photo!
+
+---
+
+## Key Highlights of This Prompt
+- **Lush Wildflower Hillside:** Surrounded by vibrant poppies, white daisies, and purple blossoms creating a natural floral frame.
+- **Korean Messy Hair Aesthetic:** Naturally voluminous textured hair with soft wavy strands and an effortlessly stylish look.
+- **Dreamy Golden Hour Lighting:** Warm late afternoon sun with giant fluffy cumulus clouds illuminated with golden edges.
+
+---
+
+## SEO Keywords & Search Tags
+Golden Hour Wildflower Hillside, Korean Messy Hair Aesthetic prompt, boys wildflower AI photo, boys golden hour portrait, ChatGPT boys prompt, Gemini prompt for boys, AI photo editing prompt for boys, boys aesthetic photography prompt, 8K realistic AI portrait.`,
+    prompt: `Create an ultra-realistic, cinematic outdoor portrait inspired by the uploaded reference image. Preserve the original artistic concept, composition, sitting position, body posture, landscape, flowers, sky, lighting, and overall photographic atmosphere as closely as possible.
+STRICT FACE IDENTITY LOCK: Use the separately uploaded face-reference photograph as the exclusive identity reference. Reproduce the same person's natural facial structure, eyes, eyebrows, nose, lips, skin tone, and all recognizable facial characteristics as closely as possible. Do not replace the face with another person's face. Avoid artificial beautification or unnecessary facial alterations.
+FACIAL HAIR PRESERVATION: Follow the exact natural facial hair appearance in the face-reference photograph. If the person has a beard, preserve its original style, length, and thickness. If he has a moustache, maintain it naturally. If he has both, preserve both. If he is clean-shaven, do not add any beard or moustache. Never invent facial hair.
+HAIRSTYLE: Create naturally messy, voluminous Korean-inspired textured hair with soft, slightly wavy strands and an effortlessly stylish appearance. Adapt the hairstyle naturally while maintaining the person's original hairline, natural hair color, and recognizable appearance.
+POSE & BODY POSITION: Show the young man sitting naturally on a lush green hillside, looking peacefully upward toward the beautiful sky. One hand rests on the grassy ground for support, while the other arm rests casually on his raised knee. His legs are relaxed and naturally positioned, creating an elegant and effortless sitting pose. His expression is calm, thoughtful, and dreamy.
+CLOTHING: Dress him in a premium, loose-fitting white linen button-down shirt with a relaxed open collar, natural fabric folds, and casually styled sleeves. Pair it with elegant dark charcoal or black straight-fit trousers. Add a simple, delicate silver chain necklace. Keep the outfit minimal, fresh, and sophisticated.
+ENVIRONMENT & FLOWERS: Surround the person with a beautiful, lush green hillside covered in colorful wildflowers. Include vibrant orange-red poppies, delicate white daisies, tiny purple flowers, and other small seasonal blossoms. The foreground should be richly decorated with naturally growing flowers and green grass, creating a beautiful floral frame around the subject.
+SKY & BACKGROUND: Create an impressive open sky filled with enormous, dramatic, fluffy cumulus clouds. The clouds should have beautiful golden sunlight illuminating their edges, with a soft blue sky visible behind them. Include distant rolling green hills along the horizon.
+LIGHTING & ATMOSPHERE: Capture the scene during golden hour in the late afternoon. Use warm, soft natural sunlight, gentle highlights on the person's face and white shirt, realistic shadows, and a dreamy cinematic atmosphere. Create beautiful depth with softly blurred foreground flowers and background elements while keeping the subject perfectly sharp.
+CAMERA & PHOTOGRAPHY: Professional DSLR fashion and lifestyle photography, medium portrait composition, natural perspective, shallow depth of field, realistic skin texture, intricate hair details, detailed linen fabric, lifelike flowers, cinematic color grading, warm earthy tones, HDR, ultra-realistic 8K quality.
+STRICT PRESERVATION RULE: Maintain the original reference image's overall composition, sitting pose, upward gaze, green hillside, colorful wildflowers, giant golden clouds, and dreamy golden-hour atmosphere. Follow the separately supplied face-reference photograph for the person's identity and natural facial hair. Do not introduce unnecessary changes to the scene.
+FINAL OUTPUT: Vertical 3:4 aspect ratio, ultra-realistic cinematic portrait, premium editorial photography, natural colors, extremely detailed, photorealistic. No text, no logo, no watermark.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi7kPeetnarCdO0mj10jl6DboA39_SDpHv890CzEgKHIsRCBHRgSxwVhpZx-9A4Nf1pqgequp8UIUvyX_-lbG9ZKUWMGIu3aeTlXcl3Efsriu27336jd83WW14YsR2n0DRMu2at9SMoXbOlppaxZm7fzifvnZnq52wVrrAIVJJ6z3FxEzDaAAsfpTy7Iro/s1600/image.png',
+    tags: [
+      'Boys',
+      'Wildflower',
+      'Golden Hour',
+      'Korean Aesthetic',
+      'Hillside',
+      'ChatGPT',
+      'Gemini',
+      'Trending',
+      'Ai photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 95,
+    viewsCount: 420,
+    copyCount: 168,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-08T18:00:00.000Z',
+  },
+  {
+    id: 'eternal-love-romantic-red-roses-shadow-silhouette',
+    title: 'Eternal Love – Romantic Red Roses & Shadow Silhouette Portrait',
+    category: 'Boys',
+    description: `# Eternal Love Guide – Romantic Red Roses & Shadow Silhouette Portrait
+
+Create an original, ultra-realistic cinematic full-body editorial portrait holding fresh red roses in a crisp white suit with a romantic shadow silhouette holding your hand using ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **Clear Face Portrait:** Upload a sharp personal photo showing your facial structure, jawline, and natural expression clearly.
+- **Natural Beard & Moustache:** Your natural facial hair will be accurately preserved without changes.
+- **Lighting:** Evenly illuminated photo without heavy shadows or sunglasses.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Clear Photo
+Prepare a clear, front-facing personal picture.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o) or Google Gemini on your device.
+
+### Step 3: Attach Your Personal Photo
+Upload your face photograph to the prompt box.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click the green **Click to Copy Now** button.
+
+### Step 5: Send Prompt & Review
+Paste the prompt into the message box alongside your uploaded photo and send.
+
+### Step 6: Save Your 8K Editorial Photo
+Review the white suit, red roses, and the graceful shadow silhouette hand-hold effect on the warm beige wall. Save your masterpiece!
+
+---
+
+## Key Highlights of This Prompt
+- **Romantic Shadow Silhouette:** A delicate feminine silhouette on the wall holding the man's extended hand.
+- **Tailored White Suit & Red Roses:** Crisp white formal blazer and trousers contrasted with a lush bouquet of deep-red roses.
+- **Dramatic Golden Sunlight:** Diagonal beam of sunlight entering from the upper left creating realistic shadows.
+
+---
+
+## SEO Keywords & Search Tags
+Eternal Love AI photo prompt, Romantic Red Roses Shadow Silhouette, boys white suit photo editing, boys red roses prompt, ChatGPT prompt for boys, Gemini AI photo prompt, boys romantic portrait prompt, 8K realistic full-body portrait.`,
+    prompt: `Create an original, ultra-realistic, cinematic full-body editorial portrait inspired by the uploaded reference image. Preserve the same artistic concept, composition, pose, clothing, bouquet, dramatic lighting, shadow effects, and romantic atmosphere.
+STRICT FACE IDENTITY LOCK: Use the separately uploaded face-reference photograph as the exclusive reference for the man's facial identity. Preserve his natural facial structure, eyes, eyebrows, nose, lips, skin tone, and all recognizable facial characteristics as closely as possible. Do not substitute another person's face or unnecessarily beautify his appearance.
+NATURAL BEARD & MOUSTACHE: Match the facial hair exactly to the face-reference photograph. If he has a beard, preserve its natural style, length, and thickness. If he has a moustache, retain it naturally. If he has both, reproduce both. If he has no beard or moustache, keep his face completely clean-shaven. Never invent or remove facial hair.
+HAIRSTYLE & BODY: Maintain the person's natural hair color, hairline, hairstyle, body build, and realistic body proportions according to the supplied reference photographs.
+CLOTHING: Dress him in an elegant, perfectly tailored white formal suit with a white blazer and matching white trousers. Underneath, he wears a sophisticated black formal shirt with a black tie. Include a neatly folded black pocket square. Maintain the luxurious, clean, minimalist appearance of the original outfit.
+POSE & EXPRESSION: Show the man standing confidently against a warm beige textured wall. His eyes are gently closed, with a peaceful, emotional, romantic expression. In one hand, he holds a beautiful, large bouquet of fresh, deep-red roses with rich green leaves, wrapped elegantly in transparent floral paper. His other arm extends naturally toward the right side, with his hand gently reaching out as if holding someone's hand.
+ROMANTIC SHADOW SILHOUETTE: Create a beautiful, realistic shadow of a young woman on the wall to his right. The woman's silhouette should clearly show a graceful feminine profile, long flowing hair, and an elegant dress. Her shadow hand must connect naturally with the man's extended hand, creating the illusion that they are holding hands. The woman herself should not be physically visible; only her dramatic shadow silhouette should appear on the wall.
+BACKGROUND & LIGHTING: Use a dark, warm-toned environment with a large diagonal beam of golden sunlight entering from the upper-left side. The sunlight illuminates the man's white suit, face, and red roses while creating long, dramatic, realistic shadows on the beige wall. Preserve the beautiful contrast between the illuminated area and the darker surroundings.
+CAMERA & COMPOSITION: Professional cinematic full-body portrait photography, straight-on camera angle, vertical composition. Keep the man positioned on the left side of the frame and the woman's shadow silhouette on the right. Show the complete body, including both shoes, bouquet, extended hand, and the full shadow silhouette.
+IMAGE QUALITY: Ultra-realistic skin texture, detailed white suit fabric, naturally textured red rose petals, realistic shadow physics, cinematic golden-hour lighting, rich contrast, warm earthy color grading, professional DSLR photography, HDR, extremely detailed 8K quality.
+STRICT PRESERVATION RULE: Keep the original reference image's romantic concept, white suit, black shirt, red rose bouquet, closed eyes, extended hand, golden sunlight, diagonal light beam, beige wall, and woman's shadow holding his hand. Only adapt the man's facial identity and natural facial hair according to the separately supplied face-reference photograph.
+FINAL OUTPUT: Vertical 3:4 aspect ratio, premium cinematic romantic portrait, photorealistic, full-body composition, professional editorial photography. No visible woman, no extra people, no unnecessary objects, no additional text, no logos, and no watermark.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjqqaQMz9XCcCbaBtso6VCLDx5H7YF6LAl4Btx9XiNqEMoBR_aDv6eCn1hYNdG_NK5WROJejKeH6yiXyP_MDyL3bb0kvcqLQHQ-AaZ9MibUZsDBiZYihhwWLPfpGAODGvuAqM4P07TS8-VFKTlGUd-x43wbUY1BfQyNQe70Tz2y1uIG7t6hSkxX052LDos/s1600/image.png',
+    tags: [
+      'Boys',
+      'Roses',
+      'White Suit',
+      'Shadow Silhouette',
+      'Romantic',
+      'ChatGPT',
+      'Gemini',
+      'Trending',
+      'Ai photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 88,
+    viewsCount: 390,
+    copyCount: 154,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-08T17:50:00.000Z',
+  },
+  {
+    id: 'vintage-golden-hour-retro-green-shirt-portrait',
+    title: 'Vintage Golden Hour – Retro Green Shirt Cinematic Portrait',
+    category: 'Boys',
+    description: `# Vintage Golden Hour Guide – Retro Green Shirt Cinematic Portrait
+
+Create a timeless, nostalgic analog film aesthetic portrait wearing a dark forest-green linen shirt with a red rose and warm golden hour light using your personal photo with ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **Clear Face Photo:** Upload a clear, front-facing photograph of yourself.
+- **Natural Facial Hair:** Any beard or moustache in your photo will be accurately maintained.
+- **Natural Hairstyle:** Maintain your original hairline and authentic hair texture.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Clear Photo
+Prepare a sharp, clear personal picture.
+
+### Step 2: Open ChatGPT or Google Gemini
+Open ChatGPT (GPT-4o) or Google Gemini on your smartphone or PC.
+
+### Step 3: Attach Face Reference Photo
+Attach your picture to the AI prompt chat.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait 7 seconds, then click the green **Click to Copy Now** button.
+
+### Step 5: Send & Generate
+Paste the prompt into the message box with your uploaded photo and send.
+
+### Step 6: Review & Download
+Review the vintage golden-hour sunlight streaming through the window, the linen green shirt, and the single red rose. Save your 8K cinematic portrait!
+
+---
+
+## Key Highlights of This Prompt
+- **Dark Forest-Green Linen Shirt:** Rolled-up sleeves, open collar, and a single fresh red rose pinned to the chest.
+- **Retro Film Aesthetic:** Authentic 35mm film grain, warm golden-brown undertones, and delicate light leaks.
+- **Diagonal Window Sunlight:** Cinematic golden rays creating bold natural shadows on a textured beige wall.
+
+---
+
+## SEO Keywords & Search Tags
+Vintage Golden Hour prompt, Retro Green Shirt Cinematic Portrait, boys green shirt photo editing, boys retro photoshoot prompt, ChatGPT boys prompt, Gemini prompt for boys, AI photo editing prompt for boys, 35mm film grain aesthetic prompt.`,
+    prompt: `Create an original, ultra-realistic cinematic retro portrait inspired by the uploaded reference image. Preserve the original composition, standing pose, clothing, accessories, background, lighting, shadows, and vintage photographic atmosphere as closely as possible.
+STRICT FACE IDENTITY REFERENCE: Use the separately uploaded face-reference photograph as the exclusive reference for the person's facial identity. Preserve his natural facial structure, eyes, eyebrows, nose, lips, skin tone, and all recognizable facial characteristics as closely as possible. Do not replace his face with another person's face or apply unnecessary beautification.
+NATURAL BEARD & MOUSTACHE PRESERVATION: Carefully follow the facial hair visible in the face-reference photograph. If he has a beard, reproduce its natural style, length, shape, and thickness. If he has a moustache, preserve it accurately. If he has both, maintain both naturally. If he has no beard or moustache, keep his face completely clean-shaven. Never add artificial facial hair or remove existing facial hair.
+HAIRSTYLE & BODY: Maintain the person's natural hair color, hairline, hairstyle, hair texture, body build, and realistic body proportions according to the supplied reference photographs.
+POSE & EXPRESSION: Show the man standing casually and confidently against a plain, warm beige textured wall. His arms are crossed naturally over his chest, with one forearm resting comfortably over the other. His shoulders are relaxed, and he looks directly toward the camera with a gentle, natural, confident expression and a subtle smile.
+CLOTHING & ACCESSORIES: Dress him in a stylish dark forest-green linen button-down shirt with the top buttons slightly open and sleeves rolled up to the elbows. The shirt should have a natural relaxed fit with realistic linen texture and subtle fabric wrinkles. Pair it with elegant charcoal-black straight-fit trousers. Add a sophisticated silver wristwatch and a single beautiful, fresh red rose pinned naturally to the left side of his chest. Keep all clothing colors and accessories consistent with the original reference image.
+BACKGROUND & SHADOWS: Use a simple beige indoor wall with a warm, slightly textured vintage appearance. Cast a strong, clearly visible natural shadow of the man's head and upper body onto the wall behind him, positioned slightly to his right. Maintain the original shadow shape and direction.
+LIGHTING & ATMOSPHERE: Create a beautiful cinematic golden-hour lighting effect, with warm sunlight streaming diagonally through an unseen window from the upper-left side. The sunlight should illuminate parts of his face, green shirt, and the beige wall while producing dramatic natural shadows. Add subtle vintage light leaks, soft highlights, gentle dark corners, and a nostalgic warm atmosphere.
+RETRO FILM AESTHETIC: Apply authentic analog film photography characteristics, including subtle film grain, slightly faded colors, warm golden-brown undertones, soft contrast, delicate light leaks, and natural skin tones. Maintain a timeless editorial portrait aesthetic without making the image look artificially aged or excessively blurred.
+CAMERA & IMAGE QUALITY: Professional DSLR portrait photography, medium full-body composition, natural camera perspective, realistic skin texture, detailed linen fabric, sharp subject focus, soft background depth, cinematic color grading, HDR, ultra-realistic 8K photographic quality.
+STRICT PRESERVATION RULE: Keep the original reference image's dark green shirt, crossed-arm pose, charcoal trousers, silver wristwatch, single red rose, beige wall, strong wall shadow, golden sunlight, and nostalgic vintage atmosphere as close as possible. Only adapt the person's facial identity and natural facial hair according to the separately supplied face-reference photograph. Do not introduce unnecessary changes to the original scene.
+FINAL OUTPUT: Vertical 3:4 aspect ratio, premium cinematic retro portrait, photorealistic, natural colors, professional editorial photography. No extra people, no additional flowers, no text, no logos, and no watermark.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRTNZUoPOOwaZhWY5imlfOxI3eQeYuoHYPo8N_F_cKzsghkKzgnZwxDMDHCI_ffFA0Fs-v0iAPYtaLE23fzT1l5h3O8MkEp1meMNlDFIUrKBqGchefN08E6wmB_W5N67-RxBwB5N2XUE1Mq3tFuQt6ElghXYz8mbB6rvQ-rTuK8KTZxSOCX6oIG-_mRqw/s1600/image.png',
+    tags: [
+      'Boys',
+      'Green Shirt',
+      'Golden Hour',
+      'Cinematic',
+      'ChatGPT',
+      'Gemini',
+      'Trending',
+      'Ai photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 82,
+    viewsCount: 360,
+    copyCount: 140,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-08T17:40:00.000Z',
+  },
+  {
+    id: 'electric-blue-pixel-stretch-water-boat-portrait',
+    title: 'Electric Blue Pixel Stretch – Cinematic Water Boat Portrait',
+    category: 'Boys',
+    description: `# Electric Blue Pixel Stretch Guide – Cinematic Water Boat Portrait
+
+Create an avant-garde luxury digital artwork featuring dynamic flowing electric-blue pixel-stretch ribbons on a serene water lily lake using your personal photo with ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **Sharp Personal Picture:** Upload a clear, high-resolution original photo.
+- **Natural Beard & Moustache:** Your natural facial hair will be reproduced accurately.
+- **Natural Hair & Build:** Preserves your authentic facial structure and natural hair.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Clear Photo
+Prepare a high-quality personal photograph.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o) or Google Gemini.
+
+### Step 3: Attach Face Reference Photo
+Attach your face picture to the chat prompt box.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait 7 seconds, then click the green **Click to Copy Now** button.
+
+### Step 5: Send & Create
+Paste the prompt into the message box with your uploaded photo and send.
+
+### Step 6: Review & Save
+Verify the wooden boat, purple flower bouquet, and the spectacular electric-blue pixel stretch trails radiating into the sky. Save your 8K masterpiece!
+
+---
+
+## Key Highlights of This Prompt
+- **Electric Blue Pixel Stretch Sky:** Flowing dynamic ribbons in sapphire, cyan, navy, and brilliant white forming a tunnel of motion.
+- **Wooden Boat & Lily-Pad Lake:** Relaxed sitting pose on a traditional wooden boat surrounded by water lily pads.
+- **Purple Flower Bouquet:** Vibrant purple blossoms adding rich color harmony to the black outfit.
+
+---
+
+## SEO Keywords & Search Tags
+Electric Blue Pixel Stretch prompt, Cinematic Water Boat Portrait, boys boat photoshoot prompt, pixel stretch art prompt, ChatGPT prompt for boys, Gemini AI photo prompt, boys purple flower boat prompt, 8K realistic digital artwork.`,
+    prompt: `Transform the uploaded reference image into a premium, ultra-realistic cinematic Pixel Stretch digital artwork. Preserve the original visual composition, subject placement, sitting pose, clothing, wooden boat, purple flower bouquet, lily-pad lake, dramatic blue sky, and overall artistic style as closely as possible.
+STRICT FACE IDENTITY REFERENCE: Use the separately uploaded face-reference photograph as the exclusive identity reference for the person. Preserve his natural facial structure, eyes, eyebrows, nose, lips, skin tone, and recognizable facial characteristics as closely as possible. Do not substitute another person's face or unnecessarily beautify his appearance.
+FACIAL HAIR PRESERVATION: Carefully match the natural beard and moustache from the face-reference photograph. If he has a beard, preserve its original shape, length, and thickness. If he has a moustache, maintain it naturally. If he has both, reproduce both accurately. If he has no beard or moustache, keep his face completely clean-shaven. Never add artificial facial hair or remove existing facial hair.
+HAIRSTYLE & BODY: Maintain the person's natural hair color, hairline, hairstyle, hair texture, body build, and proportions according to the supplied reference photographs.
+POSE & COMPOSITION: Show the person sitting naturally in the center of a long, narrow wooden boat floating across a vast lake covered with lush green lily pads. One leg extends toward the camera, while the other knee is bent upward. His left hand rests casually on the left edge of the wooden boat for support. His right hand holds a beautiful bouquet of vibrant purple flowers with long green stems. He looks directly toward the camera with a calm, confident expression. Keep the entire subject sharply focused and naturally proportioned.
+CLOTHING: He wears a fitted black full-sleeve sweatshirt, black straight-fit trousers, white socks, and stylish black-and-white athletic sneakers. Preserve the original outfit, colors, and clothing details.
+ENVIRONMENT: The long wooden boat extends from the bottom foreground toward the center of the composition. Surround both sides of the boat with countless fresh green floating lily pads stretching toward the distant horizon. Preserve the beautiful natural water landscape and its reflective surface.
+BACKGROUND & PIXEL STRETCH EFFECT: Create a spectacular deep electric-blue and sapphire-blue sky featuring dramatic flowing pixel-stretch ribbons. Extend the blue, cyan, navy, and brilliant white colors into long, silky, dynamic light streaks that radiate outward from behind the subject. The streaks should form elegant curved lines, creating a powerful tunnel-like visual effect with a sense of motion and depth.
+PIXEL STRETCH ART DIRECTION: Apply a sophisticated Adobe Photoshop-inspired pixel stretch effect. Extract colors and visual textures from the original sky and landscape and extend them into smooth, flowing ribbons. Create seamless transitions between the original scene and the stretched areas. Avoid harsh edges, random glitches, distorted objects, or excessive visual noise.
+Keep the person's face, body, clothing, bouquet, and wooden boat perfectly sharp, detailed, and realistic. Apply the strongest stretching effect to the sky and surrounding landscape rather than the person.
+LIGHTING & COLOR GRADING: Maintain bright natural daylight, realistic shadows, vibrant blue tones, rich green lily pads, warm natural wooden textures, and beautiful purple flowers. Use cinematic contrast, HDR lighting, balanced saturation, and professional color harmony.
+IMAGE QUALITY: Ultra-realistic photography combined with luxury digital art styling, extremely sharp details, realistic textures, smooth pixel transitions, cinematic depth, professional digital finishing, gallery-quality artwork, and ultra-high-resolution 8K.
+STRICT PRESERVATION RULE: Keep the original image's central subject position, sitting pose, extended leg, bent knee, hand placement, black outfit, purple flower bouquet, wooden boat, green lily-pad lake, and dramatic blue pixel-stretch sky as close as possible. Only adapt the person's facial identity and natural facial hair according to the separately supplied face-reference photograph. Do not change the original artistic concept or introduce unnecessary objects.
+FINAL OUTPUT: Vertical 3:4 aspect ratio, premium cinematic pixel-stretch artwork, ultra-realistic full-body portrait, vibrant electric-blue atmosphere, professional social-media-ready digital masterpiece. No golden elements, no text, no logos, and no watermark.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjiRn63yNyABdTSZo9Kq4mkmwb_uz64JT4W5ijjseKCCisxZ7ffcXlVY7XhIdKmXZLINZa1QvYyyDct36aFD4nHoQlix0ZIJOF_3vjbaEKZTNlz1FjFEE8HsL4z5qLnsFT187Q6VoDzh4HYVK4AL6QZYiQi4t_eHpfu2ecH9-BEZxt5aFPNf4jQekfcOVo/s1600/image.png',
+    tags: [
+      'Boys',
+      'Pixel Stretch',
+      'Boat',
+      'Lily Pad Lake',
+      'Electric Blue',
+      'ChatGPT',
+      'Gemini',
+      'Trending',
+      'Ai photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 92,
+    viewsCount: 410,
+    copyCount: 162,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-08T17:30:00.000Z',
+  },
+  {
     id: 'ajmal-bold-red-editorial-magazine-cover',
     title: 'AJMAL – Bold Red Editorial Magazine Cover',
     category: 'Boys',

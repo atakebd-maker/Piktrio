@@ -23,17 +23,23 @@ export const CategoryBar: React.FC<CategoryBarProps> = ({
           const isSelected = selectedCategory.toLowerCase() === cat.name.toLowerCase();
 
           return (
-            <button
+            <a
               key={cat.id || cat.name}
-              onClick={() => onSelectCategory(cat.name)}
-              className={`flex-1 text-center py-2 px-2.5 sm:px-5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer whitespace-nowrap ${
+              href={`/?category=${encodeURIComponent(cat.id || cat.name.toLowerCase())}`}
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  onSelectCategory(cat.name);
+                }
+              }}
+              className={`flex-1 text-center py-2 px-2.5 sm:px-5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer whitespace-nowrap no-underline ${
                 isSelected
                   ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/25'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               {cat.name}
-            </button>
+            </a>
           );
         })}
       </div>

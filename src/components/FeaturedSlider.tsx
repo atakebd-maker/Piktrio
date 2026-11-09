@@ -147,9 +147,15 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
         <div className={`relative z-10 grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-center p-4 sm:p-6 md:p-8 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 scale-[0.99]' : 'opacity-100 scale-100'}`}>
           
           {/* PHOTO SHOWCASE: Generous height so entire portrait image (head to toe) is 100% visible */}
-          <div 
-            onClick={() => onSelectPrompt(current)}
-            className="md:col-span-6 lg:col-span-5 flex items-center justify-center cursor-pointer group/img relative"
+          <a 
+            href={`/?prompt=${encodeURIComponent(current.id)}`}
+            onClick={(e) => {
+              if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                e.preventDefault();
+                onSelectPrompt(current);
+              }
+            }}
+            className="md:col-span-6 lg:col-span-5 flex items-center justify-center cursor-pointer group/img relative no-underline block"
           >
             <div className="relative w-full h-[340px] sm:h-[400px] md:h-[450px] bg-slate-50 rounded-2xl border border-slate-200 shadow-inner flex items-center justify-center p-2.5 sm:p-3 overflow-hidden">
               
@@ -173,7 +179,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
                 <span>Open Full Details</span>
               </div>
             </div>
-          </div>
+          </a>
 
           {/* SLIDE DETAILS & ACTION */}
           <div className="md:col-span-6 lg:col-span-7 flex flex-col justify-between space-y-3.5 sm:space-y-4">
@@ -198,11 +204,19 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
 
             {/* Prompt Title */}
             <div>
-              <h3 
-                onClick={() => onSelectPrompt(current)}
-                className="text-lg sm:text-2xl md:text-3xl font-extrabold text-slate-900 leading-snug tracking-tight hover:text-blue-600 transition-colors cursor-pointer line-clamp-2"
-              >
-                {current.title}
+              <h3 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-slate-900 leading-snug tracking-tight hover:text-blue-600 transition-colors cursor-pointer line-clamp-2">
+                <a
+                  href={`/?prompt=${encodeURIComponent(current.id)}`}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                      e.preventDefault();
+                      onSelectPrompt(current);
+                    }
+                  }}
+                  className="hover:text-blue-600 text-inherit no-underline"
+                >
+                  {current.title}
+                </a>
               </h3>
 
               {/* Prompt snippet preview */}
@@ -213,13 +227,19 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
 
             {/* Action Button & Navigation Row */}
             <div className="pt-2 flex flex-wrap items-center gap-3">
-              <button
-                onClick={() => onSelectPrompt(current)}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-500/25 transition-all transform active:scale-95 cursor-pointer"
+              <a
+                href={`/?prompt=${encodeURIComponent(current.id)}`}
+                onClick={(e) => {
+                  if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                    e.preventDefault();
+                    onSelectPrompt(current);
+                  }
+                }}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-500/25 transition-all transform active:scale-95 cursor-pointer no-underline"
               >
                 <span>View Full Prompt &amp; Copy</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
 
               <span className="text-[11px] text-slate-400 hidden sm:inline-block">
                 Includes 7-second copy countdown &bull; 100% Uncropped Photo

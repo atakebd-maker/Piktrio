@@ -16,6 +16,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
 
   const handleCopy = (e: React.MouseEvent | React.TouchEvent) => {
     e.stopPropagation();
+    e.preventDefault();
     // Open dedicated post page so user sees ads and completes 7-second countdown
     onViewDetails(prompt);
   };
@@ -25,9 +26,16 @@ export const PromptCard: React.FC<PromptCardProps> = ({
   };
 
   return (
-    <div
-      onClick={handleCardClick}
-      className="group relative bg-white rounded-2xl sm:rounded-3xl border border-slate-200 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col cursor-pointer overflow-hidden"
+    <a
+      href={`/?prompt=${encodeURIComponent(prompt.id)}`}
+      onClick={(e) => {
+        // Allow user to use Ctrl+Click or middle click to open in new tab
+        if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+          e.preventDefault();
+          onViewDetails(prompt);
+        }
+      }}
+      className="group relative bg-white rounded-2xl sm:rounded-3xl border border-slate-200 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col cursor-pointer overflow-hidden no-underline text-inherit block"
     >
       {/* 
         TITLE & CATEGORY HEADER (PLACED ABOVE THE IMAGE AS REQUESTED)
@@ -112,6 +120,6 @@ export const PromptCard: React.FC<PromptCardProps> = ({
         </button>
       </div>
 
-    </div>
+    </a>
   );
 };
