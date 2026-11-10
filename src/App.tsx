@@ -12,6 +12,8 @@ import { Footer } from './components/Footer';
 import { InfoModal, ModalType } from './components/InfoModal';
 import { AdBanner } from './components/AdBanner';
 import { StickyBottomAd } from './components/StickyBottomAd';
+import { TopCollapsibleAd } from './components/TopCollapsibleAd';
+import { InterstitialAdModal } from './components/InterstitialAdModal';
 import { PromptItem, CategoryItem } from './types/prompt';
 import { PROMPTPIN_CATEGORIES, STORE_PROMPTS } from './data/initialPrompts';
 import {
@@ -325,6 +327,9 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-600 selection:text-white flex flex-col">
       
+      {/* Top Collapsible BengalAds Banner with Arrow Toggle */}
+      <TopCollapsibleAd />
+
       {/* 1. Header (Clean White & Blue, strictly NO app button) */}
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
@@ -385,7 +390,7 @@ export default function App() {
             />
 
             {/* Sponsored Banner between Slider and Showcase */}
-            <AdBanner label="Featured Partner" className="my-4" />
+            <AdBanner format="300x250" label="Featured Partner" className="my-4" />
 
             {/* 5. MAIN PROMPTS GALLERY (Strictly 2 columns on mobile: grid-cols-2) */}
             <section className="mt-4 mb-12">
@@ -490,6 +495,9 @@ export default function App() {
         type={activeModal}
         onClose={() => setActiveModal(null)}
       />
+
+      {/* Entrance Interstitial Pop-up Ad with 12s Countdown Timer */}
+      <InterstitialAdModal />
 
       {/* Floating Sticky Mobile/Desktop Bottom Ad Banner */}
       <StickyBottomAd />

@@ -271,7 +271,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
           <div className="lg:col-span-6 flex flex-col space-y-5">
             
             {/* Ad above prompt box */}
-            <AdBanner label="Advertisement" className="my-1" />
+            <AdBanner format="300x250" label="Sponsored Ad" className="my-2" />
 
             {/* Complete English AI Prompt in High Contrast Box */}
             <div className="space-y-2">
@@ -418,7 +418,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             )}
 
             {/* Ad at the end of the post guide */}
-            <AdBanner label="Sponsored Link" className="mt-6 mb-2" />
+            <AdBanner format="300x250" label="Sponsored Partner" className="mt-6 mb-2" />
 
           </div>
 
