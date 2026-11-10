@@ -33,8 +33,8 @@ export const StickyBottomAd: React.FC = () => {
         </div>
 
         {!isMinimized && (
-          <div className="w-[320px] h-[50px] overflow-hidden flex items-center justify-center">
-            <AdBanner label="" className="my-0" />
+          <div className="min-w-[320px] max-w-full flex items-center justify-center">
+            <AdBanner label="" className="my-0" format="320x50" />
           </div>
         )}
       </div>

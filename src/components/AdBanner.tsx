@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 
 export type AdFormat = '320x50' | '300x250';
 
@@ -13,10 +13,14 @@ export const AdBanner: React.FC<AdBannerProps> = ({
   label = 'Sponsored Ad',
   format = '320x50',
 }) => {
-  const adId = useId();
+  const rawId = useId();
+  const cleanId = rawId.replace(/[^a-zA-Z0-9_-]/g, '_');
   const is300x250 = format === '300x250';
   const width = is300x250 ? 300 : 320;
-  const height = is300x250 ? 250 : 50;
+  
+  // Default base heights with generous room for BengalAds branding text/attribution
+  const initialHeight = is300x250 ? 285 : 75;
+  const [frameHeight, setFrameHeight] = useState<number>(initialHeight);
 
   // BengalAds placement keys
   const placement = is300x250
@@ -25,34 +29,101 @@ export const AdBanner: React.FC<AdBannerProps> = ({
 
   const zoneId = `zone-${placement}`;
 
+  // Listen for dynamic resize messages from the BengalAds iframe
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (
+        event.data &&
+        event.data.type === 'BENGALADS_RESIZE' &&
+        event.data.cleanId === cleanId
+      ) {
+        const receivedHeight = Number(event.data.height);
+        if (!isNaN(receivedHeight) && receivedHeight > 20) {
+          // Add 4px buffer to ensure 100% of the BengalAds bottom branding is visible
+          setFrameHeight(Math.max(initialHeight, Math.ceil(receivedHeight) + 4));
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [cleanId, initialHeight]);
+
   const htmlContent = `<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      body, html {
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html, body {
         width: 100%;
-        height: 100%;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        margin: 0;
+        padding: 0;
         background: transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: visible;
+      }
+      #${zoneId} {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
       }
     </style>
   </head>
   <body>
-    <div id="${zoneId}" style="width:${width}px;height:${height}px;max-width:100%;overflow:hidden;"></div>
+    <div id="${zoneId}"></div>
     <script>
       (function(){
         var s = document.createElement("script");
         s.async = true;
         s.referrerPolicy = "origin";
-        s.src = "https://bengalads.com/widget-render.php?placement=${placement}&target=${zoneId}&width=${width}&height=${height}&v=20260816_2231";
+        s.src = "https://bengalads.com/widget-render.php?placement=${placement}&target=${zoneId}&width=${width}&height=${is300x250 ? 250 : 50}&v=20260816_2231";
         document.head.appendChild(s);
       })();
+
+      function reportAdHeight() {
+        try {
+          var body = document.body;
+          var html = document.documentElement;
+          var h = Math.max(
+            body ? body.scrollHeight : 0,
+            body ? body.offsetHeight : 0,
+            html ? html.clientHeight : 0,
+            html ? html.scrollHeight : 0,
+            html ? html.offsetHeight : 0
+          );
+          if (h > 20) {
+            window.parent.postMessage({
+              type: 'BENGALADS_RESIZE',
+              cleanId: '${cleanId}',
+              height: h
+            }, '*');
+          }
+        } catch (e) {}
+      }
+
+      window.addEventListener('load', reportAdHeight);
+      document.addEventListener('DOMContentLoaded', reportAdHeight);
+
+      // Periodically check height during render to catch asynchronous ad injection
+      var intervals = [100, 300, 600, 1000, 1500, 2500, 4000];
+      intervals.forEach(function(t) {
+        setTimeout(reportAdHeight, t);
+      });
+
+      if (typeof ResizeObserver !== 'undefined' && document.body) {
+        new ResizeObserver(reportAdHeight).observe(document.body);
+      }
     </script>
   </body>
 </html>`;
@@ -65,18 +136,28 @@ export const AdBanner: React.FC<AdBannerProps> = ({
         </span>
       )}
       <div 
-        style={{ width: `${width}px`, height: `${height}px` }}
-        className="max-w-full overflow-hidden rounded-xl bg-slate-50 border border-slate-200/80 shadow-xs flex items-center justify-center"
+        style={{
+          width: `${width}px`,
+          minHeight: `${frameHeight}px`,
+        }}
+        className="max-w-full rounded-2xl bg-white border border-slate-200/90 shadow-xs flex flex-col items-center justify-center p-1.5 transition-all duration-300"
       >
         <iframe
-          id={adId}
-          title={label || 'Advertisement'}
+          id={cleanId}
+          title={label || 'BengalAds Advertisement'}
           srcDoc={htmlContent}
           width={width}
-          height={height}
+          height={frameHeight}
           scrolling="no"
           frameBorder="0"
-          style={{ border: 'none', width: `${width}px`, height: `${height}px`, overflow: 'hidden' }}
+          style={{
+            border: 'none',
+            width: `${width}px`,
+            height: `${frameHeight}px`,
+            maxWidth: '100%',
+            overflow: 'visible',
+            display: 'block',
+          }}
         />
       </div>
     </div>
