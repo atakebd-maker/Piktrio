@@ -12,7 +12,6 @@ import { Footer } from './components/Footer';
 import { InfoModal, ModalType } from './components/InfoModal';
 import { AdBanner } from './components/AdBanner';
 import { StickyBottomAd } from './components/StickyBottomAd';
-import { TopCollapsibleAd } from './components/TopCollapsibleAd';
 import { InterstitialAdModal } from './components/InterstitialAdModal';
 import { PromptItem, CategoryItem } from './types/prompt';
 import { PROMPTPIN_CATEGORIES, STORE_PROMPTS } from './data/initialPrompts';
@@ -327,9 +326,6 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-600 selection:text-white flex flex-col">
       
-      {/* Top Collapsible BengalAds Banner with Arrow Toggle */}
-      <TopCollapsibleAd />
-
       {/* 1. Header (Clean White & Blue, strictly NO app button) */}
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
