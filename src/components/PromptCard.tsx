@@ -27,7 +27,7 @@ export const PromptCard: React.FC<PromptCardProps> = ({
 
   return (
     <a
-      href={`/?prompt=${encodeURIComponent(prompt.id)}`}
+      href={`/prompt/${encodeURIComponent(prompt.id)}`}
       onClick={(e) => {
         // Allow user to use Ctrl+Click or middle click to open in new tab
         if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {

@@ -2137,7 +2137,7 @@ The generated person must look recognizably like the person in the uploaded face
 
 **Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
 `,
-    imageUrl: '/assets/aistudio/image_615815aa.png',
+    imageUrl: 'https://piktrio.vercel.app/assets/aistudio/image_615815aa.png',
     tags: ['Boys', 'Automotive', 'Monochrome', 'SUV', 'Streetwear', 'TopDown', 'Trending'],
     isPinned: true,
     isTemplate: false,
@@ -2245,7 +2245,7 @@ The generated person must look recognizably like the person in the uploaded face
 
 **Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
 `,
-    imageUrl: '/assets/aistudio/image_ad502c62.png',
+    imageUrl: 'https://piktrio.vercel.app/assets/aistudio/image_ad502c62.png',
     tags: [
       'Boys',
       'Jailer 2',

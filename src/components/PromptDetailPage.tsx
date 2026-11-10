@@ -128,7 +128,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
       articleBody: prompt.prompt,
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': `${window.location.origin}/?prompt=${prompt.id}`,
+        '@id': `${window.location.origin}/prompt/${encodeURIComponent(prompt.id)}`,
       },
       publisher: {
         '@type': 'Organization',
@@ -139,7 +139,12 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     if (canonicalLink) {
-      canonicalLink.setAttribute('href', `${window.location.origin}/?prompt=${prompt.id}`);
+      canonicalLink.setAttribute('href', `${window.location.origin}/prompt/${encodeURIComponent(prompt.id)}`);
+    }
+
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) {
+      ogUrl.setAttribute('content', `${window.location.origin}/prompt/${encodeURIComponent(prompt.id)}`);
     }
 
     return () => {

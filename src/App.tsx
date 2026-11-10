@@ -81,8 +81,13 @@ export default function App() {
       const promptParam = searchParams.get('prompt') || searchParams.get('p');
       const catParam = searchParams.get('category') || searchParams.get('c');
       const hash = window.location.hash;
+      const pathname = window.location.pathname;
 
-      const targetPromptId = promptParam || (hash.startsWith('#prompt/') ? hash.replace('#prompt/', '') : null);
+      let targetPromptId = promptParam || (hash.startsWith('#prompt/') ? hash.replace('#prompt/', '') : null);
+
+      if (!targetPromptId && pathname.startsWith('/prompt/')) {
+        targetPromptId = decodeURIComponent(pathname.replace('/prompt/', '').replace(/\/$/, ''));
+      }
 
       if (targetPromptId) {
         const match = items.find((p) => p.id === targetPromptId) || STORE_PROMPTS.find((p) => p.id === targetPromptId);
@@ -263,9 +268,8 @@ export default function App() {
   // Directly navigate to prompt
   const navigateToPrompt = (prompt: PromptItem) => {
     setSelectedPrompt(prompt);
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set('prompt', prompt.id);
-    window.history.pushState({ promptId: prompt.id }, '', `?${searchParams.toString()}`);
+    const newUrl = `/prompt/${encodeURIComponent(prompt.id)}`;
+    window.history.pushState({ promptId: prompt.id }, '', newUrl);
     document.title = `${prompt.title} – Piktrio`;
     recordPromptView(prompt.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -288,11 +292,7 @@ export default function App() {
   // Back to gallery
   const handleBackToGallery = () => {
     setSelectedPrompt(null);
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.delete('prompt');
-    const newSearch = searchParams.toString();
-    const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '');
-    window.history.pushState({}, '', newUrl);
+    window.history.pushState({}, '', '/');
     resetHomeMeta();
     window.scrollTo({ top: 240, behavior: 'smooth' });
   };
