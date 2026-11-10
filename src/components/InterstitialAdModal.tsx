@@ -109,7 +109,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
                   View a short ad
                 </span>
                 <span className="text-xs text-slate-500 font-medium mt-0.5">
-                  Site-wide access for 24 hours
+                  Access for a short time
                 </span>
               </div>
 
