@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="origin">
+  <title>Advertisement</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    #ad-wrapper {
+      position: relative;
+      width: 300px;
+      height: 250px;
+      overflow: hidden;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    #zone-baa7cc78fcba3fd3f529f4be86c9a63cae7ec160 {
+      width: 300px;
+      min-height: 250px;
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+    #fallback-ad {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 14px;
+      z-index: 1;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #93c5fd;
+      background: rgba(37, 99, 235, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 3px 10px;
+      border-radius: 9999px;
+    }
+    .ad-title {
+      font-size: 15px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: #ffffff;
+      margin: 8px 0 4px;
+    }
+    .ad-desc {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.4;
+      padding: 0 4px;
+    }
+    .ad-btn {
+      display: inline-block;
+      width: 100%;
+      padding: 9px 12px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+      transition: background 0.2s;
+    }
+    .ad-btn:hover {
+      background: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+  <div id="ad-wrapper">
+    <div id="zone-baa7cc78fcba3fd3f529f4be86c9a63cae7ec160"></div>
+    <a id="fallback-ad" href="https://bengalads.com/" target="_blank" rel="noopener noreferrer">
+      <div class="badge">Sponsored &bull; BengalAds Partner</div>
+      <div>
+        <div class="ad-title">Create Stunning AI Photos &amp; Portraits</div>
+        <div class="ad-desc">Explore ready-to-use prompts for ChatGPT &amp; Gemini. 100% Free &bull; High Quality</div>
+      </div>
+      <div class="ad-btn">Learn More &rarr;</div>
+    </a>
+  </div>
+
+  <script src="https://bengalads.com/widget-render.php?placement=baa7cc78fcba3fd3f529f4be86c9a63cae7ec160&target=zone-baa7cc78fcba3fd3f529f4be86c9a63cae7ec160&width=300&height=250"></script>
+
+  <script>
+    (function() {
+      var zone = document.getElementById('zone-baa7cc78fcba3fd3f529f4be86c9a63cae7ec160');
+      var fallback = document.getElementById('fallback-ad');
+      
+      function checkZone() {
+        if (!zone) return;
+        var isHidden = zone.style.display === 'none' || zone.offsetHeight === 0;
+        var hasContent = zone.children && zone.children.length > 0 && zone.innerHTML.trim().length > 10;
+        if (isHidden || !hasContent) {
+          fallback.style.display = 'flex';
+        } else {
+          fallback.style.display = 'none';
+        }
+      }
+
+      setTimeout(checkZone, 800);
+      setTimeout(checkZone, 2200);
+
+      if (window.MutationObserver && zone) {
+        var observer = new MutationObserver(checkZone);
+        observer.observe(zone, { attributes: true, childList: true, subtree: true, attributeFilter: ['style', 'class'] });
+      }
+    })();
+  </script>
+</body>
+</html>
