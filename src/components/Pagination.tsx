@@ -13,33 +13,40 @@ export const Pagination: React.FC<PaginationProps> = ({
 }) => {
   if (totalPages <= 1) return null;
 
-  const renderPageNumbers = () => {
-    const pages = [];
+  const renderPageNumbers = (): (number | string)[] => {
+    // If 7 or fewer pages, show all page numbers directly (1, 2, 3, 4, 5, 6, 7)
+    if (totalPages <= 7) {
+      return Array.from({ length: totalPages }, (_, i) => i + 1);
+    }
 
-    // Always show page 1
+    const pages: (number | string)[] = [];
+
+    // Always show first page
     pages.push(1);
 
-    if (currentPage > 3) {
-      pages.push('...');
-    }
-
-    // Surrounding pages
-    for (
-      let i = Math.max(2, currentPage - 1);
-      i <= Math.min(totalPages - 1, currentPage + 1);
-      i++
-    ) {
-      if (!pages.includes(i)) {
+    // If current page is near the start
+    if (currentPage <= 4) {
+      for (let i = 2; i <= 5; i++) {
         pages.push(i);
       }
-    }
-
-    if (currentPage < totalPages - 2) {
       pages.push('...');
+      pages.push(totalPages);
     }
-
-    // Always show last page
-    if (totalPages > 1 && !pages.includes(totalPages)) {
+    // If current page is near the end
+    else if (currentPage >= totalPages - 3) {
+      pages.push('...');
+      for (let i = totalPages - 4; i <= totalPages - 1; i++) {
+        pages.push(i);
+      }
+      pages.push(totalPages);
+    }
+    // If current page is in the middle
+    else {
+      pages.push('...');
+      pages.push(currentPage - 1);
+      pages.push(currentPage);
+      pages.push(currentPage + 1);
+      pages.push('...');
       pages.push(totalPages);
     }
 
@@ -89,12 +96,18 @@ export const Pagination: React.FC<PaginationProps> = ({
         {currentPage < totalPages && (
           <button
             onClick={() => onPageChange(currentPage + 1)}
+            aria-label="Next Page"
             className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-slate-700 border border-slate-200 hover:border-blue-400 hover:text-blue-600 transition-colors cursor-pointer shadow-xs"
           >
             Next &rarr;
           </button>
         )}
       </div>
+
+      {/* Page indicator text */}
+      <span className="text-xs font-semibold text-slate-500">
+        Page {currentPage} of {totalPages}
+      </span>
     </div>
   );
 };

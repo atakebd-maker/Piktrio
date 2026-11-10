@@ -105,6 +105,14 @@ export default function App() {
         const formattedCat = catParam.charAt(0).toUpperCase() + catParam.slice(1).toLowerCase();
         setSelectedCategory(formattedCat);
       }
+
+      const pageParam = searchParams.get('page');
+      if (pageParam) {
+        const parsedPage = parseInt(pageParam, 10);
+        if (!isNaN(parsedPage) && parsedPage >= 1) {
+          setCurrentPage(parsedPage);
+        }
+      }
     };
 
     const unsubPrompts = subscribeToPrompts(
@@ -264,6 +272,22 @@ export default function App() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 220, behavior: 'smooth' });
+
+    const searchParams = new URLSearchParams(window.location.search);
+    if (page > 1) {
+      searchParams.set('page', page.toString());
+      document.title = `Page ${page} – ${selectedCategory} AI Prompts – Piktrio`;
+    } else {
+      searchParams.delete('page');
+      if (selectedCategory !== 'All') {
+        document.title = `${selectedCategory} AI Prompts – Piktrio`;
+      } else {
+        resetHomeMeta();
+      }
+    }
+    const newSearch = searchParams.toString();
+    const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '');
+    window.history.pushState({}, '', newUrl);
   };
 
   // Directly navigate to prompt
@@ -414,8 +438,15 @@ export default function App() {
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
                 <div className="flex items-center gap-2">
                   <Layers className="w-5 h-5 text-blue-600" />
-                  <h2 className="text-base sm:text-xl font-black text-slate-900">
-                    {searchQuery ? `Search Results: "${searchQuery}"` : `${selectedCategory} Prompts Gallery`}
+                  <h2 className="text-base sm:text-xl font-black text-slate-900 flex items-center flex-wrap gap-2">
+                    <span>
+                      {searchQuery ? `Search Results: "${searchQuery}"` : `${selectedCategory} Prompts Gallery`}
+                    </span>
+                    {totalPages > 1 && (
+                      <span className="text-xs sm:text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-lg">
+                        Page {currentPage} of {totalPages}
+                      </span>
+                    )}
                   </h2>
                 </div>
                 <span className="text-xs font-semibold text-slate-500">
