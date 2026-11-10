@@ -15,6 +15,34 @@ export const PROMPTPIN_CATEGORIES: CategoryItem[] = [
   { id: 'diwali', name: 'Diwali', description: 'Festive Diwali AI photo editing prompts for boys' },
 ];
 
+export const STRICT_IDENTITY_PROMPT_SUFFIX = `**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**`;
+
+export const ensureIdentityPromptSuffix = (promptText: string): string => {
+  if (!promptText) return STRICT_IDENTITY_PROMPT_SUFFIX;
+  if (promptText.includes('STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION')) {
+    return promptText;
+  }
+  return `${promptText.trim()}\n\n${STRICT_IDENTITY_PROMPT_SUFFIX}`;
+};
+
 export const COLLECTIONS_LIST = [
   { label: 'Diwali AI photo editing prompt', cat: 'Diwali AI photo editing prompt' },
   { label: 'AI Photo Prompts for Boys', cat: 'Boys' },
@@ -22,6 +50,114 @@ export const COLLECTIONS_LIST = [
 ];
 
 export const STORE_PROMPTS: PromptItem[] = [
+  {
+    "id": "cinematic-sunset-portrait-horse-thar-suv",
+  "title": "Cinematic Sunset Portrait with a Horse and Black Thar SUV",
+  "category": "Boys",
+  "description": "# Cinematic Sunset Portrait with a Horse and Black Thar SUV Guide\n\nCreate an ultra-realistic, cinematic outdoor lifestyle photoshoot portrait sitting casually on the front hood of a rugged black Mahindra Thar SUV alongside a magnificent dark brown horse during golden hour sunset using ChatGPT (GPT-4o) or Google Gemini.\n\n## Important Rules for Uploading Your Personal Photo\n- **High Resolution:** Upload a sharp, high-definition front or slight three-quarter portrait of yourself.\n- **Natural Beard & Moustache:** Your natural facial structure, jawline, and natural facial hair (beard/moustache) will be preserved 100% faithfully.\n- **Clear Lighting:** Natural or soft indoor lighting without heavy beauty filters or face obstructions.\n\n---\n\n## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini\n\n### Step 1: Prepare Your Personal Photo\nSelect a clear photograph of your face showing your authentic facial structure and hairstyle.\n\n### Step 2: Open ChatGPT or Google Gemini\nLaunch ChatGPT (GPT-4o image generation mode) or Google Gemini on your smartphone or PC.\n\n### Step 3: Upload Your Face Photo\nAttach your reference photo to the chat prompt window.\n\n### Step 4: Copy the AI Prompt\nClick the **Copy Full Prompt** button above. Wait for the countdown, then click **Click to Copy Now** to copy the full prompt.\n\n### Step 5: Send Prompt & Review\nPaste the prompt into the message box alongside your uploaded photo. Instruct the AI to generate a vertical 4:5 cinematic outdoor portrait.\n\n### Step 6: Download Your Masterpiece\nDownload your ultra-realistic 8K photograph featuring you on the hood of the Mahindra Thar with the beautiful brown horse at sunset!\n\n---\n\n## Key Highlights of This Prompt\n- **Authentic Mahindra Thar SUV:** Glossy black body, vertical front grille, rugged all-terrain tire, and headlights.\n- **Majestic Dark Brown Horse:** Muscular neck, dark brown coat, black mane, and authentic leather bridle.\n- **Warm Sunset Golden Hour:** Soft peach and pale orange gradient sky with a glowing golden sun above distant rolling hills.\n\n---\n\n## SEO Keywords & Search Tags\nMahindra Thar AI photo prompt, Boys Thar and horse portrait, cinematic golden hour sunset portrait, ChatGPT boys prompt, Gemini prompt for boys, AI photo editing prompt for boys, 8K ultra realistic automotive portrait.",
+  "prompt": "Create an ultra-realistic, cinematic DSLR photograph of a young man sitting casually on the front hood of a rugged black Mahindra Thar SUV, accompanied by a beautiful dark brown horse standing right beside the vehicle. The photograph should look like a naturally captured professional outdoor lifestyle photoshoot during golden hour, with exceptionally realistic details, natural proportions, and warm cinematic color grading.\nPERSON AND APPEARANCE:\nShow a young adult man with a naturally attractive appearance, sitting confidently and comfortably on the front hood of the black SUV. His body is positioned slightly diagonally, with his upper body turned a little toward the left side of the frame. His head is turned toward the left, looking thoughtfully into the distance rather than directly at the camera.\nHe has naturally voluminous, thick, slightly messy curly dark hair with individual curls clearly visible. He is wearing stylish black rectangular sunglasses with dark lenses. His facial expression is calm, confident, relaxed, and natural, with his lips gently closed.\nOUTFIT AND ACCESSORIES:\nHe is wearing a loose-fitting, slightly oversized white linen button-down shirt with the top few buttons left open, creating a relaxed and elegant appearance. The sleeves are casually rolled up to approximately the forearms.\nHe wears loose-fitting dark chocolate-brown trousers with natural fabric folds and realistic creases. On his feet are clean, off-white casual sneakers with visible laces and subtle sole details.\nAccessories include a black wristwatch on his left wrist and a simple red thread bracelet on his right wrist.\nEXACT BODY POSITION AND HAND PLACEMENT:\nThe man is sitting on the front hood of the SUV, slightly toward the right side of the image.\nHis right leg is bent at the knee and raised comfortably, with his right foot resting on the front hood area near the headlight. His left leg hangs downward naturally over the front grille and bumper area, with the left sneaker resting on the front bumper.\nHis right hand rests casually on his raised right knee, with relaxed, naturally curved fingers. His left hand hangs comfortably beside his thigh, resting naturally near his left knee.\nBoth shoulders are relaxed. His back is slightly leaned backward, maintaining a casual yet stylish sitting posture. Every finger, wrist, elbow, knee, ankle, and foot must have anatomically correct proportions and natural positioning.\nTHE HORSE:\nA beautiful, healthy, dark chocolate-brown horse stands immediately beside the left side of the black SUV. Its body is positioned diagonally, with its head facing toward the left side of the photograph.\nThe horse has a dark brown coat, a thick flowing black mane, upright pointed ears, realistic dark eyes, and a natural muscular neck. It wears a dark brown leather bridle with visible metallic buckles, rings, straps, and reins. The horse's head and upper body are clearly visible, with realistic hair texture and natural anatomy.\nThe horse stands calmly and confidently, looking slightly toward the left, creating a beautiful composition alongside the man and vehicle.\nVEHICLE DETAILS:\nA rugged, glossy black Mahindra Thar SUV occupies the lower-right and foreground portion of the photograph.\nThe front of the vehicle faces the camera at a slight angle. Its distinctive round headlights, black vertical front grille, front bumper, rectangular side indicator, windshield, side mirror, hood, and rugged front tire are clearly visible.\nThe word \"THAR\" appears naturally on the front grille area. The vehicle has realistic dusty surfaces, subtle reflections, and authentic outdoor wear.\nThe man is seated on the front hood, while the horse stands immediately beside the vehicle. Maintain the relative positions and proportions of all three subjects.\nBACKGROUND AND ENVIRONMENT:\nThe entire scene takes place in a wide, open countryside landscape with a dry golden-brown grassy field.\nThe ground is covered with short, dry grass, patches of dusty earth, and natural vegetation. In the distant background, there are gently rolling hills and low mountain ranges stretching horizontally across the horizon.\nThe landscape has a warm, peaceful, rural atmosphere with no visible buildings, crowds, traffic, or distracting objects.\nSKY AND SUNSET LIGHTING:\nThe photograph is captured during a beautiful golden-hour sunset.\nThe sky features a soft gradient of warm peach, pale orange, golden yellow, and subtle beige tones, with delicate scattered clouds.\nA bright, round golden sun is positioned low near the right side of the distant horizon, glowing naturally above the hills.\nWarm sunlight illuminates the man's white shirt, the horse's dark brown coat, and the black SUV, producing beautiful golden highlights and soft, realistic shadows.\nThe lighting should feel naturally cinematic, with balanced exposure, warm highlights, and detailed shadows.\nCAMERA ANGLE AND COMPOSITION:\nVertical portrait photography, 4:5 aspect ratio.\nCapture the scene from a slightly low, front-facing three-quarter camera angle, showing the man, the horse, and the front portion of the SUV together.\nThe man should be the primary visual subject, positioned slightly right of center. The horse should occupy the left side of the frame, while the SUV fills the lower foreground and right side.\nKeep the man's entire sitting posture, both legs, and both sneakers visible. Do not crop the horse's head, the man's feet, or important vehicle details.\nThe composition should closely follow a premium cinematic outdoor editorial photograph.\nPHOTOGRAPHIC QUALITY:\nUltra-photorealistic, professional DSLR photography, natural skin texture, realistic facial details, highly detailed curly hair, authentic horse anatomy, realistic leather textures, natural fabric wrinkles, physically accurate shadows, cinematic golden-hour lighting, subtle background depth of field, sharp subject details, professional color grading, high dynamic range, 8K photographic quality.\nThe final image must look like a genuine photograph captured by a professional photographer, not a painting, illustration, 3D render, or artificial-looking AI image\n**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**\n\nUse the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.\n\n**IMPORTANT FACIAL HAIR MATCHING RULE:**\n\nCarefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:\n\n- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.\n- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.\n- If the reference photo has both a beard and a moustache, reproduce both naturally.\n- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.\n- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.\n\nDo not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.\n\nThe generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.\n\n**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**",
+  "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHrbOS5TBYO2PTUGQQe83FMtoClSGuEs3CMHxDhVXXtD6Q8XzFrHXPgkbU5ZTw6veuLZCUJb_Z09L5GiwaUC3J-kwOs7B82Ozvjhpo714oLH-iuyT-wYDT0d7mC-d2zOROsqqhO0BjDi0yZ-V5MpagVx-JmmN00IlCAQYKXm6V4NEY7kkmm9_engpBn74W/s1600/image.png",
+  "tags": [
+    "Boys",
+    "Mahindra Thar",
+    "Horse",
+    "Sunset",
+    "Golden Hour",
+    "ChatGPT",
+    "Gemini",
+    "Trending",
+    "Ai photo editing prompt for boys"
+  ],
+  "isPinned": true,
+  "isTemplate": false,
+  "likesCount": 142,
+  "viewsCount": 520,
+  "copyCount": 210,
+  "aspectRatio": "4:5",
+  "model": "ChatGPT / Gemini",
+  "createdAt": "2026-11-09T22:00:00.000Z"
+},
+  {
+  "id": "bw-cinematic-portrait-standing-mahindra-thar",
+  "title": "Black & White Cinematic Portrait Standing on a Mahindra Thar",
+  "category": "Boys",
+  "description": "# Black & White Cinematic Portrait Standing on a Mahindra Thar Guide\n\nCreate an ultra-realistic, dramatic monochrome automotive fashion photoshoot standing confidently on the roof of a black Mahindra Thar SUV parked in an open roadside environment with trees and overcast sky using ChatGPT or Google Gemini.\n\n## Important Rules for Uploading Your Personal Photo\n- **Sharp Personal Picture:** Upload a clear photo of your face with distinct eyebrows, eyes, and natural skin tone.\n- **Preserve Facial Hair:** Original beard or moustache is preserved exactly as seen in your photo.\n- **Front Angle:** Face looking forward or slightly three-quarters.\n\n---\n\n## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini\n\n### Step 1: Select Your Clear Photo\nPrepare a high-quality photograph of your face.\n\n### Step 2: Open ChatGPT or Google Gemini\nOpen ChatGPT (GPT-4o) or Google Gemini on your phone or browser.\n\n### Step 3: Attach Your Face Reference\nUpload your photo into the prompt conversation.\n\n### Step 4: Copy the AI Prompt\nClick the **Copy Full Prompt** button above, wait for the countdown, and copy.\n\n### Step 5: Send Prompt & Review\nPaste the prompt into the chat box and generate a vertical 2:3 dramatic black-and-white portrait.\n\n### Step 6: Save Your 8K Editorial Photo\nDownload your timeless, high-contrast automotive fashion photo!\n\n---\n\n## Key Highlights of This Prompt\n- **Standing on Thar Roof:** Powerful fashion pose standing on top of the front roof section above the windshield.\n- **Monochrome Mastery:** Deep rich blacks, balanced midtones, and bright silver-grey highlights with authentic textures.\n- **Overcast Moody Sky:** Dramatic soft clouds with diffused natural lighting and tree reflections.\n\n---\n\n## SEO Keywords & Search Tags\nBlack and white Mahindra Thar photo prompt, boys Thar photoshoot prompt, automotive monochrome portrait, ChatGPT boys prompt, Gemini prompt for boys, AI photo editing prompt for boys.",
+  "prompt": "Create an ultra-realistic, professional black-and-white cinematic DSLR photograph of a stylish young man standing confidently on the roof of a black Mahindra Thar SUV. The photograph should recreate a dramatic outdoor automotive fashion photoshoot, with a natural countryside roadside environment, beautiful trees, an overcast sky, and a second SUV parked in the background.\n\n**1. PERSON AND OVERALL APPEARANCE:**\n\nShow a young adult man standing on top of the front roof section of a black Mahindra Thar. His overall appearance should be stylish, naturally confident, relaxed, and fashionable.\n\nHis body is facing mostly toward the camera, while his head is turned slightly toward his left side. He is looking into the distance rather than directly at the camera.\n\nHis posture should look natural and effortless, like a professional fashion model posing during an outdoor automobile photoshoot.\n\n**2. HAIRSTYLE AND FACE:**\n\nThe man has thick, naturally curly, slightly messy dark hair with noticeable volume on top. His curls should look soft, textured, and naturally arranged, with a few loose curls around his forehead.\n\nHe wears stylish dark rectangular sunglasses with black frames and dark lenses.\n\nHis facial expression is calm, serious, confident, and relaxed. His lips are naturally closed, and his face is slightly turned toward the left.\n\nKeep his face realistic, with natural skin texture and authentic facial proportions.\n\n**3. CLOTHING AND OUTFIT:**\n\nHe is wearing a simple, stylish, plain black full-sleeved crew-neck sweatshirt. The sweatshirt has a relaxed fit, slightly loose fabric, and natural folds around the shoulders, arms, waist, and elbows.\n\nThe sleeves are casually pushed or folded slightly upward around the forearms, especially on the arm positioned near his waist.\n\nHe wears light grey, relaxed-fit denim jeans. The jeans have a natural straight-leg silhouette, subtle denim texture, realistic wrinkles around the knees and ankles, and a slightly loose fit.\n\nOn his feet, he wears clean white low-top casual sneakers with white laces, visible stitching, and realistic rubber soles.\n\nThe entire outfit should remain minimal, elegant, and monochromatic.\n\n**4. EXACT BODY POSITION AND STANDING POSTURE:**\n\nThe man is standing directly on the roof of the black Mahindra Thar, above the windshield area.\n\nBoth feet are placed naturally on the roof, approximately shoulder-width apart, with a comfortable amount of space between them.\n\nHis right leg is slightly relaxed, while his left leg supports his body naturally. Both knees remain almost straight but not unnaturally stiff.\n\nHis right hand is placed casually inside the front pocket of his jeans, with his right elbow slightly bent outward.\n\nHis left arm hangs naturally beside his body. His left hand is relaxed near his left thigh, with naturally curved fingers.\n\nHis shoulders are relaxed, and his upper body is upright with a slight natural shift of weight toward one side.\n\nHis head is turned slightly toward the left, creating a confident side-looking pose.\n\nBoth arms, hands, fingers, legs, and feet must have anatomically correct proportions. Do not create extra fingers, distorted limbs, unnatural joints, or floating feet.\n\n**5. MAIN VEHICLE – BLACK MAHINDRA THAR:**\n\nA black Mahindra Thar SUV occupies most of the lower half of the photograph.\n\nThe vehicle is parked on a paved outdoor road, facing directly toward the camera.\n\nIts front design should be clearly recognizable, featuring:\n\n- A distinctive black front grille with multiple vertical slots.\n- Two large round headlights with realistic glass details.\n- A sturdy black front bumper.\n- Two front fog lights.\n- Rectangular front indicators.\n- A wide windshield with realistic reflections of nearby trees.\n- Two visible windshield wipers.\n- A black side mirror.\n- Large rugged all-terrain tires.\n- Dark alloy wheels with detailed spokes.\n- A boxy SUV body with a rugged off-road appearance.\n\nThe manufacturer's small Mahindra branding should appear naturally above the front grille.\n\nA realistic Indian-style vehicle registration plate is visible on the front bumper, similar in placement and appearance to the reference photograph, without making the registration number a focal point.\n\nThe man is standing on the roof of this vehicle, and his shoes are clearly visible resting on the roof panel above the windshield.\n\n**6. SECOND VEHICLE IN THE BACKGROUND:**\n\nAnother dark-colored rugged SUV is parked behind the main Mahindra Thar, toward the right side of the frame.\n\nOnly part of its front section, windshield, hood, grille, and side body should be visible.\n\nIt should appear slightly farther away and partially hidden behind the main vehicle, creating a natural outdoor automobile gathering atmosphere.\n\n**7. BACKGROUND AND SURROUNDINGS:**\n\nThe setting is a quiet outdoor roadside location surrounded by mature green trees and dense natural vegetation.\n\nLarge leafy trees occupy much of the left side and middle background, with branches and leaves spreading naturally across the scene.\n\nSome additional trees and bushes are visible behind the vehicles, creating depth and a beautiful natural environment.\n\nThe road surface is grey, slightly rough, and realistic, with subtle dust and natural outdoor texture.\n\nA few small roadside elements may appear in the far background, but there should be no distracting crowds, buildings, or unnecessary objects.\n\n**8. SKY AND WEATHER:**\n\nThe upper portion of the photograph shows a wide, cloudy overcast sky.\n\nSoft grey clouds cover most of the sky, creating a dramatic and moody atmosphere.\n\nThere is no visible bright sunlight or colorful sunset. The lighting is soft, diffused, and natural, with gentle shadows and balanced contrast.\n\n**9. BLACK-AND-WHITE PHOTOGRAPHIC STYLE:**\n\nThe entire photograph must be strictly black and white.\n\nUse elegant monochrome photography with deep blacks, rich charcoal-grey tones, balanced midtones, and bright silver-grey highlights.\n\nThe black sweatshirt and black SUV should retain visible fabric and vehicle details rather than becoming completely dark.\n\nThe light grey jeans and white sneakers should remain clearly distinguishable.\n\nPreserve realistic contrast in the trees, sky, road, vehicle surfaces, and the person's face.\n\nCreate a timeless, dramatic, editorial black-and-white photography aesthetic.\n\n**10. CAMERA ANGLE AND FRAMING:**\n\nVertical portrait composition, 2:3 aspect ratio.\n\nUse a low-angle, front-facing camera perspective, positioned slightly below the man's standing height, so that the SUV looks powerful and the man appears naturally prominent.\n\nThe entire front of the Mahindra Thar should be visible, including both headlights, grille, bumper, and front tires.\n\nThe man's complete body must be visible from head to shoes. Do not crop his hair, head, hands, legs, or sneakers.\n\nKeep the man positioned near the center of the upper half of the frame, with the SUV dominating the lower half.\n\nThe second vehicle should remain visible in the background on the right side.\n\nMaintain the same overall composition, proportions, subject placement, and perspective as the reference image.\n\n**11. IMAGE QUALITY AND REALISM:**\n\nUltra-photorealistic professional DSLR photography, 8K detail, highly realistic human anatomy, natural facial texture, detailed curly hair, realistic denim fabric, accurate sweatshirt texture, detailed sneakers, authentic Mahindra Thar design, realistic tire textures, natural reflections on vehicle glass, detailed tree leaves, cinematic monochrome contrast, professional editorial photography, sharp subject focus, natural depth of field, and high dynamic range.\n\nThe final result must look like a genuine photograph taken by a professional automotive and fashion photographer, not an illustration, painting, CGI, or artificial 3D render.\n\nDo not introduce unnecessary objects, extra people, additional vehicles, colored elements, or changes to the original composition.\n\n**STRICT REFERENCE IMAGE COMPOSITION RULE:**\n\nUse the provided image as the visual reference for the entire scene. Reproduce the person's standing position, body posture, clothing style, hairstyle, sunglasses, hand placement, vehicle design, vehicle placement, background trees, cloudy sky, camera angle, framing, and black-and-white photographic appearance as closely as possible.",
+  "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiPgNUSHx9q6vv1JUyrhJ5WwbBeICdudtjDk6BIdFVIbk2qLP-WkCpQOpGbhL8D4TQH2VFSP27kT6c3jU8e_QW0Ul2fcc2aAcJMPSe_bmMq7_esipTNlXReyzdtdoSohPuJK4HyeLkHLi3AB9NeiutN5Q5hIL205khD-dJu24FOAg37gi2ffGO7MCAZqeTs/s1600/image.png",
+  "tags": [
+    "Boys",
+    "Black & White",
+    "Mahindra Thar",
+    "Monochrome",
+    "Automotive",
+    "ChatGPT",
+    "Gemini",
+    "Trending",
+    "Ai photo editing prompt for boys"
+  ],
+  "isPinned": true,
+  "isTemplate": false,
+  "likesCount": 128,
+  "viewsCount": 480,
+  "copyCount": 195,
+  "aspectRatio": "2:3",
+  "model": "ChatGPT / Gemini",
+  "createdAt": "2026-11-09T21:45:00.000Z"
+},
+  {
+  "id": "yellow-black-streetwear-racing-jacket-poster-54",
+  "title": "Yellow & Black Streetwear Racing Jacket Poster – Number 54",
+  "category": "Boys",
+  "description": "# Yellow & Black Streetwear Racing Jacket Poster – Number 54 Guide\n\nCreate an ultra-realistic, high-end streetwear fashion campaign editorial poster wearing an oversized yellow and black racing jacket with large white '54' typography on a vibrant golden-yellow background using ChatGPT (GPT-4o) or Google Gemini.\n\n## Important Rules for Uploading Your Personal Photo\n- **Clean Lighting:** Evenly illuminated headshot without heavy shadows.\n- **Natural Hairstyle:** Original hairline and facial bone structure are respected.\n- **Authentic Features:** Realistic skin texture with your recognizable identity.\n\n---\n\n## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini\n\n### Step 1: Select Your Clear Photo\nChoose a high-resolution personal portrait photograph.\n\n### Step 2: Open ChatGPT or Google Gemini\nLaunch ChatGPT or Google Gemini on your smartphone or desktop.\n\n### Step 3: Attach Face Reference\nUpload your face photograph to the prompt chat box.\n\n### Step 4: Copy the AI Prompt\nClick **Copy Full Prompt** above, wait for the countdown, and copy the prompt text.\n\n### Step 5: Send Prompt & Review\nPaste the prompt into the chat and instruct the AI to generate a 2:3 vertical streetwear poster.\n\n### Step 6: Download Your Fashion Poster\nSave your high-contrast golden-yellow streetwear editorial poster!\n\n---\n\n## Key Highlights of This Prompt\n- **Oversized Racing Streetwear Jacket:** Vibrant golden-yellow and black panels, racing patches (22, 03, 929), straps, and buckles.\n- **Giant 54 Background Typography:** Enormous bold modern white '54' creating an iconic commercial brand poster look.\n- **Studio Lighting & Color Grading:** High-contrast saturated yellow, deep black, and crisp white graphic palette.\n\n---\n\n## SEO Keywords & Search Tags\nStreetwear racing jacket prompt, yellow fashion poster AI prompt, boys streetwear aesthetic, number 54 poster prompt, ChatGPT boys prompt, Gemini prompt for boys, AI photo editing prompt for boys.",
+  "prompt": "Create an ultra-realistic, high-end fashion editorial poster featuring a stylish young adult man wearing a bold yellow and black oversized streetwear racing jacket against a vibrant solid golden-yellow background. The design should look like a premium professional fashion campaign poster, combining realistic studio photography with modern graphic design elements.\n\n**1. PERSON AND OVERALL APPEARANCE:**\n\nShow a handsome young adult man standing confidently in a fashionable three-quarter pose. His body is turned slightly toward the right side of the frame, while his face is turned back toward the camera.\n\nHis upper body is slightly angled, with one shoulder positioned closer to the camera. He has a slim, naturally proportioned physique and a relaxed, confident fashion-model presence.\n\nHis expression is calm, stylish, serious, and naturally attractive. His lips are gently closed, and his eyes look directly toward the camera.\n\n**2. HAIRSTYLE:**\n\nHe has thick, voluminous, naturally flowing dark black hair, styled in a modern medium-length hairstyle.\n\nThe hair is swept naturally backward and slightly toward one side, with soft layered strands and a subtle side part. The front section has natural volume, while the sides are neatly shaped and slightly curved around the ears.\n\nIndividual hair strands should be realistic, detailed, and naturally textured.\n\n**3. FACE AND EXPRESSION:**\n\nThe face has naturally balanced proportions, a defined jawline, realistic cheek structure, natural eyebrows, expressive eyes, a proportionate nose, and naturally shaped lips.\n\nHis expression should be confident and composed, without an exaggerated smile.\n\nMaintain realistic skin texture, subtle natural highlights, and authentic facial details.\n\n**4. OUTFIT – YELLOW AND BLACK STREETWEAR JACKET:**\n\nThe man wears a striking oversized yellow and black racing-inspired streetwear jacket.\n\nThe jacket features a predominantly vibrant golden-yellow body with contrasting black sections around the shoulders, upper chest, and sleeves.\n\nThe jacket is partially worn off the shoulders in a stylish fashion-editorial manner, revealing a plain black fitted crew-neck T-shirt underneath.\n\nThe jacket has:\n\n- Bright yellow fabric with realistic stitching.\n- Black shoulder and upper-sleeve panels.\n- Multiple decorative racing-inspired patches.\n- Large black and white racing numbers.\n- Bold number 22 printed on the upper sleeve.\n- Large number 03 printed on a lower front pocket.\n- Number 929 displayed on a small upper jacket patch.\n- Multiple black straps and adjustable buckles.\n- Metallic snap buttons and zipper details.\n- Oversized front pockets with flap closures.\n- Black-and-white geometric patch designs.\n- Small decorative typography and technical fashion labels.\n\nThe sleeves are oversized and slightly gathered, creating a layered streetwear silhouette.\n\nThe jacket should have realistic fabric folds, thick material, visible stitching, and detailed construction.\n\n**5. BODY POSITION AND HAND PLACEMENT:**\n\nThe man stands in a relaxed three-quarter pose.\n\nHis torso is slightly rotated toward the right side of the frame, while his head turns toward the camera.\n\nOne shoulder is slightly raised by the naturally draped jacket.\n\nHis arms remain relaxed and close to his body, with the oversized jacket sleeves naturally covering most of his arms.\n\nHis posture should appear effortless, confident, and fashionable, like a professional streetwear campaign model.\n\nMaintain anatomically correct shoulders, elbows, arms, hands, and body proportions.\n\n**6. BACKGROUND AND GRAPHIC DESIGN:**\n\nUse a completely vibrant golden-yellow background with a smooth, clean, studio-style appearance.\n\nBehind the model, place an enormous white number \"54\" in a bold, modern, extra-large sans-serif font.\n\nThe number should occupy most of the central background and extend beyond the model's body, with parts naturally hidden behind him.\n\nThe large number 5 should appear prominently on the left side, while the number 4 should occupy the right side.\n\nAdd a few small black graphic typography elements and minimal fashion-editorial decorative details near the edges.\n\nInclude a small black geometric fashion emblem in the upper-right corner and a subtle four-point star-shaped decorative element near the bottom-right corner.\n\nKeep the background clean and uncluttered.\n\n**7. LIGHTING AND PHOTOGRAPHY:**\n\nProfessional fashion studio lighting with soft directional illumination.\n\nThe model's face should be evenly illuminated, showing realistic skin texture, natural facial shadows, and detailed hair.\n\nThe yellow jacket should appear rich, vibrant, and highly detailed.\n\nUse subtle highlights on the black fabric and metallic jacket accessories.\n\nThe background should remain bright golden-yellow without unnecessary gradients or distracting shadows.\n\n**8. CAMERA ANGLE AND COMPOSITION:**\n\nVertical portrait poster, 2:3 aspect ratio.\n\nUse a medium-length fashion portrait composition, framing the model from approximately the upper thighs to slightly above his head.\n\nThe model should occupy most of the center of the image.\n\nHis head should be positioned slightly above the center, with the large white number 54 visible behind him.\n\nKeep the yellow jacket and its decorative patches clearly visible in the foreground.\n\nUse a straight-on studio camera perspective with a subtle three-quarter body angle.\n\n**9. COLOR GRADING AND VISUAL STYLE:**\n\nA bold yellow, black, and white color palette.\n\nExtremely vibrant golden-yellow background, rich black clothing sections, bright yellow jacket panels, and crisp white graphic typography.\n\nHigh contrast, premium fashion advertising aesthetic, modern urban streetwear editorial design, professional color grading, sharp details, and realistic material textures.\n\n**10. FINAL IMAGE QUALITY:**\n\nUltra-realistic professional fashion photography, 8K detail, natural human anatomy, realistic facial texture, individually detailed hair strands, highly detailed streetwear construction, accurate jacket stitching, realistic fabric folds, premium studio lighting, sharp focus, professional poster composition, and high-end commercial advertising quality.\n\nThe final result must look like a professionally photographed streetwear fashion campaign poster, not a painting, illustration, cartoon, or 3D render.",
+  "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEicCk49irTEsOSh91Z2zCSZVF8DWc_SZ79OeFcyZd0hZuSnnNhzkhPGl2QMLhEV2prptxss5jcVHxFLEcccRtDzkqYvEWmCCAQdWlM2RUcdjr3r08_Db7BMPGGnAQ7YfUyxxcjhKfHJET2iSoPyZyTV8pMw_qlaYPja-CPOL5cD2zxfRHKnfZ-_uGESPG00/s1600/image.png",
+  "tags": [
+    "Boys",
+    "Streetwear",
+    "Racing Jacket",
+    "Fashion Poster",
+    "Number 54",
+    "ChatGPT",
+    "Gemini",
+    "Trending",
+    "Ai photo editing prompt for boys"
+  ],
+  "isPinned": false,
+  "isTemplate": false,
+  "likesCount": 115,
+  "viewsCount": 410,
+  "copyCount": 160,
+  "aspectRatio": "2:3",
+  "model": "ChatGPT / Gemini",
+  "createdAt": "2026-11-09T21:30:00.000Z"
+},
+  {
+  "id": "neon-cyberpunk-digital-transformation-futuristic-portrait",
+  "title": "Neon Cyberpunk Digital Transformation – Purple & Orange Futuristic Portrait",
+  "category": "Boys",
+  "description": "# Neon Cyberpunk Digital Transformation – Purple & Orange Futuristic Portrait Guide\n\nCreate a cutting-edge futuristic side-profile portrait featuring your real face with vibrant purple neon lighting and glowing orange holographic pixel-glitch effects using ChatGPT (GPT-4o) or Google Gemini.\n\n## Important Rules for Uploading Your Personal Photo\n- **Side Profile or Front:** Upload a clear photo of your face; facial structure and beard/moustache are locked.\n- **Natural Beard & Moustache:** Exact preservation of your real facial hair without artificial modifications.\n- **High Clarity:** Sharp facial details and clean skin tone.\n\n---\n\n## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini\n\n### Step 1: Select Your Clear Photo\nPrepare a high-definition personal photo.\n\n### Step 2: Open ChatGPT or Google Gemini\nLaunch ChatGPT or Google Gemini on your smartphone or desktop.\n\n### Step 3: Attach Face Reference\nUpload your photo into the chat prompt box.\n\n### Step 4: Copy the AI Prompt\nClick **Copy Full Prompt** above, wait for the countdown, and copy.\n\n### Step 5: Send Prompt & Review\nPaste the prompt into the message box alongside your uploaded photo.\n\n### Step 6: Save Your Futuristic Portrait\nDownload your 8K cinematic neon cyberpunk digital portrait!\n\n---\n\n## Key Highlights of This Prompt\n- **Side-Profile Identity Preservation:** Authentic jawline, nose, and ear proportions adapted to the futuristic angle.\n- **Electric Neon Atmosphere:** Dual-tone deep purple and luminous neon orange lighting with floating digital glitch fragments.\n- **Holographic Transformation:** Seamless transition from realistic human skin to futuristic digital cyberspace.\n\n---\n\n## SEO Keywords & Search Tags\nCyberpunk neon portrait prompt, purple orange glitch AI photo, futuristic side profile prompt, ChatGPT boys prompt, Gemini prompt for boys, AI photo editing prompt for boys.",
+  "prompt": "STRICT FACE IDENTITY, EXACT BEARD AND MOUSTACHE PRESERVATION:\nUse the uploaded personal face reference photo as the exclusive reference for the person's real facial identity.\nPreserve the person's natural facial structure as closely as possible, including the forehead, eyebrows, eyes, nose, lips, cheeks, jawline, chin, facial proportions, natural skin tone, and all distinctive facial characteristics.\nEXACT FACIAL HAIR MATCHING RULE:\nCarefully examine the original face reference photo and reproduce its natural facial hair exactly.\n- If the reference photo has a beard, reproduce the same beard style, shape, length, thickness, density, and natural growth pattern.\n- If the reference photo has a moustache, reproduce the same moustache style, thickness, shape, and length.\n- If the reference photo has both a beard and a moustache, reproduce both naturally and accurately.\n- If the reference photo has neither a beard nor a moustache, keep the face completely clean-shaven.\n- Never add a beard or moustache that is not present in the original reference.\n- Never remove, shorten, enlarge, or change existing facial hair into a different style.\nSTRICT SIDE-PROFILE IDENTITY PRESERVATION:\nAdapt the person's real facial identity naturally to the left-facing side-profile angle described in the main prompt.\nMaintain the original nose shape, forehead structure, lips, chin, jawline, and facial proportions from the reference photo.\nDo not generate a generic model face, replace the person's identity, artificially beautify the face, or modify the natural skin tone.\nThe realistic human face must remain clearly recognizable and must not be distorted by the digital glitch effects.\nIMPORTANT: The uploaded face reference determines the person's facial identity and exact beard or moustache. The main image prompt determines the hairstyle, clothing, pose, neon colors, digital transformation, background, lighting, and overall composition.",
+  "imageUrl": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjvTV7vDUr-XfPVNjPeIXO9u9reghM5APjgGKPbe735Lh9MIbn1W_c9xfqTqnYr4v_wdEFybMO20LpHifNCsm8LJAcBcFzIpOZbpUVkHWTp8YgbZgX6SJ0-zYIW1TuuurRcVZmiLIYxu2tLe_vbJ7ej_QB6X3H3WZXknPdqdCZt7lO2Y-bbPc56C7hTvzFV/s1600/image.png",
+  "tags": [
+    "Boys",
+    "Cyberpunk",
+    "Neon",
+    "Futuristic",
+    "Side Profile",
+    "ChatGPT",
+    "Gemini",
+    "Trending",
+    "Ai photo editing prompt for boys"
+  ],
+  "isPinned": false,
+  "isTemplate": false,
+  "likesCount": 134,
+  "viewsCount": 465,
+  "copyCount": 180,
+  "aspectRatio": "3:4",
+  "model": "ChatGPT / Gemini",
+  "createdAt": "2026-11-09T21:15:00.000Z"
+},
   {
     id: 'golden-hour-wildflower-hillside-korean-hair',
     title: 'Golden Hour Wildflower Hillside – Korean Messy Hair Aesthetic',
@@ -82,7 +218,28 @@ SKY & BACKGROUND: Create an impressive open sky filled with enormous, dramatic, 
 LIGHTING & ATMOSPHERE: Capture the scene during golden hour in the late afternoon. Use warm, soft natural sunlight, gentle highlights on the person's face and white shirt, realistic shadows, and a dreamy cinematic atmosphere. Create beautiful depth with softly blurred foreground flowers and background elements while keeping the subject perfectly sharp.
 CAMERA & PHOTOGRAPHY: Professional DSLR fashion and lifestyle photography, medium portrait composition, natural perspective, shallow depth of field, realistic skin texture, intricate hair details, detailed linen fabric, lifelike flowers, cinematic color grading, warm earthy tones, HDR, ultra-realistic 8K quality.
 STRICT PRESERVATION RULE: Maintain the original reference image's overall composition, sitting pose, upward gaze, green hillside, colorful wildflowers, giant golden clouds, and dreamy golden-hour atmosphere. Follow the separately supplied face-reference photograph for the person's identity and natural facial hair. Do not introduce unnecessary changes to the scene.
-FINAL OUTPUT: Vertical 3:4 aspect ratio, ultra-realistic cinematic portrait, premium editorial photography, natural colors, extremely detailed, photorealistic. No text, no logo, no watermark.`,
+FINAL OUTPUT: Vertical 3:4 aspect ratio, ultra-realistic cinematic portrait, premium editorial photography, natural colors, extremely detailed, photorealistic. No text, no logo, no watermark.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi7kPeetnarCdO0mj10jl6DboA39_SDpHv890CzEgKHIsRCBHRgSxwVhpZx-9A4Nf1pqgequp8UIUvyX_-lbG9ZKUWMGIu3aeTlXcl3Efsriu27336jd83WW14YsR2n0DRMu2at9SMoXbOlppaxZm7fzifvnZnq52wVrrAIVJJ6z3FxEzDaAAsfpTy7Iro/s1600/image.png',
     tags: [
       'Boys',
@@ -161,7 +318,28 @@ BACKGROUND & LIGHTING: Use a dark, warm-toned environment with a large diagonal 
 CAMERA & COMPOSITION: Professional cinematic full-body portrait photography, straight-on camera angle, vertical composition. Keep the man positioned on the left side of the frame and the woman's shadow silhouette on the right. Show the complete body, including both shoes, bouquet, extended hand, and the full shadow silhouette.
 IMAGE QUALITY: Ultra-realistic skin texture, detailed white suit fabric, naturally textured red rose petals, realistic shadow physics, cinematic golden-hour lighting, rich contrast, warm earthy color grading, professional DSLR photography, HDR, extremely detailed 8K quality.
 STRICT PRESERVATION RULE: Keep the original reference image's romantic concept, white suit, black shirt, red rose bouquet, closed eyes, extended hand, golden sunlight, diagonal light beam, beige wall, and woman's shadow holding his hand. Only adapt the man's facial identity and natural facial hair according to the separately supplied face-reference photograph.
-FINAL OUTPUT: Vertical 3:4 aspect ratio, premium cinematic romantic portrait, photorealistic, full-body composition, professional editorial photography. No visible woman, no extra people, no unnecessary objects, no additional text, no logos, and no watermark.`,
+FINAL OUTPUT: Vertical 3:4 aspect ratio, premium cinematic romantic portrait, photorealistic, full-body composition, professional editorial photography. No visible woman, no extra people, no unnecessary objects, no additional text, no logos, and no watermark.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjqqaQMz9XCcCbaBtso6VCLDx5H7YF6LAl4Btx9XiNqEMoBR_aDv6eCn1hYNdG_NK5WROJejKeH6yiXyP_MDyL3bb0kvcqLQHQ-AaZ9MibUZsDBiZYihhwWLPfpGAODGvuAqM4P07TS8-VFKTlGUd-x43wbUY1BfQyNQe70Tz2y1uIG7t6hSkxX052LDos/s1600/image.png',
     tags: [
       'Boys',
@@ -240,7 +418,28 @@ LIGHTING & ATMOSPHERE: Create a beautiful cinematic golden-hour lighting effect,
 RETRO FILM AESTHETIC: Apply authentic analog film photography characteristics, including subtle film grain, slightly faded colors, warm golden-brown undertones, soft contrast, delicate light leaks, and natural skin tones. Maintain a timeless editorial portrait aesthetic without making the image look artificially aged or excessively blurred.
 CAMERA & IMAGE QUALITY: Professional DSLR portrait photography, medium full-body composition, natural camera perspective, realistic skin texture, detailed linen fabric, sharp subject focus, soft background depth, cinematic color grading, HDR, ultra-realistic 8K photographic quality.
 STRICT PRESERVATION RULE: Keep the original reference image's dark green shirt, crossed-arm pose, charcoal trousers, silver wristwatch, single red rose, beige wall, strong wall shadow, golden sunlight, and nostalgic vintage atmosphere as close as possible. Only adapt the person's facial identity and natural facial hair according to the separately supplied face-reference photograph. Do not introduce unnecessary changes to the original scene.
-FINAL OUTPUT: Vertical 3:4 aspect ratio, premium cinematic retro portrait, photorealistic, natural colors, professional editorial photography. No extra people, no additional flowers, no text, no logos, and no watermark.`,
+FINAL OUTPUT: Vertical 3:4 aspect ratio, premium cinematic retro portrait, photorealistic, natural colors, professional editorial photography. No extra people, no additional flowers, no text, no logos, and no watermark.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRTNZUoPOOwaZhWY5imlfOxI3eQeYuoHYPo8N_F_cKzsghkKzgnZwxDMDHCI_ffFA0Fs-v0iAPYtaLE23fzT1l5h3O8MkEp1meMNlDFIUrKBqGchefN08E6wmB_W5N67-RxBwB5N2XUE1Mq3tFuQt6ElghXYz8mbB6rvQ-rTuK8KTZxSOCX6oIG-_mRqw/s1600/image.png',
     tags: [
       'Boys',
@@ -320,7 +519,28 @@ Keep the person's face, body, clothing, bouquet, and wooden boat perfectly sharp
 LIGHTING & COLOR GRADING: Maintain bright natural daylight, realistic shadows, vibrant blue tones, rich green lily pads, warm natural wooden textures, and beautiful purple flowers. Use cinematic contrast, HDR lighting, balanced saturation, and professional color harmony.
 IMAGE QUALITY: Ultra-realistic photography combined with luxury digital art styling, extremely sharp details, realistic textures, smooth pixel transitions, cinematic depth, professional digital finishing, gallery-quality artwork, and ultra-high-resolution 8K.
 STRICT PRESERVATION RULE: Keep the original image's central subject position, sitting pose, extended leg, bent knee, hand placement, black outfit, purple flower bouquet, wooden boat, green lily-pad lake, and dramatic blue pixel-stretch sky as close as possible. Only adapt the person's facial identity and natural facial hair according to the separately supplied face-reference photograph. Do not change the original artistic concept or introduce unnecessary objects.
-FINAL OUTPUT: Vertical 3:4 aspect ratio, premium cinematic pixel-stretch artwork, ultra-realistic full-body portrait, vibrant electric-blue atmosphere, professional social-media-ready digital masterpiece. No golden elements, no text, no logos, and no watermark.`,
+FINAL OUTPUT: Vertical 3:4 aspect ratio, premium cinematic pixel-stretch artwork, ultra-realistic full-body portrait, vibrant electric-blue atmosphere, professional social-media-ready digital masterpiece. No golden elements, no text, no logos, and no watermark.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjiRn63yNyABdTSZo9Kq4mkmwb_uz64JT4W5ijjseKCCisxZ7ffcXlVY7XhIdKmXZLINZa1QvYyyDct36aFD4nHoQlix0ZIJOF_3vjbaEKZTNlz1FjFEE8HsL4z5qLnsFT187Q6VoDzh4HYVK4AL6QZYiQi4t_eHpfu2ecH9-BEZxt5aFPNf4jQekfcOVo/s1600/image.png',
     tags: [
       'Boys',
@@ -397,7 +617,28 @@ SUBJECT & POSE: Show the person in a confident, sophisticated contrapposto stanc
 BACKGROUND & COLOR: Create a vibrant, deep crimson-red background featuring subtle vintage halftone dot textures, high-contrast typography, and bold magazine headline lettering.
 TYPOGRAPHY & GRAPHICS: Bold editorial masthead text "AJMAL" positioned across the top with minimalist magazine subtitles, barcodes, and date stamp accents.
 LIGHTING & AESTHETIC: High-contrast studio lighting, sharp rim highlights, clean soft shadows, 35mm crisp photographic realism with graphic poster sensibilities.
-CAMERA & COMPOSITION: Vertical 3:4 portrait aspect ratio, medium-to-full-body framing, subject positioned centrally, razor-sharp focus on facial details, authentic skin texture without artificial plastic smoothing.`,
+CAMERA & COMPOSITION: Vertical 3:4 portrait aspect ratio, medium-to-full-body framing, subject positioned centrally, razor-sharp focus on facial details, authentic skin texture without artificial plastic smoothing.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPe61bVEkpQwCqSyEiuJaO3-Q0KTPdzXl2gXFadvfE1lZtejQxWOHBxBMYHwzkRGqp7OxHSQWBT0zBe2GwcqU8mBmd4Nfu47rscPhBy-SAr4oXulC9tHTKLh_3Tp-xMvJscb87_jaBMgfLddy0NDwVyKZK7pXPMlchp_iFOA8rCCTluF0PPE2kMayrJlk/s1600/image.png',
     tags: [
       'Boys',
@@ -472,7 +713,28 @@ Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prom
 FACE IDENTITY REFERENCE: Use the uploaded photo to preserve the person's exact facial structure, eyes, eyebrows, nose, lips, jawline, natural skin tone, and recognizable facial features. Retain his natural dark hair texture and realistic facial expression. Do not create a different-looking person or apply excessive beautification.
 SUBJECT & POSE: The young man stands outdoors with an elegant, gentle expression, holding a fresh bouquet of blooming pink roses wrapped neatly in kraft paper in front of his chest. He wears a stylish relaxed casual outfit with natural fabric folds and authentic textile detail.
 BACKGROUND & LIGHTING: A bright open sky with vibrant azure blue tones, gentle sunlit white clouds, and soft golden-hour daylight casting warm natural highlights on his hair, shoulders, and rose petals. Beautiful shallow depth-of-field with creamy background bokeh.
-CAMERA & COMPOSITION: Vertical 3:4 portrait composition, crisp 8K DSLR portrait quality, realistic skin pores and texture, natural eye reflections, vibrant lifelike colors, and fine botanical details on the roses.`,
+CAMERA & COMPOSITION: Vertical 3:4 portrait composition, crisp 8K DSLR portrait quality, realistic skin pores and texture, natural eye reflections, vibrant lifelike colors, and fine botanical details on the roses.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgyRhtPmUoWFSRJDeNEyFBLrDZG7blZuRS9rvfQhtPemXHocLJ4qGijezErko6CQ2nBNE6Uw34u3OIvO0lzsHXXu_9WromTngXVi2WVKn7UuooYMJijyKmeLS4mNbgTCN4QdmWg52gAy3izWaetEDtKfc8cRzYQ-eCtylhTdsZeNsDN9zWalmbOOKGiugs/s1600/image.png',
     tags: [
       'Boys',
@@ -544,7 +806,28 @@ Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prom
 SUBJECT & COMPOSITION: A young man captured in a moody, cinematic back-three-quarter view or profile angle, looking into the distance with contemplative energy. He sports modern textured dark hair and wears an oversized dark streetwear jacket or minimalist hoodie with realistic fabric textures.
 ARTISTIC VISUAL EFFECT: An avant-garde horizontal pixel stretch and slit-scan chromatic streak effect radiating from the subject across the background in vivid sapphire blue, cyan, and deep midnight navy tones, blending digital glitch art with high-fashion portraiture.
 ATMOSPHERE & LIGHTING: Moody cinematic neon rim lighting highlighting his silhouette, jawline, and shoulders, with deep rich shadows and atmospheric haze.
-CAMERA & QUALITY: Vertical 3:4 aspect ratio, high-resolution digital artwork, sharp foreground details contrasting with artistic fluid pixel trails, professional album cover aesthetic.`,
+CAMERA & QUALITY: Vertical 3:4 aspect ratio, high-resolution digital artwork, sharp foreground details contrasting with artistic fluid pixel trails, professional album cover aesthetic.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKMr6Gm0sbDyRE0TsSkSnk4SHEaTGi4ay4Nq9xJnBvKzZUCx8jdQJ9c1XsxqbYd01fjW0N1xhv61zfHkQjeOxdIiN3IBSgVz1_BCqfLUolni6-dZjIVI5OtwfVcBNeJ0NMu-7XhGar6w7BXmew9u4damP7URLrHlhlMC84pASSS3gLBOYgC-ySR6BEov0/s1600/image.png',
     tags: [
       'Boys',
@@ -617,7 +900,28 @@ Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prom
 FACE IDENTITY REFERENCE: Preserve the person's exact facial structure, eyes, eyebrows, nose, lips, skin tone, and authentic facial proportions. Keep his natural dark hair styled naturally in the gentle outdoor breeze.
 SUBJECT & POSE: The young man stands amidst a dense sea of vibrant blooming wildflowers, surrounded by colorful blossoms in shades of yellow, purple, white, and coral. He wears a stylish earth-toned or cream relaxed-fit linen shirt with rolled-up sleeves. His expression is serene and contemplative, looking towards the warm sun.
 BACKGROUND & LIGHTING: A magical panoramic wildflower field under a warm golden sunset sky, with glowing sun rays piercing through the blossoms, creating lens flares, dust motes, and soft glowing bokeh.
-CAMERA & COMPOSITION: Vertical 3:4 portrait, professional 85mm f/1.4 lens aesthetic, rich dynamic range, lifelike skin texture, and razor-sharp focal clarity on the subject.`,
+CAMERA & COMPOSITION: Vertical 3:4 portrait, professional 85mm f/1.4 lens aesthetic, rich dynamic range, lifelike skin texture, and razor-sharp focal clarity on the subject.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwMo2xARdrEB7yyDiZIBprmWdrQBK1g7x62vG5y5Q0fxBXKpvdRMsA_p2nI4hSSwl3eEOkj5hIK_b7gkeQOsBwnAsbKpVd7OHtZgAq-XzRuVYybnf30O4BxAt1kvWJU_oOgIsVdZuYR4fYJC0Ovoo_r_f5_L4brG5_HehRMhRrMP-taD1rtZlb-sBodfM/s1600/image.png',
     tags: [
       'Boys',
@@ -689,7 +993,28 @@ Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prom
 FACE IDENTITY REFERENCE: Faithfully preserve the subject's exact facial features, natural skin tone, eyes, eyebrows, nose, lips, jawline, and authentic hairstyle from the reference photo.
 SUBJECT & POSE: The young man is seated gracefully at the front of a handcrafted wooden boat, wearing a stylish crisp white or light blue casual button-down shirt. One hand rests on the boat edge or gently touches a water lily blossom. He has a calm, introspective gaze toward the horizon.
 SETTING & WATER: A vast tranquil lake overflowing with lush green lily pads and vivid purple and violet lotus flowers floating gracefully on crystal-clear water reflections. In the background, a breathtaking sapphire-blue sky with soft wispy clouds and calm distant mountains or tree lines.
-CAMERA & LIGHTING: Vertical 3:4 framing, natural morning daylight with soft sparkling water caustics, cinematic color grading, rich vibrant colors, high-detail water ripples, and crisp photographic depth.`,
+CAMERA & LIGHTING: Vertical 3:4 framing, natural morning daylight with soft sparkling water caustics, cinematic color grading, rich vibrant colors, high-detail water ripples, and crisp photographic depth.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwTIUdam1AEB85BbGrpPk3sH_5P-AJgcxSU7Rb1QqMHSwPQdP2vvOMQlNdIcfXgOUJ7I4p1Z8pABqovvu5e-Iz_ZNiSvodg2-SM3CbawFZ8eYRxl8jH6XBFYByjFl6Dsyn2OL0Dzo6ykmNGS-s0QkUyrEf33zA9s6r_mFcfa8PbmhEp9iD4LSWwqn8WhI/s1600/image.png',
     tags: [
       'Boys',
@@ -762,7 +1087,28 @@ Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prom
 FACE IDENTITY REFERENCE: Accurately replicate the person's authentic facial identity, facial structure, eyes, eyebrows, nose, lips, and natural skin tone. Keep his natural dark hairstyle with realistic strands and texture.
 SUBJECT & POSE: The young man stands in a relaxed, handsome pose leaning gently against an ancient sun-bleached stone archway or white stucco wall draped in cascades of blooming pink and magenta bougainvillea. He wears an elegant, fitted pastel yellow or mustard linen shirt with the top buttons unbuttoned and sleeves rolled up, paired with stylish trousers and a classic watch.
 ATMOSPHERE & LIGHTING: Mediterranean summer morning sunlight filtering through the bougainvillea petals, casting soft dappled shadows and a warm luminous glow across the subject.
-CAMERA & QUALITY: Vertical 3:4 composition, 8K professional DSLR photography, natural skin pores, realistic textile folds, vibrant floral tones, and creamy bokeh in the background.`,
+CAMERA & QUALITY: Vertical 3:4 composition, 8K professional DSLR photography, natural skin pores, realistic textile folds, vibrant floral tones, and creamy bokeh in the background.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgnbflFXxTuX2sQ4-e0lfClbTSwO9nprf3mPKYgwPFk4OikmbhhdDgf5h_J-KkgDp11IHv_JHWHO5iRmbw7St786uFFR7QPshW_R7GXcm2Po_Da4kprr0ZWFDTxZ6Uc61b3UA9YuBgg7FKMye5s5XJBcJbSUpITMXTztzk4uRb3hbTi74_qgunzxRWClv0/s1600/image.png',
     tags: [
       'Boys',
@@ -863,7 +1209,28 @@ Vertical 3:4 portrait aspect ratio, elegant medium-to-full-body framing, subject
 
 Prioritize authentic facial identity and photographic realism. The personal photograph must determine the person's face and hairstyle. Avoid facial distortion, artificial skin smoothing, unrealistic anatomy, extra fingers, cartoon effects, or excessive visual enhancement.
 
-The final result should resemble a genuine professional royal Diwali photoshoot captured with a high-end DSLR camera.`,
+The final result should resemble a genuine professional royal Diwali photoshoot captured with a high-end DSLR camera.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjjsOPQ-pN-BZIvKlkFHrgH_kHSf2ltWw7c86bpN4ooTzhglgzOsZqEAqoyX1IBAN0udLAnAIFFW580TziPwYvrbwvNHzALPsCz3K8euKekchKigVX7SkPV66E2ZcF8aVvcqakB9Agojl2TkBseDyvnv5oHw6HcrapZejbHf8nDQfQdt3-HCf0kynkiE_g/s1600/image.png',
     tags: [
       'Boys',
@@ -952,7 +1319,28 @@ Give the photograph the appearance of an authentic 35mm film photograph captured
 CAMERA AND COMPOSITION:
 Vertical 4:5 portrait composition, medium-to-full-body framing, subject prominently positioned in the center, motorcycle clearly visible beside and behind him. Professional vintage street photography, realistic anatomy, detailed skin texture, authentic denim fabric, natural lighting, and exceptionally lifelike details.
 FINAL REQUIREMENTS:
-The final image must capture the genuine charm of 1990s youth fashion and motorcycle culture. Maintain the person's recognizable identity, natural appearance, and realistic proportions. Avoid modern fashion elements, cartoon effects, excessive digital sharpening, distorted hands, artificial skin, and recognizable third-party brand logos.`,
+The final image must capture the genuine charm of 1990s youth fashion and motorcycle culture. Maintain the person's recognizable identity, natural appearance, and realistic proportions. Avoid modern fashion elements, cartoon effects, excessive digital sharpening, distorted hands, artificial skin, and recognizable third-party brand logos.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfHGavzFK-xB5wCGq3k80KcNrzYHd3RmEy1HlC8-rngXHf7255HxUFGqeU727RGXKlHChGH8eUi1-jCGJXwEBdT_FoMRFLPFIHRkRsd3ZBI2cmVXCnbSlQ3Y2CBo0TN8t0zAChhGQpnkfo-11wXRI6XhmAXz4sfqsljm8mwmTbLv5Ddl54ZdCPDD3kJGE/s1600/image.png',
     tags: [
       'Boys',
@@ -1041,7 +1429,28 @@ Professional DSLR photography, ultra-realistic skin texture, authentic facial de
 The first image is the scene, pose, clothing, background, and composition reference. The personal photograph is the face and hairstyle identity reference.
 Do not copy the original person's face from the scene reference. Do not use the face of the model shown in the first image. Use only the actual face and hairstyle from the personal photograph.
 Do not change the pose, do not remove the sneakers, do not make the person barefoot, do not change the vertical 9:16 composition, and do not simplify the fireworks or diyas.
-The final result should closely recreate the first reference photograph while featuring the real person from the personal face reference. It must look like an authentic professional photograph, not an AI-generated illustration.`,
+The final result should closely recreate the first reference photograph while featuring the real person from the personal face reference. It must look like an authentic professional photograph, not an AI-generated illustration.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiiPg0z2hHAODkb1D_pKFyvvz8yit7m4-Or9JC29wiRwIsJln29uKWSaSwHq7Wy-i7FzessspVShPmKJReIwadGx7ksyJaJgeg4ls0rPPHFMErwRNJ7m2WoYu_6o0WItEISeftR_23auzcenDACsJ4na50uvPShhCDyarKB53fi_hi4xUj48Xeu-oepLQo/s1600/image.png',
     tags: [
       'Boys',
@@ -1111,7 +1520,28 @@ Festive Environment: Place him inside a magnificent outdoor traditional festive 
 A tall, antique brass oil-lamp stand should be positioned beside him. Beautifully detailed, colorful rangoli patterns made with flower petals and colored powders should decorate the stone floor. Add several small clay diyas around the courtyard to create an authentic Diwali atmosphere.
 Lighting and Photography: Capture the scene with warm golden cinematic illumination, realistic flame reflections, natural skin texture, beautiful depth of field, detailed fabric textures, lifelike shadows, and balanced exposure. Use professional DSLR photography aesthetics with a rich festive color palette and exceptionally realistic environmental details.
 Composition: Vertical 9:16 portrait format, full-body framing, natural human proportions, centered subject, and a beautifully balanced architectural background.
-Final Requirements: The result must resemble a genuine professional festive photograph. Preserve the person's real facial identity and original hairstyle. Avoid artificial facial modifications, cartoon effects, distorted hands, unrealistic anatomy, or excessive visual effects. Prioritize photographic realism and an elegant traditional Diwali atmosphere.`,
+Final Requirements: The result must resemble a genuine professional festive photograph. Preserve the person's real facial identity and original hairstyle. Avoid artificial facial modifications, cartoon effects, distorted hands, unrealistic anatomy, or excessive visual effects. Prioritize photographic realism and an elegant traditional Diwali atmosphere.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtiduU8Pbig4VEdKB_3Uf2eYzIHwvrsaZudPbzy1uhfv3GKWCiS1i9N_hAyPlIlzILQguIv_7ZVCbVnJtDKAtspdJvbYQqBPtyer0nTZ_2PaXmNV4yj9ZKxfZSTR9i29MCRtJmZPOXOxlaYyUOSh1mbpchTlkSzEvTFAsADVLNlciZUZp4lgPmjE5WKVE/s1600/image.png',
     tags: [
       'Boys',
@@ -1189,7 +1619,28 @@ Use warm amber and golden cinematic lighting. The tiny flames should produce rea
 CAMERA AND COMPOSITION:
 Vertical 9:16 portrait format, full-body photography, eye-level camera perspective, subject positioned prominently in the center, with the entire brass lamp visible from its base to the top. Keep the rangoli and decorative background clearly visible. Professional DSLR photographic quality, realistic skin texture, detailed embroidery, natural anatomy, sharp focus, and cinematic depth of field.
 FINAL QUALITY REQUIREMENTS:
-The final image must look like an authentic high-end festive photoshoot rather than an illustration or artificial digital artwork. Keep the person's real face and original hairstyle recognizable. Avoid distorted fingers, incorrect hand positions, unnatural facial features, excessive skin smoothing, or unrealistic lighting. Prioritize facial identity, photographic realism, and traditional Diwali elegance.`,
+The final image must look like an authentic high-end festive photoshoot rather than an illustration or artificial digital artwork. Keep the person's real face and original hairstyle recognizable. Avoid distorted fingers, incorrect hand positions, unnatural facial features, excessive skin smoothing, or unrealistic lighting. Prioritize facial identity, photographic realism, and traditional Diwali elegance.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEja4ufCjjJj7LMxNF2e8Q8rnbGTt6xnCNz2clrgsajusGKoDLCSAEVDNuX49blc50k2UtYpQ3BTBSE95a6tA6LZ0jeA1q7LavBeCXb1wdvOyPEcezM74Hxb7ymcGtAA12roymGFSYIIhdv0DW-lxiIs9AbSz9gu4M1v-Pgn879KV3v4Dj3-Q3TSqphw1ho/s1600/image.png',
     tags: [
       'Boys',
@@ -1266,7 +1717,28 @@ The small flame in his hand should produce a gentle golden glow across his finge
 CAMERA AND QUALITY:
 Vertical 9:16 composition, complete head-to-toe framing, professional DSLR photography, realistic human anatomy, sharp facial details, cinematic depth of field, natural proportions, premium 4K photographic quality, and lifelike environmental details.
 STRICT FINAL INSTRUCTIONS:
-The uploaded personal photograph determines the person's real face and hairstyle. Do not generate a different identity. Avoid facial alterations, distorted hands, extra fingers, artificial skin smoothing, incorrect body proportions, or cartoon-like effects. The final output must look like an authentic professional nighttime portrait.`,
+The uploaded personal photograph determines the person's real face and hairstyle. Do not generate a different identity. Avoid facial alterations, distorted hands, extra fingers, artificial skin smoothing, incorrect body proportions, or cartoon-like effects. The final output must look like an authentic professional nighttime portrait.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgagzTUZHaOl6WpbQ0DqIUwZQrdzrgNz60aSW0VVR9WXNyM74VP7wY1JKd7wsCPP0vyHtXitssXOWj5gpH01zXzP41B9c4jiZy4znAAz_fdc6Zf5_NFRkcw_Ax1I2j4GYKwRiHtnWHnCOkP30UqPeVdn1J8GbXrmY2p53iu40YwtHL_pLDuDr4yZKGdA-Y/s1600/image.png',
     tags: [
       'Boys',
@@ -1349,7 +1821,28 @@ Typography:
 Add the exact words "Happy Diwali" in large, elegant, three-dimensional metallic gold lettering in the upper background. Use sophisticated decorative typography with realistic golden reflections and subtle glowing highlights. Keep the text clearly readable without covering the person's face.
 Photography & Quality:
 Professional DSLR photography, cinematic composition, realistic human anatomy, natural skin texture, authentic facial details, detailed fabric texture, realistic fireworks illumination, warm golden ambient lighting, beautiful depth of field, balanced exposure, lifelike shadows, rich festive colors, high dynamic range, and exceptionally realistic details.
-Important: The final result must look like a genuine professional photograph, not a digital painting, cartoon, or artificial-looking AI portrait. Maintain the original person's real face and hairstyle with maximum identity consistency.`,
+Important: The final result must look like a genuine professional photograph, not a digital painting, cartoon, or artificial-looking AI portrait. Maintain the original person's real face and hairstyle with maximum identity consistency.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgankApmajhvzriG4_RFThRuV5LOmYqNzm3lLqNIBE4w7rfPLV7l54gyTplnBwrnBGDkgzjkCTAcd-bO6iuyYJXbODZqeYysOjbVfsCg8QSpwJHXejtQrfJ6knIkDcBPWsh8-CT-4YpRHT6zfq0gPFAIkLSmyunp5vbcko1Kns-By8BaSCqGvQgcCX5vD8/s1600/image.png',
     tags: [
       'Boys',
@@ -1424,7 +1917,28 @@ Festive Action: He holds a traditional handmade clay diya in one hand and carefu
 Environment: Decorate the balcony with glowing golden fairy lights, vibrant orange and yellow marigold flower arrangements, traditional clay oil lamps along the railing and floor, decorative lanterns, and elegant green plants. Include a softly illuminated nighttime cityscape in the distance.
 Photography Style: Professional full-frame DSLR photography, realistic skin texture, detailed fabric embroidery, natural body proportions, cinematic golden-hour-inspired lighting at night, beautiful warm reflections, soft background bokeh, balanced highlights, realistic shadows, shallow depth of field, premium editorial photography, ultra-detailed 8K appearance.
 Important: Keep the composition natural and visually believable. Avoid artificial skin smoothing, distorted hands, extra fingers, incorrect anatomy, duplicated objects, cartoon effects, watermarks, logos, and unwanted text.
-Create a completely original photographic composition.`,
+Create a completely original photographic composition.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjAO929HdP61AHpFttEvtfAFMNfp5Di3s1Hb8eGEkU_uwLBhnYPS53UGk6G_6pl7_kE4wtNgcldADU77nGBa6jbsdmQv8Tqx3R6CuKofZQyfZ_TI9CvHhbVmFXD6ggCtN-aklUE2Unz5-Gt8k6TOvftr0s7TpBEUgfpiponm3BATw60PLWqXUDSI1J3nhuR/s1600/image.png',
     tags: [
       'Boys',
@@ -1601,7 +2115,28 @@ QUALITY & REALISM:
 Ultra-photorealistic, highly detailed, professional automotive fashion photography, realistic human anatomy, natural hands and fingers, accurate vehicle geometry, authentic reflections, 8K-quality detail.
 IMPORTANT INSTRUCTIONS:
 Create an original photographic composition. Do not copy any existing photographer's photograph, watermark, logo artwork, or copyrighted image. Use the uploaded photo only as a personal identity reference. Avoid distorted facial features, extra fingers, unnatural body proportions, blurry details, or artificial-looking textures.
-ASPECT RATIO: 9:16`,
+ASPECT RATIO: 9:16
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: '/assets/aistudio/image_615815aa.png',
     tags: ['Boys', 'Automotive', 'Monochrome', 'SUV', 'Streetwear', 'TopDown', 'Trending'],
     isPinned: true,
@@ -1688,7 +2223,28 @@ Avoid artificial skin, distorted facial features, extra fingers, baldness, unnat
 Vertical 3:4 portrait orientation, full-body photograph. Keep the entire person visible from head to shoes while ensuring the massive JAILER 2 billboard remains clearly visible in the background.
 FINAL RESULT
 Create an incredibly realistic, premium cinematic photograph that looks like an actual professional DSLR photograph taken during a major Indian movie premiere celebration on 15 October 2026.
-The person must have a completely natural, thick, stylish modern hairstyle, regardless of whether the original reference photo shows a bald head. Preserve the person's original facial identity while transforming the hairstyle and creating a stunning cinematic movie-premiere atmosphere.`,
+The person must have a completely natural, thick, stylish modern hairstyle, regardless of whether the original reference photo shows a bald head. Preserve the person's original facial identity while transforming the hairstyle and creating a stunning cinematic movie-premiere atmosphere.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
+`,
     imageUrl: '/assets/aistudio/image_ad502c62.png',
     tags: [
       'Boys',

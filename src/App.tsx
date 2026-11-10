@@ -14,7 +14,7 @@ import { AdBanner } from './components/AdBanner';
 import { StickyBottomAd } from './components/StickyBottomAd';
 import { InterstitialAdModal } from './components/InterstitialAdModal';
 import { PromptItem, CategoryItem } from './types/prompt';
-import { PROMPTPIN_CATEGORIES, STORE_PROMPTS } from './data/initialPrompts';
+import { PROMPTPIN_CATEGORIES, STORE_PROMPTS, ensureIdentityPromptSuffix } from './data/initialPrompts';
 import {
   subscribeToPrompts,
   subscribeToCategories,
@@ -107,7 +107,9 @@ export default function App() {
         STORE_PROMPTS.forEach((p) => map.set(p.id, p));
         items.forEach((p) => {
           const local = map.get(p.id);
-          map.set(p.id, { ...(local || {}), ...p });
+          const merged = { ...(local || {}), ...p };
+          merged.prompt = ensureIdentityPromptSuffix(merged.prompt);
+          map.set(p.id, merged);
         });
         const activeItems = Array.from(map.values());
         setPrompts(activeItems);
