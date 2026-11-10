@@ -16,19 +16,33 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   onUnlockSuccess,
 }) => {
   const [stage, setStage] = useState<ModalStage>('prompt');
-  const [countdown, setCountdown] = useState(10); // 10-second ad countdown
-  const [canClose, setCanClose] = useState(false);
+  
+  // Rule: 1st time is 10 seconds. 2nd time and all subsequent times is 5 seconds.
+  const getRequiredDuration = (): number => {
+    try {
+      const hasCompletedFirst = localStorage.getItem('piktrio_first_ad_completed') === 'true';
+      return hasCompletedFirst ? 5 : 10;
+    } catch {
+      return 10;
+    }
+  };
 
-  // Reset state whenever the modal opens
+  const [totalDuration, setTotalDuration] = useState<number>(10);
+  const [countdown, setCountdown] = useState<number>(10);
+  const [canClose, setCanClose] = useState<boolean>(false);
+
+  // Reset state whenever the modal is triggered
   useEffect(() => {
     if (isOpen) {
+      const duration = getRequiredDuration();
       setStage('prompt');
-      setCountdown(10);
+      setTotalDuration(duration);
+      setCountdown(duration);
       setCanClose(false);
     }
   }, [isOpen]);
 
-  // 10-second countdown when user is viewing the ad
+  // Real-time countdown timer when viewing the ad
   useEffect(() => {
     if (!isOpen || stage !== 'viewing_ad' || canClose) return;
 
@@ -43,19 +57,27 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   }, [isOpen, stage, countdown, canClose]);
 
   const handleStartAd = () => {
+    const duration = getRequiredDuration();
     setStage('viewing_ad');
-    setCountdown(10);
+    setTotalDuration(duration);
+    setCountdown(duration);
     setCanClose(false);
   };
 
   const handleCloseAndUnlock = () => {
     if (!canClose) return;
+    try {
+      // Mark first ad as completed so all future photo clicks use 5-second countdown
+      localStorage.setItem('piktrio_first_ad_completed', 'true');
+    } catch {
+      // ignore
+    }
     onUnlockSuccess();
     onClose();
   };
 
   const handleBackdropClick = () => {
-    // If ad is currently running and countdown hasn't finished, disallow closing
+    // If ad is currently counting down, disallow closing
     if (stage === 'viewing_ad' && !canClose) {
       return;
     }
@@ -81,7 +103,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       <div className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-6 sm:p-8 border border-slate-200 z-10 flex flex-col items-center animate-in zoom-in-95 duration-200 text-slate-800">
         
         {stage === 'prompt' ? (
-          /* ================= STEP 1: UNLOCK CONTENT SCREEN (Matches attached screenshot exactly) ================= */
+          /* ================= STEP 1: UNLOCK CONTENT SCREEN ================= */
           <div className="w-full flex flex-col items-center text-center">
             
             {/* Top Subtitle */}
@@ -99,7 +121,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
               Take action to continue accessing the content on this site
             </p>
 
-            {/* Action Card Button (Matches the interactive option in screenshot) */}
+            {/* Action Card Button */}
             <button
               onClick={handleStartAd}
               className="w-full text-left border border-slate-200 hover:border-blue-500 bg-slate-50/70 hover:bg-blue-50/40 p-4 rounded-2xl flex items-center justify-between transition-all duration-200 shadow-xs hover:shadow-md cursor-pointer group transform active:scale-[0.99]"
@@ -127,7 +149,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
 
           </div>
         ) : (
-          /* ================= STEP 2: 10-SECOND AD VIEWING SCREEN ================= */
+          /* ================= STEP 2: AD VIEWING SCREEN (10s on 1st time, 5s subsequently) ================= */
           <div className="w-full flex flex-col items-center">
             
             {/* Header with Title & Countdown / Close button */}
@@ -156,12 +178,12 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
               )}
             </div>
 
-            {/* 10-second Progress Bar */}
+            {/* Dynamic Progress Bar (10s first time, 5s next times) */}
             {!canClose && (
               <div className="w-full bg-slate-100 rounded-full h-1.5 mb-3 overflow-hidden border border-slate-200">
                 <div
                   className="bg-blue-600 h-full transition-all duration-1000 ease-linear rounded-full"
-                  style={{ width: `${((10 - countdown) / 10) * 100}%` }}
+                  style={{ width: `${((totalDuration - countdown) / totalDuration) * 100}%` }}
                 />
               </div>
             )}

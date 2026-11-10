@@ -13,6 +13,7 @@ import { InfoModal, ModalType } from './components/InfoModal';
 import { AdBanner } from './components/AdBanner';
 import { StickyBottomAd } from './components/StickyBottomAd';
 import { InterstitialAdModal } from './components/InterstitialAdModal';
+import { FAQSection } from './components/FAQSection';
 import { PromptItem, CategoryItem } from './types/prompt';
 import { PROMPTPIN_CATEGORIES, STORE_PROMPTS, ensureIdentityPromptSuffix } from './data/initialPrompts';
 import {
@@ -484,6 +485,9 @@ export default function App() {
                 </div>
               )}
             </section>
+
+            {/* 6. Comprehensive Search-Friendly AI Prompts FAQ Section */}
+            <FAQSection />
 
           </div>
         )}

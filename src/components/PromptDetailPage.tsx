@@ -359,6 +359,11 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 </div>
               )}
 
+              {/* 300x250 AdBanner placed directly below Copy Full Prompt button as requested */}
+              <div className="w-full flex justify-center my-3">
+                <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
+              </div>
+
               {/* Open in ChatGPT and Open in Gemini */}
               <div className="grid grid-cols-2 gap-3">
                 <a
