@@ -57,6 +57,10 @@ export default function App() {
   const [selectedPrompt, setSelectedPrompt] = useState<PromptItem | null>(null);
   const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string } | null>(null);
 
+  // Interstitial Ad Modal State triggered strictly on photo click
+  const [isAdModalOpen, setIsAdModalOpen] = useState(false);
+  const [pendingPrompt, setPendingPrompt] = useState<PromptItem | null>(null);
+
   // Toast Notification
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -254,8 +258,8 @@ export default function App() {
     window.scrollTo({ top: 220, behavior: 'smooth' });
   };
 
-  // Open prompt on dedicated page
-  const handleViewPrompt = (prompt: PromptItem) => {
+  // Directly navigate to prompt
+  const navigateToPrompt = (prompt: PromptItem) => {
     setSelectedPrompt(prompt);
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.set('prompt', prompt.id);
@@ -263,6 +267,20 @@ export default function App() {
     document.title = `${prompt.title} – Piktrio`;
     recordPromptView(prompt.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Open prompt on dedicated page: triggered immediately upon clicking any photo
+  const handleViewPrompt = (prompt: PromptItem) => {
+    setPendingPrompt(prompt);
+    setIsAdModalOpen(true);
+  };
+
+  // Successfully watched ad (10s) and unlocked
+  const handleUnlockSuccess = () => {
+    if (pendingPrompt) {
+      navigateToPrompt(pendingPrompt);
+      setPendingPrompt(null);
+    }
   };
 
   // Back to gallery
@@ -492,8 +510,15 @@ export default function App() {
         onClose={() => setActiveModal(null)}
       />
 
-      {/* Entrance Interstitial Pop-up Ad with 12s Countdown Timer */}
-      <InterstitialAdModal />
+      {/* Interstitial Pop-up Ad with 10s Countdown Timer triggered strictly on photo click */}
+      <InterstitialAdModal
+        isOpen={isAdModalOpen}
+        onClose={() => {
+          setIsAdModalOpen(false);
+          setPendingPrompt(null);
+        }}
+        onUnlockSuccess={handleUnlockSuccess}
+      />
 
       {/* Floating Sticky Mobile/Desktop Bottom Ad Banner */}
       <StickyBottomAd />

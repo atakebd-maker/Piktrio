@@ -3,39 +3,34 @@ import { X, Play, Clock, CheckCircle2, Sparkles, ShieldCheck } from 'lucide-reac
 import { AdBanner } from './AdBanner';
 
 interface InterstitialAdModalProps {
-  onClose?: () => void;
+  isOpen: boolean;
+  onClose: () => void;
+  onUnlockSuccess: () => void;
 }
 
 type ModalStage = 'prompt' | 'viewing_ad';
 
-export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({ onClose }) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
+  isOpen,
+  onClose,
+  onUnlockSuccess,
+}) => {
   const [stage, setStage] = useState<ModalStage>('prompt');
   const [countdown, setCountdown] = useState(10); // 10-second ad countdown
   const [canClose, setCanClose] = useState(false);
 
-  // Check if user already unlocked access within the last 24 hours
+  // Reset state whenever the modal opens
   useEffect(() => {
-    try {
-      const unlockedUntil = localStorage.getItem('piktrio_unlock_until');
-      if (unlockedUntil && Number(unlockedUntil) > Date.now()) {
-        return; // Still unlocked
-      }
-    } catch {
-      // Fallback if localStorage is restricted
+    if (isOpen) {
+      setStage('prompt');
+      setCountdown(10);
+      setCanClose(false);
     }
-
-    // Show popup after ~2 seconds of page entrance
-    const timer = setTimeout(() => {
-      setIsOpen(true);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
+  }, [isOpen]);
 
   // 10-second countdown when user is viewing the ad
   useEffect(() => {
-    if (stage !== 'viewing_ad' || canClose) return;
+    if (!isOpen || stage !== 'viewing_ad' || canClose) return;
 
     if (countdown > 0) {
       const timer = setTimeout(() => {
@@ -45,7 +40,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({ onClos
     } else {
       setCanClose(true);
     }
-  }, [stage, countdown, canClose]);
+  }, [isOpen, stage, countdown, canClose]);
 
   const handleStartAd = () => {
     setStage('viewing_ad');
@@ -53,33 +48,33 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({ onClos
     setCanClose(false);
   };
 
-  const handleClose = () => {
+  const handleCloseAndUnlock = () => {
     if (!canClose) return;
-    setIsOpen(false);
-    try {
-      // Grant 24 hours access
-      const expireTime = Date.now() + 24 * 60 * 60 * 1000;
-      localStorage.setItem('piktrio_unlock_until', expireTime.toString());
-      sessionStorage.setItem('piktrio_unlock_session', 'true');
-    } catch {
-      // Fallback
+    onUnlockSuccess();
+    onClose();
+  };
+
+  const handleBackdropClick = () => {
+    // If ad is currently running and countdown hasn't finished, disallow closing
+    if (stage === 'viewing_ad' && !canClose) {
+      return;
     }
-    onClose?.();
+    if (stage === 'viewing_ad' && canClose) {
+      handleCloseAndUnlock();
+    } else {
+      onClose();
+    }
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200">
       
       {/* Background Overlay */}
       <div 
         className="fixed inset-0"
-        onClick={() => {
-          if (stage === 'viewing_ad' && canClose) {
-            handleClose();
-          }
-        }}
+        onClick={handleBackdropClick}
       />
 
       {/* Main Modal Dialog Box */}
@@ -145,10 +140,10 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({ onClos
               {/* Countdown / Close Button */}
               {canClose ? (
                 <button
-                  onClick={handleClose}
-                  aria-label="Close ad"
-                  className="flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all cursor-pointer shadow-md transform active:scale-95 animate-pulse"
-                  title="Close Ad & Unlock Content"
+                  onClick={handleCloseAndUnlock}
+                  aria-label="Close ad and view content"
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all cursor-pointer shadow-md transform active:scale-95 animate-pulse"
+                  title="Close Ad & View Prompt"
                 >
                   <X className="w-3.5 h-3.5 stroke-[2.5]" />
                   <span>Close &amp; Unlock</span>
@@ -187,7 +182,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({ onClos
                 </div>
               ) : (
                 <p className="text-[11px] text-slate-400">
-                  Please wait {countdown} seconds to unlock 24-hour site-wide access &bull; Thank you for supporting Piktrio
+                  Please wait {countdown} seconds to unlock full photo prompt details &bull; BengalAds
                 </p>
               )}
             </div>
