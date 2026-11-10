@@ -107,6 +107,28 @@ const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
     <priority>0.7</priority>
   </url>
 
+  <!-- Collections -->
+  <url>
+    <loc>${siteUrl}/collection/diwali-ai-photo-editing-prompt</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>${siteUrl}/collection/ai-photo-prompts-for-boys</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>${siteUrl}/collection/trending-ai-photo-prompts</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
 ${promptEntries}
 </urlset>
 `;

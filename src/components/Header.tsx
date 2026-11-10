@@ -1,11 +1,14 @@
 import React from 'react';
 import { Menu, Sparkles } from 'lucide-react';
 import { ModalType } from './InfoModal';
+import { CollectionInfo } from '../types/prompt';
+import { COLLECTIONS_LIST } from '../data/initialPrompts';
 
 interface HeaderProps {
   onOpenMenu: () => void;
   onHomeClick: () => void;
   onSelectCategory?: (categoryName: string) => void;
+  onSelectCollection?: (collection: CollectionInfo) => void;
   onOpenModal?: (type: ModalType) => void;
 }
 
@@ -13,6 +16,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenMenu,
   onHomeClick,
   onSelectCategory,
+  onSelectCollection,
   onOpenModal,
 }) => {
   return (
@@ -81,11 +85,15 @@ export const Header: React.FC<HeaderProps> = ({
             </a>
 
             <a
-              href="/?category=diwali"
+              href="/collection/diwali-ai-photo-editing-prompt"
               onClick={(e) => {
                 if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
                   e.preventDefault();
-                  onSelectCategory?.('Diwali AI photo editing prompt');
+                  if (onSelectCollection) {
+                    onSelectCollection(COLLECTIONS_LIST[0]);
+                  } else {
+                    onSelectCategory?.('Diwali AI photo editing prompt');
+                  }
                 }
               }}
               className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-300 transition-colors cursor-pointer no-underline"

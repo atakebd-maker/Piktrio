@@ -17,11 +17,22 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
 }) => {
   const [stage, setStage] = useState<ModalStage>('prompt');
   
-  // Rule: 1st time is 10 seconds. 2nd time and all subsequent times is 5 seconds.
+  // User Session Ad Countdown Rules:
+  // Reset on leaving website and re-entering (new session): uses sessionStorage.
+  // 1st click: 10 seconds
+  // 2nd click: 5 seconds
+  // 3rd click: 3 seconds
+  // 4th click: 5 seconds
+  // 5th click and every subsequent click: 6 seconds
   const getRequiredDuration = (): number => {
     try {
-      const hasCompletedFirst = localStorage.getItem('piktrio_first_ad_completed') === 'true';
-      return hasCompletedFirst ? 5 : 10;
+      const countStr = sessionStorage.getItem('piktrio_session_ad_click_count');
+      const clickCount = countStr ? parseInt(countStr, 10) : 0;
+      if (clickCount === 0) return 10;
+      if (clickCount === 1) return 5;
+      if (clickCount === 2) return 3;
+      if (clickCount === 3) return 5;
+      return 6; // 5th click and all subsequent clicks
     } catch {
       return 10;
     }
@@ -67,8 +78,11 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   const handleCloseAndUnlock = () => {
     if (!canClose) return;
     try {
-      // Mark first ad as completed so all future photo clicks use 5-second countdown
-      localStorage.setItem('piktrio_first_ad_completed', 'true');
+      const countStr = sessionStorage.getItem('piktrio_session_ad_click_count');
+      const currentCount = countStr ? parseInt(countStr, 10) : 0;
+      sessionStorage.setItem('piktrio_session_ad_click_count', (currentCount + 1).toString());
+      // Clean legacy localStorage key if present
+      localStorage.removeItem('piktrio_first_ad_completed');
     } catch {
       // ignore
     }

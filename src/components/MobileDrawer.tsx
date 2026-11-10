@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { X, ChevronDown, ChevronUp, Sparkles, FolderHeart } from 'lucide-react';
 import { PROMPTPIN_CATEGORIES, COLLECTIONS_LIST } from '../data/initialPrompts';
+import { CollectionInfo } from '../types/prompt';
 import { ModalType } from './InfoModal';
 
 interface MobileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectCategory: (categoryName: string) => void;
+  onSelectCollection?: (collection: CollectionInfo) => void;
   onOpenModal?: (type: ModalType) => void;
 }
 
@@ -14,6 +16,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   isOpen,
   onClose,
   onSelectCategory,
+  onSelectCollection,
   onOpenModal,
 }) => {
   const [categoriesOpen, setCategoriesOpen] = useState(true);
@@ -96,7 +99,11 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     <button
                       key={col.label}
                       onClick={() => {
-                        onSelectCategory(col.cat);
+                        if (onSelectCollection) {
+                          onSelectCollection(col);
+                        } else {
+                          onSelectCategory(col.cat);
+                        }
                         onClose();
                       }}
                       className={`w-full text-left py-2 px-3 rounded-xl transition-all cursor-pointer flex items-center justify-between ${

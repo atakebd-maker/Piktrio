@@ -37,3 +37,13 @@ export interface FilterState {
   selectedModel: string;
   sortBy: SortOption;
 }
+
+export interface CollectionInfo {
+  id: string;
+  label: string;
+  slug: string;
+  cat: string;
+  title: string;
+  description: string;
+}
+

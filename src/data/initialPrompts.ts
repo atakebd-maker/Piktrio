@@ -1,4 +1,4 @@
-import { CategoryItem, PromptItem } from '../types/prompt';
+import { CategoryItem, PromptItem, CollectionInfo } from '../types/prompt';
 
 /**
  * Standard categories strictly requested by the user:
@@ -43,10 +43,31 @@ export const ensureIdentityPromptSuffix = (promptText: string): string => {
   return `${promptText.trim()}\n\n${STRICT_IDENTITY_PROMPT_SUFFIX}`;
 };
 
-export const COLLECTIONS_LIST = [
-  { label: 'Diwali AI photo editing prompt', cat: 'Diwali AI photo editing prompt' },
-  { label: 'AI Photo Prompts for Boys', cat: 'Boys' },
-  { label: 'Trending AI Photo Prompts', cat: 'Trending' },
+export const COLLECTIONS_LIST: CollectionInfo[] = [
+  {
+    id: 'diwali',
+    label: 'Diwali AI photo editing prompt',
+    slug: 'diwali-ai-photo-editing-prompt',
+    cat: 'diwali',
+    title: 'Diwali AI Photo Editing Prompts Collection',
+    description: 'Explore the complete viral collection of royal Diwali ethnic kurta, navy blue sherwani, palace courtyard, sparklers, and festive night fireworks prompts for ChatGPT and Google Gemini with 100% natural facial identity preservation.',
+  },
+  {
+    id: 'boys',
+    label: 'AI Photo Prompts for Boys',
+    slug: 'ai-photo-prompts-for-boys',
+    cat: 'boys',
+    title: 'AI Photo Prompts for Boys & Men Collection',
+    description: 'Trending, ultra-realistic portrait prompts for boys including Mahindra Thar SUV, Korean messy hairstyles, luxury street fashion, and cinematic photography for ChatGPT & Gemini.',
+  },
+  {
+    id: 'trending',
+    label: 'Trending AI Photo Prompts',
+    slug: 'trending-ai-photo-prompts',
+    cat: 'trending',
+    title: 'Trending Viral AI Photo Editing Prompts Collection',
+    description: 'The most popular, highly shared, and viral AI photo editing prompts across social media platforms, curated for instant copy-paste into ChatGPT and Google Gemini.',
+  },
 ];
 
 export const STORE_PROMPTS: PromptItem[] = [

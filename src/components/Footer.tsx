@@ -1,10 +1,11 @@
-import React from 'react';
 import { COLLECTIONS_LIST } from '../data/initialPrompts';
+import { CollectionInfo } from '../types/prompt';
 import { ModalType } from './InfoModal';
 import { Sparkles } from 'lucide-react';
 
 interface FooterProps {
   onSelectCategory: (categoryName: string) => void;
+  onSelectCollection?: (collection: CollectionInfo) => void;
   onOpenModal?: (type: ModalType) => void;
 }
 
@@ -16,7 +17,7 @@ const MENU_ITEMS: { name: string; type?: ModalType; isHome?: boolean }[] = [
   { name: 'Terms & Conditions', type: 'terms' },
 ];
 
-export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onOpenModal }) => {
+export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onSelectCollection, onOpenModal }) => {
   return (
     <footer className="bg-white border-t border-slate-200 mt-16 pt-12 pb-10 text-center select-none">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -58,8 +59,12 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onOpenModal })
                 <button
                   key={item.label}
                   onClick={() => {
-                    onSelectCategory(item.cat);
-                    window.scrollTo({ top: 260, behavior: 'smooth' });
+                    if (onSelectCollection) {
+                      onSelectCollection(item);
+                    } else {
+                      onSelectCategory(item.cat);
+                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-1.5 shadow-xs ${
                     isDiwali

@@ -38,6 +38,28 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Collections -->
+  <url>
+    <loc>https://piktrio.vercel.app/collection/diwali-ai-photo-editing-prompt</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://piktrio.vercel.app/collection/ai-photo-prompts-for-boys</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://piktrio.vercel.app/collection/trending-ai-photo-prompts</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- Prompt: Cinematic Sunset Portrait with a Horse and Black Thar SUV -->
   <url>
     <loc>https://piktrio.vercel.app/prompt/cinematic-sunset-portrait-horse-thar-suv</loc>

@@ -14,8 +14,9 @@ import { AdBanner } from './components/AdBanner';
 import { StickyBottomAd } from './components/StickyBottomAd';
 import { InterstitialAdModal } from './components/InterstitialAdModal';
 import { FAQSection } from './components/FAQSection';
-import { PromptItem, CategoryItem } from './types/prompt';
-import { PROMPTPIN_CATEGORIES, STORE_PROMPTS, ensureIdentityPromptSuffix } from './data/initialPrompts';
+import { CollectionPage } from './components/CollectionPage';
+import { PromptItem, CategoryItem, CollectionInfo } from './types/prompt';
+import { PROMPTPIN_CATEGORIES, STORE_PROMPTS, COLLECTIONS_LIST, ensureIdentityPromptSuffix } from './data/initialPrompts';
 import {
   subscribeToPrompts,
   subscribeToCategories,
@@ -56,6 +57,7 @@ export default function App() {
 
   // Dedicated Prompt Details Page State
   const [selectedPrompt, setSelectedPrompt] = useState<PromptItem | null>(null);
+  const [selectedCollection, setSelectedCollection] = useState<CollectionInfo | null>(null);
   const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string } | null>(null);
 
   // Interstitial Ad Modal State triggered strictly on photo click
@@ -90,6 +92,19 @@ export default function App() {
         targetPromptId = decodeURIComponent(pathname.replace('/prompt/', '').replace(/\/$/, ''));
       }
 
+      let targetCollection: CollectionInfo | null = null;
+      const collectionParam = searchParams.get('collection');
+      if (collectionParam) {
+        targetCollection = COLLECTIONS_LIST.find(
+          (c) => c.id.toLowerCase() === collectionParam.toLowerCase() || c.slug.toLowerCase() === collectionParam.toLowerCase()
+        ) || null;
+      } else if (pathname.startsWith('/collection/')) {
+        const slug = decodeURIComponent(pathname.replace('/collection/', '').replace(/\/$/, ''));
+        targetCollection = COLLECTIONS_LIST.find(
+          (c) => c.slug.toLowerCase() === slug.toLowerCase() || c.id.toLowerCase() === slug.toLowerCase()
+        ) || null;
+      }
+
       if (targetPromptId) {
         const match = items.find((p) => p.id === targetPromptId) || STORE_PROMPTS.find((p) => p.id === targetPromptId);
         if (match) {
@@ -98,7 +113,13 @@ export default function App() {
         }
       } else {
         setSelectedPrompt(null);
-        resetHomeMeta();
+        if (targetCollection) {
+          setSelectedCollection(targetCollection);
+          document.title = `${targetCollection.title} – Piktrio`;
+        } else {
+          setSelectedCollection(null);
+          resetHomeMeta();
+        }
       }
 
       if (catParam) {
@@ -314,12 +335,36 @@ export default function App() {
     }
   };
 
-  // Back to gallery
-  const handleBackToGallery = () => {
+  // Directly navigate to collection dedicated page
+  const navigateToCollection = (col: CollectionInfo) => {
     setSelectedPrompt(null);
+    setSelectedCollection(col);
+    const newUrl = `/collection/${encodeURIComponent(col.slug)}`;
+    window.history.pushState({ collectionSlug: col.slug }, '', newUrl);
+    document.title = `${col.title} – Piktrio`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Back from collection to homepage
+  const handleBackFromCollection = () => {
+    setSelectedCollection(null);
     window.history.pushState({}, '', '/');
     resetHomeMeta();
-    window.scrollTo({ top: 240, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Back to gallery (or back to collection if viewing from collection)
+  const handleBackToGallery = () => {
+    setSelectedPrompt(null);
+    if (selectedCollection) {
+      const newUrl = `/collection/${encodeURIComponent(selectedCollection.slug)}`;
+      window.history.pushState({ collectionSlug: selectedCollection.slug }, '', newUrl);
+      document.title = `${selectedCollection.title} – Piktrio`;
+    } else {
+      window.history.pushState({}, '', '/');
+      resetHomeMeta();
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Copy prompt action
@@ -331,6 +376,7 @@ export default function App() {
   // Category selection with clean URL query params (no hash fragments) for SEO
   const handleSelectCategory = (catName: string) => {
     setSelectedPrompt(null);
+    setSelectedCollection(null);
     setSelectedCategory(catName);
     setSearchQuery('');
     setCurrentPage(1);
@@ -338,6 +384,7 @@ export default function App() {
     const searchParams = new URLSearchParams(window.location.search);
     searchParams.delete('prompt');
     searchParams.delete('p');
+    searchParams.delete('collection');
     if (catName.toLowerCase() === 'all') {
       searchParams.delete('category');
       searchParams.delete('c');
@@ -345,7 +392,7 @@ export default function App() {
       searchParams.set('category', catName.toLowerCase());
     }
     const newSearch = searchParams.toString();
-    const newUrl = window.location.pathname + (newSearch ? `?${newSearch}` : '');
+    const newUrl = '/' + (newSearch ? `?${newSearch}` : '');
     window.history.pushState({}, '', newUrl);
     window.location.hash = '';
 
@@ -359,10 +406,11 @@ export default function App() {
   // Home navigation
   const handleHomeClick = () => {
     setSelectedPrompt(null);
+    setSelectedCollection(null);
     setSelectedCategory('All');
     setSearchQuery('');
     setCurrentPage(1);
-    window.history.pushState({}, '', window.location.pathname);
+    window.history.pushState({}, '', '/');
     window.location.hash = '';
     resetHomeMeta();
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -376,6 +424,7 @@ export default function App() {
         onOpenMenu={() => setIsMenuOpen(true)}
         onHomeClick={handleHomeClick}
         onSelectCategory={handleSelectCategory}
+        onSelectCollection={navigateToCollection}
         onOpenModal={(type) => setActiveModal(type)}
       />
 
@@ -387,13 +436,14 @@ export default function App() {
           handleSelectCategory(catName);
           window.scrollTo({ top: 240, behavior: 'smooth' });
         }}
+        onSelectCollection={navigateToCollection}
         onOpenModal={(type) => setActiveModal(type)}
       />
 
       {/* Main Content Area */}
       <main className="flex-1 w-full">
         
-        {/* CONDITIONAL RENDERING: Dedicated Prompt Details Page OR Home Gallery */}
+        {/* CONDITIONAL RENDERING: Dedicated Prompt Details Page OR Collection Page OR Home Gallery */}
         {selectedPrompt ? (
           /* DEDICATED PROMPT DETAILS PAGE (Opened upon clicking any image) */
           <PromptDetailPage
@@ -403,6 +453,17 @@ export default function App() {
             onCopyPrompt={handleCopyPrompt}
             onSelectPrompt={handleViewPrompt}
             allPrompts={prompts}
+          />
+        ) : selectedCollection ? (
+          /* DEDICATED COLLECTION PAGE (Opened upon clicking any collection in Footer/Drawer/Header) */
+          <CollectionPage
+            collection={selectedCollection}
+            allPrompts={prompts}
+            allCollections={COLLECTIONS_LIST}
+            onBack={handleBackFromCollection}
+            onSelectPrompt={handleViewPrompt}
+            onCopyPrompt={handleCopyPrompt}
+            onSelectCollection={navigateToCollection}
           />
         ) : (
           /* HOMEPAGE GALLERY VIEW (Matching Clean White & Blue) */
@@ -531,6 +592,7 @@ export default function App() {
           handleSelectCategory(catName);
           window.scrollTo({ top: 220, behavior: 'smooth' });
         }}
+        onSelectCollection={navigateToCollection}
         onOpenModal={(type) => setActiveModal(type)}
       />
 
