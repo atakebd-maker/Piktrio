@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   ArrowLeft,
   Copy,
@@ -10,6 +10,7 @@ import {
   Maximize2,
   CheckCircle2,
   Clock,
+  Lock,
 } from 'lucide-react';
 import { PromptItem } from '../types/prompt';
 import { copyToClipboard } from '../utils/clipboard';
@@ -82,6 +83,21 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
         // Keep in green "ready" state so user can re-copy anytime without another countdown
         setCopyStatus('ready');
       }, 2500);
+    }
+  };
+
+  // Only show the beginning teaser snippet of the prompt so users cannot bypass ad countdown
+  const promptPreview = useMemo(() => {
+    const raw = (prompt.prompt || '').trim();
+    if (raw.length <= 130) return raw;
+    return raw.slice(0, 130) + '...';
+  }, [prompt.prompt]);
+
+  // Guard external buttons so visitors must unlock via countdown
+  const handleOpenExternal = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (copyStatus !== 'ready' && copyStatus !== 'copied') {
+      e.preventDefault();
+      handleCopyButtonClick();
     }
   };
 
@@ -281,8 +297,8 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             {/* Ad above prompt box */}
             <AdBanner format="300x250" label="Sponsored Ad" className="my-2" />
 
-            {/* Complete English AI Prompt in High Contrast Box */}
-            <div className="space-y-2">
+            {/* Compact Protected English AI Prompt Box */}
+            <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-blue-600" />
@@ -304,12 +320,40 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                     ? 'Click to Copy Now'
                     : copyStatus === 'copied'
                     ? 'Copied!'
-                    : 'Copy'}
+                    : 'Copy Full'}
                 </button>
               </div>
 
-              <div className="relative bg-slate-900 text-slate-100 rounded-2xl p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed border border-slate-800 shadow-md selection:bg-blue-600">
-                <p className="whitespace-pre-wrap select-all">{prompt.prompt}</p>
+              {/* Much smaller prompt box: only initial snippet visible with bottom gradient lock */}
+              <div className="relative bg-slate-900 text-slate-100 rounded-xl p-3 sm:p-3.5 font-mono text-xs leading-relaxed border border-slate-800 shadow-md select-none overflow-hidden max-h-[84px]">
+                <p className="text-slate-300 opacity-90 font-mono tracking-wide line-clamp-2">
+                  {promptPreview}
+                </p>
+
+                {/* Bottom gradient fade-out with lock status badge */}
+                <div className="absolute inset-x-0 bottom-0 h-9 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent flex items-end justify-center pb-1">
+                  {copyStatus === 'copied' ? (
+                    <span className="text-[10px] font-sans font-bold text-emerald-400 flex items-center gap-1 bg-slate-900/90 px-2.5 py-0.5 rounded-full border border-emerald-500/40">
+                      <CheckCircle2 className="w-2.5 h-2.5 text-emerald-400" />
+                      <span>Full prompt unlocked &amp; copied!</span>
+                    </span>
+                  ) : copyStatus === 'ready' ? (
+                    <span className="text-[10px] font-sans font-bold text-emerald-300 flex items-center gap-1 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 animate-pulse">
+                      <Sparkles className="w-2.5 h-2.5 text-emerald-300" />
+                      <span>Ready &bull; Click &quot;Click to Copy Now&quot; below</span>
+                    </span>
+                  ) : copyStatus === 'counting' ? (
+                    <span className="text-[10px] font-sans font-bold text-amber-400 flex items-center gap-1 bg-slate-900/90 px-2.5 py-0.5 rounded-full border border-amber-500/40">
+                      <Clock className="w-2.5 h-2.5 text-amber-400 animate-spin" />
+                      <span>Unlocking prompt in {countdown}s...</span>
+                    </span>
+                  ) : (
+                    <span className="text-[10px] font-sans font-bold text-amber-300/90 flex items-center gap-1 bg-slate-950/90 px-2.5 py-0.5 rounded-full border border-amber-500/30">
+                      <Lock className="w-2.5 h-2.5 text-amber-400" />
+                      <span>Full prompt locked &bull; Tap &quot;Copy Full Prompt&quot; below</span>
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -373,6 +417,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                   href={`https://chatgpt.com/?q=${encodeURIComponent(prompt.prompt)}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleOpenExternal}
                   className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-emerald-50/50 hover:border-emerald-300 text-slate-800 hover:text-emerald-700 text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs no-underline"
                 >
                   <ChatGptIcon className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -383,6 +428,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                   href={`https://gemini.google.com/?q=${encodeURIComponent(prompt.prompt)}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={handleOpenExternal}
                   className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 text-slate-800 hover:text-blue-700 text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs no-underline"
                 >
                   <GeminiIcon className="w-4 h-4 text-blue-600 shrink-0" />
