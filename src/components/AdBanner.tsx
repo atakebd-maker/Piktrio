@@ -17,11 +17,11 @@ export const AdBanner: React.FC<AdBannerProps> = ({
   const cleanId = rawId.replace(/[^a-zA-Z0-9_-]/g, '_');
   const is300x250 = format === '300x250';
   const width = is300x250 ? 300 : 320;
-  const height = is300x250 ? 280 : 70;
+  const height = is300x250 ? 250 : 50;
   const adUrl = is300x250 ? '/bengalads-300x250.html' : '/bengalads-320x50.html';
 
   return (
-    <div className={`flex flex-col items-center justify-center my-3 w-full ${className}`}>
+    <div className={`flex flex-col items-center justify-center my-2.5 w-full ${className}`}>
       {label && (
         <span className="text-[10px] tracking-wider uppercase font-semibold text-slate-400 mb-1 select-none">
           {label}
@@ -31,8 +31,9 @@ export const AdBanner: React.FC<AdBannerProps> = ({
         style={{
           width: `${width}px`,
           height: `${height}px`,
+          maxWidth: '100%',
         }}
-        className="max-w-full rounded-2xl bg-white border border-slate-200/90 shadow-xs flex flex-col items-center justify-center p-1 overflow-hidden"
+        className="flex items-center justify-center overflow-hidden rounded-xl shadow-2xs"
       >
         <iframe
           id={cleanId}
@@ -47,8 +48,9 @@ export const AdBanner: React.FC<AdBannerProps> = ({
             width: `${width}px`,
             height: `${height}px`,
             maxWidth: '100%',
-            overflow: 'hidden',
+            maxHeight: `${height}px`,
             display: 'block',
+            overflow: 'hidden',
           }}
         />
       </div>

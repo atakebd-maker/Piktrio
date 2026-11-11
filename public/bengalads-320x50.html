@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=320, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="referrer" content="origin">
   <title>Advertisement</title>
   <style>
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     html, body {
-      width: 100%;
-      height: 100%;
+      width: 320px;
+      height: 50px;
       margin: 0;
       padding: 0;
       background: transparent;
@@ -23,6 +23,7 @@
       justify-content: center;
       overflow: hidden;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
     #ad-wrapper {
       position: relative;
@@ -35,15 +36,42 @@
       justify-content: center;
       background: #ffffff;
       border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
     }
     #zone-08b7db13a6d76ff83899aa3766f3e1deb91abd17 {
       width: 320px;
-      min-height: 50px;
+      height: 50px;
+      max-width: 320px;
+      max-height: 50px;
       display: flex !important;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
       z-index: 2;
+    }
+    /* STRICT FIX FOR ZOOMED ADS: ensure any image or banner scales cleanly without cropping or zooming */
+    #zone-08b7db13a6d76ff83899aa3766f3e1deb91abd17 img,
+    #zone-08b7db13a6d76ff83899aa3766f3e1deb91abd17 a,
+    #zone-08b7db13a6d76ff83899aa3766f3e1deb91abd17 iframe,
+    #zone-08b7db13a6d76ff83899aa3766f3e1deb91abd17 svg,
+    #ad-wrapper img,
+    #ad-wrapper iframe {
+      max-width: 100% !important;
+      max-height: 100% !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+      display: block !important;
+      margin: 0 auto !important;
+    }
+    #zone-08b7db13a6d76ff83899aa3766f3e1deb91abd17 a {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      height: 100% !important;
+      text-decoration: none !important;
     }
     #fallback-ad {
       position: absolute;
@@ -57,6 +85,8 @@
       text-decoration: none;
       border-radius: 8px;
       z-index: 1;
+      width: 100%;
+      height: 100%;
     }
     .ad-text {
       display: flex;

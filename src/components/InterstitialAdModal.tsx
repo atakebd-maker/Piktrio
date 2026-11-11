@@ -93,10 +93,10 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       />
 
       {/* Main Full-Screen Interstitial Ad Dialog */}
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-sm sm:max-w-md w-full p-5 sm:p-7 border border-slate-200 z-10 flex flex-col items-center animate-in zoom-in-95 duration-200 text-slate-800">
+      <div className="relative bg-white rounded-3xl shadow-2xl max-w-[340px] sm:max-w-md w-full p-4 sm:p-6 border border-slate-200 z-10 flex flex-col items-center animate-in fade-in duration-200 text-slate-800">
         
         {/* Header with Title & Live Countdown / Close Button */}
-        <div className="w-full flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+        <div className="w-full flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-100">
           <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
             <Sparkles className="w-4 h-4 text-amber-500" />
             <span>Advertisement &bull; BengalAds Partner</span>
@@ -122,7 +122,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
         </div>
 
         {/* Dynamic Progress Bar */}
-        <div className="w-full bg-slate-100 rounded-full h-1.5 mb-3 overflow-hidden border border-slate-200">
+        <div className="w-full bg-slate-100 rounded-full h-1.5 mb-2.5 overflow-hidden border border-slate-200">
           <div
             className={`h-full transition-all duration-1000 ease-linear rounded-full ${
               canClose ? 'bg-emerald-500 w-full' : 'bg-blue-600'
@@ -132,7 +132,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
         </div>
 
         {/* Center 300x250 BengalAds Ad Widget */}
-        <div className="w-full flex items-center justify-center my-2 min-h-[260px]">
+        <div className="w-full flex items-center justify-center my-1">
           <AdBanner format="300x250" label="" className="my-0" />
         </div>
 

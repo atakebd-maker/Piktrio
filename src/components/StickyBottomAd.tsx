@@ -10,7 +10,7 @@ export const StickyBottomAd: React.FC = () => {
 
   return (
     <aside aria-label="Advertisement" className="fixed bottom-0 left-0 right-0 z-40 flex justify-center pointer-events-none pb-1 sm:pb-2">
-      <div className="pointer-events-auto relative bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-t-2xl sm:rounded-2xl border border-slate-200 shadow-xl flex flex-col items-center">
+      <div className="pointer-events-auto relative bg-white/95 backdrop-blur-md px-2 py-1 rounded-t-xl sm:rounded-xl border border-slate-200 shadow-xl flex flex-col items-center max-w-full">
         {/* Controls */}
         <div className="w-full flex items-center justify-between px-1 mb-0.5 text-[10px] text-slate-400 font-medium">
           <span className="uppercase tracking-wider">Sponsored</span>
@@ -33,7 +33,7 @@ export const StickyBottomAd: React.FC = () => {
         </div>
 
         {!isMinimized && (
-          <div className="min-w-[320px] max-w-full flex items-center justify-center">
+          <div className="w-full max-w-full flex items-center justify-center overflow-hidden">
             <AdBanner label="" className="my-0" format="320x50" />
           </div>
         )}
