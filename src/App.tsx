@@ -264,19 +264,16 @@ export default function App() {
       return true;
     });
 
-    // 1) Pinned posts first, 2) Newest posts first
+    // 1) Newest posts first (timestamp descending), 2) Pinned priority for same timestamp
     return list.sort((a, b) => {
-      const aPinned = a.isPinned ? 1 : 0;
-      const bPinned = b.isPinned ? 1 : 0;
-      if (aPinned !== bPinned) {
-        return bPinned - aPinned; // Pinned (1) comes before unpinned (0)
-      }
       const aTime = getPromptTimestamp(a);
       const bTime = getPromptTimestamp(b);
       if (aTime !== bTime) {
-        return bTime - aTime; // Newest timestamp first
+        return bTime - aTime; // Newest posts first!
       }
-      return 0;
+      const aPinned = a.isPinned ? 1 : 0;
+      const bPinned = b.isPinned ? 1 : 0;
+      return bPinned - aPinned;
     });
   }, [prompts, selectedCategory, searchQuery]);
 

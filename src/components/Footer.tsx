@@ -1,11 +1,13 @@
+import React from 'react';
 import { COLLECTIONS_LIST } from '../data/initialPrompts';
 import { CollectionInfo } from '../types/prompt';
 import { ModalType } from './InfoModal';
 import { Sparkles } from 'lucide-react';
+import { ChatGptIcon, GeminiIcon } from './AiIcons';
 
 interface FooterProps {
   onSelectCategory: (categoryName: string) => void;
-  onSelectCollection?: (collection: CollectionInfo) => void;
+  onSelectCollection: (collection: CollectionInfo) => void;
   onOpenModal?: (type: ModalType) => void;
 }
 
@@ -31,6 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onSelectCollec
             {MENU_ITEMS.map((item) => (
               <button
                 key={item.name}
+                type="button"
                 onClick={() => {
                   if (item.isHome) {
                     onSelectCategory('All');
@@ -47,7 +50,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onSelectCollec
           </div>
         </div>
 
-        {/* SECTION 2: COLLECTIONS (Includes Diwali AI photo editing prompt) */}
+        {/* SECTION 2: COLLECTIONS (Triggers dedicated navigateToCollection page) */}
         <div className="mb-10">
           <h4 className="text-xs font-bold text-slate-400 tracking-widest uppercase mb-4">
             COLLECTIONS
@@ -56,17 +59,17 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onSelectCollec
             {COLLECTIONS_LIST.map((item) => {
               const isDiwali = item.label.toLowerCase().includes('diwali');
               return (
-                <button
-                  key={item.label}
-                  onClick={() => {
-                    if (onSelectCollection) {
+                <a
+                  key={item.slug}
+                  href={`/collection/${encodeURIComponent(item.slug)}`}
+                  onClick={(e) => {
+                    if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                      e.preventDefault();
+                      e.stopPropagation();
                       onSelectCollection(item);
-                    } else {
-                      onSelectCategory(item.cat);
                     }
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-1.5 shadow-xs ${
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-1.5 shadow-xs no-underline ${
                     isDiwali
                       ? 'bg-amber-50 text-amber-800 border border-amber-300 font-bold hover:bg-amber-100'
                       : 'bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200 hover:border-blue-300'
@@ -79,16 +82,29 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onSelectCollec
                       Hot
                     </span>
                   )}
-                </button>
+                </a>
               );
             })}
           </div>
         </div>
 
-        {/* SECTION 3: COPYRIGHT */}
+        {/* SECTION 3: COPYRIGHT & AI MODEL BADGES */}
         <div className="pt-6 border-t border-slate-200 flex flex-col items-center gap-3 text-xs text-slate-500">
+          <div className="flex items-center gap-2 text-slate-600 font-medium">
+            <span>Curated AI Image Prompts for</span>
+            <span className="inline-flex items-center gap-1 font-bold text-slate-800">
+              <ChatGptIcon className="w-3.5 h-3.5 text-emerald-600" />
+              <span>ChatGPT</span>
+            </span>
+            <span>&bull;</span>
+            <span className="inline-flex items-center gap-1 font-bold text-slate-800">
+              <GeminiIcon className="w-3.5 h-3.5 text-blue-600" />
+              <span>Gemini</span>
+            </span>
+          </div>
+
           <p className="max-w-xl text-center leading-relaxed">
-            &copy; {new Date().getFullYear()} Piktrio. All rights reserved. Curated AI image prompts for ChatGPT &amp; Gemini. &mdash;{' '}
+            &copy; {new Date().getFullYear()} Piktrio. All rights reserved. &mdash;{' '}
             <span
               onClick={() => onOpenModal?.('terms')}
               className="text-blue-600 hover:underline cursor-pointer font-medium"

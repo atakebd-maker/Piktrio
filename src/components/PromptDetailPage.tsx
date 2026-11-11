@@ -15,6 +15,7 @@ import { PromptItem } from '../types/prompt';
 import { copyToClipboard } from '../utils/clipboard';
 import { PromptCard } from './PromptCard';
 import { AdBanner } from './AdBanner';
+import { ChatGptIcon, GeminiIcon } from './AiIcons';
 import ReactMarkdown from 'react-markdown';
 
 interface PromptDetailPageProps {
@@ -211,8 +212,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               {prompt.category}
             </span>
             {prompt.model && (
-              <span className="px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700 border border-slate-200">
-                {prompt.model}
+              <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 flex items-center gap-1.5 shadow-2xs">
+                <ChatGptIcon className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <GeminiIcon className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                <span>{prompt.model}</span>
               </span>
             )}
           </div>
@@ -370,9 +373,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                   href={`https://chatgpt.com/?q=${encodeURIComponent(prompt.prompt)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-xs no-underline"
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-emerald-50/50 hover:border-emerald-300 text-slate-800 hover:text-emerald-700 text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs no-underline"
                 >
-                  <Bot className="w-4 h-4 text-emerald-600" />
+                  <ChatGptIcon className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>Open in ChatGPT</span>
                 </a>
 
@@ -380,9 +383,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                   href={`https://gemini.google.com/?q=${encodeURIComponent(prompt.prompt)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-xs sm:text-sm font-semibold transition-all cursor-pointer shadow-xs no-underline"
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 text-slate-800 hover:text-blue-700 text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs no-underline"
                 >
-                  <Sparkles className="w-4 h-4 text-blue-600" />
+                  <GeminiIcon className="w-4 h-4 text-blue-600 shrink-0" />
                   <span>Open in Gemini</span>
                 </a>
               </div>

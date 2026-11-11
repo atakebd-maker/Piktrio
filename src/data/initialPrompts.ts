@@ -111,7 +111,7 @@ export const STORE_PROMPTS: PromptItem[] = [
     "copyCount": 420,
     "aspectRatio": "4:5",
     "model": "ChatGPT / Gemini",
-    "createdAt": "2026-11-10T23:50:00.000Z"
+    "createdAt": "2026-11-10T23:55:00.000Z"
   },
   {
     "id": "the-white-lion-king-luxury-royal-fashion-portrait",
@@ -137,7 +137,7 @@ export const STORE_PROMPTS: PromptItem[] = [
     "copyCount": 380,
     "aspectRatio": "4:5",
     "model": "ChatGPT / Gemini",
-    "createdAt": "2026-11-10T23:45:00.000Z"
+    "createdAt": "2026-11-10T23:54:00.000Z"
   },
   {
     "id": "piktrio-pts-royal-lion-friendship-portrait",
@@ -157,14 +157,14 @@ export const STORE_PROMPTS: PromptItem[] = [
       "Trending",
       "Ai photo editing prompt for boys"
     ],
-    "isPinned": false,
+    "isPinned": true,
     "isTemplate": false,
     "likesCount": 210,
     "viewsCount": 650,
     "copyCount": 310,
     "aspectRatio": "4:5",
     "model": "ChatGPT / Gemini",
-    "createdAt": "2026-11-10T23:40:00.000Z"
+    "createdAt": "2026-11-10T23:53:00.000Z"
   },
   {
     "id": "stepping-out-of-instagram-3d-mountain-adventure-portrait",
@@ -183,14 +183,14 @@ export const STORE_PROMPTS: PromptItem[] = [
       "Trending",
       "Ai photo editing prompt for boys"
     ],
-    "isPinned": false,
+    "isPinned": true,
     "isTemplate": false,
     "likesCount": 195,
     "viewsCount": 620,
     "copyCount": 290,
     "aspectRatio": "4:5",
     "model": "ChatGPT / Gemini",
-    "createdAt": "2026-11-10T23:35:00.000Z"
+    "createdAt": "2026-11-10T23:52:00.000Z"
   },
   {
     "id": "piktrio-3d-instagram-pop-out-golden-yellow-streetwear",
@@ -210,14 +210,14 @@ export const STORE_PROMPTS: PromptItem[] = [
       "Trending",
       "Ai photo editing prompt for boys"
     ],
-    "isPinned": false,
+    "isPinned": true,
     "isTemplate": false,
     "likesCount": 180,
     "viewsCount": 590,
     "copyCount": 260,
     "aspectRatio": "4:5",
     "model": "ChatGPT / Gemini",
-    "createdAt": "2026-11-10T23:30:00.000Z"
+    "createdAt": "2026-11-10T23:51:00.000Z"
   },
   {
     "id": "cinematic-sunset-portrait-horse-thar-suv",
@@ -237,7 +237,7 @@ export const STORE_PROMPTS: PromptItem[] = [
     "Trending",
     "Ai photo editing prompt for boys"
   ],
-  "isPinned": true,
+  "isPinned": false,
   "isTemplate": false,
   "likesCount": 142,
   "viewsCount": 520,

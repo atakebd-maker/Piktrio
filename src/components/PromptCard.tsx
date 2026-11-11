@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Copy, Sparkles } from 'lucide-react';
 import { PromptItem } from '../types/prompt';
+import { ChatGptIcon, GeminiIcon } from './AiIcons';
 
 interface PromptCardProps {
   prompt: PromptItem;
@@ -112,9 +113,11 @@ export const PromptCard: React.FC<PromptCardProps> = ({
 
       {/* MOBILE & DESKTOP CARD BOTTOM BAR */}
       <div className="px-2.5 py-2 sm:px-3 sm:py-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-1.5 mt-auto">
-        <span className="text-[10px] sm:text-xs text-slate-500 font-medium truncate">
-          {prompt.model || 'ChatGPT / Gemini'}
-        </span>
+        <div className="flex items-center gap-1 text-[10px] sm:text-xs text-slate-600 font-medium truncate">
+          <ChatGptIcon className="w-3 h-3 text-emerald-600 shrink-0" />
+          <GeminiIcon className="w-3 h-3 text-blue-600 shrink-0" />
+          <span className="truncate">{prompt.model || 'ChatGPT / Gemini'}</span>
+        </div>
         <button
           onClick={handleCopy}
           className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg text-[10px] sm:text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 active:scale-95 transition-all shadow-xs cursor-pointer shrink-0"

@@ -8,6 +8,7 @@ import {
   Maximize2,
 } from 'lucide-react';
 import { PromptItem } from '../types/prompt';
+import { ChatGptIcon, GeminiIcon } from './AiIcons';
 
 interface FeaturedSliderProps {
   prompts: PromptItem[];
@@ -19,9 +20,23 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
   prompts,
   onSelectPrompt,
 }) => {
-  // Aggregate all pinned prompts as requested
+  // Aggregate all pinned prompts, sorted by newest timestamp first
   const pinnedPrompts = useMemo(() => {
-    const pinned = prompts.filter((p) => p.isPinned);
+    const getTimestamp = (p: PromptItem): number => {
+      if (!p.createdAt) return 0;
+      if (typeof p.createdAt === 'number') return p.createdAt;
+      if (typeof p.createdAt === 'string') {
+        const parsed = Date.parse(p.createdAt);
+        return isNaN(parsed) ? 0 : parsed;
+      }
+      const anyCreated = p.createdAt as unknown as { toMillis?: () => number; seconds?: number };
+      if (typeof anyCreated.toMillis === 'function') return anyCreated.toMillis();
+      if (typeof anyCreated.seconds === 'number') return anyCreated.seconds * 1000;
+      return 0;
+    };
+    const pinned = prompts
+      .filter((p) => p.isPinned)
+      .sort((a, b) => getTimestamp(b) - getTimestamp(a));
     return pinned.length > 0 ? pinned : prompts.slice(0, 6);
   }, [prompts]);
 
@@ -195,8 +210,10 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
               </span>
 
               {current.model && (
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-slate-100 text-slate-700 border border-slate-200">
-                  {current.model}
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200 flex items-center gap-1.5 shadow-2xs">
+                  <ChatGptIcon className="w-3 h-3 text-emerald-600 shrink-0" />
+                  <GeminiIcon className="w-3 h-3 text-blue-600 shrink-0" />
+                  <span>{current.model}</span>
                 </span>
               )}
 

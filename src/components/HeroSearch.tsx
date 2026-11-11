@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, Copy, Check, Sparkles, Newspaper, Bot } from 'lucide-react';
+import { Search, Copy, Check, Sparkles } from 'lucide-react';
 import { copyToClipboard } from '../utils/clipboard';
+import { ChatGptIcon, GeminiIcon } from './AiIcons';
 
 interface HeroSearchProps {
   searchQuery: string;
@@ -156,7 +157,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
           }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-blue-500/25 transition-all transform active:scale-95 cursor-pointer"
         >
-          <Newspaper className="w-4 h-4" />
+          <GeminiIcon className="w-4 h-4 shrink-0" />
           <span>Gemini AI Prompts</span>
         </button>
 
@@ -165,9 +166,9 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
             onSearchChange('ChatGPT');
             onTagClick?.('Trending');
           }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-slate-50 text-slate-700 hover:text-blue-700 border border-slate-300 text-xs sm:text-sm font-bold shadow-xs transition-all transform active:scale-95 cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-slate-50 text-slate-700 hover:text-emerald-700 border border-slate-300 text-xs sm:text-sm font-bold shadow-xs transition-all transform active:scale-95 cursor-pointer"
         >
-          <Bot className="w-4 h-4 text-emerald-600" />
+          <ChatGptIcon className="w-4 h-4 text-emerald-600 shrink-0" />
           <span>ChatGPT Prompts</span>
         </button>
       </div>
@@ -239,15 +240,17 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
       <div className="flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto mb-6">
         <button
           onClick={() => onSearchChange('gemini ai photo prompt copy paste')}
-          className="px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700 transition-all cursor-pointer shadow-xs"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700 transition-all cursor-pointer shadow-xs"
         >
-          gemini ai photo prompt copy paste
+          <GeminiIcon className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+          <span>gemini ai photo prompt copy paste</span>
         </button>
         <button
           onClick={() => onSearchChange('chatgpt ai photo editing prompt')}
-          className="px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700 transition-all cursor-pointer shadow-xs"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700 transition-all cursor-pointer shadow-xs"
         >
-          chatgpt ai photo editing prompt
+          <ChatGptIcon className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+          <span>chatgpt ai photo editing prompt</span>
         </button>
       </div>
 

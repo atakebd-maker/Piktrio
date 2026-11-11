@@ -1,9 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { ArrowLeft, Sparkles, Layers, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Sparkles, Layers, ShieldCheck } from 'lucide-react';
 import { PromptItem, CollectionInfo } from '../types/prompt';
 import { PromptCard } from './PromptCard';
 import { Pagination } from './Pagination';
 import { AdBanner } from './AdBanner';
+import { ChatGptIcon, GeminiIcon } from './AiIcons';
 
 interface CollectionPageProps {
   collection: CollectionInfo;
@@ -28,12 +29,26 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
 }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  // Filter prompts belonging strictly to this collection
+  // Helper to extract timestamp for reliable date sorting
+  const getPromptTimestamp = (p: PromptItem): number => {
+    if (!p.createdAt) return 0;
+    if (typeof p.createdAt === 'number') return p.createdAt;
+    if (typeof p.createdAt === 'string') {
+      const parsed = Date.parse(p.createdAt);
+      return isNaN(parsed) ? 0 : parsed;
+    }
+    const anyCreated = p.createdAt as unknown as { toMillis?: () => number; seconds?: number };
+    if (typeof anyCreated.toMillis === 'function') return anyCreated.toMillis();
+    if (typeof anyCreated.seconds === 'number') return anyCreated.seconds * 1000;
+    return 0;
+  };
+
+  // Filter prompts belonging strictly to this collection, sorted by newest first
   const collectionPrompts = useMemo(() => {
     const colId = collection.id.toLowerCase();
     const colCat = collection.cat.toLowerCase();
 
-    return allPrompts.filter((p) => {
+    const filtered = allPrompts.filter((p) => {
       const cat = p.category.toLowerCase();
       const title = p.title.toLowerCase();
       const promptText = p.prompt.toLowerCase();
@@ -69,6 +84,18 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
         tags.includes(colCat) ||
         title.toLowerCase().includes(colCat)
       );
+    });
+
+    // Newest posts first!
+    return filtered.sort((a, b) => {
+      const aTime = getPromptTimestamp(a);
+      const bTime = getPromptTimestamp(b);
+      if (aTime !== bTime) {
+        return bTime - aTime;
+      }
+      const aPinned = a.isPinned ? 1 : 0;
+      const bPinned = b.isPinned ? 1 : 0;
+      return bPinned - aPinned;
     });
   }, [allPrompts, collection]);
 
@@ -156,7 +183,8 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
               <span>100% Face Identity Lock</span>
             </span>
             <span className="px-3 py-1 rounded-lg bg-white/15 backdrop-blur-md text-white border border-white/20 flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-blue-300" />
+              <ChatGptIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <GeminiIcon className="w-3.5 h-3.5 text-blue-300 shrink-0" />
               <span>ChatGPT (GPT-4o) &amp; Gemini</span>
             </span>
           </div>
