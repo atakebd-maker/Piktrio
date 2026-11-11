@@ -7,7 +7,6 @@ import {
   Bot,
   Layers,
   Share2,
-  Maximize2,
   CheckCircle2,
   Clock,
   Lock,
@@ -22,7 +21,6 @@ import ReactMarkdown from 'react-markdown';
 interface PromptDetailPageProps {
   prompt: PromptItem;
   onBack: () => void;
-  onOpenLightbox: (imageUrl: string, title: string) => void;
   onCopyPrompt: (promptText: string, promptId: string) => void;
   onSelectPrompt: (prompt: PromptItem) => void;
   allPrompts: PromptItem[];
@@ -31,7 +29,6 @@ interface PromptDetailPageProps {
 export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
   prompt,
   onBack,
-  onOpenLightbox,
   onCopyPrompt,
   onSelectPrompt,
   allPrompts,
@@ -266,28 +263,12 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                   (e.currentTarget as HTMLImageElement).src = '/assets/aistudio/1000050956-removebg-preview_1d3a3740.png';
                 }}
                 style={{ objectFit: 'contain' }}
-                className="max-w-full max-h-full w-auto h-auto object-contain cursor-zoom-in transition-transform duration-300 group-hover:scale-[1.01]"
-                onClick={() => onOpenLightbox(prompt.imageUrl, prompt.title)}
+                className="max-w-full max-h-full w-auto h-auto object-contain select-none"
               />
-
-              {/* Lightbox Fullscreen Trigger */}
-              <button
-                onClick={() => onOpenLightbox(prompt.imageUrl, prompt.title)}
-                className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900/80 text-white text-xs font-semibold hover:bg-blue-600 transition-colors backdrop-blur-md border border-white/20 cursor-pointer shadow-lg"
-              >
-                <Maximize2 className="w-3.5 h-3.5" />
-                <span>Full Image Preview</span>
-              </button>
             </div>
 
-            <div className="w-full mt-2.5 flex items-center justify-between text-xs text-slate-400 px-1">
+            <div className="w-full mt-2.5 flex items-center justify-center text-xs text-slate-400 px-1">
               <span>100% Uncropped &bull; Original Aspect Ratio</span>
-              <button
-                onClick={() => onOpenLightbox(prompt.imageUrl, prompt.title)}
-                className="text-blue-600 hover:underline font-medium cursor-pointer"
-              >
-                Zoom View
-              </button>
             </div>
           </div>
 

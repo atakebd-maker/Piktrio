@@ -6,7 +6,6 @@ import { CategoryBar } from './components/CategoryBar';
 import { FeaturedSlider } from './components/FeaturedSlider';
 import { PromptCard } from './components/PromptCard';
 import { PromptDetailPage } from './components/PromptDetailPage';
-import { LightboxModal } from './components/LightboxModal';
 import { Pagination } from './components/Pagination';
 import { Footer } from './components/Footer';
 import { InfoModal, ModalType } from './components/InfoModal';
@@ -59,7 +58,6 @@ export default function App() {
   // Dedicated Prompt Details Page State
   const [selectedPrompt, setSelectedPrompt] = useState<PromptItem | null>(null);
   const [selectedCollection, setSelectedCollection] = useState<CollectionInfo | null>(null);
-  const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string } | null>(null);
 
   // Interstitial Ad Modal State triggered strictly on photo click
   const [isAdModalOpen, setIsAdModalOpen] = useState(false);
@@ -448,7 +446,6 @@ export default function App() {
           <PromptDetailPage
             prompt={selectedPrompt}
             onBack={handleBackToGallery}
-            onOpenLightbox={(url, title) => setLightboxImage({ url, title })}
             onCopyPrompt={handleCopyPrompt}
             onSelectPrompt={handleViewPrompt}
             allPrompts={prompts}
@@ -595,12 +592,6 @@ export default function App() {
         onOpenModal={(type) => setActiveModal(type)}
       />
 
-      {/* 8. Lightbox for 100% Full Uncropped Image Preview */}
-      <LightboxModal
-        imageUrl={lightboxImage ? lightboxImage.url : null}
-        title={lightboxImage ? lightboxImage.title : ''}
-        onClose={() => setLightboxImage(null)}
-      />
 
       {/* 9. Informational & Legal Modal (About Us, Contact Us, Privacy, Terms) */}
       <InfoModal
