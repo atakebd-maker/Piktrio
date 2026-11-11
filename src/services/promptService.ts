@@ -13,7 +13,7 @@ import {
 } from 'firebase/firestore';
 import { db, handleFirestoreError, OperationType } from './firebase';
 import { PromptItem, CategoryItem } from '../types/prompt';
-import { PROMPTPIN_CATEGORIES } from '../data/initialPrompts';
+import { PROMPTPIN_CATEGORIES, STORE_PROMPTS } from '../data/initialPrompts';
 
 const PROMPTS_COLLECTION = 'prompts';
 const CATEGORIES_COLLECTION = 'categories';
@@ -40,6 +40,25 @@ export async function seedCategoriesIfEmpty(): Promise<void> {
     }
   } catch (err) {
     console.warn('Categories init notice:', err);
+  }
+}
+
+/**
+ * Seeds STORE_PROMPTS into Firestore if they don't exist yet
+ */
+export async function seedPromptsIfEmpty(): Promise<void> {
+  try {
+    const promptsRef = collection(db, PROMPTS_COLLECTION);
+    const existing = await getDocs(promptsRef);
+    const existingIds = new Set(existing.docs.map((d) => d.id));
+
+    for (const prompt of STORE_PROMPTS) {
+      if (!existingIds.has(prompt.id)) {
+        await setDoc(doc(db, PROMPTS_COLLECTION, prompt.id), prompt);
+      }
+    }
+  } catch (err) {
+    console.warn('Prompts seeding notice:', err);
   }
 }
 

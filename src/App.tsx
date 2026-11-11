@@ -23,6 +23,7 @@ import {
   recordPromptCopy,
   recordPromptView,
   seedCategoriesIfEmpty,
+  seedPromptsIfEmpty,
 } from './services/promptService';
 import { testConnection } from './services/firebase';
 import { CheckCircle2, SearchX, Sparkles, Layers } from 'lucide-react';
@@ -78,6 +79,7 @@ export default function App() {
   useEffect(() => {
     testConnection();
     seedCategoriesIfEmpty();
+    seedPromptsIfEmpty();
 
     const syncRouteFromLocation = (items: PromptItem[]) => {
       const searchParams = new URLSearchParams(window.location.search);
