@@ -93,7 +93,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       />
 
       {/* Main Full-Screen Interstitial Ad Dialog */}
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-[340px] sm:max-w-md w-full p-4 sm:p-6 border border-slate-200 z-10 flex flex-col items-center animate-in fade-in duration-200 text-slate-800">
+      <div className="relative bg-white rounded-3xl shadow-2xl max-w-[360px] sm:max-w-md w-full p-4 sm:p-5 border border-slate-200 z-10 flex flex-col items-center animate-in fade-in duration-200 text-slate-800 max-h-[94vh] overflow-y-auto">
         
         {/* Header with Title & Live Countdown / Close Button */}
         <div className="w-full flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-100">
@@ -131,8 +131,9 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
           />
         </div>
 
-        {/* Center 300x250 BengalAds Ad Widget */}
-        <div className="w-full flex items-center justify-center my-1">
+        {/* Two 300x250 BengalAds Ad Widgets: One above, one below */}
+        <div className="w-full flex flex-col items-center justify-center gap-3 my-2">
+          <AdBanner format="300x250" label="" className="my-0" />
           <AdBanner format="300x250" label="" className="my-0" />
         </div>
 

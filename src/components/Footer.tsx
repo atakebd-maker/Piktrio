@@ -93,7 +93,7 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onSelectCollec
           <div className="flex items-center gap-2 text-slate-600 font-medium">
             <span>Curated AI Image Prompts for</span>
             <span className="inline-flex items-center gap-1 font-bold text-slate-800">
-              <ChatGptIcon className="w-3.5 h-3.5 text-emerald-600" />
+              <ChatGptIcon className="w-3.5 h-3.5 text-[#10a37f]" />
               <span>ChatGPT</span>
             </span>
             <span>&bull;</span>

@@ -88,6 +88,285 @@ export const COLLECTIONS_LIST: CollectionInfo[] = [
 
 export const STORE_PROMPTS: PromptItem[] = [
   {
+    id: 'moving-into-2027-with-your-memories-cinematic-ai-photo-prompt',
+    title: 'Moving Into 2027 With Your Memories – Professional Cinematic AI Photo Prompt',
+    category: 'Boys',
+    description: `# Moving Into 2027 With Your Memories AI Photo Guide
+
+Create a magnificent, cinematic 8K emotional editorial photograph of a stylish young adult man stepping forward into the year 2027 surrounded by cherished floating memories using your facial photo with ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **High Resolution Headshot:** Upload a sharp, clear original photo of your face with natural lighting.
+- **Natural Hairstyle & Facial Hair:** The AI strictly analyzes your reference photo and reproduces only the exact hairstyle, curls, moustache, and beard visibly present in your photo.
+- **Authentic Identity:** Preserves your natural facial structure, jawline, forehead, and skin tone without artificial smoothing or generic model replacement.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Prepare Your Personal Photo
+Select a high-resolution, uncropped photograph of your face showing your genuine hairstyle and facial hair.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o mode) or Google Gemini on your smartphone or PC.
+
+### Step 3: Upload Your Face Photo
+Attach your reference photo into the chat prompt input window.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click **Click to Copy Now**.
+
+### Step 5: Send Prompt & Review
+Paste the prompt alongside your photo and instruct the AI to generate a photorealistic 3:4 cinematic 2027 New Year portrait.
+
+### Step 6: Download Your Masterpiece
+Save your 8K ultra-realistic cinematic portrait with glowing 2027 typography and nostalgic photo memories!
+
+---
+
+## Key Highlights of This Prompt
+- **Glowing '2027' Neon Typography:** Grand dimensional numerals glowing with warm golden amber light in an atmospheric dusk street setting.
+- **Cherished Memory Polaroids:** Floating retro polaroid photo memories softly suspended around the subject, catching atmospheric street illumination.
+- **Cinematic Street Atmosphere:** Wet reflective asphalt, evening bokeh, stylish tailored outerwear, and emotional forward-stepping pose.
+
+---
+
+## SEO Keywords & Search Tags
+Moving into 2027 AI photo prompt, 2027 memories AI photo prompt, New Year 2027 boy prompt, ChatGPT 2027 photo editing prompt, Gemini 2027 AI prompt, AI photo editing prompt for boys, 8K cinematic portrait prompt.`,
+    prompt: `AI Photo Editing Prompt – Moving Into 2027 With Your Memories
+Create an ultra-realistic, cinematic 8K emotional editorial portrait featuring a handsome young adult man walking forward towards the new year 2027 surrounded by cherished photographic memories.
+1. COMPOSITION & POSE
+Capture a cinematic medium-to-full-body shot of a young man walking purposefully forward along an asphalt boulevard at blue hour dusk. He turns his head slightly toward the camera with a confident, gentle, reflective expression. Suspended delicately in the air around him are multiple glowing vintage polaroid-style photos showing warm memorable moments, softly blurred in optical perspective.
+2. THE YOUNG MAN'S APPEARANCE
+Use the uploaded reference photo as the exclusive facial identity guide. Feature a handsome young adult with his natural hair volume, texture, and natural facial hair matching the reference photo. He wears a premium dark charcoal tailored wool overcoat over an elegant cream knit sweater, paired with tailored slim dark trousers and leather boots. Natural fabric folds and realistic textures.
+3. THE 2027 TYPOGRAPHY & BACKGROUND
+Behind him stands monumental 3D architectural typography displaying "2027", illuminated with warm amber neon and subtle golden edge glows. The background features a sophisticated metropolis boulevard with wet reflective street pavement, soft vehicle light trails, and evening atmospheric city lights creating creamy circular bokeh.
+4. LIGHTING & COLOR PALETTE
+Atmospheric cinematic lighting combining cool twilight blue tones with warm golden-amber backlight from the 2027 typography. Soft rim lighting outlines his shoulders and hair strands. Natural skin pore details without artificial digital smoothing.
+5. PHOTOGRAPHIC SETTINGS
+Shot on 50mm f/1.4 prime lens, shallow depth of field, photorealistic 8K quality, sharp subject focus with cinematic motion depth.
+
+**MANDATORY REFERENCE IMAGE ANALYSIS & FACIAL ACCURACY INSTRUCTIONS**
+
+Before generating the final image, carefully and thoroughly examine the supplied reference photograph. Pay special attention to the person's actual appearance and preserve every visible facial and hairstyle detail exactly as shown in the reference image.
+
+- **Hairstyle:** Carefully identify the actual hairstyle, hair length, hair volume, texture, curls, waves, straightness, hairline, and direction of the hair. Reproduce only the hairstyle that is visibly present in the reference image.
+- **Moustache:** Check carefully whether the person actually has a moustache. If a moustache is visible, reproduce its natural shape, thickness, length, and style. If no moustache is present, do not add one.
+- **Beard:** Check carefully whether the person has a beard. If a beard is visible, reproduce its actual length, density, shape, and style. If no beard is visible, do not add any beard.
+- **Facial Hair Accuracy:** If the reference shows only a moustache, include only a moustache. If it shows only a beard, include only a beard. If it shows both, include both. If it shows neither, include neither.
+- **Facial Appearance:** Preserve the person's natural facial structure, jawline, cheeks, forehead, eyebrows, eyes, nose, lips, and other visible characteristics without unnecessary alterations.
+- **Overall Accuracy:** Do not invent, add, remove, exaggerate, or modify any hairstyle or facial-hair feature. Never assume that every man must have a beard or moustache.
+
+**FINAL STRICT RULE:** The supplied reference photograph is the only source of truth for the person's hairstyle and facial hair. Examine it carefully before generating the image and reproduce exactly what is visibly present. Do not follow generic assumptions or introduce personal creative interpretations. Accuracy to the reference image must always take priority over artistic improvisation.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhEpyVu5iErNbtpeOUaHcP0k86e1X4f6wXo2oK8kS-xYx9_w4k0x2w0s_6mC0z4d_j1y4l1k5m8_9s0_2w/s1600/image.png',
+    tags: [
+      'Boys',
+      '2027',
+      'Memories',
+      'Cinematic',
+      'New Year',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+      'Ai photo editing prompt',
+      'AI photo editing prompt for boys'
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 310,
+    viewsCount: 1120,
+    copyCount: 540,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-12T02:40:00.000Z',
+  },
+  {
+    id: 'hug-from-my-own-self-double-self-hug-ai-photo-prompt',
+    title: 'Hug From My Own Self – Creative Double Self Hug AI Photo Editing Prompt',
+    category: 'Boys',
+    description: `# Hug From My Own Self Double Self Hug AI Photo Guide
+
+Create an emotionally profound, ultra-realistic conceptual portrait featuring two identical versions of yourself in a warm, comforting self-hug using ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **Clear Face Reference:** Provide a clear, front-facing photograph showing both sides of your face, hair, and facial hair.
+- **Strict Facial Feature Replication:** Both figures will share the exact same authentic facial identity, bone structure, and facial hair derived directly from your uploaded photo.
+- **Authentic Identity:** Preserves your genuine natural identity without artificial distortion or generic beautification.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Best Photo
+Choose a clear personal photo showing your actual hair and face.
+
+### Step 2: Open ChatGPT or Gemini
+Launch ChatGPT (GPT-4o) or Google Gemini on your device.
+
+### Step 3: Upload Photo
+Attach your reference picture in the chat.
+
+### Step 4: Copy the AI Prompt
+Click **Copy Full Prompt** above, wait for the timer, and copy.
+
+### Step 5: Generate Portrait
+Paste the prompt into the message box alongside your photo and press generate.
+
+### Step 6: Download 8K Artwork
+Save your comforting double self-hug masterpiece in ultra-high resolution!
+
+---
+
+## Key Highlights of This Prompt
+- **Double Identity Conceptual Harmony:** Two identical figures representing your inner journey embracing in deep mutual reassurance.
+- **Intimate Studio Lighting:** Soft directional warm sidelight highlighting natural skin texture, gentle closed eyes, and serene emotional peace.
+- **Subtle Fabric Contrast:** One version wearing a soft minimalist dark hoodie or sweater while the other wears an earth-toned casual shirt for visual depth.
+
+---
+
+## SEO Keywords & Search Tags
+Hug from my own self AI photo prompt, double self hug prompt, self love AI photo prompt, boys self hug editing prompt, ChatGPT boys prompt, Gemini prompt for boys, AI photo editing prompt for boys.`,
+    prompt: `AI Photo Editing Prompt – Hug From My Own Self (Double Self-Hug Concept)
+Create an ultra-realistic, deeply emotional 8K photographic masterpiece featuring two identical versions of the same young adult man embracing in a heartfelt, comforting self-hug.
+1. THE CONCEPT & POSE
+Show two figures representing the same person. Figure A stands facing slightly left, resting his head softly against the shoulder of Figure B with eyes gently closed in peace and comfort. Figure B wraps both arms protectively around Figure A in a warm, loving, supportive hug, looking with calm understanding and strength. The pose embodies healing, resilience, and self-compassion.
+2. STRICT DOUBLE FACIAL IDENTITY
+Both figures must share the exact same facial identity, bone structure, eyebrows, nose, lips, eye shape, and skin tone based strictly on the uploaded reference photo. Analyze the reference photo for facial hair: if the reference has a beard or moustache, reproduce the exact same facial hair on both figures; if clean-shaven, keep both figures clean-shaven.
+3. STYLING & CLOTHING
+Figure A wears a cozy minimalist dark navy-grey crewneck sweater. Figure B wears a relaxed olive-beige textured overshirt over a clean white undershirt. Both garments have realistic fabric weight, subtle creases, and tactile weave details.
+4. LIGHTING & ENVIRONMENT
+Intimate studio portrait lighting with soft directional light coming from the side, sculpting their jawlines and facial contours. Gentle rim light softly outlines their dark hair. The background is a clean, painterly dark-slate gradient with soft subtle warm vignetting.
+5. CAMERA & AESTHETIC
+Vertical 3:4 portrait framing, tight medium-close composition focusing on the emotional hug and facial serenity. Crisp 85mm portrait lens aesthetic, realistic skin pores without artificial plastic smoothing, 8K ultra-detailed realism.
+
+**MANDATORY REFERENCE IMAGE ANALYSIS & FACIAL ACCURACY INSTRUCTIONS**
+
+Before generating the final image, carefully and thoroughly examine the supplied reference photograph. Pay special attention to the person's actual appearance and preserve every visible facial and hairstyle detail exactly as shown in the reference image.
+
+- **Hairstyle:** Carefully identify the actual hairstyle, hair length, hair volume, texture, curls, waves, straightness, hairline, and direction of the hair. Reproduce only the hairstyle that is visibly present in the reference image.
+- **Moustache:** Check carefully whether the person actually has a moustache. If a moustache is visible, reproduce its natural shape, thickness, length, and style. If no moustache is present, do not add one.
+- **Beard:** Check carefully whether the person has a beard. If a beard is visible, reproduce its actual length, density, shape, and style. If no beard is visible, do not add any beard.
+- **Facial Hair Accuracy:** If the reference shows only a moustache, include only a moustache. If it shows only a beard, include only a beard. If it shows both, include both. If it shows neither, include neither.
+- **Facial Appearance:** Preserve the person's natural facial structure, jawline, cheeks, forehead, eyebrows, eyes, nose, lips, and other visible characteristics without unnecessary alterations.
+- **Overall Accuracy:** Do not invent, add, remove, exaggerate, or modify any hairstyle or facial-hair feature. Never assume that every man must have a beard or moustache.
+
+**FINAL STRICT RULE:** The supplied reference photograph is the only source of truth for the person's hairstyle and facial hair. Examine it carefully before generating the image and reproduce exactly what is visibly present. Do not follow generic assumptions or introduce personal creative interpretations. Accuracy to the reference image must always take priority over artistic improvisation.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFlefcJBGb8xO1AUk_fx04-N52oK-x1z0f6m0w8k2m4n6b7v8_9c0x1z2y3a4b5c6d7e8f/s1600/image.png',
+    tags: [
+      'Boys',
+      'Self Hug',
+      'Emotional',
+      'Creative',
+      'Conceptual',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+      'Ai photo editing prompt',
+      'AI photo editing prompt for boys'
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 295,
+    viewsCount: 980,
+    copyCount: 460,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-12T02:39:00.000Z',
+  },
+  {
+    id: 'red-cinematic-motorcycle-tribute-poster-5-portrait-collage-prompt',
+    title: 'Red Cinematic Motorcycle Tribute Poster – 5 Portrait Collage AI Photo Editing Prompt',
+    category: 'Boys',
+    description: `# Red Cinematic Motorcycle Tribute Poster AI Photo Guide
+
+Create a high-energy, cinematic 8K motorcycle editorial poster featuring an artistic 5-portrait multi-angle collage against an intense crimson-red and dark asphalt backdrop using ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **High Resolution Headshot:** Upload a sharp, clear original photo of your face with natural lighting.
+- **Natural Hairstyle & Facial Hair:** The AI strictly analyzes your reference photo and reproduces only the exact hairstyle, curls, moustache, and beard visibly present in your photo.
+- **Authentic Identity:** Preserves your natural facial structure, jawline, forehead, and skin tone without artificial smoothing or generic model replacement.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Prepare Your Personal Photo
+Select a high-resolution, uncropped photograph of your face showing your genuine hairstyle and facial hair.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o mode) or Google Gemini on your smartphone or PC.
+
+### Step 3: Upload Your Face Photo
+Attach your reference photo into the chat prompt input window.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click **Click to Copy Now**.
+
+### Step 5: Send Prompt & Review
+Paste the prompt alongside your photo and instruct the AI to generate a photorealistic 3:4 red motorcycle tribute poster.
+
+### Step 6: Download Your Masterpiece
+Save your 8K ultra-realistic cinematic poster with 5 dynamic angles and sports motorcycle details!
+
+---
+
+## Key Highlights of This Prompt
+- **5-Portrait Dynamic Multi-Angle Collage:** Large dominant central hero portrait surrounded by 4 stylistic sub-portraits showing profile, low-angle helmet glance, and action poses.
+- **Sleek Sports Motorcycle Integration:** Matte black and metallic sports motorcycle parked dynamically with headlights cutting through smoke.
+- **Crimson & Asphalt Aesthetic:** Bold high-contrast crimson-red studio backdrop with geometric poster grids, barcode accents, and cinematic typography.
+
+---
+
+## SEO Keywords & Search Tags
+Red cinematic motorcycle AI photo prompt, 5 portrait collage AI prompt, biker tribute poster prompt, motorcycle AI photo editing prompt for boys, ChatGPT boys prompt, Gemini prompt for boys, AI photo editing prompt for boys.`,
+    prompt: `AI Photo Editing Prompt – Red Cinematic Motorcycle Tribute Poster (5-Portrait Collage)
+Create a high-impact, ultra-realistic 8K graphic editorial tribute poster featuring a stylish young motorcycle rider in a sophisticated 5-portrait collage layout against a striking crimson-red and asphalt backdrop.
+1. POSTER LAYOUT & 5-PORTRAIT COLLAGE
+Organize the composition as an elite sports magazine tribute poster. In the center stands a large, dominant vertical hero portrait of the rider in a confident contrapposto stance. Surrounding this central figure are 4 smaller, seamlessly integrated cinematic vignettes: top-left dramatic profile, top-right wearing sleek tinted biker shades looking downward, bottom-left holding a matte-black racing helmet, and bottom-right a dynamic action angle beside his high-performance motorcycle.
+2. THE RIDER'S APPEARANCE
+Use the uploaded reference photo as the exclusive facial identity reference. Preserve the exact facial structure, jawline, nose, eyes, natural skin tone, and authentic facial hair (reproducing beard or moustache only if visibly present in the reference photo). He wears a tailored black leather biker jacket with silver hardware, layered over a fitted dark tee and dark moto denim jeans with knee panel details.
+3. MOTORCYCLE & GRAPHICS
+Integrate a modern, aggressive sports superbike in matte black and crimson accents. In the background, incorporate bold editorial typography, minimal technical specs, vertical barcode details, and subtle halftone dot textures.
+4. LIGHTING & COLOR GRADING
+Dramatic high-contrast red-and-white rim lighting carving sharp contours. Cool studio key light keeps his facial features sharp and true-to-life. Rich deep crimson-red backdrop balanced with deep onyx blacks and crisp specular highlights.
+5. FINAL DETAIL & QUALITY
+Vertical 3:4 aspect ratio, crisp 35mm editorial camera quality, authentic skin texture without artificial smoothing, 8K ultra-sharp rendering.
+
+**MANDATORY REFERENCE IMAGE ANALYSIS & FACIAL ACCURACY INSTRUCTIONS**
+
+Before generating the final image, carefully and thoroughly examine the supplied reference photograph. Pay special attention to the person's actual appearance and preserve every visible facial and hairstyle detail exactly as shown in the reference image.
+
+- **Hairstyle:** Carefully identify the actual hairstyle, hair length, hair volume, texture, curls, waves, straightness, hairline, and direction of the hair. Reproduce only the hairstyle that is visibly present in the reference image.
+- **Moustache:** Check carefully whether the person actually has a moustache. If a moustache is visible, reproduce its natural shape, thickness, length, and style. If no moustache is present, do not add one.
+- **Beard:** Check carefully whether the person has a beard. If a beard is visible, reproduce its actual length, density, shape, and style. If no beard is visible, do not add any beard.
+- **Facial Hair Accuracy:** If the reference shows only a moustache, include only a moustache. If it shows only a beard, include only a beard. If it shows both, include both. If it shows neither, include neither.
+- **Facial Appearance:** Preserve the person's natural facial structure, jawline, cheeks, forehead, eyebrows, eyes, nose, lips, and other visible characteristics without unnecessary alterations.
+- **Overall Accuracy:** Do not invent, add, remove, exaggerate, or modify any hairstyle or facial-hair feature. Never assume that every man must have a beard or moustache.
+
+**FINAL STRICT RULE:** The supplied reference photograph is the only source of truth for the person's hairstyle and facial hair. Examine it carefully before generating the image and reproduce exactly what is visibly present. Do not follow generic assumptions or introduce personal creative interpretations. Accuracy to the reference image must always take priority over artistic improvisation.`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLvapjjuiV3XMvyKKi3tt-9p0m1n2b3v4c5x6z7a8s9d0f1g2h3j4k5l6m7n8o9p0/s1600/image.png',
+    tags: [
+      'Boys',
+      'Motorcycle',
+      'Poster Collage',
+      'Red Theme',
+      'Editorial',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+      'Ai photo editing prompt',
+      'AI photo editing prompt for boys'
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 280,
+    viewsCount: 890,
+    copyCount: 410,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-12T02:38:00.000Z',
+  },
+  {
     "id": "the-kings-companion-royal-white-lion-portrait",
     "title": "The King’s Companion – A Royal White Lion Portrait",
     "category": "Boys",
@@ -730,105 +1009,6 @@ The generated person must look recognizably like the person in the uploaded face
     aspectRatio: '3:4',
     model: 'ChatGPT / Gemini',
     createdAt: '2026-11-08T17:30:00.000Z',
-  },
-  {
-    id: 'ajmal-bold-red-editorial-magazine-cover',
-    title: 'AJMAL – Bold Red Editorial Magazine Cover',
-    category: 'Boys',
-    description: `# AJMAL Bold Red Editorial Magazine Cover Guide
-
-Create an original, high-end editorial magazine cover poster in a bold, modern graphic design style using your own facial reference photo with ChatGPT (GPT-4o) or Google Gemini.
-
-## Important Rules for Uploading Your Personal Photo
-To achieve 100% facial identity preservation, you must follow these photo upload rules:
-- **High Resolution:** Upload a sharp, high-resolution original photograph of yourself.
-- **Front-Facing Angle:** Choose a front-facing or slight three-quarter angle where both eyes, eyebrows, nose, lips, jawline, and natural hairline are clearly visible.
-- **Good Lighting:** Ensure your face is evenly lit with natural lighting or soft indoor lights. Avoid harsh shadows or overexposed glares.
-- **Natural Hairstyle:** Use a photo with your authentic, natural hairstyle and natural hair texture.
-- **No Filters or Sunglasses:** Do not use photos with heavy beauty filters, sunglasses, masks, or extreme cartoon edits.
-
----
-
-## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
-
-### Step 1: Select Your Clear Personal Photo
-Select a clear, front-facing personal photo from your phone or computer following the rules above.
-
-### Step 2: Open ChatGPT or Google Gemini
-Launch the ChatGPT app/website (select GPT-4o with image generation) or Google Gemini on your smartphone or desktop.
-
-### Step 3: Upload Your Face Reference Photo
-Attach your personal picture to the chat prompt window so the AI algorithm locks your real identity.
-
-### Step 4: Copy the AI Prompt
-Click the **Copy Full Prompt** button above. Wait for the 7-second countdown, then click the green **Click to Copy Now** button to copy the prompt to your clipboard.
-
-### Step 5: Paste & Instruct the AI
-Paste the prompt into the message box alongside your uploaded photo. Instruct the AI model to generate a 3:4 vertical editorial portrait.
-
-### Step 6: Review & Save
-Verify that the AI preserved your facial identity, textured dark hair, and realistic shirt fabric against the crimson background and magazine typography. Download your 4K magazine cover!
-
----
-
-## Key Highlights of This Prompt
-- **Editorial Graphic Layout:** High-contrast crimson red studio backdrop with bold typography, magazine headlines, and barcode accents.
-- **Sophisticated Stance:** Confident contrapposto posture with natural fabric folds on an elegant button-down shirt.
-- **Photographic Realism:** Crisp 35mm portrait lighting, realistic skin pores, and natural hair strands without plastic smoothing.
-
----
-
-## SEO Keywords & Search Tags
-Ai photo editing prompt, AI photo editing prompt for boys, AI image editing prompt, AI image editing prompt for boys, AI photo editing prompt for boy, AI image editing prompt for boy, AI prompt, boys prompt, boy AI prompt, boys AI prompt, boy prompt, chat GPT prompt, Gemini prompt, Chat gpt prompt for boys, Gemini prompt for boys, chat GPT prompt boy, Gemini prompt boy, AJMAL magazine cover prompt, bold red editorial AI photo, boy magazine cover photo editing, ChatGPT prompt for boys, Gemini prompt for boys`,
-    prompt: `Create an original, high-end editorial magazine cover poster in a bold, modern graphic design style, using the uploaded poster as the primary visual reference.
-FACE IDENTITY REFERENCE: Use the separately uploaded face-reference photograph for the person's facial identity. Preserve the person's natural facial structure, eyes, eyebrows, nose, lips, skin tone, and other recognizable facial characteristics as closely as possible. Do not create a different-looking person.
-SUBJECT & POSE: Show the person in a confident, sophisticated contrapposto stance, with the upper body slightly turned and the head looking off-camera. Give him naturally styled, thick, dark black, textured swept-back hair and a calm, confident expression. He wears a fitted, elegant, light beige-white button-down shirt with natural fabric folds and realistic details.
-BACKGROUND & COLOR: Create a vibrant, deep crimson-red background featuring subtle vintage halftone dot textures, high-contrast typography, and bold magazine headline lettering.
-TYPOGRAPHY & GRAPHICS: Bold editorial masthead text "AJMAL" positioned across the top with minimalist magazine subtitles, barcodes, and date stamp accents.
-LIGHTING & AESTHETIC: High-contrast studio lighting, sharp rim highlights, clean soft shadows, 35mm crisp photographic realism with graphic poster sensibilities.
-CAMERA & COMPOSITION: Vertical 3:4 portrait aspect ratio, medium-to-full-body framing, subject positioned centrally, razor-sharp focus on facial details, authentic skin texture without artificial plastic smoothing.
-
-**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
-
-Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
-
-**IMPORTANT FACIAL HAIR MATCHING RULE:**
-
-Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
-
-- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
-- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
-- If the reference photo has both a beard and a moustache, reproduce both naturally.
-- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
-- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
-
-Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
-
-The generated person must look recognizably like the person in the uploaded face reference photo while maintaining the hairstyle, sunglasses, expression, head direction, clothing, body posture, and entire environment described in the main prompt.
-
-**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**
-`,
-    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPe61bVEkpQwCqSyEiuJaO3-Q0KTPdzXl2gXFadvfE1lZtejQxWOHBxBMYHwzkRGqp7OxHSQWBT0zBe2GwcqU8mBmd4Nfu47rscPhBy-SAr4oXulC9tHTKLh_3Tp-xMvJscb87_jaBMgfLddy0NDwVyKZK7pXPMlchp_iFOA8rCCTluF0PPE2kMayrJlk/s1600/image.png',
-    tags: [
-      'Boys',
-      'Editorial',
-      'Magazine Cover',
-      'AJMAL',
-      'Red Theme',
-      'Trending',
-      'ChatGPT',
-      'Gemini',
-      'Ai photo editing prompt',
-      'AI photo editing prompt for boys',
-    ],
-    isPinned: true,
-    isTemplate: false,
-    likesCount: 142,
-    viewsCount: 1280,
-    copyCount: 384,
-    aspectRatio: '3:4',
-    model: 'ChatGPT / Gemini',
-    createdAt: '2026-11-08T10:00:00.000Z',
   },
   {
     id: 'romantic-pink-roses-blue-sky-portrait',

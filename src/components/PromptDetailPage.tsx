@@ -9,7 +9,6 @@ import {
   Share2,
   CheckCircle2,
   Clock,
-  Lock,
 } from 'lucide-react';
 import { PromptItem } from '../types/prompt';
 import { copyToClipboard } from '../utils/clipboard';
@@ -83,20 +82,12 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
     }
   };
 
-  // Only show the beginning teaser snippet of the prompt so users cannot bypass ad countdown
+  // Show 3 to 4 lines of prompt text (~280 characters) as preview without full bypass
   const promptPreview = useMemo(() => {
     const raw = (prompt.prompt || '').trim();
-    if (raw.length <= 130) return raw;
-    return raw.slice(0, 130) + '...';
+    if (raw.length <= 280) return raw;
+    return raw.slice(0, 280) + '...';
   }, [prompt.prompt]);
-
-  // Guard external buttons so visitors must unlock via countdown
-  const handleOpenExternal = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (copyStatus !== 'ready' && copyStatus !== 'copied') {
-      e.preventDefault();
-      handleCopyButtonClick();
-    }
-  };
 
   useEffect(() => {
     document.title = `${prompt.title} - Piktrio`;
@@ -226,7 +217,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             </span>
             {prompt.model && (
               <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 flex items-center gap-1.5 shadow-2xs">
-                <ChatGptIcon className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <ChatGptIcon className="w-3.5 h-3.5 text-[#10a37f] shrink-0" />
                 <GeminiIcon className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                 <span>{prompt.model}</span>
               </span>
@@ -250,12 +241,6 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             <AdBanner label="Sponsored Ad" className="mb-3" />
 
             <div className="relative w-full min-h-[420px] sm:min-h-[560px] max-h-[78vh] bg-slate-100 rounded-2xl sm:rounded-3xl flex items-center justify-center p-3 overflow-hidden shadow-inner border border-slate-200 group">
-              
-              {/* Subtle background grid pattern */}
-              <div 
-                className="absolute inset-0 opacity-15 pointer-events-none bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:16px_16px]"
-              />
-
               <img
                 src={prompt.imageUrl}
                 alt={prompt.title}
@@ -278,7 +263,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             {/* Ad above prompt box */}
             <AdBanner format="300x250" label="Sponsored Ad" className="my-2" />
 
-            {/* Compact Protected English AI Prompt Box */}
+            {/* Compact Protected English AI Prompt Box (3-4 lines preview, no lock badges/icons) */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
@@ -305,36 +290,11 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 </button>
               </div>
 
-              {/* Much smaller prompt box: only initial snippet visible with bottom gradient lock */}
-              <div className="relative bg-slate-900 text-slate-100 rounded-xl p-3 sm:p-3.5 font-mono text-xs leading-relaxed border border-slate-800 shadow-md select-none overflow-hidden max-h-[84px]">
-                <p className="text-slate-300 opacity-90 font-mono tracking-wide line-clamp-2">
-                  {promptPreview}
+              {/* Clean prompt box showing 3-4 lines, no lock badges or icons */}
+              <div className="relative bg-slate-900 text-slate-100 rounded-xl p-3.5 sm:p-4 font-mono text-xs leading-relaxed border border-slate-800 shadow-md select-none overflow-hidden">
+                <p className="text-slate-300 font-mono tracking-wide line-clamp-4 leading-relaxed">
+                  {copyStatus === 'ready' || copyStatus === 'copied' ? prompt.prompt : promptPreview}
                 </p>
-
-                {/* Bottom gradient fade-out with lock status badge */}
-                <div className="absolute inset-x-0 bottom-0 h-9 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent flex items-end justify-center pb-1">
-                  {copyStatus === 'copied' ? (
-                    <span className="text-[10px] font-sans font-bold text-emerald-400 flex items-center gap-1 bg-slate-900/90 px-2.5 py-0.5 rounded-full border border-emerald-500/40">
-                      <CheckCircle2 className="w-2.5 h-2.5 text-emerald-400" />
-                      <span>Full prompt unlocked &amp; copied!</span>
-                    </span>
-                  ) : copyStatus === 'ready' ? (
-                    <span className="text-[10px] font-sans font-bold text-emerald-300 flex items-center gap-1 bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40 animate-pulse">
-                      <Sparkles className="w-2.5 h-2.5 text-emerald-300" />
-                      <span>Ready &bull; Click &quot;Click to Copy Now&quot; below</span>
-                    </span>
-                  ) : copyStatus === 'counting' ? (
-                    <span className="text-[10px] font-sans font-bold text-amber-400 flex items-center gap-1 bg-slate-900/90 px-2.5 py-0.5 rounded-full border border-amber-500/40">
-                      <Clock className="w-2.5 h-2.5 text-amber-400 animate-spin" />
-                      <span>Unlocking prompt in {countdown}s...</span>
-                    </span>
-                  ) : (
-                    <span className="text-[10px] font-sans font-bold text-amber-300/90 flex items-center gap-1 bg-slate-950/90 px-2.5 py-0.5 rounded-full border border-amber-500/30">
-                      <Lock className="w-2.5 h-2.5 text-amber-400" />
-                      <span>Full prompt locked &bull; Tap &quot;Copy Full Prompt&quot; below</span>
-                    </span>
-                  )}
-                </div>
               </div>
             </div>
 
@@ -392,24 +352,22 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
               </div>
 
-              {/* Open in ChatGPT and Open in Gemini */}
+              {/* Open in ChatGPT and Open in Gemini (Opens tool website directly without prefilling query) */}
               <div className="grid grid-cols-2 gap-3">
                 <a
-                  href={`https://chatgpt.com/?q=${encodeURIComponent(prompt.prompt)}`}
+                  href="https://chatgpt.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={handleOpenExternal}
                   className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-emerald-50/50 hover:border-emerald-300 text-slate-800 hover:text-emerald-700 text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs no-underline"
                 >
-                  <ChatGptIcon className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <ChatGptIcon className="w-4 h-4 text-[#10a37f] shrink-0" />
                   <span>Open in ChatGPT</span>
                 </a>
 
                 <a
-                  href={`https://gemini.google.com/?q=${encodeURIComponent(prompt.prompt)}`}
+                  href="https://gemini.google.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={handleOpenExternal}
                   className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 hover:border-blue-300 text-slate-800 hover:text-blue-700 text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs no-underline"
                 >
                   <GeminiIcon className="w-4 h-4 text-blue-600 shrink-0" />

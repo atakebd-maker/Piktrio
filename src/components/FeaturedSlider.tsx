@@ -156,8 +156,6 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        {/* Subtle Ambient Grid Pattern */}
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#3b82f6_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none" />
 
         <div className={`relative z-10 grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-center p-4 sm:p-6 md:p-8 transition-all duration-300 ease-in-out ${isTransitioning ? 'opacity-0 scale-[0.99]' : 'opacity-100 scale-100'}`}>
           
@@ -211,7 +209,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
 
               {current.model && (
                 <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200 flex items-center gap-1.5 shadow-2xs">
-                  <ChatGptIcon className="w-3 h-3 text-emerald-600 shrink-0" />
+                  <ChatGptIcon className="w-3 h-3 text-[#10a37f] shrink-0" />
                   <GeminiIcon className="w-3 h-3 text-blue-600 shrink-0" />
                   <span>{current.model}</span>
                 </span>

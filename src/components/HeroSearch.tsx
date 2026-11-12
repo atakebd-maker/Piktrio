@@ -168,7 +168,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
           }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-slate-50 text-slate-700 hover:text-emerald-700 border border-slate-300 text-xs sm:text-sm font-bold shadow-xs transition-all transform active:scale-95 cursor-pointer"
         >
-          <ChatGptIcon className="w-4 h-4 text-emerald-600 shrink-0" />
+          <ChatGptIcon className="w-4 h-4 text-[#10a37f] shrink-0" />
           <span>ChatGPT Prompts</span>
         </button>
       </div>
@@ -249,7 +249,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
           onClick={() => onSearchChange('chatgpt ai photo editing prompt')}
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700 transition-all cursor-pointer shadow-xs"
         >
-          <ChatGptIcon className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+          <ChatGptIcon className="w-3.5 h-3.5 text-[#10a37f] shrink-0" />
           <span>chatgpt ai photo editing prompt</span>
         </button>
       </div>

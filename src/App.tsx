@@ -46,7 +46,7 @@ export default function App() {
   const [categories, setCategories] = useState<CategoryItem[]>(
     PROMPTPIN_CATEGORIES.filter((c) => c.id !== 'diwali')
   );
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   
   // Navigation & Search State
   const [searchQuery, setSearchQuery] = useState('');

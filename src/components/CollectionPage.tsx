@@ -183,7 +183,7 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
               <span>100% Face Identity Lock</span>
             </span>
             <span className="px-3 py-1 rounded-lg bg-white/15 backdrop-blur-md text-white border border-white/20 flex items-center gap-1.5">
-              <ChatGptIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <ChatGptIcon className="w-3.5 h-3.5 text-[#10a37f] shrink-0" />
               <GeminiIcon className="w-3.5 h-3.5 text-blue-300 shrink-0" />
               <span>ChatGPT (GPT-4o) &amp; Gemini</span>
             </span>
