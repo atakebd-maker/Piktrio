@@ -84,7 +84,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 animate-in fade-in duration-200">
       
       {/* Background Overlay */}
       <div 
@@ -93,7 +93,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       />
 
       {/* Main Full-Screen Interstitial Ad Dialog */}
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-[360px] sm:max-w-md w-full p-4 sm:p-5 border border-slate-200 z-10 flex flex-col items-center animate-in fade-in duration-200 text-slate-800 max-h-[94vh] overflow-y-auto">
+      <div className="relative bg-white rounded-3xl shadow-2xl max-w-[360px] sm:max-w-md w-full p-2.5 sm:p-5 border border-slate-200 z-10 flex flex-col items-center animate-in fade-in duration-200 text-slate-800 max-h-[94vh] overflow-y-auto">
         
         {/* Header with Title & Live Countdown / Close Button */}
         <div className="w-full flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-100">

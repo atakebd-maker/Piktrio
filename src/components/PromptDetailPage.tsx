@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ArrowLeft,
   Copy,
@@ -82,12 +82,6 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
     }
   };
 
-  // Show 3 to 4 lines of prompt text (~280 characters) as preview without full bypass
-  const promptPreview = useMemo(() => {
-    const raw = (prompt.prompt || '').trim();
-    if (raw.length <= 280) return raw;
-    return raw.slice(0, 280) + '...';
-  }, [prompt.prompt]);
 
   useEffect(() => {
     document.title = `${prompt.title} - Piktrio`;
@@ -263,7 +257,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             {/* Ad above prompt box */}
             <AdBanner format="300x250" label="Sponsored Ad" className="my-2" />
 
-            {/* Compact Protected English AI Prompt Box (3-4 lines preview, no lock badges/icons) */}
+            {/* English AI Generation Prompt Box */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
@@ -290,10 +284,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 </button>
               </div>
 
-              {/* Clean prompt box showing 3-4 lines, no lock badges or icons */}
-              <div className="relative bg-slate-900 text-slate-100 rounded-xl p-3.5 sm:p-4 font-mono text-xs leading-relaxed border border-slate-800 shadow-md select-none overflow-hidden">
-                <p className="text-slate-300 font-mono tracking-wide line-clamp-4 leading-relaxed">
-                  {copyStatus === 'ready' || copyStatus === 'copied' ? prompt.prompt : promptPreview}
+              <div className="relative bg-slate-900 text-slate-100 rounded-2xl p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed border border-slate-800 shadow-md max-h-64 overflow-y-auto">
+                <p className="text-slate-200 whitespace-pre-wrap break-words leading-relaxed">
+                  {prompt.prompt}
                 </p>
               </div>
             </div>
