@@ -15,7 +15,7 @@ import { InterstitialAdModal } from './components/InterstitialAdModal';
 import { FAQSection } from './components/FAQSection';
 import { CollectionPage } from './components/CollectionPage';
 import { PromptItem, CategoryItem, CollectionInfo } from './types/prompt';
-import { PROMPTPIN_CATEGORIES, STORE_PROMPTS, COLLECTIONS_LIST, ensureIdentityPromptSuffix } from './data/initialPrompts';
+import { PROMPTPIN_CATEGORIES, STORE_PROMPTS, COLLECTIONS_LIST, HIDDEN_PROMPT_IDS, ensureIdentityPromptSuffix } from './data/initialPrompts';
 import {
   subscribeToPrompts,
   subscribeToCategories,
@@ -105,7 +105,7 @@ export default function App() {
         ) || null;
       }
 
-      if (targetPromptId) {
+      if (targetPromptId && !HIDDEN_PROMPT_IDS.has(targetPromptId)) {
         const match = items.find((p) => p.id === targetPromptId) || STORE_PROMPTS.find((p) => p.id === targetPromptId);
         if (match) {
           setSelectedPrompt(match);
@@ -141,6 +141,7 @@ export default function App() {
         const map = new Map<string, PromptItem>();
         STORE_PROMPTS.forEach((p) => map.set(p.id, p));
         items.forEach((p) => {
+          if (HIDDEN_PROMPT_IDS.has(p.id)) return;
           const local = map.get(p.id);
           const merged = { ...(local || {}), ...p };
           merged.prompt = ensureIdentityPromptSuffix(merged.prompt);
@@ -480,6 +481,9 @@ export default function App() {
               onSelectCategory={handleSelectCategory}
             />
 
+            {/* Small 320x50 Banner below Category Bar */}
+            <AdBanner format="320x50" label="Sponsored Ad" className="my-3" />
+
             {/* 4. Beautiful Pinned Photos Slider below categories */}
             <FeaturedSlider
               prompts={prompts}
@@ -487,7 +491,7 @@ export default function App() {
               onSelectCategory={handleSelectCategory}
             />
 
-            {/* Sponsored Banner between Slider and Showcase */}
+            {/* Large 300x250 Banner between Slider and Showcase */}
             <AdBanner format="300x250" label="Featured Partner" className="my-4" />
 
             {/* 5. MAIN PROMPTS GALLERY (Strictly 2 columns on mobile: grid-cols-2) */}
@@ -537,8 +541,11 @@ export default function App() {
                     onPageChange={handlePageChange}
                   />
 
-                  {/* Sponsored Banner below gallery pagination */}
-                  <AdBanner label="Sponsored Links" className="mt-6 mb-2" />
+                  {/* Both Large 300x250 and Small 320x50 Banners below gallery pagination */}
+                  <div className="mt-6 mb-2 flex flex-col items-center gap-3">
+                    <AdBanner format="300x250" label="Featured Partner" className="my-1" />
+                    <AdBanner format="320x50" label="Sponsored Links" className="my-1" />
+                  </div>
                 </>
               ) : prompts.length === 0 ? (
                 /* Store empty state */

@@ -13,7 +13,7 @@ import {
 } from 'firebase/firestore';
 import { db, handleFirestoreError, OperationType } from './firebase';
 import { PromptItem, CategoryItem } from '../types/prompt';
-import { PROMPTPIN_CATEGORIES, STORE_PROMPTS } from '../data/initialPrompts';
+import { PROMPTPIN_CATEGORIES, STORE_PROMPTS, HIDDEN_PROMPT_IDS } from '../data/initialPrompts';
 
 const PROMPTS_COLLECTION = 'prompts';
 const CATEGORIES_COLLECTION = 'categories';
@@ -77,6 +77,7 @@ export function subscribeToPrompts(
     (snapshot) => {
       const items: PromptItem[] = [];
       snapshot.forEach((docSnap) => {
+        if (HIDDEN_PROMPT_IDS.has(docSnap.id)) return;
         const data = docSnap.data() as PromptItem;
         items.push({
           ...data,

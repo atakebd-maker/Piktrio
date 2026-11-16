@@ -216,8 +216,9 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
         </div>
       </div>
 
-      {/* 4. Sponsored BengalAds Banner */}
-      <div className="my-6 flex justify-center">
+      {/* 4. Sponsored BengalAds Banners (Small 320x50 + Large 300x250) */}
+      <div className="my-6 flex flex-col items-center justify-center gap-3">
+        <AdBanner format="320x50" label="Sponsored Ad" className="my-0" />
         <AdBanner format="300x250" label="Featured Partner" className="my-2" />
       </div>
 
@@ -261,9 +262,10 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
               onPageChange={handlePageChange}
             />
 
-            {/* Bottom Sponsored Banner */}
-            <div className="mt-8 flex justify-center">
+            {/* Bottom Sponsored Banners */}
+            <div className="mt-8 flex flex-col items-center justify-center gap-3">
               <AdBanner format="300x250" label="Sponsored Links" className="my-2" />
+              <AdBanner format="320x50" label="" className="my-0" />
             </div>
           </>
         ) : (

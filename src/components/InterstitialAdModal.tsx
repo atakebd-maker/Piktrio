@@ -131,8 +131,9 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
           />
         </div>
 
-        {/* Two 300x250 BengalAds Ad Widgets: One above, one below */}
+        {/* Both 320x50 (small) and 300x250 (large) BengalAds Ad Widgets */}
         <div className="w-full flex flex-col items-center justify-center gap-3 my-2">
+          <AdBanner format="320x50" label="" className="my-0" />
           <AdBanner format="300x250" label="" className="my-0" />
           <AdBanner format="300x250" label="" className="my-0" />
         </div>

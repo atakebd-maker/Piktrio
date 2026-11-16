@@ -86,7 +86,13 @@ export const COLLECTIONS_LIST: CollectionInfo[] = [
   },
 ];
 
-export const STORE_PROMPTS: PromptItem[] = [
+export const HIDDEN_PROMPT_IDS = new Set<string>([
+  'moving-into-2027-with-your-memories-cinematic-ai-photo-prompt',
+  'hug-from-my-own-self-double-self-hug-ai-photo-prompt',
+  'red-cinematic-motorcycle-tribute-poster-5-portrait-collage-prompt',
+]);
+
+export const HIDDEN_PROMPTS: PromptItem[] = [
   {
     id: 'moving-into-2027-with-your-memories-cinematic-ai-photo-prompt',
     title: 'Moving Into 2027 With Your Memories – Professional Cinematic AI Photo Prompt',
@@ -366,6 +372,9 @@ Before generating the final image, carefully and thoroughly examine the supplied
     model: 'ChatGPT / Gemini',
     createdAt: '2026-11-12T02:38:00.000Z',
   },
+];
+
+export const STORE_PROMPTS: PromptItem[] = [
   {
     "id": "the-kings-companion-royal-white-lion-portrait",
     "title": "The King’s Companion – A Royal White Lion Portrait",
