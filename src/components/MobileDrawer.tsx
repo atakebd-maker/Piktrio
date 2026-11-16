@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { X, ChevronDown, ChevronUp, Sparkles, FolderHeart } from 'lucide-react';
 import { PROMPTPIN_CATEGORIES, COLLECTIONS_LIST } from '../data/initialPrompts';
-import { CollectionInfo } from '../types/prompt';
+import { CategoryItem, CollectionInfo } from '../types/prompt';
 import { ModalType } from './InfoModal';
 
 interface MobileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
+  categories?: CategoryItem[];
+  collections?: CollectionInfo[];
   onSelectCategory: (categoryName: string) => void;
   onSelectCollection?: (collection: CollectionInfo) => void;
   onOpenModal?: (type: ModalType) => void;
@@ -15,6 +17,8 @@ interface MobileDrawerProps {
 export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   isOpen,
   onClose,
+  categories = PROMPTPIN_CATEGORIES,
+  collections = COLLECTIONS_LIST,
   onSelectCategory,
   onSelectCollection,
   onOpenModal,
@@ -93,7 +97,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
 
             {collectionsOpen && (
               <div className="pl-2 pr-1 py-2 space-y-1.5 text-xs font-medium bg-slate-50 rounded-2xl my-2 border border-slate-200">
-                {COLLECTIONS_LIST.map((col) => {
+                {collections.map((col) => {
                   const isDiwali = col.label.toLowerCase().includes('diwali');
                   return (
                     <button
@@ -142,7 +146,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
 
             {categoriesOpen && (
               <div className="pl-2 pr-1 py-2 space-y-1 text-xs font-medium bg-slate-50 rounded-2xl my-2 border border-slate-200">
-                {PROMPTPIN_CATEGORIES.map((cat) => (
+                {categories.map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => {

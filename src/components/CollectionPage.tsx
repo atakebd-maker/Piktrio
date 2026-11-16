@@ -5,6 +5,7 @@ import { PromptCard } from './PromptCard';
 import { Pagination } from './Pagination';
 import { AdBanner } from './AdBanner';
 import { ChatGptIcon, GeminiIcon } from './AiIcons';
+import { promptMatchesCategory } from '../data/initialPrompts';
 
 interface CollectionPageProps {
   collection: CollectionInfo;
@@ -45,46 +46,8 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
 
   // Filter prompts belonging strictly to this collection, sorted by newest first
   const collectionPrompts = useMemo(() => {
-    const colId = collection.id.toLowerCase();
-    const colCat = collection.cat.toLowerCase();
-
-    const filtered = allPrompts.filter((p) => {
-      const cat = p.category.toLowerCase();
-      const title = p.title.toLowerCase();
-      const promptText = p.prompt.toLowerCase();
-      const tags = (p.tags || []).map((t) => t.toLowerCase());
-
-      if (colId === 'diwali') {
-        return (
-          cat.includes('diwali') ||
-          title.includes('diwali') ||
-          promptText.includes('diwali') ||
-          tags.some((t) => t.includes('diwali'))
-        );
-      }
-
-      if (colId === 'boys') {
-        return (
-          cat === 'boys' ||
-          tags.some((t) => t === 'boys' || t.includes('boy')) ||
-          title.includes('boys')
-        );
-      }
-
-      if (colId === 'trending') {
-        return (
-          Boolean(p.isPinned) ||
-          tags.some((t) => t.includes('trending')) ||
-          p.viewsCount > 1000
-        );
-      }
-
-      return (
-        cat === colCat ||
-        tags.includes(colCat) ||
-        title.toLowerCase().includes(colCat)
-      );
-    });
+    const filterKey = (collection.cat || collection.id).toLowerCase();
+    const filtered = allPrompts.filter((p) => promptMatchesCategory(p, filterKey));
 
     // Newest posts first!
     return filtered.sort((a, b) => {

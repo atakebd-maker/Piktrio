@@ -1,19 +1,204 @@
 import { CategoryItem, PromptItem, CollectionInfo } from '../types/prompt';
 
 /**
- * Standard categories strictly requested by the user:
- * - All
- * - Trending
- * - Boys
- * - Girls
- * - Couple
+ * Categories strictly backed by active posts in STORE_PROMPTS (zero empty categories).
  */
 export const PROMPTPIN_CATEGORIES: CategoryItem[] = [
   { id: 'trending', name: 'Trending', description: 'Viral and popular AI image editing prompts' },
-  { id: 'all', name: 'All', description: 'All AI Photo editing prompts' },
+  { id: 'all', name: 'All', description: 'All AI photo editing prompts' },
   { id: 'boys', name: 'Boys', description: 'AI photo editing prompts for boys and men' },
-  { id: 'diwali', name: 'Diwali', description: 'Festive Diwali AI photo editing prompts for boys' },
+  { id: 'diwali', name: 'Diwali', description: 'Festive Diwali AI photo editing prompts' },
+  { id: 'royal-lion', name: 'Royal Lion', description: 'Majestic white lion and luxury royal portrait prompts' },
+  { id: 'cars-bikes', name: 'Cars & Bikes', description: 'Mahindra Thar, Scorpio, SUV and classic motorcycle prompts' },
+  { id: 'nature-flowers', name: 'Nature & Flowers', description: 'Wildflower meadows, blooming roses, water lilies and lake scenes' },
+  { id: '3d-pixel-art', name: '3D & Pixel Art', description: '3D Instagram pop-out, pixel stretch and futuristic art prompts' },
+  { id: 'streetwear-poster', name: 'Streetwear & Poster', description: 'Editorial streetwear, racing jackets and cinema poster prompts' },
+  { id: 'golden-hour', name: 'Golden Hour', description: 'Warm sunset rays and golden hour portrait prompts' },
+  { id: 'vintage-retro', name: 'Vintage & Retro', description: '35mm film grain, retro outfits and classic monochrome prompts' },
+  { id: 'black-white', name: 'Black & White', description: 'Dramatic black and white monochrome portrait prompts' },
+  { id: 'romantic', name: 'Romantic', description: 'Romantic rose bouquet and dreamy sky portrait prompts' },
 ];
+
+export const promptMatchesCategory = (p: PromptItem, categoryOrId: string): boolean => {
+  const sel = (categoryOrId || '').toLowerCase().trim();
+  if (!sel || sel === 'all') return true;
+
+  const cat = (p.category || '').toLowerCase().trim();
+  const title = (p.title || '').toLowerCase().trim();
+  const promptText = (p.prompt || '').toLowerCase();
+  const tags = (p.tags || []).map((t) => t.toLowerCase().trim());
+
+  if (sel === 'trending') {
+    return (
+      Boolean(p.isPinned) ||
+      tags.some((t) => t.includes('trending')) ||
+      p.viewsCount > 1000
+    );
+  }
+
+  if (sel === 'boys') {
+    return (
+      cat === 'boys' ||
+      tags.some((t) => t === 'boys' || t.includes('boy')) ||
+      title.includes('boys')
+    );
+  }
+
+  if (sel === 'diwali' || sel.includes('diwali')) {
+    return (
+      cat.includes('diwali') ||
+      title.includes('diwali') ||
+      promptText.includes('diwali') ||
+      tags.some(
+        (t) =>
+          t.includes('diwali') ||
+          t.includes('sherwani') ||
+          t.includes('kurta') ||
+          t.includes('sparkler') ||
+          t.includes('diya')
+      )
+    );
+  }
+
+  if (sel === 'royal-lion' || sel === 'royal lion') {
+    return (
+      cat.includes('lion') ||
+      title.includes('lion') ||
+      tags.some((t) => t.includes('lion') || t.includes('throne'))
+    );
+  }
+
+  if (sel === 'cars-bikes' || sel === 'cars & bikes') {
+    return (
+      cat.includes('car') ||
+      cat.includes('bike') ||
+      cat.includes('automotive') ||
+      title.includes('thar') ||
+      title.includes('scorpio') ||
+      title.includes('car') ||
+      title.includes('motorcycle') ||
+      title.includes('bike') ||
+      tags.some(
+        (t) =>
+          t.includes('thar') ||
+          t.includes('automotive') ||
+          t.includes('suv') ||
+          t.includes('motorcycle') ||
+          t.includes('bike') ||
+          t.includes('car')
+      )
+    );
+  }
+
+  if (sel === 'nature-flowers' || sel === 'nature & flowers') {
+    return (
+      cat.includes('nature') ||
+      cat.includes('flower') ||
+      title.includes('wildflower') ||
+      title.includes('rose') ||
+      title.includes('water lilies') ||
+      title.includes('boat') ||
+      title.includes('bougainvillea') ||
+      title.includes('garden') ||
+      tags.some(
+        (t) =>
+          t.includes('wildflower') ||
+          t.includes('rose') ||
+          t.includes('water lilies') ||
+          t.includes('lily pad') ||
+          t.includes('boat') ||
+          t.includes('lake') ||
+          t.includes('bougainvillea') ||
+          t.includes('garden')
+      )
+    );
+  }
+
+  if (sel === '3d-pixel-art' || sel === '3d & pixel art') {
+    return (
+      cat.includes('3d') ||
+      cat.includes('pixel') ||
+      title.includes('3d') ||
+      title.includes('pixel stretch') ||
+      title.includes('cyberpunk') ||
+      tags.some(
+        (t) =>
+          t.includes('3d') ||
+          t.includes('pixel stretch') ||
+          t.includes('cyberpunk') ||
+          t.includes('futuristic')
+      )
+    );
+  }
+
+  if (sel === 'streetwear-poster' || sel === 'streetwear & poster') {
+    return (
+      cat.includes('streetwear') ||
+      cat.includes('poster') ||
+      title.includes('streetwear') ||
+      title.includes('poster') ||
+      title.includes('jailer') ||
+      tags.some(
+        (t) =>
+          t.includes('streetwear') ||
+          t.includes('poster') ||
+          t.includes('racing jacket') ||
+          t === 'cinema' ||
+          t.includes('movie')
+      )
+    );
+  }
+
+  if (sel === 'golden-hour' || sel === 'golden hour') {
+    return (
+      cat.includes('golden hour') ||
+      title.includes('golden hour') ||
+      title.includes('sunset') ||
+      tags.some((t) => t.includes('golden hour') || t.includes('sunset'))
+    );
+  }
+
+  if (sel === 'vintage-retro' || sel === 'vintage & retro') {
+    return (
+      cat.includes('vintage') ||
+      cat.includes('retro') ||
+      title.includes('vintage') ||
+      title.includes('retro') ||
+      tags.some(
+        (t) =>
+          t.includes('vintage') ||
+          t.includes('retro') ||
+          t.includes('35mm') ||
+          t.includes('monochrome')
+      )
+    );
+  }
+
+  if (sel === 'black-white' || sel === 'black & white') {
+    return (
+      cat.includes('black & white') ||
+      cat.includes('monochrome') ||
+      title.includes('black & white') ||
+      tags.some((t) => t.includes('black & white') || t.includes('monochrome'))
+    );
+  }
+
+  if (sel === 'romantic') {
+    return (
+      cat.includes('romantic') ||
+      title.includes('romantic') ||
+      title.includes('eternal love') ||
+      tags.some((t) => t.includes('romantic'))
+    );
+  }
+
+  return (
+    cat === sel ||
+    tags.some((t) => t === sel || sel.includes(t) || t.includes(sel)) ||
+    title.includes(sel) ||
+    sel.includes(cat)
+  );
+};
 
 export const STRICT_IDENTITY_PROMPT_SUFFIX = `**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
 
@@ -62,27 +247,99 @@ Before generating the final image, carefully and thoroughly examine the supplied
 export const COLLECTIONS_LIST: CollectionInfo[] = [
   {
     id: 'diwali',
-    label: 'Diwali AI photo editing prompt',
+    label: 'Royal Diwali Festive AI Prompts',
     slug: 'diwali-ai-photo-editing-prompt',
     cat: 'diwali',
-    title: 'Diwali AI Photo Editing Prompts Collection',
+    title: 'Royal Diwali Festive AI Photo Editing Prompts',
     description: 'Explore the complete viral collection of royal Diwali ethnic kurta, navy blue sherwani, palace courtyard, sparklers, and festive night fireworks prompts for ChatGPT and Google Gemini with 100% natural facial identity preservation.',
   },
   {
     id: 'boys',
-    label: 'AI Photo Prompts for Boys',
+    label: 'Stylish Boys & Men Portrait Prompts',
     slug: 'ai-photo-prompts-for-boys',
     cat: 'boys',
-    title: 'AI Photo Prompts for Boys & Men Collection',
+    title: 'Stylish Boys & Men AI Photo Editing Prompts',
     description: 'Trending, ultra-realistic portrait prompts for boys including Mahindra Thar SUV, Korean messy hairstyles, luxury street fashion, and cinematic photography for ChatGPT & Gemini.',
   },
   {
     id: 'trending',
-    label: 'Trending AI Photo Prompts',
+    label: 'Viral & Trending AI Prompts',
     slug: 'trending-ai-photo-prompts',
     cat: 'trending',
-    title: 'Trending Viral AI Photo Editing Prompts Collection',
+    title: 'Viral & Trending AI Photo Editing Prompts',
     description: 'The most popular, highly shared, and viral AI photo editing prompts across social media platforms, curated for instant copy-paste into ChatGPT and Google Gemini.',
+  },
+  {
+    id: 'royal-lion',
+    label: 'Majestic White Lion Royal Prompts',
+    slug: 'royal-white-lion-ai-photo-prompts',
+    cat: 'royal-lion',
+    title: 'Majestic White Lion & Royal Throne AI Prompts',
+    description: 'Ultra-luxury royal fashion portrait prompts featuring white lions, golden thrones, tailored white suits, and regal cinematic lighting.',
+  },
+  {
+    id: 'cars-bikes',
+    label: 'Luxury SUV, Thar & Bike Prompts',
+    slug: 'luxury-cars-thar-bike-ai-prompts',
+    cat: 'cars-bikes',
+    title: 'Luxury SUV, Mahindra Thar & Classic Bike AI Prompts',
+    description: 'High-impact automotive portrait prompts featuring black Mahindra Thar, Mahindra Scorpio, vintage denim motorcycles, and rugged outdoor road aesthetics.',
+  },
+  {
+    id: 'nature-flowers',
+    label: 'Dreamy Wildflower, Roses & Lake Prompts',
+    slug: 'nature-flowers-lake-ai-photo-prompts',
+    cat: 'nature-flowers',
+    title: 'Dreamy Wildflower, Blooming Roses & Lake Scenery Prompts',
+    description: 'Breathtaking outdoor portrait prompts set in sunlit wildflower hillsides, pink bougainvillea gardens, water-lily wooden boats, and blooming rose frames.',
+  },
+  {
+    id: '3d-pixel-art',
+    label: '3D Instagram & Pixel Stretch Art Prompts',
+    slug: '3d-instagram-pixel-stretch-ai-prompts',
+    cat: '3d-pixel-art',
+    title: '3D Instagram Pop-Out & Pixel Stretch Digital Art Prompts',
+    description: 'Creative viral 3D social frame pop-outs, electric blue pixel-stretch effects, and neon cyberpunk digital transformation prompts for ChatGPT and Gemini.',
+  },
+  {
+    id: 'streetwear-poster',
+    label: 'Streetwear, Cinema & Magazine Posters',
+    slug: 'streetwear-cinema-poster-ai-prompts',
+    cat: 'streetwear-poster',
+    title: 'Streetwear Editorial & Cinema Movie Poster Prompts',
+    description: 'Bold racing jacket fashion posters, top-down streetwear shoots, and cinematic movie-poster portrait prompts ready to copy and create.',
+  },
+  {
+    id: 'golden-hour',
+    label: 'Golden Hour Sunset Aesthetic Prompts',
+    slug: 'golden-hour-sunset-ai-photo-prompts',
+    cat: 'golden-hour',
+    title: 'Golden Hour & Warm Sunset Glow Portrait Prompts',
+    description: 'Sun-drenched golden hour portrait prompts with natural lens flares, Korean messy hair aesthetics, warm meadow rays, and cinematic twilight tones.',
+  },
+  {
+    id: 'vintage-retro',
+    label: 'Vintage 35mm Film & Retro Prompts',
+    slug: 'vintage-35mm-retro-ai-photo-prompts',
+    cat: 'vintage-retro',
+    title: 'Vintage 35mm Film Grain & Classic Retro Portrait Prompts',
+    description: 'Timeless retro aesthetic prompts inspired by 35mm analog film, classic denim styling, heritage motorcycles, and editorial monochrome frames.',
+  },
+  {
+    id: 'black-white',
+    label: 'Classic Black & White Monochrome Prompts',
+    slug: 'black-and-white-monochrome-ai-prompts',
+    cat: 'black-white',
+    title: 'Classic Black & White Monochrome AI Prompts',
+    description: 'Dramatic high-contrast black and white portrait prompts with crisp shadows, luxury vehicles, and timeless editorial composition.',
+  },
+  {
+    id: 'romantic',
+    label: 'Romantic Roses & Dreamy Sky Prompts',
+    slug: 'romantic-roses-portrait-ai-prompts',
+    cat: 'romantic',
+    title: 'Romantic Roses & Azure Sky AI Portrait Prompts',
+    description: 'Soft romantic portrait prompts featuring red and pink rose bouquets, silhouette shadows, golden-hour light, and clear blue skies.',
   },
 ];
 

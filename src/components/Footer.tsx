@@ -6,6 +6,7 @@ import { Sparkles } from 'lucide-react';
 import { ChatGptIcon, GeminiIcon } from './AiIcons';
 
 interface FooterProps {
+  collections?: CollectionInfo[];
   onSelectCategory: (categoryName: string) => void;
   onSelectCollection: (collection: CollectionInfo) => void;
   onOpenModal?: (type: ModalType) => void;
@@ -19,7 +20,7 @@ const MENU_ITEMS: { name: string; type?: ModalType; isHome?: boolean }[] = [
   { name: 'Terms & Conditions', type: 'terms' },
 ];
 
-export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onSelectCollection, onOpenModal }) => {
+export const Footer: React.FC<FooterProps> = ({ collections = COLLECTIONS_LIST, onSelectCategory, onSelectCollection, onOpenModal }) => {
   return (
     <footer className="bg-white border-t border-slate-200 mt-16 pt-12 pb-10 text-center select-none">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -55,8 +56,8 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCategory, onSelectCollec
           <h4 className="text-xs font-bold text-slate-400 tracking-widest uppercase mb-4">
             COLLECTIONS
           </h4>
-          <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-2xl mx-auto">
-            {COLLECTIONS_LIST.map((item) => {
+          <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-4xl mx-auto">
+            {collections.map((item) => {
               const isDiwali = item.label.toLowerCase().includes('diwali');
               return (
                 <a

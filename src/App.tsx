@@ -15,7 +15,7 @@ import { InterstitialAdModal } from './components/InterstitialAdModal';
 import { FAQSection } from './components/FAQSection';
 import { CollectionPage } from './components/CollectionPage';
 import { PromptItem, CategoryItem, CollectionInfo } from './types/prompt';
-import { PROMPTPIN_CATEGORIES, STORE_PROMPTS, COLLECTIONS_LIST, HIDDEN_PROMPT_IDS, ensureIdentityPromptSuffix } from './data/initialPrompts';
+import { PROMPTPIN_CATEGORIES, STORE_PROMPTS, COLLECTIONS_LIST, HIDDEN_PROMPT_IDS, ensureIdentityPromptSuffix, promptMatchesCategory } from './data/initialPrompts';
 import {
   subscribeToPrompts,
   subscribeToCategories,
@@ -43,9 +43,7 @@ const resetHomeMeta = () => {
 
 export default function App() {
   const [prompts, setPrompts] = useState<PromptItem[]>(STORE_PROMPTS);
-  const [categories, setCategories] = useState<CategoryItem[]>(
-    PROMPTPIN_CATEGORIES.filter((c) => c.id !== 'diwali')
-  );
+  const [categories, setCategories] = useState<CategoryItem[]>(PROMPTPIN_CATEGORIES);
   const [isLoading, setIsLoading] = useState(false);
   
   // Navigation & Search State
@@ -123,7 +121,14 @@ export default function App() {
       }
 
       if (catParam) {
-        const formattedCat = catParam.charAt(0).toUpperCase() + catParam.slice(1).toLowerCase();
+        const matchedCat = PROMPTPIN_CATEGORIES.find(
+          (c) =>
+            c.id.toLowerCase() === catParam.toLowerCase() ||
+            c.name.toLowerCase() === catParam.toLowerCase()
+        );
+        const formattedCat = matchedCat
+          ? matchedCat.name
+          : catParam.charAt(0).toUpperCase() + catParam.slice(1).toLowerCase();
         setSelectedCategory(formattedCat);
       }
 
@@ -161,19 +166,11 @@ export default function App() {
     );
 
     const unsubCategories = subscribeToCategories((cats) => {
-      // Top category bar strictly has: 'trending', 'all', 'boys' (Diwali is in collections)
-      const order = ['trending', 'all', 'boys'];
-      const filteredCats = cats.filter(
-        (c) => c.id.toLowerCase() !== 'couple' && c.id.toLowerCase() !== 'girls' && c.id.toLowerCase() !== 'diwali'
+      // Strictly preserve PROMPTPIN_CATEGORIES (all categories backed by actual posts, never empty)
+      const merged = PROMPTPIN_CATEGORIES.map(
+        (base) => cats.find((c) => c.id.toLowerCase() === base.id.toLowerCase()) || base
       );
-      const sorted = order
-        .map((id) => filteredCats.find((c) => c.id.toLowerCase() === id) || PROMPTPIN_CATEGORIES.find((c) => c.id.toLowerCase() === id))
-        .filter((c): c is CategoryItem => Boolean(c));
-      if (sorted.length > 0) {
-        setCategories(sorted);
-      } else {
-        setCategories(PROMPTPIN_CATEGORIES.filter((c) => c.id !== 'diwali'));
-      }
+      setCategories(merged.length > 0 ? merged : PROMPTPIN_CATEGORIES);
     });
 
     const handleLocationChange = () => {
@@ -213,35 +210,30 @@ export default function App() {
     return 0;
   };
 
+  // Ensure zero empty categories or collections ever appear in UI
+  const visibleCategories = useMemo(() => {
+    return categories.filter(
+      (cat) => cat.id === 'all' || prompts.some((p) => promptMatchesCategory(p, cat.id))
+    );
+  }, [categories, prompts]);
+
+  const visibleCollections = useMemo(() => {
+    return COLLECTIONS_LIST.filter((col) =>
+      prompts.some((p) => promptMatchesCategory(p, col.cat || col.id))
+    );
+  }, [prompts]);
+
   // Filter & Sort prompts: Pinned posts first, then newest posts first
   const filteredPrompts = useMemo(() => {
     const list = prompts.filter((p) => {
       // Category & Collection filter
       if (selectedCategory && selectedCategory.toLowerCase() !== 'all') {
-        const sel = selectedCategory.toLowerCase().trim();
-        const cat = p.category.toLowerCase().trim();
-        const title = p.title.toLowerCase().trim();
-        const promptText = p.prompt.toLowerCase();
-
-        // Check if user selected Diwali or Diwali AI photo editing prompt collection
-        const isDiwaliFilter = sel.includes('diwali');
-        const matchesDiwali = isDiwaliFilter && (
-          cat.includes('diwali') ||
-          title.includes('diwali') ||
-          promptText.includes('diwali') ||
-          p.tags?.some((t) => t.toLowerCase().includes('diwali'))
+        const matchedCat = PROMPTPIN_CATEGORIES.find(
+          (c) =>
+            c.name.toLowerCase() === selectedCategory.toLowerCase().trim() ||
+            c.id.toLowerCase() === selectedCategory.toLowerCase().trim()
         );
-
-        // Standard category matching
-        const matchesStandard =
-          cat === sel ||
-          p.tags?.some((t) => {
-            const tag = t.toLowerCase();
-            return tag === sel || sel.includes(tag) || tag.includes(sel);
-          }) ||
-          sel.includes(cat);
-
-        if (!matchesDiwali && !matchesStandard) {
+        if (!promptMatchesCategory(p, matchedCat ? matchedCat.id : selectedCategory)) {
           return false;
         }
       }
@@ -387,7 +379,10 @@ export default function App() {
       searchParams.delete('category');
       searchParams.delete('c');
     } else {
-      searchParams.set('category', catName.toLowerCase());
+      const catObj = visibleCategories.find(
+        (c) => c.name.toLowerCase() === catName.toLowerCase() || c.id.toLowerCase() === catName.toLowerCase()
+      );
+      searchParams.set('category', catObj ? catObj.id : catName.toLowerCase());
     }
     const newSearch = searchParams.toString();
     const newUrl = '/' + (newSearch ? `?${newSearch}` : '');
@@ -430,6 +425,8 @@ export default function App() {
       <MobileDrawer
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
+        categories={visibleCategories}
+        collections={visibleCollections}
         onSelectCategory={(catName) => {
           handleSelectCategory(catName);
           window.scrollTo({ top: 240, behavior: 'smooth' });
@@ -456,7 +453,7 @@ export default function App() {
           <CollectionPage
             collection={selectedCollection}
             allPrompts={prompts}
-            allCollections={COLLECTIONS_LIST}
+            allCollections={visibleCollections}
             onBack={handleBackFromCollection}
             onSelectPrompt={handleViewPrompt}
             onCopyPrompt={handleCopyPrompt}
@@ -479,7 +476,7 @@ export default function App() {
 
             {/* 3. Horizontal Category Navigation */}
             <CategoryBar
-              categories={categories}
+              categories={visibleCategories}
               selectedCategory={selectedCategory}
               onSelectCategory={handleSelectCategory}
             />
@@ -614,6 +611,7 @@ export default function App() {
 
       {/* 7. Footer (Dark theme matching AIPROMPTS.BUZZ) */}
       <Footer
+        collections={visibleCollections}
         onSelectCategory={(catName) => {
           handleSelectCategory(catName);
           window.scrollTo({ top: 220, behavior: 'smooth' });
