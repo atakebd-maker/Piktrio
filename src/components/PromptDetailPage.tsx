@@ -249,6 +249,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             <div className="w-full mt-2.5 flex items-center justify-center text-xs text-slate-400 px-1">
               <span>100% Uncropped &bull; Original Aspect Ratio</span>
             </div>
+
+            {/* 300x250 Ad below main preview image */}
+            <AdBanner format="300x250" label="Sponsored Partner" className="mt-4" />
           </div>
 
           {/* RIGHT: Prompt Information, Copy, and AI Tools */}
@@ -340,9 +343,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 </div>
               )}
 
-              {/* 300x250 AdBanner placed directly below Copy Full Prompt button as requested */}
-              <div className="w-full flex justify-center my-3">
+              {/* Two 300x250 AdBanners placed below the prompt box & copy button as requested */}
+              <div className="w-full flex flex-col items-center justify-center gap-3 my-3">
                 <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
+                <AdBanner format="300x250" label="Sponsored Ad" className="my-1" />
               </div>
 
               {/* Open in ChatGPT and Open in Gemini (Opens tool website directly without prefilling query) */}
@@ -439,6 +443,8 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               />
             ))}
           </div>
+
+          <AdBanner format="300x250" label="Sponsored Partner" className="mt-6 mb-2" />
         </section>
       )}
 

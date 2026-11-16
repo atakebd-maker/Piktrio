@@ -245,7 +245,7 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
           <>
             {/* EXACT TWO COLUMNS ON MOBILE (grid-cols-2) & 3-4 COLUMNS ON DESKTOP */}
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
-              {paginatedPrompts.map((prompt) => (
+              {paginatedPrompts.slice(0, 4).map((prompt) => (
                 <PromptCard
                   key={prompt.id}
                   prompt={prompt}
@@ -254,6 +254,22 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
                 />
               ))}
             </div>
+
+            {paginatedPrompts.length > 4 && (
+              <>
+                <AdBanner format="300x250" label="Sponsored Partner" className="my-5" />
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+                  {paginatedPrompts.slice(4).map((prompt) => (
+                    <PromptCard
+                      key={prompt.id}
+                      prompt={prompt}
+                      onViewDetails={onSelectPrompt}
+                      onCopyPrompt={onCopyPrompt}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
 
             {/* Pagination */}
             <Pagination

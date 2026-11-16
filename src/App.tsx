@@ -474,6 +474,9 @@ export default function App() {
               onCopySuccess={(msg) => showToast(msg)}
             />
 
+            {/* Large 300x250 Banner below Hero Search */}
+            <AdBanner format="300x250" label="Sponsored Ad" className="my-3" />
+
             {/* 3. Horizontal Category Navigation */}
             <CategoryBar
               categories={categories}
@@ -524,7 +527,7 @@ export default function App() {
                 <>
                   {/* EXACT TWO COLUMNS ON MOBILE (grid-cols-2) & 3-4 COLUMNS ON DESKTOP */}
                   <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
-                    {paginatedPrompts.map((prompt) => (
+                    {paginatedPrompts.slice(0, 4).map((prompt) => (
                       <PromptCard
                         key={prompt.id}
                         prompt={prompt}
@@ -533,6 +536,23 @@ export default function App() {
                       />
                     ))}
                   </div>
+
+                  {/* Mid-Gallery Large 300x250 Ad */}
+                  {paginatedPrompts.length > 4 && (
+                    <>
+                      <AdBanner format="300x250" label="Sponsored Partner" className="my-5" />
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+                        {paginatedPrompts.slice(4).map((prompt) => (
+                          <PromptCard
+                            key={prompt.id}
+                            prompt={prompt}
+                            onViewDetails={handleViewPrompt}
+                            onCopyPrompt={handleCopyPrompt}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
 
                   {/* Pagination */}
                   <Pagination
@@ -583,6 +603,9 @@ export default function App() {
 
             {/* 6. Comprehensive Search-Friendly AI Prompts FAQ Section */}
             <FAQSection />
+
+            {/* Bottom Large 300x250 Banner above Footer */}
+            <AdBanner format="300x250" label="Sponsored Partner" className="mt-4 mb-8" />
 
           </div>
         )}
