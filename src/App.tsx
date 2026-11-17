@@ -442,6 +442,7 @@ export default function App() {
         {selectedPrompt ? (
           /* DEDICATED PROMPT DETAILS PAGE (Opened upon clicking any image) */
           <PromptDetailPage
+            key={selectedPrompt.id}
             prompt={selectedPrompt}
             onBack={handleBackToGallery}
             onCopyPrompt={handleCopyPrompt}
@@ -451,6 +452,7 @@ export default function App() {
         ) : selectedCollection ? (
           /* DEDICATED COLLECTION PAGE (Opened upon clicking any collection in Footer/Drawer/Header) */
           <CollectionPage
+            key={selectedCollection.id}
             collection={selectedCollection}
             allPrompts={prompts}
             allCollections={visibleCollections}
