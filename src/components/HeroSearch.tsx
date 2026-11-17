@@ -1,7 +1,33 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Search, Copy, Check, Sparkles } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Search, Copy, Check } from 'lucide-react';
 import { copyToClipboard } from '../utils/clipboard';
 import { ChatGptIcon, GeminiIcon } from './AiIcons';
+import { SearchHistory } from './SearchHistory';
+
+const SEARCH_HISTORY_STORAGE_KEY = 'piktrio_search_history';
+const MAX_SEARCH_HISTORY = 5;
+
+const loadSearchHistory = (): string[] => {
+  try {
+    const raw = localStorage.getItem(SEARCH_HISTORY_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .filter((item): item is string => typeof item === 'string' && item.trim().length > 0)
+      .slice(0, MAX_SEARCH_HISTORY);
+  } catch {
+    return [];
+  }
+};
+
+const persistSearchHistory = (items: string[]) => {
+  try {
+    localStorage.setItem(SEARCH_HISTORY_STORAGE_KEY, JSON.stringify(items));
+  } catch {
+    // Ignore storage quota or private browsing errors
+  }
+};
 
 interface HeroSearchProps {
   searchQuery: string;
@@ -74,6 +100,48 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [searchHistory, setSearchHistory] = useState<string[]>(() => loadSearchHistory());
+
+  const saveQueryToHistory = useCallback((rawQuery: string) => {
+    const trimmed = rawQuery.trim();
+    if (trimmed.length < 2) return;
+    setSearchHistory((prev) => {
+      const next = [
+        trimmed,
+        ...prev.filter((item) => item.toLowerCase() !== trimmed.toLowerCase()),
+      ].slice(0, MAX_SEARCH_HISTORY);
+      persistSearchHistory(next);
+      return next;
+    });
+  }, []);
+
+  // Debounced auto-save when user pauses after typing a query
+  useEffect(() => {
+    const trimmed = searchQuery.trim();
+    if (trimmed.length < 2) return;
+    const timer = setTimeout(() => {
+      saveQueryToHistory(trimmed);
+    }, 900);
+    return () => clearTimeout(timer);
+  }, [searchQuery, saveQueryToHistory]);
+
+  const handleSelectWithHistory = (query: string) => {
+    onSearchChange(query);
+    saveQueryToHistory(query);
+  };
+
+  const handleRemoveHistoryItem = (query: string) => {
+    setSearchHistory((prev) => {
+      const next = prev.filter((item) => item.toLowerCase() !== query.toLowerCase());
+      persistSearchHistory(next);
+      return next;
+    });
+  };
+
+  const handleClearHistory = () => {
+    setSearchHistory([]);
+    persistSearchHistory([]);
+  };
 
   const currentPrompt = TYPING_PROMPTS[promptIndex];
 
@@ -152,7 +220,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
       <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6">
         <button
           onClick={() => {
-            onSearchChange('Gemini');
+            handleSelectWithHistory('Gemini');
             onTagClick?.('Trending');
           }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-blue-500/25 transition-all transform active:scale-95 cursor-pointer"
@@ -163,7 +231,7 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
 
         <button
           onClick={() => {
-            onSearchChange('ChatGPT');
+            handleSelectWithHistory('ChatGPT');
             onTagClick?.('Trending');
           }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white hover:bg-slate-50 text-slate-700 hover:text-emerald-700 border border-slate-300 text-xs sm:text-sm font-bold shadow-xs transition-all transform active:scale-95 cursor-pointer"
@@ -239,14 +307,14 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
       {/* 6. Quick Copy-Paste Search Pills matching Screenshot */}
       <div className="flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto mb-6">
         <button
-          onClick={() => onSearchChange('gemini ai photo prompt copy paste')}
+          onClick={() => handleSelectWithHistory('gemini ai photo prompt copy paste')}
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700 transition-all cursor-pointer shadow-xs"
         >
           <GeminiIcon className="w-3.5 h-3.5 text-blue-500 shrink-0" />
           <span>gemini ai photo prompt copy paste</span>
         </button>
         <button
-          onClick={() => onSearchChange('chatgpt ai photo editing prompt')}
+          onClick={() => handleSelectWithHistory('chatgpt ai photo editing prompt')}
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-slate-700 bg-white border border-slate-200 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700 transition-all cursor-pointer shadow-xs"
         >
           <ChatGptIcon className="w-3.5 h-3.5 text-[#10a37f] shrink-0" />
@@ -255,18 +323,26 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
       </div>
 
       {/* 7. Sleek White & Blue Search Bar */}
-      <div className="relative max-w-xl mx-auto mb-3">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          saveQueryToHistory(searchQuery);
+        }}
+        className="relative max-w-xl mx-auto mb-3"
+      >
         <div className="relative flex items-center bg-white border border-slate-200 rounded-2xl shadow-lg shadow-blue-500/5 focus-within:border-blue-500 focus-within:ring-3 focus-within:ring-blue-100 transition-all p-1">
           <Search className="w-5 h-5 text-slate-400 ml-3.5 mr-2 shrink-0" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
+            onBlur={() => saveQueryToHistory(searchQuery)}
             placeholder="Search prompts (e.g. diwali, sherwani, scorpio, roses, ajmal)..."
             className="w-full py-2.5 px-1 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 bg-transparent focus:outline-none"
           />
           {searchQuery && (
             <button
+              type="button"
               onClick={() => onSearchChange('')}
               className="text-xs text-slate-400 hover:text-slate-700 px-3 py-1 mr-1 rounded-lg cursor-pointer hover:bg-slate-100"
             >
@@ -274,14 +350,23 @@ export const HeroSearch: React.FC<HeroSearchProps> = ({
             </button>
           )}
         </div>
-      </div>
+      </form>
 
-      {/* 8. Clean Prompt Quick Tags */}
+      {/* 8. Search History Tags (Last 5 queries saved in localStorage) */}
+      <SearchHistory
+        queries={searchHistory}
+        activeQuery={searchQuery}
+        onSelectQuery={handleSelectWithHistory}
+        onRemoveQuery={handleRemoveHistoryItem}
+        onClearHistory={handleClearHistory}
+      />
+
+      {/* 9. Clean Prompt Quick Tags */}
       <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-2xl mx-auto">
         {QUICK_TAGS.map((tag) => (
           <button
             key={tag}
-            onClick={() => onSearchChange(tag)}
+            onClick={() => handleSelectWithHistory(tag)}
             className="px-3 py-1 rounded-full text-[11px] font-medium text-slate-600 bg-white border border-slate-200 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700 transition-all cursor-pointer shadow-xs"
           >
             #{tag}
