@@ -84,7 +84,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/85 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/90 backdrop-blur-sm flex items-center justify-center p-0 sm:p-4 animate-in fade-in duration-200">
       
       {/* Background Overlay */}
       <div 
@@ -93,53 +93,56 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       />
 
       {/* Main Full-Screen Interstitial Ad Dialog */}
-      <div className="relative bg-white rounded-3xl shadow-2xl max-w-[360px] sm:max-w-md w-full p-2.5 sm:p-5 border border-slate-200 z-10 flex flex-col items-center animate-in fade-in duration-200 text-slate-800 max-h-[94vh] overflow-y-auto">
+      <div className="relative bg-white sm:rounded-3xl shadow-2xl w-full min-h-screen sm:min-h-0 sm:max-w-lg sm:max-h-[95vh] p-4 sm:p-6 border-0 sm:border sm:border-slate-200 z-10 flex flex-col justify-between animate-in fade-in duration-200 text-slate-800 overflow-y-auto">
         
-        {/* Header with Title & Live Countdown / Close Button */}
-        <div className="w-full flex items-center justify-between pb-2.5 mb-2.5 border-b border-slate-100">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
-            <Sparkles className="w-4 h-4 text-amber-500" />
-            <span>Advertisement &bull; BengalAds Partner</span>
+        {/* Top Bar + Progress */}
+        <div className="w-full">
+          {/* Header with Title & Live Countdown / Close Button */}
+          <div className="w-full flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
+              <Sparkles className="w-4 h-4 text-amber-500" />
+              <span>Advertisement &bull; BengalAds Partner</span>
+            </div>
+
+            {/* Countdown Badge / Close Button */}
+            {canClose ? (
+              <button
+                onClick={handleCloseAndUnlock}
+                aria-label="Close ad and view content"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all cursor-pointer shadow-md transform active:scale-95 animate-pulse"
+                title="Close Ad & View Full Prompt"
+              >
+                <X className="w-3.5 h-3.5 stroke-[2.5]" />
+                <span>Close &amp; View</span>
+              </button>
+            ) : (
+              <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-amber-800 text-[11px] font-bold shadow-xs">
+                <Clock className="w-3.5 h-3.5 animate-spin text-amber-600" />
+                <span>Wait {countdown}s</span>
+              </div>
+            )}
           </div>
 
-          {/* Countdown Badge / Close Button */}
-          {canClose ? (
-            <button
-              onClick={handleCloseAndUnlock}
-              aria-label="Close ad and view content"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all cursor-pointer shadow-md transform active:scale-95 animate-pulse"
-              title="Close Ad & View Full Prompt"
-            >
-              <X className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>Close &amp; View</span>
-            </button>
-          ) : (
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-amber-800 text-[11px] font-bold shadow-xs">
-              <Clock className="w-3.5 h-3.5 animate-spin text-amber-600" />
-              <span>Wait {countdown}s</span>
-            </div>
-          )}
+          {/* Dynamic Progress Bar */}
+          <div className="w-full bg-slate-100 rounded-full h-1.5 mb-3 overflow-hidden border border-slate-200">
+            <div
+              className={`h-full transition-all duration-1000 ease-linear rounded-full ${
+                canClose ? 'bg-emerald-500 w-full' : 'bg-blue-600'
+              }`}
+              style={{ width: canClose ? '100%' : `${((totalDuration - countdown) / totalDuration) * 100}%` }}
+            />
+          </div>
         </div>
 
-        {/* Dynamic Progress Bar */}
-        <div className="w-full bg-slate-100 rounded-full h-1.5 mb-2.5 overflow-hidden border border-slate-200">
-          <div
-            className={`h-full transition-all duration-1000 ease-linear rounded-full ${
-              canClose ? 'bg-emerald-500 w-full' : 'bg-blue-600'
-            }`}
-            style={{ width: canClose ? '100%' : `${((totalDuration - countdown) / totalDuration) * 100}%` }}
-          />
-        </div>
-
-        {/* Both 320x50 (small) and 300x250 (large) BengalAds Ad Widgets */}
-        <div className="w-full flex flex-col items-center justify-center gap-3 my-2">
-          <AdBanner format="320x50" label="" className="my-0" />
-          <AdBanner format="300x250" label="" className="my-0" />
-          <AdBanner format="300x250" label="" className="my-0" />
+        {/* Full-Screen Ad Area: 320x50 + Two 300x250 BengalAds Widgets */}
+        <div className="w-full flex-1 flex flex-col items-center justify-center gap-3 my-2">
+          <AdBanner format="320x50" label="" className="my-0" priorityPrimary />
+          <AdBanner format="300x250" label="" className="my-0" priorityPrimary />
+          <AdBanner format="300x250" label="" className="my-0" delayMs={220} />
         </div>
 
         {/* Bottom Status / Unlock Action */}
-        <div className="w-full pt-3 mt-1 border-t border-slate-100 text-center">
+        <div className="w-full pt-3 mt-2 border-t border-slate-100 text-center">
           {canClose ? (
             <div className="flex flex-col items-center gap-2.5">
               <p className="text-xs text-emerald-700 font-bold flex items-center justify-center gap-1.5">
@@ -148,14 +151,14 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
               </p>
               <button
                 onClick={handleCloseAndUnlock}
-                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 cursor-pointer transform active:scale-[0.99] transition-all"
+                className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 cursor-pointer transform active:scale-[0.99] transition-all"
               >
                 <span>Continue to Full Prompt</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           ) : (
-            <p className="text-[11px] text-slate-500 font-medium">
+            <p className="text-xs text-slate-500 font-medium py-1">
               Please wait <span className="font-bold text-slate-800">{countdown} seconds</span> to unlock full photo prompt details.
             </p>
           )}
