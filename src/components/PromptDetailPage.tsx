@@ -444,7 +444,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             ))}
           </div>
 
-          <AdBanner format="300x250" label="Sponsored Partner" className="mt-6 mb-2" />
+          <div className="mt-6 mb-2 flex flex-col items-center gap-3">
+            <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
+            <AdBanner format="320x50" label="Sponsored Links" className="my-1" />
+          </div>
         </section>
       )}
 

@@ -156,29 +156,34 @@ export const AdBanner: React.FC<AdBannerProps> = ({
     setHasAd(true);
 
     let innerObserver: MutationObserver | null = null;
+    let innerPollTimer: number | null = null;
+    let stopInnerPollTimer: number | null = null;
     let collapseTimer: number | null = null;
     let mountTimer: number | null = null;
+    let trackedInnerZone: HTMLElement | null = null;
+
+    const syncSize = () => {
+      if (!trackedInnerZone) return;
+      if (isZoneVisible(trackedInnerZone)) {
+        const measured = Math.max(
+          height,
+          trackedInnerZone.scrollHeight || 0,
+          trackedInnerZone.offsetHeight || 0
+        );
+        iframe.style.height = `${measured}px`;
+        setHasAd(true);
+        if (collapseTimer !== null) {
+          window.clearTimeout(collapseTimer);
+          collapseTimer = null;
+        }
+      }
+    };
 
     const handleLoad = () => {
       try {
         const innerZone = iframe.contentDocument?.getElementById(baseZoneId);
         if (!innerZone) return;
-
-        const syncSize = () => {
-          if (isZoneVisible(innerZone)) {
-            const measured = Math.max(
-              height,
-              innerZone.scrollHeight || 0,
-              innerZone.offsetHeight || 0
-            );
-            iframe.style.height = `${measured}px`;
-            setHasAd(true);
-            if (collapseTimer !== null) {
-              window.clearTimeout(collapseTimer);
-              collapseTimer = null;
-            }
-          }
-        };
+        trackedInnerZone = innerZone;
 
         syncSize();
         innerObserver = new MutationObserver(syncSize);
@@ -188,6 +193,15 @@ export const AdBanner: React.FC<AdBannerProps> = ({
           subtree: true,
           attributeFilter: ['style', 'class'],
         });
+        innerZone.addEventListener('load', syncSize, true);
+
+        innerPollTimer = window.setInterval(syncSize, 500);
+        stopInnerPollTimer = window.setTimeout(() => {
+          if (innerPollTimer !== null) {
+            window.clearInterval(innerPollTimer);
+            innerPollTimer = null;
+          }
+        }, 15000);
 
         if (!keepSpace) {
           collapseTimer = window.setTimeout(() => {
@@ -195,7 +209,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
               iframe.style.height = '0px';
               setHasAd(false);
             }
-          }, 6000);
+          }, 12000);
         }
       } catch {
         // Keep default visible size if contentDocument check fails
@@ -216,6 +230,9 @@ export const AdBanner: React.FC<AdBannerProps> = ({
     return () => {
       if (mountTimer !== null) window.clearTimeout(mountTimer);
       if (collapseTimer !== null) window.clearTimeout(collapseTimer);
+      if (innerPollTimer !== null) window.clearInterval(innerPollTimer);
+      if (stopInnerPollTimer !== null) window.clearTimeout(stopInnerPollTimer);
+      if (trackedInnerZone) trackedInnerZone.removeEventListener('load', syncSize, true);
       if (innerObserver) innerObserver.disconnect();
       iframe.removeEventListener('load', handleLoad);
       container.replaceChildren();
