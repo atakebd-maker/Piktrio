@@ -93,32 +93,32 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       />
 
       {/* Main Full-Screen Interstitial Ad Dialog */}
-      <div className="relative bg-white sm:rounded-3xl shadow-2xl w-full min-h-screen sm:min-h-0 sm:max-w-lg sm:max-h-[95vh] p-4 sm:p-6 border-0 sm:border sm:border-slate-200 z-10 flex flex-col justify-between animate-in fade-in duration-200 text-slate-800 overflow-y-auto">
+      <div className="relative bg-white sm:rounded-3xl shadow-2xl w-full min-h-screen sm:min-h-0 sm:max-w-lg sm:max-h-[95vh] p-2.5 sm:p-6 border-0 sm:border sm:border-slate-200 z-10 flex flex-col justify-between animate-in fade-in duration-200 text-slate-800 overflow-y-auto">
         
         {/* Top Bar + Progress */}
         <div className="w-full">
-          {/* Header with Title & Live Countdown / Close Button */}
+          {/* Header with Title & Live Countdown / Skip Ad Button */}
           <div className="w-full flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
             <div className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
               <Sparkles className="w-4 h-4 text-amber-500" />
-              <span>Advertisement &bull; BengalAds Partner</span>
+              <span>Sponsored Advertisement</span>
             </div>
 
-            {/* Countdown Badge / Close Button */}
+            {/* Countdown Badge / Skip Ad Button */}
             {canClose ? (
               <button
                 onClick={handleCloseAndUnlock}
-                aria-label="Close ad and view content"
+                aria-label="Skip ad and view prompt"
                 className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all cursor-pointer shadow-md transform active:scale-95 animate-pulse"
-                title="Close Ad & View Full Prompt"
+                title="Skip Ad & View Full Prompt"
               >
+                <span>Skip Ad</span>
                 <X className="w-3.5 h-3.5 stroke-[2.5]" />
-                <span>Close &amp; View</span>
               </button>
             ) : (
               <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-50 border border-amber-300 text-amber-800 text-[11px] font-bold shadow-xs">
                 <Clock className="w-3.5 h-3.5 animate-spin text-amber-600" />
-                <span>Wait {countdown}s</span>
+                <span>Skip in {countdown}s</span>
               </div>
             )}
           </div>
@@ -134,32 +134,32 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
           </div>
         </div>
 
-        {/* Full-Screen Ad Area: 320x50 + Two 300x250 BengalAds Widgets */}
+        {/* Full-Screen Ad Area: 320x50 (small) + Two 300x250 (large) BengalAds Widgets */}
         <div className="w-full flex-1 flex flex-col items-center justify-center gap-3 my-2">
-          <AdBanner format="320x50" label="" className="my-0" priorityPrimary />
-          <AdBanner format="300x250" label="" className="my-0" priorityPrimary />
-          <AdBanner format="300x250" label="" className="my-0" delayMs={220} />
+          <AdBanner format="320x50" label="" className="my-0" priorityPrimary keepSpace />
+          <AdBanner format="300x250" label="" className="my-0" priorityPrimary keepSpace />
+          <AdBanner format="300x250" label="" className="my-0" delayMs={200} keepSpace />
         </div>
 
-        {/* Bottom Status / Unlock Action */}
+        {/* Bottom Status / Skip & Unlock Action */}
         <div className="w-full pt-3 mt-2 border-t border-slate-100 text-center">
           {canClose ? (
             <div className="flex flex-col items-center gap-2.5">
               <p className="text-xs text-emerald-700 font-bold flex items-center justify-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Ad completed! Your prompt is unlocked.</span>
+                <span>Ready! Click below to skip ad and view prompt.</span>
               </p>
               <button
                 onClick={handleCloseAndUnlock}
                 className="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 cursor-pointer transform active:scale-[0.99] transition-all"
               >
-                <span>Continue to Full Prompt</span>
+                <span>Skip Ad &amp; View Prompt</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           ) : (
             <p className="text-xs text-slate-500 font-medium py-1">
-              Please wait <span className="font-bold text-slate-800">{countdown} seconds</span> to unlock full photo prompt details.
+              You can skip this ad in <span className="font-bold text-slate-800">{countdown} seconds</span> to view full photo prompt details.
             </p>
           )}
         </div>
