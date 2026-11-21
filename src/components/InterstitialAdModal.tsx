@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { X, Clock, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
 import { AdBanner } from './AdBanner';
 
@@ -37,6 +37,21 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   const [totalDuration, setTotalDuration] = useState<number>(10);
   const [countdown, setCountdown] = useState<number>(10);
   const [canClose, setCanClose] = useState<boolean>(false);
+  const [slotStatuses, setSlotStatuses] = useState<[boolean, boolean, boolean]>([false, false, false]);
+  const [isLoadingAds, setIsLoadingAds] = useState<boolean>(true);
+
+  const handleSlotStatus = useCallback((index: 0 | 1 | 2, hasAd: boolean) => {
+    setSlotStatuses((prev) => {
+      if (prev[index] === hasAd) return prev;
+      const next: [boolean, boolean, boolean] = [...prev] as [boolean, boolean, boolean];
+      next[index] = hasAd;
+      return next;
+    });
+  }, []);
+
+  const onSlot0 = useCallback((v: boolean) => handleSlotStatus(0, v), [handleSlotStatus]);
+  const onSlot1 = useCallback((v: boolean) => handleSlotStatus(1, v), [handleSlotStatus]);
+  const onSlot2 = useCallback((v: boolean) => handleSlotStatus(2, v), [handleSlotStatus]);
 
   // When modal is triggered on photo click, immediately start the countdown and load the ad
   useEffect(() => {
@@ -45,6 +60,13 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       setTotalDuration(duration);
       setCountdown(duration);
       setCanClose(false);
+      setSlotStatuses([false, false, false]);
+      setIsLoadingAds(true);
+
+      const loadDoneTimer = window.setTimeout(() => {
+        setIsLoadingAds(false);
+      }, 2800);
+      return () => window.clearTimeout(loadDoneTimer);
     }
   }, [isOpen]);
 
@@ -76,12 +98,13 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   };
 
   const handleBackdropClick = () => {
-    // Disallow backdrop close during active countdown
     if (!canClose) return;
     handleCloseAndUnlock();
   };
 
   if (!isOpen) return null;
+
+  const anyAdLoaded = slotStatuses[0] || slotStatuses[1] || slotStatuses[2];
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/90 backdrop-blur-sm flex items-center justify-center p-0 sm:p-4 animate-in fade-in duration-200">
@@ -134,11 +157,28 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
           </div>
         </div>
 
-        {/* Full-Screen Ad Area: 320x50 (small) + Two 300x250 (large) BengalAds Widgets */}
+        {/* Full-Screen Ad Area: 320x50 (small) + Two 300x250 (large) Direct-DOM BengalAds Widgets */}
         <div className="w-full flex-1 flex flex-col items-center justify-center gap-3 my-2">
-          <AdBanner format="320x50" label="" className="my-0" priorityPrimary keepSpace />
-          <AdBanner format="300x250" label="" className="my-0" priorityPrimary keepSpace />
-          <AdBanner format="300x250" label="" className="my-0" delayMs={200} keepSpace />
+          {!anyAdLoaded && isLoadingAds && (
+            <div className="flex flex-col items-center justify-center py-8 text-center">
+              <div className="w-7 h-7 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mb-2.5" />
+              <p className="text-xs font-semibold text-slate-500">Loading sponsored advertisement...</p>
+            </div>
+          )}
+
+          <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot0} />
+          <AdBanner format="300x250" label="" className="my-0" priorityPrimary onStatusChange={onSlot1} />
+          <AdBanner format="300x250" label="" className="my-0" priorityPrimary delayMs={150} onStatusChange={onSlot2} />
+
+          {!anyAdLoaded && !isLoadingAds && (
+            <div className="w-full max-w-sm rounded-2xl bg-slate-50 border border-slate-200 px-4 py-6 text-center">
+              <Sparkles className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+              <p className="text-sm font-bold text-slate-800 mb-1">Preparing Your AI Prompt</p>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Your prompt preview and copy guide are unlocking automatically.
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Bottom Status / Skip & Unlock Action */}

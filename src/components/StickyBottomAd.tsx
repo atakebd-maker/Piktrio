@@ -5,11 +5,17 @@ import { AdBanner } from './AdBanner';
 export const StickyBottomAd: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isMinimized, setIsMinimized] = useState(false);
+  const [hasLoadedAd, setHasLoadedAd] = useState(false);
 
   if (!isVisible) return null;
 
   return (
-    <aside aria-label="Advertisement" className="fixed bottom-0 left-0 right-0 z-40 flex justify-center pointer-events-none pb-1 sm:pb-2">
+    <aside
+      aria-label="Advertisement"
+      className={`fixed bottom-0 left-0 right-0 z-40 flex justify-center pointer-events-none ${
+        hasLoadedAd ? 'pb-1 sm:pb-2' : 'h-0 overflow-hidden opacity-0'
+      }`}
+    >
       <div className="pointer-events-auto relative bg-white/95 backdrop-blur-md px-2 py-1 rounded-t-xl sm:rounded-xl border border-slate-200 shadow-xl flex flex-col items-center max-w-full">
         {/* Controls */}
         <div className="w-full flex items-center justify-between px-1 mb-0.5 text-[10px] text-slate-400 font-medium">
@@ -34,7 +40,12 @@ export const StickyBottomAd: React.FC = () => {
 
         {!isMinimized && (
           <div className="w-full max-w-full flex items-center justify-center overflow-hidden">
-            <AdBanner label="" className="my-0" format="320x50" />
+            <AdBanner
+              label=""
+              className="my-0"
+              format="320x50"
+              onStatusChange={setHasLoadedAd}
+            />
           </div>
         )}
       </div>
