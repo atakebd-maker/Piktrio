@@ -31,10 +31,12 @@ const PLACEMENT_CONFIG: Record<
 interface QueueEntry {
   priority: boolean;
   run: (done: () => void) => () => void;
+  abort?: () => void;
 }
 
 interface PlacementQueue {
   running: boolean;
+  activeEntry: QueueEntry | null;
   pending: QueueEntry[];
 }
 
@@ -44,7 +46,7 @@ let globalSlotCounter = 0;
 const getQueue = (placement: string): PlacementQueue => {
   let q = placementQueues.get(placement);
   if (!q) {
-    q = { running: false, pending: [] };
+    q = { running: false, activeEntry: null, pending: [] };
     placementQueues.set(placement, q);
   }
   return q;
@@ -56,12 +58,14 @@ const pumpQueue = (placement: string) => {
 
   const entry = q.pending.shift()!;
   q.running = true;
+  q.activeEntry = entry;
 
   let finished = false;
   const done = () => {
     if (finished) return;
     finished = true;
     q.running = false;
+    q.activeEntry = null;
     pumpQueue(placement);
   };
 
@@ -76,10 +80,9 @@ const isZoneVisible = (zone: HTMLElement): boolean => {
   if (zone.childNodes.length === 0) return false;
   if (zone.style.display === 'none') return false;
   const h = zone.style.height;
-  if ((h === '0' || h === '0px') && zone.scrollHeight === 0 && zone.offsetHeight === 0) {
-    return false;
-  }
-  return true;
+  if (h !== '0' && h !== '0px') return true;
+  if (zone.scrollHeight > 0 || zone.offsetHeight > 0) return true;
+  return Boolean(zone.querySelector('iframe, img, a, ins'));
 };
 
 const retireExistingZoneId = (baseZoneId: string) => {
@@ -186,11 +189,13 @@ export const AdBanner: React.FC<AdBannerProps> = ({
         };
 
         cancelActiveTurn = () => {
+          if (turnClosed) return;
           if (stage1Script && stage1Script.parentNode) {
             stage1Script.parentNode.removeChild(stage1Script);
           }
           finishTurn();
         };
+        entry.abort = cancelActiveTurn;
 
         // Ensure ONLY this active slot holds the exact baseZoneId during script execution
         retireExistingZoneId(baseZoneId);
@@ -222,7 +227,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
               ) {
                 const onStage2Complete = () => {
                   syncVisibility();
-                  scheduleSettle(zone.childNodes.length > 0 ? 550 : 120);
+                  scheduleSettle(zone.childNodes.length > 0 ? 800 : 120);
                 };
                 node.addEventListener('load', onStage2Complete, { once: true });
                 node.addEventListener('error', finishTurn, { once: true });
@@ -232,7 +237,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
         });
         headObserver.observe(document.head, { childList: true });
 
-        safetyTimer = window.setTimeout(finishTurn, 4000);
+        safetyTimer = window.setTimeout(finishTurn, 2500);
 
         const injectScript = () => {
           if (unmounted || turnClosed || !container.isConnected) {
@@ -260,6 +265,10 @@ export const AdBanner: React.FC<AdBannerProps> = ({
     const q = getQueue(placement);
     if (priorityPrimary) {
       q.pending.unshift(entry);
+      // If a non-priority background slot is currently running, yield immediately to the modal ad
+      if (q.running && q.activeEntry && !q.activeEntry.priority && q.activeEntry.abort) {
+        q.activeEntry.abort();
+      }
     } else {
       q.pending.push(entry);
     }
@@ -289,8 +298,9 @@ export const AdBanner: React.FC<AdBannerProps> = ({
 
   return (
     <div
-      className={`flex flex-col items-center justify-center w-full ${defaultMargin} ${className}`}
-      style={hasAd ? undefined : { height: 0, minHeight: 0, overflow: 'hidden', margin: 0, padding: 0 }}
+      className={`flex flex-col items-center justify-center w-full ${
+        hasAd ? defaultMargin : 'my-0'
+      } ${hasAd ? className : ''}`}
     >
       {label && hasAd && (
         <span className="text-[10px] tracking-wider uppercase font-semibold text-slate-400 mb-1 select-none">
