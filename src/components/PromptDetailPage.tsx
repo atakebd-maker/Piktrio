@@ -259,6 +259,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             
             {/* Ad above prompt box */}
             <AdBanner format="300x250" label="Sponsored Ad" className="my-2" />
+            <AdBanner format="320x50" label="" className="my-1" />
 
             {/* English AI Generation Prompt Box */}
             <div className="space-y-1.5">
@@ -293,6 +294,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 </p>
               </div>
             </div>
+
+            {/* Slim 320x50 Ad directly below prompt box */}
+            <AdBanner format="320x50" label="" className="my-1" />
 
             {/* Action Buttons: 7-Second Countdown & Green Click to Copy Now */}
             <div className="space-y-3 pt-2">
