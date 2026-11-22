@@ -257,9 +257,12 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
           {/* RIGHT: Prompt Information, Copy, and AI Tools */}
           <div className="lg:col-span-6 flex flex-col space-y-5">
             
-            {/* Ad above prompt box */}
-            <AdBanner format="300x250" label="Sponsored Ad" className="my-2" />
-            <AdBanner format="320x50" label="" className="my-1" />
+            {/* Three Ads above prompt box (2x 300x250 + 1x 320x50) */}
+            <div className="w-full flex flex-col items-center justify-center gap-2 my-1">
+              <AdBanner format="300x250" label="Sponsored Ad" className="my-1" />
+              <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
+              <AdBanner format="320x50" label="" className="my-1" />
+            </div>
 
             {/* English AI Generation Prompt Box */}
             <div className="space-y-1.5">
