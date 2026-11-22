@@ -221,6 +221,7 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
             {paginatedPrompts.length > 4 && (
               <>
                 <AdBanner format="300x250" label="Sponsored Partner" className="my-5" />
+                <AdBanner format="320x50" label="" className="my-2" />
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
                   {paginatedPrompts.slice(4).map((prompt) => (
                     <PromptCard

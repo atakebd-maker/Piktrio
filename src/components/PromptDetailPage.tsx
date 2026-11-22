@@ -421,6 +421,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
             {/* Ad at the end of the post guide */}
             <AdBanner format="300x250" label="Sponsored Partner" className="mt-6 mb-2" />
+            <AdBanner format="320x50" label="" className="my-2" />
 
           </div>
 

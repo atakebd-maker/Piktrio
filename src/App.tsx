@@ -473,8 +473,9 @@ export default function App() {
               onCopySuccess={(msg) => showToast(msg)}
             />
 
-            {/* Large 300x250 Banner below Hero Search */}
+            {/* Large 300x250 + Small 320x50 Banners below Hero Search */}
             <AdBanner format="300x250" label="Sponsored Ad" className="my-3" />
+            <AdBanner format="320x50" label="" className="my-2" />
 
             {/* 3. Horizontal Category Navigation */}
             <CategoryBar
@@ -540,6 +541,7 @@ export default function App() {
                   {paginatedPrompts.length > 4 && (
                     <>
                       <AdBanner format="300x250" label="Sponsored Partner" className="my-5" />
+                      <AdBanner format="320x50" label="" className="my-2" />
                       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
                         {paginatedPrompts.slice(4).map((prompt) => (
                           <PromptCard
@@ -603,8 +605,9 @@ export default function App() {
             {/* 6. Comprehensive Search-Friendly AI Prompts FAQ Section */}
             <FAQSection />
 
-            {/* Bottom Large 300x250 Banner above Footer */}
-            <AdBanner format="300x250" label="Sponsored Partner" className="mt-4 mb-8" />
+            {/* Bottom Large 300x250 + Small 320x50 Banners above Footer */}
+            <AdBanner format="300x250" label="Sponsored Partner" className="mt-4 mb-3" />
+            <AdBanner format="320x50" label="" className="mb-8" />
 
           </div>
         )}
