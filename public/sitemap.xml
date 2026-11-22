@@ -55,9 +55,75 @@
 
   <url>
     <loc>https://piktrio.vercel.app/collection/trending-ai-photo-prompts</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://piktrio.vercel.app/collection/emotional-2027-memories-ai-prompts</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://piktrio.vercel.app/collection/pencil-sketch-creative-art-ai-prompts</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Prompt: Moving Into 2027 With Your Memories – Cinematic Breakup Poster AI Photo Prompt -->
+  <url>
+    <loc>https://piktrio.vercel.app/prompt/moving-into-2027-memories-breakup-poster-prompt</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZxVo3oSNAiTLd2QBB3bPvCjmFS5dNa_jit68MfF9OFH7mwCsCRkQYubiZFTsqkUNBJcuIiwwLtVbyCtMnxvGWKvP0Q5UPrZ-RSInaw9WGOCAiQPPb-cwPxDTouaqHM7ORxaHbXXEGW4CZ6_gx5v2SNQULIUxrUZMw0BJKSFFfVCI9UFia3Cixc15V89-z/s1600/image.png</image:loc>
+      <image:title>Moving Into 2027 With Your Memories – Cinematic Breakup Poster AI Photo Prompt</image:title>
+      <image:caption>Moving Into 2027 With Your Memories – Cinematic Breakup Poster AI Photo Prompt for ChatGPT and Google Gemini</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Prompt: Hug From My Own Self – Creative Double Self Hug AI Photo Editing Prompt -->
+  <url>
+    <loc>https://piktrio.vercel.app/prompt/hug-from-my-own-self-pencil-sketch-ai-prompt</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjiljXNZCppFRRL-DX6FZrLIQXeAniWqbt7McA7mfNOFAY-b2laQ9LbTP7v5yb9OzwNsefEJX51pg82IU5y3oSQLMWZpMTwUGuraB-rTNMUo71MiHZ_q4G6HGg-EAp61_1ksBfmTMMj9kZqTXJvIHlR8KL6IqVFBW6Xl0n_Wwm2qwkwdnogMvPugVmYsA8/s1600/image.png</image:loc>
+      <image:title>Hug From My Own Self – Creative Double Self Hug AI Photo Editing Prompt</image:title>
+      <image:caption>Hug From My Own Self – Creative Double Self Hug AI Photo Editing Prompt for ChatGPT and Google Gemini</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Prompt: Cinematic Golden Hour Portrait – Curly Hair &amp; Vintage Sunglasses AI Photo Editing Prompt -->
+  <url>
+    <loc>https://piktrio.vercel.app/prompt/cinematic-golden-hour-curly-hair-sunglasses-prompt</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyfd7UKYB_c3inhl_heg0Wp3YzBDAZy4ryGqlwdufRibJtILp4AbTNjS4p3LWEnBRsRCN06m-gG4l1zXKbHgVrD6Kr8UrdPOJF1em26VYR5deK_6wE8xFa7X6MiBy6egvuSiPZlnXeEHJhzStY3B43RHYZl5Ke4eRrJLsQpXWf2bf6JpNBSto9V907Nwu4/s1600/image.png</image:loc>
+      <image:title>Cinematic Golden Hour Portrait – Curly Hair &amp; Vintage Sunglasses AI Photo Editing Prompt</image:title>
+      <image:caption>Cinematic Golden Hour Portrait – Curly Hair &amp; Vintage Sunglasses AI Photo Editing Prompt for ChatGPT and Google Gemini</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Prompt: Red Cinematic Motorcycle Tribute Poster – 5 Portrait Collage AI Photo Editing Prompt -->
+  <url>
+    <loc>https://piktrio.vercel.app/prompt/red-motorcycle-tribute-5-portrait-collage-prompt</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOHf1ZXOpnSMUrbSwQXQP-K30LuPpn9QvHfDZnP4Z-A_Wppdgwh0ZW6xJRFeeuMB-a_BmpqKQr7YXaKvLkTjoSmCXrgTCMNBk3F1letctSM2WoSfR0l6Tk8I4CowGm9wBVAHDb8zL29Kcd8lTI7XWZF2YIekF8l_1imLfHASGVV59r0RpeIPE40veUo5Ja/s1600/image.png</image:loc>
+      <image:title>Red Cinematic Motorcycle Tribute Poster – 5 Portrait Collage AI Photo Editing Prompt</image:title>
+      <image:caption>Red Cinematic Motorcycle Tribute Poster – 5 Portrait Collage AI Photo Editing Prompt for ChatGPT and Google Gemini</image:caption>
+    </image:image>
   </url>
 
   <!-- Prompt: The King’s Companion – A Royal White Lion Portrait -->

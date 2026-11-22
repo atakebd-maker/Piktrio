@@ -17,6 +17,8 @@ export const PROMPTPIN_CATEGORIES: CategoryItem[] = [
   { id: 'vintage-retro', name: 'Vintage & Retro', description: '35mm film grain, retro outfits and classic monochrome prompts' },
   { id: 'black-white', name: 'Black & White', description: 'Dramatic black and white monochrome portrait prompts' },
   { id: 'romantic', name: 'Romantic', description: 'Romantic rose bouquet and dreamy sky portrait prompts' },
+  { id: 'emotional-2027', name: 'Emotional & 2027', description: 'Heartbreak, 2027 memories, broken heart and emotional poster prompts' },
+  { id: 'sketch-creative', name: 'Sketch & Creative Art', description: 'Pencil sketch double exposure, self-hug wall art and creative illusion prompts' },
 ];
 
 export const promptMatchesCategory = (p: PromptItem, categoryOrId: string): boolean => {
@@ -192,6 +194,43 @@ export const promptMatchesCategory = (p: PromptItem, categoryOrId: string): bool
     );
   }
 
+  if (sel === 'emotional-2027' || sel === 'emotional & 2027') {
+    return (
+      cat.includes('emotional') ||
+      title.includes('2027') ||
+      title.includes('memories') ||
+      title.includes('breakup') ||
+      title.includes('self hug') ||
+      tags.some(
+        (t) =>
+          t.includes('emotional') ||
+          t.includes('2027') ||
+          t.includes('heartbreak') ||
+          t.includes('memories') ||
+          t.includes('breakup') ||
+          t.includes('self hug')
+      )
+    );
+  }
+
+  if (sel === 'sketch-creative' || sel === 'sketch & creative art') {
+    return (
+      cat.includes('sketch') ||
+      cat.includes('creative') ||
+      title.includes('self hug') ||
+      title.includes('hug from my own self') ||
+      promptText.includes('pencil sketch') ||
+      tags.some(
+        (t) =>
+          t.includes('sketch') ||
+          t.includes('pencil') ||
+          t.includes('self hug') ||
+          t.includes('wall art') ||
+          t.includes('conceptual')
+      )
+    );
+  }
+
   return (
     cat === sel ||
     tags.some((t) => t === sel || sel.includes(t) || t.includes(sel)) ||
@@ -340,6 +379,22 @@ export const COLLECTIONS_LIST: CollectionInfo[] = [
     cat: 'romantic',
     title: 'Romantic Roses & Azure Sky AI Portrait Prompts',
     description: 'Soft romantic portrait prompts featuring red and pink rose bouquets, silhouette shadows, golden-hour light, and clear blue skies.',
+  },
+  {
+    id: 'emotional-2027',
+    label: 'Emotional 2027 & Memory Poster Prompts',
+    slug: 'emotional-2027-memories-ai-prompts',
+    cat: 'emotional-2027',
+    title: 'Emotional 2027 & Heartbreak Memory AI Photo Prompts',
+    description: 'Cinematic 2027 breakup memory posters, heartbreak DM chat aesthetics, glowing broken-heart moonlights, and emotional portrait prompts for ChatGPT and Google Gemini.',
+  },
+  {
+    id: 'sketch-creative',
+    label: 'Pencil Sketch & Creative Wall Art Prompts',
+    slug: 'pencil-sketch-creative-art-ai-prompts',
+    cat: 'sketch-creative',
+    title: 'Pencil Sketch & Double Self-Hug Wall Art AI Prompts',
+    description: 'Artistic graphite pencil sketch self-hug murals, conceptual double-identity wall art, and creative illusion portrait prompts for ChatGPT and Google Gemini.',
   },
 ];
 
@@ -632,6 +687,466 @@ Before generating the final image, carefully and thoroughly examine the supplied
 ];
 
 export const STORE_PROMPTS: PromptItem[] = [
+  {
+    id: 'moving-into-2027-memories-breakup-poster-prompt',
+    title: 'Moving Into 2027 With Your Memories – Cinematic Breakup Poster AI Photo Prompt',
+    category: 'Boys',
+    description: `# Moving Into 2027 With Your Memories – Cinematic Poster AI Photo Guide
+
+Create an ultra-realistic, emotionally powerful cinematic 8K night poster featuring your real face standing on a rain-soaked dark urban street surrounded by a faded Instagram profile UI, left/right DM breakup chat bubbles, a glowing orange moon, a glowing broken heart, and "Moving into 2027 with your memories" typography using ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **High Resolution Face Photo:** Upload a sharp, clear original photograph of your face with natural lighting.
+- **Natural Beard & Mustache Accuracy:** Facial hair strictly matches your uploaded photo—never invented, added, removed, or exaggerated.
+- **Authentic Identity Preservation:** Preserves your true face shape, eyes, eyebrows, nose, lips, jawline, and skin tone.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Prepare Your Personal Photo
+Select a clear, uncropped photo showing your real face and natural facial hair.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o) or Google Gemini on your phone or desktop.
+
+### Step 3: Upload Your Face Photo
+Attach your personal face-reference photo in the prompt box.
+
+### Step 4: Copy the AI Prompt
+Click the **Copy Full Prompt** button above, wait for the countdown, and click **Click to Copy Now**.
+
+### Step 5: Generate Your 3:4 Poster
+Paste the full prompt alongside your photo and generate in a vertical 3:4 aspect ratio.
+
+---
+
+## Key Highlights of This Prompt
+- **Atmospheric Wet-Street Night Backdrop:** Deep black cinematic alley with golden rain reflections across wet pavement.
+- **Faded Instagram & Chat UI:** Subtle "User" profile layout (**0 Posts**, **0 Followers**, **0 Following**) with emotional **10:18 PM–10:36 PM** DM bubbles.
+- **Glowing Moon, Broken Heart & 2027 Typography:** Warm orange moon, luminous broken heart accent, and crisp **"Moving into 2027 with your memories"** headline.
+
+---
+
+## SEO Keywords & Search Tags
+Moving Into 2027 With Your Memories AI photo prompt, breakup poster AI photo prompt, sad aesthetic 2027 boys prompt, Instagram DM heartbreak poster prompt, ChatGPT boys prompt, Gemini AI photo editing prompt.`,
+    prompt: `Moving Into 2027 With Your Memories – Professional Cinematic AI Photo Prompt
+Create an ultra-realistic, emotionally powerful, cinematic 8K photographic poster in a vertical 3:4 aspect ratio. Recreate the visual composition, character positioning, background, lighting, social media interface, emotional message bubbles, and typography of the supplied reference image as closely as possible.
+The final artwork should communicate heartbreak, emotional separation, personal growth, and moving forward into a new chapter of life.
+1. MAIN CHARACTER AND FACE IDENTITY
+Place a handsome, stylish young adult man standing in the exact center of the composition.
+FACE REFERENCE – EXTREMELY IMPORTANT:
+Use the separately uploaded personal face-reference photograph as the primary and exclusive source for the character's facial identity.
+Preserve the person's actual facial characteristics, including face shape, eyes, eyebrows, nose, lips, jawline, skin tone, and natural facial details.
+Do not replace the person's face with a different identity or create an unrelated face.
+NATURAL BEARD AND MUSTACHE RULE – STRICTLY FOLLOW:
+Facial hair must match the supplied face-reference photograph exactly.
+- If a beard is visible in the face-reference photograph, reproduce that beard naturally and accurately.
+- If a mustache is visible, reproduce that mustache naturally.
+- If both beard and mustache are visible, preserve both.
+- If neither beard nor mustache is visible, keep the face completely clean-shaven.
+- If only one is visible, do not add the other.
+- Never invent, add, remove, exaggerate, or artificially generate facial hair.
+This rule is mandatory regardless of the hairstyle, clothing, pose, lighting, or artistic style.
+Every person using this prompt should receive their own natural facial appearance based on their uploaded face-reference photograph.
+2. HAIRSTYLE AND EXPRESSION
+Give the character naturally voluminous, slightly messy, fashionable dark hair, with soft waves and realistic individual hair strands.
+The hairstyle should look stylish, modern, and effortlessly attractive.
+His expression should be calm, thoughtful, and emotionally distant, suggesting someone who has experienced heartbreak and is quietly moving forward.
+He wears fashionable dark-tinted sunglasses with subtle realistic reflections.
+His head is slightly tilted upward and toward one side. His overall appearance should feel confident, mature, relaxed, and cinematic.
+3. EXACT BODY POSITION AND POSE
+The character stands casually in the center of the poster.
+Reproduce the following body position:
+- One hand is placed naturally behind the back of his neck.
+- The elbow of that arm points slightly outward.
+- The other hand rests comfortably inside the front pocket of his trousers.
+- His legs are casually crossed at the ankles.
+- His upper body leans slightly to one side.
+- His shoulders remain relaxed.
+- His head is tilted slightly, with his gaze directed away from the camera.
+His entire body, from head to shoes, must remain visible.
+Maintain natural human anatomy, realistic body proportions, and accurate hand positioning.
+4. CLOTHING AND ACCESSORIES
+Dress him in a loose-fitting, light grey-blue short-sleeved button-up shirt.
+The shirt should feature subtle vertical pinstripes, an open relaxed collar, visible front buttons, and a slightly oversized contemporary fit.
+Include realistic fabric folds, natural creases, and detailed textile textures.
+For the lower body, use loose-fitting, light grey washed denim jeans with a relaxed wide-leg silhouette.
+The trousers should extend naturally toward the shoes with realistic denim folds.
+Add clean white low-top sneakers with realistic laces, soles, and material details.
+Include a fashionable dark wristwatch on one wrist.
+If a tattoo is visible in the scene reference, reproduce its placement and general appearance naturally. Do not introduce unnecessary tattoos.
+5. DARK CINEMATIC BACKGROUND
+Create a mysterious, almost completely black nighttime environment with subtle grungy textures.
+The background should resemble a dark, empty urban street at night.
+The ground beneath the character should be wet from recent rain, producing beautiful reflections of warm orange and golden lights.
+Add faint atmospheric details, distant warm light sources, and subtle depth.
+Keep the overall background predominantly black to create dramatic contrast.
+6. INSTAGRAM PROFILE INTERFACE
+Behind the character in the dark atmospheric background, render a semi-transparent, faintly faded Instagram profile interface labeled "User" showing "0 Posts", "0 Followers", and "0 Following" with subtle dark UI outlines that blend naturally into the shadowy poster without overpowering the subject.
+7. EMOTIONAL MESSAGE BUBBLES
+Float translucent dark-mode direct message chat bubbles on both the left and right sides of the subject, featuring subtle conversation timestamps between "10:18 PM" and "10:36 PM" expressing quiet heartbreak, unspoken goodbye, and emotional closure. Keep the typography crisp, legible, and atmospheric.
+8. GLOWING ORANGE MOON & BROKEN HEART MOTIF
+In the upper sky area behind the UI and figure, place a luminous warm orange glowing moon casting subtle amber rim light. Integrate a soft glowing neon-orange broken heart icon near the emotional poster centerpiece to reinforce the theme of healing after heartbreak.
+9. TYPOGRAPHY & FINAL QUALITY
+At the lower-upper focal balance of the poster, include clean, cinematic emotional typography reading:
+"Moving into 2027"
+with a delicate smaller subtitle directly beneath reading:
+"with your memories"
+Vertical 3:4 aspect ratio, ultra-photorealistic 8K cinematic poster finish, natural skin texture, authentic rain reflections, crisp text clarity, and flawless facial identity preservation.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZxVo3oSNAiTLd2QBB3bPvCjmFS5dNa_jit68MfF9OFH7mwCsCRkQYubiZFTsqkUNBJcuIiwwLtVbyCtMnxvGWKvP0Q5UPrZ-RSInaw9WGOCAiQPPb-cwPxDTouaqHM7ORxaHbXXEGW4CZ6_gx5v2SNQULIUxrUZMw0BJKSFFfVCI9UFia3Cixc15V89-z/s1600/image.png',
+    tags: [
+      'Boys',
+      '2027',
+      'Memories',
+      'Breakup',
+      'Emotional',
+      'Poster',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+      'AI photo editing prompt for boys',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 342,
+    viewsCount: 1240,
+    copyCount: 615,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-21T16:40:00.000Z',
+  },
+  {
+    id: 'hug-from-my-own-self-pencil-sketch-ai-prompt',
+    title: 'Hug From My Own Self – Creative Double Self Hug AI Photo Editing Prompt',
+    category: 'Boys',
+    description: `# Hug From My Own Self – Pencil Sketch & Double Self Hug AI Photo Guide
+
+Create an emotionally moving, ultra-realistic conceptual 8K portrait featuring you standing in front of a textured grey concrete wall while a giant monochrome graphite pencil sketch of yourself gently hugs you from behind—complete with handwritten **"Hug from my own self"** calligraphy and natural green leaves using ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **Sharp Personal Photo:** Upload a clear front or three-quarter photograph of your face.
+- **Exact Facial Hair & Identity Lock:** Both your real self and the giant pencil sketch self follow your genuine facial proportions, hairline, beard, and moustache without inventing features.
+- **Lifelike Realism:** Maintains natural skin pores, realistic clothing folds, and authentic concrete wall pencil shading.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Select Your Clear Reference Photo
+Pick an uncropped, evenly lit portrait showing your facial features clearly.
+
+### Step 2: Open ChatGPT or Google Gemini
+Launch ChatGPT (GPT-4o) or Google Gemini on your mobile or desktop browser.
+
+### Step 3: Upload Your Face Photo
+Upload your personal portrait photograph into the prompt input window.
+
+### Step 4: Copy the AI Prompt
+Click **Copy Full Prompt** above, wait for the countdown, and copy the full prompt text.
+
+### Step 5: Generate 3:4 Wall Art Portrait
+Paste the prompt with your photo and generate in a vertical 3:4 portrait aspect ratio.
+
+---
+
+## Key Highlights of This Prompt
+- **Real Subject + Giant Wall Pencil Sketch:** Full-color young man wearing a deep-red zip jacket, crisp white tee, dark-blue jeans, and red/white high-top sneakers standing in front of a concrete wall.
+- **Double Self-Hug Mural:** Monumental hand-drawn monochrome graphite sketch of the exact same person embracing him warmly from behind.
+- **Calligraphy & Botanical Framing:** Handwritten **"Hug from my own self"** lettering with a curved underline and heart, accented by green leaves at top-left and a climbing vine at bottom-right.
+
+---
+
+## SEO Keywords & Search Tags
+Hug from my own self AI photo prompt, pencil sketch wall art AI prompt, double self hug prompt, creative boys photo editing prompt, emotional wall mural AI prompt, ChatGPT boys prompt, Gemini prompt for boys.`,
+    prompt: `Hug From My Own Self – Creative Double Self Hug AI Photo Editing Prompt
+Create an ultra-realistic, deeply emotional 8K conceptual photograph in a vertical 3:4 aspect ratio blending full-color DSLR street portraiture with a giant hand-drawn monochrome graphite pencil sketch on a textured concrete wall.
+1. MAIN SUBJECT & FACIAL IDENTITY
+In the foreground, a stylish young adult man stands calmly facing slightly forward against a weathered grey concrete wall.
+FACE REFERENCE – EXTREMELY IMPORTANT:
+Use the separately uploaded personal face-reference photograph as the exclusive facial identity source for BOTH the real foreground young man and the giant pencil-sketch self behind him. Preserve exact face shape, eyes, eyebrows, nose, lips, jawline, skin tone, and natural hairstyle.
+NATURAL BEARD AND MUSTACHE RULE – STRICTLY FOLLOW:
+Carefully inspect the uploaded face reference photo. If a beard and/or mustache is visible, reproduce it accurately on both the real man and the pencil sketch figure. If clean-shaven, keep both completely clean-shaven. Never invent, add, remove, or exaggerate facial hair.
+2. CLOTHING & REALISTIC FOREGROUND STYLING
+Dress the foreground young man in:
+- A deep-red zip-up jacket worn casually open over a clean crisp white crew-neck T-shirt.
+- Dark-blue straight/relaxed-fit denim jeans with realistic fabric folds and creases.
+- Stylish red-and-white high-top sneakers resting naturally on the ground.
+Keep his posture relaxed, grounded, and emotionally serene, hands resting naturally as he leans gently into the embrace behind him.
+3. GIANT MONOCHROME PENCIL SKETCH SELF-HUG
+Directly across the textured grey concrete wall behind him, illustrate a monumental, hyper-detailed black-and-white graphite and charcoal pencil sketch of the exact same person. The sketched figure leans tenderly over his shoulder from behind, wrapping its sketched arms warmly around the real man's shoulders and torso in a comforting, protective self-hug. Show authentic cross-hatching, realistic pencil shading strokes, fine charcoal grain, and seamless visual integration onto the concrete surface.
+4. CALLIGRAPHY & BOTANICAL ACCENTS
+Beside the figure on the upper concrete wall area, render artistic black handwritten calligraphy reading:
+"Hug from
+my own self"
+with a delicate curved underline and a small hand-drawn heart beneath the text.
+Frame the composition naturally with fresh green overhanging tree leaves peeking softly from the top-left corner and a natural green climbing plant growing up along the bottom-right corner against the concrete wall.
+5. LIGHTING, CONCRETE TEXTURE & CAMERA QUALITY
+Soft, diffused natural outdoor daylight illuminating the real subject with gentle realistic shadows cast onto the concrete wall. Maintain realistic concrete pores, subtle weathering cracks, authentic fabric wrinkles, crisp sneakers, and 85mm full-frame 8K DSLR clarity. No artificial filters or distorted anatomy.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjiljXNZCppFRRL-DX6FZrLIQXeAniWqbt7McA7mfNOFAY-b2laQ9LbTP7v5yb9OzwNsefEJX51pg82IU5y3oSQLMWZpMTwUGuraB-rTNMUo71MiHZ_q4G6HGg-EAp61_1ksBfmTMMj9kZqTXJvIHlR8KL6IqVFBW6Xl0n_Wwm2qwkwdnogMvPugVmYsA8/s1600/image.png',
+    tags: [
+      'Boys',
+      'Self Hug',
+      'Pencil Sketch',
+      'Wall Art',
+      'Emotional',
+      'Conceptual',
+      'Creative',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 318,
+    viewsCount: 1090,
+    copyCount: 530,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-21T16:39:00.000Z',
+  },
+  {
+    id: 'cinematic-golden-hour-curly-hair-sunglasses-prompt',
+    title: 'Cinematic Golden Hour Portrait – Curly Hair & Vintage Sunglasses AI Photo Editing Prompt',
+    category: 'Boys',
+    description: `# Cinematic Golden Hour Portrait – Curly Hair & Vintage Sunglasses AI Photo Guide
+
+Create a warm, ultra-realistic 85mm f/1.4 golden-hour close-up portrait featuring naturally textured curly hair, round thin gold-frame dark sunglasses, a relaxed light grey-blue open-collar button-up shirt, and dramatic dappled sunlight filtering through tree leaves using ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **Clear Close-Up Face Photo:** Use an unobstructed photo showing your eyes, nose, jawline, and natural facial hair clearly.
+- **Exact Facial Hair & Identity Match:** Preserves your real facial structure and replicates only your genuine beard or moustache without adding artificial hair.
+- **Natural Skin & Film Light:** Authentic skin pores illuminated by warm golden sunbeams and leafy shadow patterns.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Choose Your Clear Photo
+Select a well-lit front or slight three-quarter portrait of your face.
+
+### Step 2: Open ChatGPT or Google Gemini
+Open ChatGPT (GPT-4o) or Google Gemini on mobile or desktop.
+
+### Step 3: Attach Your Reference Picture
+Upload your face-reference photograph directly into the prompt chat.
+
+### Step 4: Copy the AI Prompt
+Click **Copy Full Prompt** above, wait for the countdown timer, and click **Click to Copy Now**.
+
+### Step 5: Generate 3:4 Portrait
+Paste the prompt and generate in vertical 3:4 aspect ratio for crisp 85mm editorial bokeh.
+
+---
+
+## Key Highlights of This Prompt
+- **Intricate Dappled Leaf Shadows:** Dramatic late-afternoon sunlight filtering through tree leaves across your face and collar.
+- **Vintage Gold-Frame Sunglasses & Curly Hair:** Round thin gold-wire dark sunglasses paired with voluminous textured dark curls.
+- **85mm f/1.4 Editorial Depth:** Blurred architectural foreground framing edges and soft neutral earthy outdoor bokeh.
+
+---
+
+## SEO Keywords & Search Tags
+Cinematic golden hour portrait prompt, curly hair sunglasses AI photo prompt, leaf shadow golden hour boy prompt, vintage round sunglasses AI prompt, ChatGPT boys prompt, Gemini prompt for boys.`,
+    prompt: `Cinematic Golden Hour Portrait – Curly Hair & Vintage Sunglasses AI Photo Editing Prompt
+Create an ultra-realistic, intimate 85mm f/1.4 golden-hour close-up photographic portrait in a vertical 3:4 aspect ratio with cinematic sunlit leaf shadows and authentic vintage editorial warmth.
+1. MAIN SUBJECT & FACIAL IDENTITY
+Feature a handsome young adult man in a tight medium close-up portrait framing his head, neck, and upper shoulders.
+FACE REFERENCE – EXTREMELY IMPORTANT:
+Use the uploaded personal face-reference photograph as the exclusive facial identity source. Preserve his genuine facial structure, nose, lips, cheekbones, jawline, forehead, skin tone, and distinctive facial features accurately without replacing his identity with a generic model face.
+NATURAL BEARD AND MUSTACHE RULE – STRICTLY FOLLOW:
+Carefully inspect the uploaded face reference photo and match its exact facial hair—if beard or mustache is present, preserve its exact length, shape, and density; if clean-shaven, keep his face cleanly shaven. Never invent, add, or remove facial hair.
+2. HAIRSTYLE & VINTAGE SUNGLASSES
+Give him voluminous, naturally textured dark curly hair with soft tousled curls framing his forehead and catching rim highlights from the golden sun.
+He wears classic round, thin gold-frame vintage sunglasses with dark tinted lenses showing subtle natural outdoor reflections. His head tilts gently with a calm, effortless, sun-kissed expression.
+3. CLOTHING
+Dress him in a relaxed, breathable light grey-blue open-collar button-up shirt with natural cotton/linen texture, soft fabric creases, and top buttons undone casually.
+4. GOLDEN HOUR LEAF SHADOWS & LIGHTING
+Illuminate the scene with dramatic, warm late-afternoon golden-hour sunlight filtering naturally through overhead tree foliage, casting intricate dappled leaf-and-branch shadows across his cheeks, forehead, neck, and light grey-blue shirt. Contrast crisp golden sunlit highlights against soft warm shadow tones.
+5. DEPTH, FOREGROUND & CAMERA SPECS
+Add subtly out-of-focus blurred architectural foreground edges along the frame perimeter for cinematic voyeuristic depth, set against a soft, neutral earthy outdoor bokeh background. Captured on a full-frame DSLR with an 85mm f/1.4 prime lens, ultra-shallow depth of field, authentic skin texture, fine 35mm filmic warmth, and 8K ultra-detailed realism.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiyfd7UKYB_c3inhl_heg0Wp3YzBDAZy4ryGqlwdufRibJtILp4AbTNjS4p3LWEnBRsRCN06m-gG4l1zXKbHgVrD6Kr8UrdPOJF1em26VYR5deK_6wE8xFa7X6MiBy6egvuSiPZlnXeEHJhzStY3B43RHYZl5Ke4eRrJLsQpXWf2bf6JpNBSto9V907Nwu4/s1600/image.png',
+    tags: [
+      'Boys',
+      'Golden Hour',
+      'Curly Hair',
+      'Vintage',
+      'Sunglasses',
+      'Leaf Shadow',
+      '85mm Portrait',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 294,
+    viewsCount: 980,
+    copyCount: 485,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-21T16:38:00.000Z',
+  },
+  {
+    id: 'red-motorcycle-tribute-5-portrait-collage-prompt',
+    title: 'Red Cinematic Motorcycle Tribute Poster – 5 Portrait Collage AI Photo Editing Prompt',
+    category: 'Boys',
+    description: `# Red Cinematic Motorcycle Tribute Poster – 5 Portrait Collage AI Photo Guide
+
+Create a high-impact 8K deep-red monochromatic grunge tribute poster featuring a giant faded crimson close-up of your eyes at the top, 5 high-contrast black-and-white vertical portrait panels across the background, and a sharp full-color foreground shot of you wearing an oversized **"1981"** grey/off-white T-shirt, dusty peach trousers, and slides sitting on a modern black naked sports motorcycle using ChatGPT (GPT-4o) or Google Gemini.
+
+## Important Rules for Uploading Your Personal Photo
+- **Sharp Front-Facing Headshot:** Upload a clear photo showing your eyes, hair, jawline, and facial hair clearly for both the color foreground and the B&W collage panels.
+- **Exact Facial Hair Accuracy:** Reproduces only your real beard or moustache across the hero figure, top eye close-up, and all 5 collage panels.
+- **Natural Human Proportions:** Authentic anatomy, crisp motorcycle geometry, and realistic streetwear fabric folds.
+
+---
+
+## Step-by-Step Tutorial: How to Generate with ChatGPT & Google Gemini
+
+### Step 1: Pick a Clear Reference Photo
+Select an uncropped photograph where your eyes, nose, and jawline are crisp.
+
+### Step 2: Open ChatGPT or Google Gemini
+Open ChatGPT (GPT-4o) or Google Gemini on your smartphone or desktop.
+
+### Step 3: Attach Your Personal Photo
+Upload your portrait photograph into the prompt conversation.
+
+### Step 4: Copy the AI Prompt
+Click **Copy Full Prompt** above, wait for the countdown timer, and click **Click to Copy Now**.
+
+### Step 5: Generate 3:4 Graphic Poster
+Paste the prompt with your reference photo and instruct the AI to render in vertical 3:4 poster ratio.
+
+---
+
+## Key Highlights of This Prompt
+- **3-Layer Graphic Poster Design:** Faded giant red close-up of your eyes along the top, 5 vertical B&W portrait panels across the center, and vibrant full-color hero foreground.
+- **Streetwear "1981" Bike Outfit:** Oversized grey/off-white **"1981"** graphic tee, dusty peach/terracotta relaxed trousers, and casual slides.
+- **Modern Black Naked Sports Motorcycle:** Sharp diagonal 3/4 view with realistic metallic engine casing, wide tires, and matte/gloss black bodywork.
+
+---
+
+## SEO Keywords & Search Tags
+Red motorcycle tribute poster AI prompt, 5 portrait collage AI photo prompt, 1981 t-shirt sports bike prompt, black naked bike AI photo editing prompt, ChatGPT biker poster prompt, Gemini boys prompt.`,
+    prompt: `Red Cinematic Motorcycle Tribute Poster – 5 Portrait Collage AI Photo Editing Prompt
+Create an ultra-realistic, high-impact 8K graphic editorial tribute poster in a vertical 3:4 aspect ratio combining deep crimson grunge textures, black-and-white portrait collage panels, and sharp full-color motorcycle photography.
+1. FACIAL IDENTITY & 5-PANEL CONSISTENCY
+FACE REFERENCE – EXTREMELY IMPORTANT:
+Use the separately uploaded personal face-reference photograph as the exclusive facial identity source across EVERY appearance of the subject in this poster: the full-color foreground rider, the giant faded red eye close-up at the top, and all 5 black-and-white vertical collage panels in the background. Preserve exact facial proportions, eyes, eyebrows, nose, lips, jawline, and skin tone.
+NATURAL BEARD AND MUSTACHE RULE – STRICTLY FOLLOW:
+Carefully inspect the uploaded face reference photo. If beard or mustache is visible, match it accurately across all views; if clean-shaven, keep every portrait clean-shaven. Never invent, add, remove, or exaggerate facial hair.
+2. DEEP-RED GRUNGE BACKDROP & TOP EYE CLOSE-UP
+Build the poster canvas on a rich, deep-red monochromatic grunge texture with subtle film grain, distressed tonal vignette, and dark shadows.
+Across the upper header portion of the crimson background, blend a giant, dramatic, softly faded red close-up crop of the young man's intense eyes looking forward, subtly integrated into the deep-red backdrop texture.
+3. 5 BLACK-AND-WHITE PORTRAIT COLLAGE PANELS
+Arrange 5 clean vertical rectangular black-and-white photographic panels horizontally across the middle layer of the poster behind the foreground rider. Each panel displays a distinct monochrome editorial pose and expression of the same man (close-ups, three-quarter glances, thoughtful poses) with crisp high-contrast silver-grey monochrome grading and thin dark borders.
+4. FULL-COLOR FOREGROUND RIDER & OUTFIT
+In the sharp full-color foreground, show the same stylish young man seated confidently astride a parked sports motorcycle, positioned in a dynamic diagonal 3/4 view.
+Dress him in:
+- An oversized grey/off-white casual T-shirt featuring clean bold "1981" graphic lettering across the chest.
+- Relaxed-fit dusty peach/terracotta trousers with natural fabric folds.
+- Minimalist casual slides on his feet.
+His posture is cool and effortless, one foot braced naturally near the ground and hands relaxed near the handlebars/tank, looking stylish and composed.
+5. MODERN BLACK NAKED SPORTS MOTORCYCLE
+Render a sleek modern black naked streetfighter sports motorcycle in sharp diagonal 3/4 perspective: exposed muscular frame, matte and gloss black fuel tank, aggressive LED headlight assembly, sculpted seat, inverted front forks, disc brakes, exhaust pipe, and detailed tires resting solidly on dark textured ground.
+6. LIGHTING & GRAPHIC FINISH
+Dramatic cinematic lighting separating the crisp full-color foreground rider and glossy black motorcycle from the layered deep-red background and 5 monochrome collage panels. Ultra-sharp 8K editorial poster quality, natural skin pores, realistic anatomy, and seamless composite realism.
+
+**STRICT FACE IDENTITY AND NATURAL FACIAL HAIR PRESERVATION:**
+
+Use the uploaded personal reference photo as the exclusive facial identity reference for the person in the generated image. Preserve the person's real facial identity as closely as possible, including their natural facial structure, face shape, forehead, eyebrows, eyes, nose, lips, jawline, chin, cheeks, skin tone, and all distinctive facial characteristics.
+
+**IMPORTANT FACIAL HAIR MATCHING RULE:**
+
+Carefully examine the original face reference photo and reproduce its facial hair exactly as it naturally appears:
+
+- If the reference photo has a beard, include the same natural beard style, shape, density, length, and placement.
+- If the reference photo has a moustache, include the same natural moustache style, thickness, shape, and placement.
+- If the reference photo has both a beard and a moustache, reproduce both naturally.
+- If the reference photo has neither a beard nor a moustache, do not add either one. Keep the face completely clean-shaven.
+- Never invent, remove, exaggerate, or alter facial hair that does not match the reference photo.
+
+Do not replace the person's real facial characteristics with a generic model face. Avoid artificial beautification, facial reshaping, unnecessary skin smoothing, or changes to the natural skin tone.
+
+**Preserve the reference person's natural identity and facial hair without introducing any unwanted changes.**`,
+    imageUrl: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjOHf1ZXOpnSMUrbSwQXQP-K30LuPpn9QvHfDZnP4Z-A_Wppdgwh0ZW6xJRFeeuMB-a_BmpqKQr7YXaKvLkTjoSmCXrgTCMNBk3F1letctSM2WoSfR0l6Tk8I4CowGm9wBVAHDb8zL29Kcd8lTI7XWZF2YIekF8l_1imLfHASGVV59r0RpeIPE40veUo5Ja/s1600/image.png',
+    tags: [
+      'Boys',
+      'Motorcycle',
+      'Poster',
+      'Black & White',
+      'Monochrome',
+      'Red Theme',
+      'Streetwear',
+      'Trending',
+      'ChatGPT',
+      'Gemini',
+    ],
+    isPinned: true,
+    isTemplate: false,
+    likesCount: 305,
+    viewsCount: 1020,
+    copyCount: 510,
+    aspectRatio: '3:4',
+    model: 'ChatGPT / Gemini',
+    createdAt: '2026-11-21T16:37:00.000Z',
+  },
   {
     "id": "the-kings-companion-royal-white-lion-portrait",
     "title": "The King’s Companion – A Royal White Lion Portrait",

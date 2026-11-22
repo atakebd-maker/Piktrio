@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { STORE_PROMPTS } from '../src/data/initialPrompts';
+import { STORE_PROMPTS, PROMPTPIN_CATEGORIES, COLLECTIONS_LIST } from '../src/data/initialPrompts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,6 +47,24 @@ const resolveImageUrl = (imgUrl: string): string => {
 
 const today = new Date().toISOString().split('T')[0];
 
+const categoryEntries = PROMPTPIN_CATEGORIES.map(
+  (c) => `  <url>
+    <loc>${siteUrl}/?category=${encodeURIComponent(c.id)}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>`
+).join('\n\n');
+
+const collectionEntries = COLLECTIONS_LIST.map(
+  (col) => `  <url>
+    <loc>${siteUrl}/collection/${encodeURIComponent(col.slug)}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>`
+).join('\n\n');
+
 // 1. Generate Sitemap XML
 const promptEntries = STORE_PROMPTS.map((p) => {
   const lastmod = p.createdAt ? (typeof p.createdAt === 'string' ? p.createdAt.split('T')[0] : today) : today;
@@ -79,55 +97,10 @@ const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
   </url>
 
   <!-- Categories -->
-  <url>
-    <loc>${siteUrl}/?category=trending</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>${siteUrl}/?category=all</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>${siteUrl}/?category=boys</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <url>
-    <loc>${siteUrl}/?category=diwali</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
+${categoryEntries}
 
   <!-- Collections -->
-  <url>
-    <loc>${siteUrl}/collection/diwali-ai-photo-editing-prompt</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>${siteUrl}/collection/ai-photo-prompts-for-boys</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-
-  <url>
-    <loc>${siteUrl}/collection/trending-ai-photo-prompts</loc>
-    <lastmod>${today}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
+${collectionEntries}
 
 ${promptEntries}
 </urlset>
@@ -180,6 +153,7 @@ STORE_PROMPTS.forEach((p) => {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin" />
     <meta name="google-site-verification" content="bLN_T8HDzlDs9LNH6wEMuVvLOZf0JINKEPAEq7_QjpM" />
     <meta name="bengalads-site-verification" content="c0650568682c03689a1a8e3f29136478da8e01f98a666417" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
