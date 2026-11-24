@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 interface IconProps {
   className?: string;
@@ -6,14 +6,14 @@ interface IconProps {
 }
 
 /**
- * Authentic OpenAI ChatGPT Spiral/Flower Logo Icon
+ * Authentic OpenAI ChatGPT Spiral/Flower Logo Icon (Original Brand Emerald #10a37f)
  */
 export const ChatGptIcon: React.FC<IconProps> = ({ className = 'w-4 h-4', size = 16 }) => (
   <svg
     viewBox="0 0 24 24"
     width={size}
     height={size}
-    fill="currentColor"
+    fill="#10a37f"
     className={className}
     aria-hidden="true"
   >
@@ -22,20 +22,30 @@ export const ChatGptIcon: React.FC<IconProps> = ({ className = 'w-4 h-4', size =
 );
 
 /**
- * Authentic Google Gemini Four-Pointed Star Logo Icon
+ * Authentic Google Gemini Four-Pointed Star Logo Icon (Original Gemini Blue-Violet Gradient)
  */
-export const GeminiIcon: React.FC<IconProps> = ({ className = 'w-4 h-4', size = 16 }) => (
-  <svg
-    viewBox="0 0 24 24"
-    width={size}
-    height={size}
-    fill="currentColor"
-    className={className}
-    aria-hidden="true"
-  >
-    <path d="M12 24c0-6.627-5.373-12-12-12 6.627 0 12-5.373 12-12 0 6.627 5.373 12 12 12-6.627 0-12 5.373-12 12z" />
-  </svg>
-);
+export const GeminiIcon: React.FC<IconProps> = ({ className = 'w-4 h-4', size = 16 }) => {
+  const gradId = useId();
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      fill={`url(#${gradId})`}
+      className={className}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#4285F4" />
+          <stop offset="55%" stopColor="#8B5CF6" />
+          <stop offset="100%" stopColor="#D96570" />
+        </linearGradient>
+      </defs>
+      <path d="M12 24c0-6.627-5.373-12-12-12 6.627 0 12-5.373 12-12 0 6.627 5.373 12 12 12-6.627 0-12 5.373-12 12z" />
+    </svg>
+  );
+};
 
 /**
  * Combined AI Models Pill Badge showing both ChatGPT and Gemini logos
@@ -46,11 +56,11 @@ export const AiModelBadge: React.FC<{ label?: string; className?: string }> = ({
 }) => {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 shadow-2xs select-none ${className}`}
+      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-zinc-50 text-zinc-800 border border-zinc-200 shadow-2xs select-none ${className}`}
     >
-      <ChatGptIcon className="w-3 h-3 text-black shrink-0" />
-      <span className="text-neutral-400">/</span>
-      <GeminiIcon className="w-3 h-3 text-black shrink-0" />
+      <ChatGptIcon className="w-3 h-3 shrink-0" />
+      <span className="text-zinc-300">/</span>
+      <GeminiIcon className="w-3 h-3 shrink-0" />
       <span className="truncate">{label}</span>
     </span>
   );

@@ -3,8 +3,8 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #ffffff;
-    color: #0a0a0a;
+    background-color: #fafafa;
+    color: #111827;
   }
   
   code, pre {
@@ -23,21 +23,21 @@
   scrollbar-width: none;  /* Firefox */
 }
 
-/* Custom sleek monochrome scrollbars */
+/* Custom sleek scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f5f5f5;
+  background: #f4f4f5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #a3a3a3;
+  background: #a1a1aa;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0a0a0a;
+  background: #18181b;
 }

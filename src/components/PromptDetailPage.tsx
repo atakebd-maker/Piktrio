@@ -181,10 +181,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 animate-in fade-in duration-300">
       
       {/* Top Breadcrumb & Back Navigation */}
-      <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-neutral-200">
+      <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-zinc-200">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-black bg-white hover:bg-black hover:text-white border border-neutral-300 hover:border-black transition-colors cursor-pointer shadow-xs"
+          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-zinc-900 bg-white hover:bg-zinc-900 hover:text-white border border-zinc-200 hover:border-zinc-900 transition-colors cursor-pointer shadow-xs"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Prompts</span>
@@ -193,7 +193,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
         {/* Share Button */}
         <button
           onClick={handleShare}
-          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-black bg-white hover:bg-black hover:text-white border border-neutral-300 hover:border-black transition-colors cursor-pointer shadow-xs"
+          className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-zinc-900 bg-white hover:bg-blue-600 hover:text-white border border-zinc-200 hover:border-blue-600 transition-colors cursor-pointer shadow-xs"
           title="Share prompt link"
         >
           <Share2 className="w-3.5 h-3.5" />
@@ -208,26 +208,26 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
       </div>
 
       {/* Main Prompt Details Card */}
-      <div className="bg-white rounded-3xl border border-neutral-200 shadow-xl overflow-hidden p-5 sm:p-8 mb-12">
+      <div className="bg-white rounded-3xl border border-zinc-200 shadow-xl shadow-zinc-900/5 overflow-hidden p-5 sm:p-8 mb-12">
         {/* Title Header placed ABOVE the photo and content as requested */}
-        <div className="mb-6 pb-4 border-b border-neutral-200">
+        <div className="mb-6 pb-4 border-b border-zinc-100">
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-black text-white">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-900 text-white">
               {prompt.category}
             </span>
             {prompt.model && (
-              <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-neutral-100 text-neutral-800 border border-neutral-300 flex items-center gap-1.5 shadow-2xs">
-                <ChatGptIcon className="w-3.5 h-3.5 text-black shrink-0" />
-                <GeminiIcon className="w-3.5 h-3.5 text-black shrink-0" />
+              <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-zinc-50 text-zinc-800 border border-zinc-200 flex items-center gap-1.5 shadow-2xs">
+                <ChatGptIcon className="w-3.5 h-3.5 shrink-0" />
+                <GeminiIcon className="w-3.5 h-3.5 shrink-0" />
                 <span>{prompt.model}</span>
               </span>
             )}
           </div>
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-black leading-snug tracking-tight">
+          <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-zinc-950 leading-snug tracking-tight">
             {prompt.title}
           </h1>
           {prompt.description && !prompt.description.startsWith('#') && (
-            <p className="text-sm text-neutral-600 leading-relaxed mt-2">
+            <p className="text-sm text-zinc-600 leading-relaxed mt-2">
               {prompt.description}
             </p>
           )}
@@ -240,7 +240,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             {/* Ad on top of the image (as requested) */}
             <AdBanner label="Sponsored Ad" className="mb-3" />
 
-            <div className="relative w-full min-h-[420px] sm:min-h-[560px] max-h-[78vh] bg-neutral-50 rounded-2xl sm:rounded-3xl flex items-center justify-center p-3 overflow-hidden shadow-inner border border-neutral-200 group">
+            <div className="relative w-full min-h-[420px] sm:min-h-[560px] max-h-[78vh] bg-zinc-50 rounded-2xl sm:rounded-3xl flex items-center justify-center p-3 overflow-hidden shadow-inner border border-zinc-200 group">
               <img
                 src={prompt.imageUrl}
                 alt={prompt.title}
@@ -252,7 +252,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               />
             </div>
 
-            <div className="w-full mt-2.5 flex items-center justify-center text-xs text-neutral-500 px-1">
+            <div className="w-full mt-2.5 flex items-center justify-center text-xs text-zinc-500 px-1">
               <span>100% Uncropped &bull; Original Aspect Ratio</span>
             </div>
 
@@ -277,18 +277,18 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             {/* English AI Generation Prompt Box */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-bold text-black uppercase tracking-wider flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-black" />
+                <label className="text-xs font-bold text-zinc-900 uppercase tracking-wider flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-500" />
                   <span>English AI Generation Prompt</span>
                 </label>
                 <button
                   onClick={handleCopyButtonClick}
                   className={`text-xs font-semibold transition-colors cursor-pointer ${
                     copyStatus === 'ready' || copyStatus === 'copied'
-                      ? 'text-black underline font-bold'
+                      ? 'text-emerald-600 underline font-bold'
                       : copyStatus === 'counting'
-                      ? 'text-neutral-600 font-bold'
-                      : 'text-black hover:underline'
+                      ? 'text-amber-600 font-bold'
+                      : 'text-blue-600 hover:underline'
                   }`}
                 >
                   {copyStatus === 'counting'
@@ -301,8 +301,8 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 </button>
               </div>
 
-              <div className="relative bg-black text-neutral-100 rounded-2xl p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed border border-neutral-800 shadow-md max-h-64 overflow-y-auto">
-                <p className="text-neutral-200 whitespace-pre-wrap break-words leading-relaxed">
+              <div className="relative bg-[#0d1326] text-slate-100 rounded-2xl p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed border border-slate-800 shadow-lg max-h-64 overflow-y-auto">
+                <p className="text-slate-200 whitespace-pre-wrap break-words leading-relaxed">
                   {prompt.prompt}
                 </p>
               </div>
@@ -311,7 +311,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             {/* Slim 320x50 Ad directly below prompt box */}
             <AdBanner format="320x50" label="" className="my-1" />
 
-            {/* Action Buttons: 7-Second Countdown & Monochrome Copy Now */}
+            {/* Action Buttons: 7-Second Countdown & Emerald Ready Copy Now */}
             <div className="space-y-3 pt-2">
               {/* Copy Full Prompt Button */}
               <button
@@ -319,12 +319,12 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                 disabled={copyStatus === 'counting'}
                 className={`w-full flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl font-bold text-sm sm:text-base shadow-md transition-all cursor-pointer ${
                   copyStatus === 'counting'
-                    ? 'bg-neutral-800 text-white cursor-wait opacity-95'
+                    ? 'bg-amber-500 text-white cursor-wait opacity-95'
                     : copyStatus === 'ready'
-                    ? 'bg-black hover:bg-neutral-900 text-white shadow-lg ring-4 ring-black/20 active:scale-[0.99] font-extrabold animate-pulse'
+                    ? 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/25 ring-4 ring-emerald-500/20 active:scale-[0.99] font-extrabold animate-pulse'
                     : copyStatus === 'copied'
-                    ? 'bg-neutral-900 text-white'
-                    : 'bg-black hover:bg-neutral-800 text-white active:scale-[0.99]'
+                    ? 'bg-emerald-700 text-white'
+                    : 'bg-zinc-900 hover:bg-blue-600 text-white active:scale-[0.99]'
                 }`}
               >
                 {copyStatus === 'counting' ? (
@@ -352,9 +352,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
               {/* Progress bar during 7-second countdown */}
               {copyStatus === 'counting' && (
-                <div className="w-full bg-neutral-200 rounded-full h-2 overflow-hidden border border-neutral-300">
+                <div className="w-full bg-zinc-200 rounded-full h-2 overflow-hidden border border-zinc-200">
                   <div
-                    className="bg-black h-full transition-all duration-1000 ease-linear rounded-full"
+                    className="bg-amber-500 h-full transition-all duration-1000 ease-linear rounded-full"
                     style={{ width: `${((7 - countdown) / 7) * 100}%` }}
                   />
                 </div>
@@ -372,7 +372,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                   href="https://chatgpt.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-neutral-300 bg-white hover:bg-black hover:text-white hover:border-black text-black text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs no-underline"
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-zinc-200 bg-white hover:bg-emerald-50 hover:border-emerald-500/60 text-zinc-900 text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs no-underline"
                 >
                   <ChatGptIcon className="w-4 h-4 shrink-0" />
                   <span>Open in ChatGPT</span>
@@ -382,7 +382,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                   href="https://gemini.google.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-neutral-300 bg-white hover:bg-black hover:text-white hover:border-black text-black text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs no-underline"
+                  className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl border border-zinc-200 bg-white hover:bg-blue-50 hover:border-blue-500/60 text-zinc-900 text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs no-underline"
                 >
                   <GeminiIcon className="w-4 h-4 shrink-0" />
                   <span>Open in Gemini</span>
@@ -393,12 +393,12 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             {/* Tags (if any) */}
             {prompt.tags && prompt.tags.length > 0 && (
               <div className="pt-2">
-                <span className="text-xs font-semibold text-neutral-500 block mb-1.5">Tags &amp; Keywords</span>
+                <span className="text-xs font-semibold text-zinc-500 block mb-1.5">Tags &amp; Keywords</span>
                 <div className="flex flex-wrap gap-1.5">
                   {prompt.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2.5 py-1 rounded-md bg-neutral-100 text-neutral-900 text-xs font-medium border border-neutral-300"
+                      className="px-2.5 py-1 rounded-md bg-zinc-100 text-zinc-800 text-xs font-medium border border-zinc-200"
                     >
                       #{tag}
                     </span>
@@ -415,8 +415,8 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
             {/* Complete Guide / Description with Natural In-Article Ads between sections */}
             {prompt.description && (
-              <div className="pt-5 border-t border-neutral-200">
-                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200 shadow-xs space-y-5">
+              <div className="pt-5 border-t border-zinc-200">
+                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-zinc-200 shadow-xs space-y-5">
                   {prompt.description
                     .split(/\r?\n---\r?\n/)
                     .map((section) => section.trim())
@@ -425,21 +425,21 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                       <React.Fragment key={idx}>
                         <ReactMarkdown
                           components={{
-                            h1: ({ node, ...props }) => <h2 className="text-lg sm:text-xl font-black text-black mt-1 mb-3 leading-snug" {...props} />,
-                            h2: ({ node, ...props }) => <h3 className="text-base sm:text-lg font-bold text-black mt-3 mb-2.5 pb-1 border-b border-neutral-200" {...props} />,
-                            h3: ({ node, ...props }) => <h4 className="text-sm sm:text-base font-semibold text-neutral-900 mt-3 mb-1.5" {...props} />,
-                            p: ({ node, ...props }) => <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed mb-3" {...props} />,
-                            ul: ({ node, ...props }) => <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-neutral-600 mb-3" {...props} />,
-                            ol: ({ node, ...props }) => <ol className="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm text-neutral-600 mb-3" {...props} />,
+                            h1: ({ node, ...props }) => <h2 className="text-lg sm:text-xl font-black text-zinc-950 mt-1 mb-3 leading-snug" {...props} />,
+                            h2: ({ node, ...props }) => <h3 className="text-base sm:text-lg font-bold text-zinc-950 mt-3 mb-2.5 pb-1 border-b border-zinc-200" {...props} />,
+                            h3: ({ node, ...props }) => <h4 className="text-sm sm:text-base font-semibold text-blue-700 mt-3 mb-1.5" {...props} />,
+                            p: ({ node, ...props }) => <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed mb-3" {...props} />,
+                            ul: ({ node, ...props }) => <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-zinc-600 mb-3" {...props} />,
+                            ol: ({ node, ...props }) => <ol className="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm text-zinc-600 mb-3" {...props} />,
                             li: ({ node, ...props }) => <li className="leading-relaxed" {...props} />,
-                            strong: ({ node, ...props }) => <strong className="font-bold text-black" {...props} />,
+                            strong: ({ node, ...props }) => <strong className="font-bold text-zinc-950" {...props} />,
                           }}
                         >
                           {section}
                         </ReactMarkdown>
 
                         {idx < arr.length - 1 && (
-                          <div className="py-2 border-y border-neutral-200 flex flex-col items-center gap-2">
+                          <div className="py-2 border-y border-zinc-200 flex flex-col items-center gap-2">
                             <AdBanner
                               format={idx % 2 === 0 ? '300x250' : '320x50'}
                               label={idx % 2 === 0 ? 'Advertisement' : ''}
@@ -476,9 +476,9 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
       {/* Related Prompts Section (Matching 2-column mobile / 4-column desktop gallery) */}
       {relatedPrompts.length > 0 && (
         <section className="mt-8 mb-6">
-          <div className="flex items-center justify-between mb-4 pb-2 border-b border-neutral-200">
-            <h2 className="text-lg sm:text-xl font-bold text-black flex items-center gap-2">
-              <Layers className="w-5 h-5 text-black" />
+          <div className="flex items-center justify-between mb-4 pb-2 border-b border-zinc-200">
+            <h2 className="text-lg sm:text-xl font-bold text-zinc-950 flex items-center gap-2">
+              <Layers className="w-5 h-5 text-blue-600" />
               <span>Related {prompt.category} Prompts</span>
             </h2>
           </div>
@@ -528,8 +528,8 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
       {/* Share Toast */}
       {shareToast && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2.5 rounded-full bg-black text-white text-xs font-medium shadow-xl border border-neutral-800 flex items-center gap-2 z-50">
-          <CheckCircle2 className="w-4 h-4 text-white" />
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 px-4 py-2.5 rounded-full bg-zinc-900 text-white text-xs font-medium shadow-xl border border-zinc-700 flex items-center gap-2 z-50">
+          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           <span>Prompt link copied to clipboard!</span>
         </div>
       )}

@@ -55,12 +55,12 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className="flex flex-col items-center justify-center gap-3 pt-10 pb-6 select-none">
-      {/* Numbers row matching clean white & black theme */}
+      {/* Numbers row matching white-and-black base with refined blue accent */}
       <div className="flex items-center gap-2">
         {currentPage > 1 && (
           <button
             onClick={() => onPageChange(currentPage - 1)}
-            className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-black border border-neutral-300 hover:border-black hover:bg-black hover:text-white transition-colors cursor-pointer shadow-xs"
+            className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-zinc-900 border border-zinc-200 hover:border-blue-600 hover:bg-blue-600 hover:text-white transition-colors cursor-pointer shadow-xs"
           >
             &larr; Prev
           </button>
@@ -69,7 +69,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         {renderPageNumbers().map((p, idx) => {
           if (p === '...') {
             return (
-              <span key={`ellipsis-${idx}`} className="px-2 text-neutral-400 text-sm">
+              <span key={`ellipsis-${idx}`} className="px-2 text-zinc-400 text-sm">
                 ...
               </span>
             );
@@ -84,8 +84,8 @@ export const Pagination: React.FC<PaginationProps> = ({
               onClick={() => onPageChange(pageNum)}
               className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer flex items-center justify-center ${
                 isActive
-                  ? 'bg-black text-white shadow-md'
-                  : 'bg-white text-black border border-neutral-300 hover:border-black hover:bg-neutral-100'
+                  ? 'bg-zinc-900 text-white shadow-md ring-2 ring-blue-600/25'
+                  : 'bg-white text-zinc-800 border border-zinc-200 hover:border-blue-500/60 hover:bg-blue-50/50 hover:text-blue-700'
               }`}
             >
               {pageNum}
@@ -97,7 +97,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           <button
             onClick={() => onPageChange(currentPage + 1)}
             aria-label="Next Page"
-            className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-black border border-neutral-300 hover:border-black hover:bg-black hover:text-white transition-colors cursor-pointer shadow-xs"
+            className="px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white text-zinc-900 border border-zinc-200 hover:border-blue-600 hover:bg-blue-600 hover:text-white transition-colors cursor-pointer shadow-xs"
           >
             Next &rarr;
           </button>
@@ -105,7 +105,7 @@ export const Pagination: React.FC<PaginationProps> = ({
       </div>
 
       {/* Page indicator text */}
-      <span className="text-xs font-semibold text-neutral-500">
+      <span className="text-xs font-semibold text-zinc-500">
         Page {currentPage} of {totalPages}
       </span>
     </div>

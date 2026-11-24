@@ -20,7 +20,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenModal,
 }) => {
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200 shadow-sm shadow-black/5 transition-all">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-200 shadow-sm shadow-zinc-900/5 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 sm:h-24">
           
@@ -52,7 +52,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onHomeClick();
                 }
               }}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-neutral-700 hover:text-black hover:bg-neutral-100 transition-colors cursor-pointer no-underline"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100 transition-colors cursor-pointer no-underline"
             >
               Home
             </a>
@@ -65,9 +65,9 @@ export const Header: React.FC<HeaderProps> = ({
                   onSelectCategory?.('Trending');
                 }
               }}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-black hover:bg-neutral-100 transition-colors cursor-pointer flex items-center gap-1.5 no-underline"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-zinc-900 hover:text-blue-600 hover:bg-blue-50/60 transition-colors cursor-pointer flex items-center gap-1.5 no-underline"
             >
-              <Sparkles className="w-3.5 h-3.5 text-black" />
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" />
               <span>Trending</span>
             </a>
 
@@ -79,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onSelectCategory?.('Boys');
                 }
               }}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-neutral-800 hover:text-black hover:bg-neutral-100 transition-colors cursor-pointer no-underline"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-zinc-700 hover:text-zinc-950 hover:bg-zinc-100 transition-colors cursor-pointer no-underline"
             >
               Boys &amp; Men
             </a>
@@ -96,14 +96,14 @@ export const Header: React.FC<HeaderProps> = ({
                   }
                 }
               }}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-white bg-black hover:bg-neutral-800 border border-black transition-colors cursor-pointer no-underline"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-200 transition-colors cursor-pointer no-underline"
             >
               Diwali Prompts
             </a>
 
             <button
               onClick={() => onOpenModal?.('about')}
-              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-neutral-600 hover:text-black hover:bg-neutral-100 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100 transition-colors cursor-pointer"
             >
               About
             </button>
@@ -113,10 +113,10 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onOpenMenu}
             aria-label="Open menu"
-            className="p-2 sm:px-3.5 sm:py-2 rounded-xl text-black hover:bg-neutral-100 bg-white border border-neutral-300 hover:border-black transition-all cursor-pointer flex items-center gap-1.5 shadow-xs"
+            className="p-2 sm:px-3.5 sm:py-2 rounded-xl text-zinc-900 hover:bg-zinc-900 hover:text-white bg-white border border-zinc-200 hover:border-zinc-900 transition-all cursor-pointer flex items-center gap-1.5 shadow-xs group"
           >
-            <span className="text-xs sm:text-sm font-bold text-black hidden sm:inline-block">Categories</span>
-            <Menu className="w-5 h-5 stroke-[2] text-black" />
+            <span className="text-xs sm:text-sm font-bold hidden sm:inline-block">Categories</span>
+            <Menu className="w-5 h-5 stroke-[2]" />
           </button>
 
         </div>
