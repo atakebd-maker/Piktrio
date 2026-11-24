@@ -8,27 +8,26 @@ interface InterstitialAdModalProps {
   onUnlockSuccess: () => void;
 }
 
+const TOTAL_AD_SLOTS = 7;
+
 export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   isOpen,
   onClose,
   onUnlockSuccess,
 }) => {
-  // User Session Ad Countdown Rules:
-  // Reset on leaving website and re-entering (new session): uses sessionStorage.
-  // 1st photo click: 10 seconds
-  // 2nd photo click: 5 seconds
-  // 3rd photo click: 3 seconds
-  // 4th photo click: 5 seconds
-  // 5th photo click and every subsequent click: 6 seconds
+  // User Session Ad Countdown Cycle:
+  // 1st click: 10s
+  // 2nd click: 5s
+  // 3rd click: 2s
+  // 4th click: 10s (cycle repeats every 3 clicks)
   const getRequiredDuration = (): number => {
     try {
       const countStr = sessionStorage.getItem('piktrio_session_ad_click_count');
       const clickCount = countStr ? parseInt(countStr, 10) : 0;
-      if (clickCount === 0) return 10; // 1st click: 10s
-      if (clickCount === 1) return 5;  // 2nd click: 5s
-      if (clickCount === 2) return 3;  // 3rd click: 3s
-      if (clickCount === 3) return 5;  // 4th click: 5s
-      return 6;                        // 5th click and subsequent clicks: 6s
+      const step = isNaN(clickCount) ? 0 : clickCount % 3;
+      if (step === 0) return 10; // 1st, 4th, 7th... -> 10s
+      if (step === 1) return 5;  // 2nd, 5th, 8th... -> 5s
+      return 2;                  // 3rd, 6th, 9th... -> 2s
     } catch {
       return 10;
     }
@@ -37,29 +36,36 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   const [totalDuration, setTotalDuration] = useState<number>(10);
   const [countdown, setCountdown] = useState<number>(10);
   const [canClose, setCanClose] = useState<boolean>(false);
-  const [slotStatuses, setSlotStatuses] = useState<[boolean, boolean]>([false, false]);
+  const [slotStatuses, setSlotStatuses] = useState<boolean[]>(() =>
+    Array(TOTAL_AD_SLOTS).fill(false)
+  );
   const [isLoadingAds, setIsLoadingAds] = useState<boolean>(true);
 
-  const handleSlotStatus = useCallback((index: 0 | 1, hasAd: boolean) => {
+  const handleSlotStatus = useCallback((index: number, hasAd: boolean) => {
     setSlotStatuses((prev) => {
       if (prev[index] === hasAd) return prev;
-      const next: [boolean, boolean] = [prev[0], prev[1]];
+      const next = [...prev];
       next[index] = hasAd;
       return next;
     });
   }, []);
 
-  const onSlotLarge = useCallback((v: boolean) => handleSlotStatus(0, v), [handleSlotStatus]);
-  const onSlotSmall = useCallback((v: boolean) => handleSlotStatus(1, v), [handleSlotStatus]);
+  const onSlot0 = useCallback((v: boolean) => handleSlotStatus(0, v), [handleSlotStatus]);
+  const onSlot1 = useCallback((v: boolean) => handleSlotStatus(1, v), [handleSlotStatus]);
+  const onSlot2 = useCallback((v: boolean) => handleSlotStatus(2, v), [handleSlotStatus]);
+  const onSlot3 = useCallback((v: boolean) => handleSlotStatus(3, v), [handleSlotStatus]);
+  const onSlot4 = useCallback((v: boolean) => handleSlotStatus(4, v), [handleSlotStatus]);
+  const onSlot5 = useCallback((v: boolean) => handleSlotStatus(5, v), [handleSlotStatus]);
+  const onSlot6 = useCallback((v: boolean) => handleSlotStatus(6, v), [handleSlotStatus]);
 
-  // When modal is triggered on photo click, immediately start the countdown and load both ads
+  // Reset timer and ad slot state whenever opened
   useEffect(() => {
     if (isOpen) {
       const duration = getRequiredDuration();
       setTotalDuration(duration);
       setCountdown(duration);
       setCanClose(false);
-      setSlotStatuses([false, false]);
+      setSlotStatuses(Array(TOTAL_AD_SLOTS).fill(false));
       setIsLoadingAds(true);
 
       const loadDoneTimer = window.setTimeout(() => {
@@ -88,9 +94,10 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
     try {
       const countStr = sessionStorage.getItem('piktrio_session_ad_click_count');
       const currentCount = countStr ? parseInt(countStr, 10) : 0;
-      sessionStorage.setItem('piktrio_session_ad_click_count', (currentCount + 1).toString());
+      const safeCount = isNaN(currentCount) ? 0 : currentCount;
+      sessionStorage.setItem('piktrio_session_ad_click_count', (safeCount + 1).toString());
     } catch {
-      // ignore
+      // ignore storage errors
     }
     onUnlockSuccess();
     onClose();
@@ -98,7 +105,7 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
 
   if (!isOpen) return null;
 
-  const anyAdLoaded = slotStatuses[0] || slotStatuses[1];
+  const anyAdLoaded = slotStatuses.some(Boolean);
 
   return (
     <div
@@ -107,16 +114,15 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       aria-label="Sponsored Advertisement"
       className="fixed inset-0 z-50 w-full h-full bg-white text-slate-800 flex flex-col justify-between overflow-y-auto animate-in fade-in duration-200"
     >
-      {/* Top Full-Width Header + Progress */}
+      {/* Top Sticky Header with Countdown & Skip Button */}
       <div className="w-full bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-3.5 pb-3">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-3.5 pb-3">
           <div className="w-full flex items-center justify-between mb-2.5">
             <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-800">
               <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
               <span>Sponsored Advertisement</span>
             </div>
 
-            {/* Countdown Badge / Skip Ad Button */}
             {canClose ? (
               <button
                 onClick={handleCloseAndUnlock}
@@ -135,7 +141,6 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
             )}
           </div>
 
-          {/* Dynamic Progress Bar */}
           <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden border border-slate-200">
             <div
               className={`h-full transition-all duration-1000 ease-linear rounded-full ${
@@ -147,17 +152,35 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
         </div>
       </div>
 
-      {/* Center Full-Screen Ad Area: Exactly 2 Ads (300x250 Large + 320x50 Small) */}
-      <div className="w-full max-w-3xl mx-auto flex-1 flex flex-col items-center justify-center gap-5 px-4 py-6">
+      {/* Full-Screen Multi-Ad Area matching the Prompt Box above/below ad layout */}
+      <div className="w-full max-w-4xl mx-auto flex-1 flex flex-col items-center justify-center gap-4 px-4 py-5">
         {!anyAdLoaded && isLoadingAds && (
-          <div className="flex flex-col items-center justify-center py-6 text-center">
-            <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mb-3" />
+          <div className="flex flex-col items-center justify-center py-4 text-center">
+            <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mb-2.5" />
             <p className="text-xs sm:text-sm font-semibold text-slate-500">Loading sponsored advertisement...</p>
           </div>
         )}
 
-        <AdBanner format="300x250" label="" className="my-0" priorityPrimary onStatusChange={onSlotLarge} />
-        <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlotSmall} />
+        {/* Top Slim Banner */}
+        <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot0} />
+
+        {/* Upper Dual Large Ads (like above prompt box) */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-items-center">
+          <AdBanner format="300x250" label="Sponsored Ad" className="my-0" priorityPrimary onStatusChange={onSlot1} />
+          <AdBanner format="300x250" label="Sponsored Partner" className="my-0" priorityPrimary onStatusChange={onSlot2} />
+        </div>
+
+        {/* Center Slim Banner */}
+        <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot3} />
+
+        {/* Lower Dual Large Ads (like below prompt box) */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-items-center">
+          <AdBanner format="300x250" label="Featured Partner" className="my-0" priorityPrimary onStatusChange={onSlot4} />
+          <AdBanner format="300x250" label="Sponsored Links" className="my-0" priorityPrimary onStatusChange={onSlot5} />
+        </div>
+
+        {/* Bottom Slim Banner */}
+        <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot6} />
 
         {!anyAdLoaded && !isLoadingAds && (
           <div className="w-full max-w-md rounded-2xl bg-slate-50 border border-slate-200 px-5 py-7 text-center">
@@ -170,9 +193,9 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
         )}
       </div>
 
-      {/* Bottom Full-Width Status / Skip & Unlock Action */}
+      {/* Bottom Sticky Skip & Unlock Footer */}
       <div className="w-full bg-white/95 backdrop-blur-md border-t border-slate-200 sticky bottom-0 z-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-4 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 text-center">
           {canClose ? (
             <div className="flex flex-col items-center gap-2.5">
               <p className="text-xs text-emerald-700 font-bold flex items-center justify-center gap-1.5">

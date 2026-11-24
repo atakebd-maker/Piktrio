@@ -11,6 +11,7 @@ import { Footer } from './components/Footer';
 import { InfoModal, ModalType } from './components/InfoModal';
 import { AdBanner } from './components/AdBanner';
 import { StickyBottomAd } from './components/StickyBottomAd';
+import { InterstitialAdModal } from './components/InterstitialAdModal';
 import { WelcomeSliderModal } from './components/WelcomeSliderModal';
 import { FAQSection } from './components/FAQSection';
 import { CollectionPage } from './components/CollectionPage';
@@ -56,6 +57,10 @@ export default function App() {
   // Dedicated Prompt Details Page State
   const [selectedPrompt, setSelectedPrompt] = useState<PromptItem | null>(null);
   const [selectedCollection, setSelectedCollection] = useState<CollectionInfo | null>(null);
+
+  // Interstitial Full-Screen Ad Modal triggered on photo click (10s -> 5s -> 2s -> 10s...)
+  const [isAdModalOpen, setIsAdModalOpen] = useState(false);
+  const [pendingPrompt, setPendingPrompt] = useState<PromptItem | null>(null);
 
   // Opening centered popup slider with 6 newest photos + natural ads on initial site load
   const [isWelcomePopupOpen, setIsWelcomePopupOpen] = useState<boolean>(() => {
@@ -321,10 +326,19 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Open prompt directly on its dedicated page (no full-screen blocking ad)
+  // Open prompt via full-screen Interstitial Ad Modal (10s -> 5s -> 2s -> 10s...)
   const handleViewPrompt = (prompt: PromptItem) => {
     setIsWelcomePopupOpen(false);
-    navigateToPrompt(prompt);
+    setPendingPrompt(prompt);
+    setIsAdModalOpen(true);
+  };
+
+  // Successfully completed countdown and clicked Skip Ad
+  const handleUnlockSuccess = () => {
+    if (pendingPrompt) {
+      navigateToPrompt(pendingPrompt);
+      setPendingPrompt(null);
+    }
   };
 
   // Directly navigate to collection dedicated page
@@ -467,6 +481,9 @@ export default function App() {
           /* HOMEPAGE GALLERY VIEW (Matching Clean White & Blue) */
           <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             
+            {/* Top Slim Banner above Hero */}
+            <AdBanner format="320x50" label="" className="mt-3 mb-1" />
+
             {/* 2. Hero Section: Clean White & Blue */}
             <HeroSearch
               searchQuery={searchQuery}
@@ -476,8 +493,11 @@ export default function App() {
             />
 
             {/* Large 300x250 + Small 320x50 Banners below Hero Search */}
-            <AdBanner format="300x250" label="Sponsored Ad" className="my-3" />
-            <AdBanner format="320x50" label="" className="my-2" />
+            <div className="my-3 flex flex-col items-center gap-2.5">
+              <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
+              <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
+            </div>
 
             {/* 3. Horizontal Category Navigation */}
             <CategoryBar
@@ -486,8 +506,11 @@ export default function App() {
               onSelectCategory={handleSelectCategory}
             />
 
-            {/* Small 320x50 Banner below Category Bar */}
-            <AdBanner format="320x50" label="Sponsored Ad" className="my-3" />
+            {/* Small 320x50 + Large 300x250 Banners below Category Bar */}
+            <div className="my-3 flex flex-col items-center gap-2.5">
+              <AdBanner format="320x50" label="Sponsored Ad" className="my-0" />
+              <AdBanner format="300x250" label="Sponsored Links" className="my-0" />
+            </div>
 
             {/* 4. Beautiful Pinned Photos Slider below categories */}
             <FeaturedSlider
@@ -496,8 +519,12 @@ export default function App() {
               onSelectCategory={handleSelectCategory}
             />
 
-            {/* Large 300x250 Banner between Slider and Showcase */}
-            <AdBanner format="300x250" label="Featured Partner" className="my-4" />
+            {/* Banners between Slider and Showcase Gallery */}
+            <div className="my-4 flex flex-col items-center gap-2.5">
+              <AdBanner format="300x250" label="Featured Partner" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
+              <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+            </div>
 
             {/* 5. MAIN PROMPTS GALLERY (Strictly 2 columns on mobile: grid-cols-2) */}
             <section className="mt-4 mb-12">
@@ -539,11 +566,14 @@ export default function App() {
                     ))}
                   </div>
 
-                  {/* Mid-Gallery Large 300x250 Ad */}
+                  {/* Mid-Gallery Ads */}
                   {paginatedPrompts.length > 4 && (
                     <>
-                      <AdBanner format="300x250" label="Sponsored Partner" className="my-5" />
-                      <AdBanner format="320x50" label="" className="my-2" />
+                      <div className="my-5 flex flex-col items-center gap-2.5">
+                        <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
+                        <AdBanner format="320x50" label="" className="my-0" />
+                        <AdBanner format="300x250" label="Featured Ad" className="my-0" />
+                      </div>
                       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
                         {paginatedPrompts.slice(4).map((prompt) => (
                           <PromptCard
@@ -557,6 +587,12 @@ export default function App() {
                     </>
                   )}
 
+                  {/* Ads directly below gallery cards before pagination */}
+                  <div className="mt-5 mb-2 flex flex-col items-center gap-2.5">
+                    <AdBanner format="320x50" label="" className="my-0" />
+                    <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+                  </div>
+
                   {/* Pagination */}
                   <Pagination
                     currentPage={currentPage}
@@ -566,8 +602,9 @@ export default function App() {
 
                   {/* Both Large 300x250 and Small 320x50 Banners below gallery pagination */}
                   <div className="mt-6 mb-2 flex flex-col items-center gap-3">
-                    <AdBanner format="300x250" label="Featured Partner" className="my-1" />
-                    <AdBanner format="320x50" label="Sponsored Links" className="my-1" />
+                    <AdBanner format="300x250" label="Featured Partner" className="my-0" />
+                    <AdBanner format="320x50" label="Sponsored Links" className="my-0" />
+                    <AdBanner format="300x250" label="Recommended" className="my-0" />
                   </div>
                 </>
               ) : prompts.length === 0 ? (
@@ -604,12 +641,21 @@ export default function App() {
               )}
             </section>
 
+            {/* Banners above FAQ Section */}
+            <div className="my-4 flex flex-col items-center gap-2.5">
+              <AdBanner format="320x50" label="" className="my-0" />
+              <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+            </div>
+
             {/* 6. Comprehensive Search-Friendly AI Prompts FAQ Section */}
             <FAQSection />
 
             {/* Bottom Large 300x250 + Small 320x50 Banners above Footer */}
-            <AdBanner format="300x250" label="Sponsored Partner" className="mt-4 mb-3" />
-            <AdBanner format="320x50" label="" className="mb-8" />
+            <div className="mt-4 mb-8 flex flex-col items-center gap-2.5">
+              <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
+              <AdBanner format="300x250" label="Featured Partner" className="my-0" />
+            </div>
 
           </div>
         )}
@@ -636,10 +682,20 @@ export default function App() {
 
       {/* Opening Centered Popup with 6 Newest Photos Slider & Natural Ads */}
       <WelcomeSliderModal
-        isOpen={isWelcomePopupOpen && !selectedPrompt}
+        isOpen={isWelcomePopupOpen && !selectedPrompt && !isAdModalOpen}
         prompts={prompts}
         onClose={() => setIsWelcomePopupOpen(false)}
         onSelectPrompt={handleViewPrompt}
+      />
+
+      {/* Full-Screen Interstitial Ad Modal (10s -> 5s -> 2s -> 10s cycle) with Skip button */}
+      <InterstitialAdModal
+        isOpen={isAdModalOpen}
+        onClose={() => {
+          setIsAdModalOpen(false);
+          setPendingPrompt(null);
+        }}
+        onUnlockSuccess={handleUnlockSuccess}
       />
 
       {/* Floating Sticky Mobile/Desktop Bottom Ad Banner */}

@@ -116,6 +116,12 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
         </div>
       </div>
 
+      {/* Top Banners above Collection Hero */}
+      <div className="mb-5 flex flex-col items-center justify-center gap-2">
+        <AdBanner format="320x50" label="" className="my-0" />
+        <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+      </div>
+
       {/* 2. Collection Hero Banner Header */}
       <div className="relative rounded-3xl bg-gradient-to-br from-blue-900 via-slate-900 to-indigo-950 text-white p-6 sm:p-10 mb-8 shadow-xl overflow-hidden border border-blue-800/30">
         {/* Glow ambient background elements */}
@@ -182,7 +188,8 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
       {/* 4. Sponsored BengalAds Banners (Small 320x50 + Large 300x250) */}
       <div className="my-6 flex flex-col items-center justify-center gap-3">
         <AdBanner format="320x50" label="Sponsored Ad" className="my-0" />
-        <AdBanner format="300x250" label="Featured Partner" className="my-2" />
+        <AdBanner format="300x250" label="Featured Partner" className="my-1" />
+        <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
       </div>
 
       {/* 5. Main Prompts Gallery for this Collection */}
@@ -220,8 +227,11 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
 
             {paginatedPrompts.length > 4 && (
               <>
-                <AdBanner format="300x250" label="Sponsored Partner" className="my-5" />
-                <AdBanner format="320x50" label="" className="my-2" />
+                <div className="my-5 flex flex-col items-center gap-2.5">
+                  <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
+                  <AdBanner format="320x50" label="" className="my-0" />
+                  <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+                </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
                   {paginatedPrompts.slice(4).map((prompt) => (
                     <PromptCard
@@ -244,8 +254,9 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
 
             {/* Bottom Sponsored Banners */}
             <div className="mt-8 flex flex-col items-center justify-center gap-3">
-              <AdBanner format="300x250" label="Sponsored Links" className="my-2" />
+              <AdBanner format="300x250" label="Sponsored Links" className="my-0" />
               <AdBanner format="320x50" label="" className="my-0" />
+              <AdBanner format="300x250" label="Featured Partner" className="my-0" />
             </div>
           </>
         ) : (
