@@ -11,7 +11,7 @@ import { Footer } from './components/Footer';
 import { InfoModal, ModalType } from './components/InfoModal';
 import { AdBanner } from './components/AdBanner';
 import { StickyBottomAd } from './components/StickyBottomAd';
-import { InterstitialAdModal } from './components/InterstitialAdModal';
+import { WelcomeSliderModal } from './components/WelcomeSliderModal';
 import { FAQSection } from './components/FAQSection';
 import { CollectionPage } from './components/CollectionPage';
 import { PromptItem, CategoryItem, CollectionInfo } from './types/prompt';
@@ -57,9 +57,19 @@ export default function App() {
   const [selectedPrompt, setSelectedPrompt] = useState<PromptItem | null>(null);
   const [selectedCollection, setSelectedCollection] = useState<CollectionInfo | null>(null);
 
-  // Interstitial Ad Modal State triggered strictly on photo click
-  const [isAdModalOpen, setIsAdModalOpen] = useState(false);
-  const [pendingPrompt, setPendingPrompt] = useState<PromptItem | null>(null);
+  // Opening centered popup slider with 6 newest photos + natural ads on initial site load
+  const [isWelcomePopupOpen, setIsWelcomePopupOpen] = useState<boolean>(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const hasDirectPrompt =
+        Boolean(params.get('prompt') || params.get('p')) ||
+        window.location.pathname.startsWith('/prompt/') ||
+        window.location.hash.startsWith('#prompt/');
+      return !hasDirectPrompt;
+    } catch {
+      return true;
+    }
+  });
 
   // Toast Notification
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -311,18 +321,10 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Open prompt on dedicated page: triggered immediately upon clicking any photo
+  // Open prompt directly on its dedicated page (no full-screen blocking ad)
   const handleViewPrompt = (prompt: PromptItem) => {
-    setPendingPrompt(prompt);
-    setIsAdModalOpen(true);
-  };
-
-  // Successfully watched ad (10s) and unlocked
-  const handleUnlockSuccess = () => {
-    if (pendingPrompt) {
-      navigateToPrompt(pendingPrompt);
-      setPendingPrompt(null);
-    }
+    setIsWelcomePopupOpen(false);
+    navigateToPrompt(prompt);
   };
 
   // Directly navigate to collection dedicated page
@@ -632,14 +634,12 @@ export default function App() {
         onClose={() => setActiveModal(null)}
       />
 
-      {/* Interstitial Pop-up Ad with 10s Countdown Timer triggered strictly on photo click */}
-      <InterstitialAdModal
-        isOpen={isAdModalOpen}
-        onClose={() => {
-          setIsAdModalOpen(false);
-          setPendingPrompt(null);
-        }}
-        onUnlockSuccess={handleUnlockSuccess}
+      {/* Opening Centered Popup with 6 Newest Photos Slider & Natural Ads */}
+      <WelcomeSliderModal
+        isOpen={isWelcomePopupOpen && !selectedPrompt}
+        prompts={prompts}
+        onClose={() => setIsWelcomePopupOpen(false)}
+        onSelectPrompt={handleViewPrompt}
       />
 
       {/* Floating Sticky Mobile/Desktop Bottom Ad Banner */}

@@ -201,6 +201,12 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
         </button>
       </div>
 
+      {/* Top-of-Post Natural Banners */}
+      <div className="mb-5 flex flex-col items-center justify-center gap-2">
+        <AdBanner format="320x50" label="" className="my-0" priorityPrimary />
+        <AdBanner format="300x250" label="Sponsored Ad" className="my-1" />
+      </div>
+
       {/* Main Prompt Details Card */}
       <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden p-5 sm:p-8 mb-12">
         {/* Title Header placed ABOVE the photo and content as requested */}
@@ -250,8 +256,12 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               <span>100% Uncropped &bull; Original Aspect Ratio</span>
             </div>
 
-            {/* 300x250 Ad below main preview image */}
-            <AdBanner format="300x250" label="Sponsored Partner" className="mt-4" />
+            {/* Ads below main preview image */}
+            <div className="w-full flex flex-col items-center gap-3 mt-4">
+              <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
+              <AdBanner format="300x250" label="Recommended" className="my-0 hidden lg:flex" />
+            </div>
           </div>
 
           {/* RIGHT: Prompt Information, Copy, and AI Tools */}
@@ -397,35 +407,70 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               </div>
             )}
 
-            {/* Complete Guide / Description rendered directly below the Copy Prompt Button */}
+            {/* Natural Ads before the Tutorial Guide */}
+            <div className="w-full flex flex-col items-center justify-center gap-2 pt-2">
+              <AdBanner format="320x50" label="" className="my-0" />
+              <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
+            </div>
+
+            {/* Complete Guide / Description with Natural In-Article Ads between sections */}
             {prompt.description && (
               <div className="pt-5 border-t border-slate-200">
-                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-xs">
-                  <ReactMarkdown
-                    components={{
-                      h1: ({ node, ...props }) => <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-2 mb-3 leading-snug" {...props} />,
-                      h2: ({ node, ...props }) => <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-6 mb-2.5 pb-1 border-b border-slate-200" {...props} />,
-                      h3: ({ node, ...props }) => <h4 className="text-sm sm:text-base font-semibold text-blue-800 mt-4 mb-1.5" {...props} />,
-                      p: ({ node, ...props }) => <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3.5" {...props} />,
-                      ul: ({ node, ...props }) => <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-slate-600 mb-4" {...props} />,
-                      ol: ({ node, ...props }) => <ol className="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm text-slate-600 mb-4" {...props} />,
-                      li: ({ node, ...props }) => <li className="leading-relaxed" {...props} />,
-                      strong: ({ node, ...props }) => <strong className="font-bold text-slate-900" {...props} />,
-                    }}
-                  >
-                    {prompt.description}
-                  </ReactMarkdown>
+                <div className="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 shadow-xs space-y-5">
+                  {prompt.description
+                    .split(/\r?\n---\r?\n/)
+                    .map((section) => section.trim())
+                    .filter(Boolean)
+                    .map((section, idx, arr) => (
+                      <React.Fragment key={idx}>
+                        <ReactMarkdown
+                          components={{
+                            h1: ({ node, ...props }) => <h2 className="text-lg sm:text-xl font-black text-slate-900 mt-1 mb-3 leading-snug" {...props} />,
+                            h2: ({ node, ...props }) => <h3 className="text-base sm:text-lg font-bold text-slate-900 mt-3 mb-2.5 pb-1 border-b border-slate-200" {...props} />,
+                            h3: ({ node, ...props }) => <h4 className="text-sm sm:text-base font-semibold text-blue-800 mt-3 mb-1.5" {...props} />,
+                            p: ({ node, ...props }) => <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-3" {...props} />,
+                            ul: ({ node, ...props }) => <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-slate-600 mb-3" {...props} />,
+                            ol: ({ node, ...props }) => <ol className="list-decimal pl-5 space-y-1.5 text-xs sm:text-sm text-slate-600 mb-3" {...props} />,
+                            li: ({ node, ...props }) => <li className="leading-relaxed" {...props} />,
+                            strong: ({ node, ...props }) => <strong className="font-bold text-slate-900" {...props} />,
+                          }}
+                        >
+                          {section}
+                        </ReactMarkdown>
+
+                        {idx < arr.length - 1 && (
+                          <div className="py-2 border-y border-slate-100 flex flex-col items-center gap-2">
+                            <AdBanner
+                              format={idx % 2 === 0 ? '300x250' : '320x50'}
+                              label={idx % 2 === 0 ? 'Advertisement' : ''}
+                              className="my-0"
+                            />
+                            {idx === 0 && (
+                              <AdBanner format="320x50" label="" className="my-0" />
+                            )}
+                          </div>
+                        )}
+                      </React.Fragment>
+                    ))}
                 </div>
               </div>
             )}
 
             {/* Ad at the end of the post guide */}
-            <AdBanner format="300x250" label="Sponsored Partner" className="mt-6 mb-2" />
-            <AdBanner format="320x50" label="" className="my-2" />
+            <div className="w-full flex flex-col items-center gap-2 mt-4 mb-2">
+              <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
+              <AdBanner format="320x50" label="" className="my-0" />
+            </div>
 
           </div>
 
         </div>
+      </div>
+
+      {/* Mid-Page Sponsored Break before Related Prompts */}
+      <div className="my-6 flex flex-col items-center justify-center gap-2.5">
+        <AdBanner format="300x250" label="Sponsored Links" className="my-0" />
+        <AdBanner format="320x50" label="" className="my-0" />
       </div>
 
       {/* Related Prompts Section (Matching 2-column mobile / 4-column desktop gallery) */}
@@ -439,7 +484,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
-            {relatedPrompts.map((related) => (
+            {relatedPrompts.slice(0, 2).map((related) => (
               <PromptCard
                 key={related.id}
                 prompt={related}
@@ -451,6 +496,28 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               />
             ))}
           </div>
+
+          {relatedPrompts.length > 2 && (
+            <>
+              <div className="my-4 flex flex-col items-center gap-2">
+                <AdBanner format="320x50" label="" className="my-0" />
+                <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+                {relatedPrompts.slice(2).map((related) => (
+                  <PromptCard
+                    key={related.id}
+                    prompt={related}
+                    onViewDetails={(p) => {
+                      onSelectPrompt(p);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    onCopyPrompt={onCopyPrompt}
+                  />
+                ))}
+              </div>
+            </>
+          )}
 
           <div className="mt-6 mb-2 flex flex-col items-center gap-3">
             <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
