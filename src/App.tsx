@@ -426,9 +426,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-blue-600 selection:text-white flex flex-col">
+    <div className="min-h-screen bg-white text-black font-sans selection:bg-black selection:text-white flex flex-col">
       
-      {/* 1. Header (Clean White & Blue, strictly NO app button) */}
+      {/* 1. Header (Clean White & Black, strictly NO app button) */}
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
         onHomeClick={handleHomeClick}
@@ -528,29 +528,29 @@ export default function App() {
 
             {/* 5. MAIN PROMPTS GALLERY (Strictly 2 columns on mobile: grid-cols-2) */}
             <section className="mt-4 mb-12">
-              <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+              <div className="flex items-center justify-between mb-4 pb-2 border-b border-neutral-200">
                 <div className="flex items-center gap-2">
-                  <Layers className="w-5 h-5 text-blue-600" />
-                  <h2 className="text-base sm:text-xl font-black text-slate-900 flex items-center flex-wrap gap-2">
+                  <Layers className="w-5 h-5 text-black" />
+                  <h2 className="text-base sm:text-xl font-black text-black flex items-center flex-wrap gap-2">
                     <span>
                       {searchQuery ? `Search Results: "${searchQuery}"` : `${selectedCategory} Prompts Gallery`}
                     </span>
                     {totalPages > 1 && (
-                      <span className="text-xs sm:text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-lg">
+                      <span className="text-xs sm:text-sm font-bold text-black bg-neutral-100 border border-neutral-300 px-2 py-0.5 rounded-lg">
                         Page {currentPage} of {totalPages}
                       </span>
                     )}
                   </h2>
                 </div>
-                <span className="text-xs font-semibold text-slate-500">
+                <span className="text-xs font-semibold text-neutral-500">
                   {filteredPrompts.length} Prompts
                 </span>
               </div>
 
               {isLoading ? (
                 <div className="py-20 flex flex-col items-center justify-center space-y-3">
-                  <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                  <p className="text-xs font-medium text-slate-500">Loading prompts...</p>
+                  <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin"></div>
+                  <p className="text-xs font-medium text-neutral-500">Loading prompts...</p>
                 </div>
               ) : paginatedPrompts.length > 0 ? (
                 <>
@@ -610,22 +610,22 @@ export default function App() {
               ) : prompts.length === 0 ? (
                 /* Store empty state */
                 <div className="py-20 text-center max-w-md mx-auto px-4">
-                  <div className="w-16 h-16 rounded-3xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-4 border border-blue-200">
+                  <div className="w-16 h-16 rounded-3xl bg-neutral-100 text-black flex items-center justify-center mx-auto mb-4 border border-neutral-300">
                     <Sparkles className="w-8 h-8" />
                   </div>
-                  <h3 className="font-bold text-slate-900 text-lg mb-2">Ready for Prompts</h3>
-                  <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                  <h3 className="font-bold text-black text-lg mb-2">Ready for Prompts</h3>
+                  <p className="text-sm text-neutral-600 leading-relaxed mb-4">
                     Send your images, titles, and prompts in chat anytime to publish them directly!
                   </p>
                 </div>
               ) : (
                 /* Filter / search empty state */
                 <div className="py-16 text-center max-w-sm mx-auto">
-                  <div className="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mx-auto mb-3 border border-blue-200">
+                  <div className="w-12 h-12 rounded-full bg-neutral-100 text-black flex items-center justify-center mx-auto mb-3 border border-neutral-300">
                     <SearchX className="w-6 h-6" />
                   </div>
-                  <h3 className="font-bold text-slate-900 text-base mb-1">No Prompts Found</h3>
-                  <p className="text-xs text-slate-600 mb-4">
+                  <h3 className="font-bold text-black text-base mb-1">No Prompts Found</h3>
+                  <p className="text-xs text-neutral-600 mb-4">
                     No prompts matched your search query. Try another keyword or explore other categories.
                   </p>
                   <button
@@ -633,7 +633,7 @@ export default function App() {
                       setSelectedCategory('All');
                       setSearchQuery('');
                     }}
-                    className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors cursor-pointer shadow-sm"
+                    className="px-4 py-2 rounded-xl bg-black text-white text-xs font-semibold hover:bg-neutral-800 transition-colors cursor-pointer shadow-sm"
                   >
                     Clear Search
                   </button>
@@ -703,8 +703,8 @@ export default function App() {
 
       {/* Floating Success Toast: "Prompt Copied Successfully!" */}
       {toastMessage && (
-        <div className="fixed bottom-16 sm:bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-3 rounded-full bg-slate-900/95 text-white text-xs sm:text-sm font-bold shadow-2xl border border-slate-700/80 backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-200">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+        <div className="fixed bottom-16 sm:bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2.5 px-5 py-3 rounded-full bg-black text-white text-xs sm:text-sm font-bold shadow-2xl border border-neutral-800 backdrop-blur-md animate-in fade-in slide-in-from-bottom-4 duration-200">
+          <CheckCircle2 className="w-4 h-4 text-white shrink-0" />
           <span>{toastMessage}</span>
         </div>
       )}

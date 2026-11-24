@@ -57,20 +57,20 @@ export const FAQSection: React.FC = () => {
   return (
     <section 
       aria-label="Frequently Asked Questions & AI Prompts Guide"
-      className="w-full mt-12 mb-16 pt-10 border-t border-slate-200"
+      className="w-full mt-12 mb-16 pt-10 border-t border-neutral-200"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}
         <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200 mb-3 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 text-black text-xs font-bold border border-neutral-300 mb-3 shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-black" />
             <span>Search-Friendly AI Guide &amp; Knowledge Base</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-black text-black tracking-tight">
             Frequently Asked Questions (FAQ)
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-2 max-w-xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-neutral-600 mt-2 max-w-xl mx-auto leading-relaxed">
             Everything you need to know about creating viral, ultra-realistic AI portraits with ChatGPT, Google Gemini, and Piktrio prompts.
           </p>
         </div>
@@ -82,7 +82,7 @@ export const FAQSection: React.FC = () => {
             return (
               <div
                 key={index}
-                className="bg-white rounded-2xl border border-slate-200 hover:border-blue-300 shadow-xs hover:shadow-md transition-all overflow-hidden"
+                className="bg-white rounded-2xl border border-neutral-200 hover:border-black shadow-xs hover:shadow-md transition-all overflow-hidden"
               >
                 <button
                   onClick={() => toggleIndex(index)}
@@ -91,34 +91,34 @@ export const FAQSection: React.FC = () => {
                 >
                   <div className="flex items-center gap-3">
                     <div className={`w-7 h-7 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
-                      isOpen ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600'
+                      isOpen ? 'bg-black text-white' : 'bg-neutral-100 text-neutral-700'
                     }`}>
                       <HelpCircle className="w-4 h-4" />
                     </div>
-                    <span className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                    <span className="text-sm sm:text-base font-bold text-black leading-snug">
                       {faq.question}
                     </span>
                   </div>
                   <ChevronDown
-                    className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 text-blue-600' : ''
+                    className={`w-4 h-4 text-neutral-400 shrink-0 transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 text-black' : ''
                     }`}
                   />
                 </button>
 
                 {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-slate-50/50 animate-in fade-in duration-200">
+                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-neutral-600 leading-relaxed border-t border-neutral-200 bg-neutral-50/70 animate-in fade-in duration-200">
                     <p className="mb-3">{faq.answer}</p>
                     
                     {/* SEO Keywords Badges */}
-                    <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200/60">
-                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-1">
+                    <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-neutral-200/70">
+                      <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider mr-1">
                         Keywords:
                       </span>
                       {faq.keywords.map((kw) => (
                         <span
                           key={kw}
-                          className="px-2 py-0.5 rounded-md bg-white border border-slate-200 text-slate-600 text-[10px] font-medium"
+                          className="px-2 py-0.5 rounded-md bg-white border border-neutral-300 text-neutral-700 text-[10px] font-medium"
                         >
                           {kw}
                         </span>
@@ -132,14 +132,14 @@ export const FAQSection: React.FC = () => {
         </div>
 
         {/* Bottom Trust & Guarantee Bar */}
-        <div className="mt-8 p-4 rounded-2xl bg-blue-50/70 border border-blue-200 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+        <div className="mt-8 p-4 rounded-2xl bg-neutral-100 border border-neutral-300 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-5 h-5 text-blue-600 shrink-0" />
-            <span className="text-xs font-semibold text-blue-950">
+            <CheckCircle2 className="w-5 h-5 text-black shrink-0" />
+            <span className="text-xs font-semibold text-black">
               100% Tested Prompts &bull; Compatible with ChatGPT (GPT-4o), Google Gemini &amp; Midjourney
             </span>
           </div>
-          <span className="text-[11px] font-bold text-blue-700 bg-white px-3 py-1 rounded-full border border-blue-200 shadow-xs">
+          <span className="text-[11px] font-bold text-white bg-black px-3 py-1 rounded-full border border-black shadow-xs">
             Updated Daily
           </span>
         </div>

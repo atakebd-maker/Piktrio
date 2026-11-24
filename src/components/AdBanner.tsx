@@ -303,7 +303,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
       } ${hasAd ? className : ''}`}
     >
       {label && hasAd && (
-        <span className="text-[10px] tracking-wider uppercase font-semibold text-slate-400 mb-1 select-none">
+        <span className="text-[10px] tracking-wider uppercase font-semibold text-neutral-500 mb-1 select-none">
           {label}
         </span>
       )}

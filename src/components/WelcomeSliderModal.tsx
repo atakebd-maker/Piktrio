@@ -111,7 +111,7 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
       aria-modal="true"
       aria-label="Latest AI Photo Prompts"
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-950/65 backdrop-blur-xs animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/75 backdrop-blur-xs animate-in fade-in duration-200"
     >
       <div
         onClick={(e) => e.stopPropagation()}
@@ -119,15 +119,15 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
-        className="relative w-full max-w-2xl bg-white text-slate-900 rounded-2xl sm:rounded-3xl border border-slate-200 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+        className="relative w-full max-w-2xl bg-white text-black rounded-2xl sm:rounded-3xl border border-neutral-300 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
       >
         {/* Header with prominent top-right Cross (X) button */}
-        <div className="flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-slate-200 bg-white shrink-0">
+        <div className="flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-neutral-200 bg-white shrink-0">
           <div className="min-w-0">
-            <h2 className="text-sm sm:text-base font-extrabold text-slate-900 truncate">
+            <h2 className="text-sm sm:text-base font-extrabold text-black truncate">
               Latest AI Photo Prompts
             </h2>
-            <p className="text-[11px] sm:text-xs text-slate-500">
+            <p className="text-[11px] sm:text-xs text-neutral-500">
               Tap any photo to open prompt
             </p>
           </div>
@@ -137,7 +137,7 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
               type="button"
               onClick={handlePrev}
               aria-label="Previous slide"
-              className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-black flex items-center justify-center transition-colors cursor-pointer"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
@@ -145,7 +145,7 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
               type="button"
               onClick={handleNext}
               aria-label="Next slide"
-              className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
+              className="w-8 h-8 rounded-lg bg-neutral-100 hover:bg-neutral-200 text-black flex items-center justify-center transition-colors cursor-pointer"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -154,7 +154,7 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
               onClick={onClose}
               aria-label="Close popup"
               title="Close"
-              className="w-9 h-9 rounded-xl bg-slate-900 hover:bg-blue-600 text-white flex items-center justify-center transition-colors cursor-pointer ml-1 shadow-xs"
+              className="w-9 h-9 rounded-xl bg-black hover:bg-neutral-800 text-white flex items-center justify-center transition-colors cursor-pointer ml-1 shadow-xs"
             >
               <X className="w-4 h-4 stroke-[2.5]" />
             </button>
@@ -182,11 +182,11 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
                 }}
                 className={`snap-start shrink-0 w-[160px] sm:w-[192px] bg-white rounded-2xl border transition-all duration-200 flex flex-col overflow-hidden cursor-pointer no-underline group ${
                   activeIndex === idx
-                    ? 'border-blue-500 shadow-md shadow-blue-500/10'
-                    : 'border-slate-200 hover:border-blue-400 hover:shadow-md'
+                    ? 'border-black shadow-md'
+                    : 'border-neutral-200 hover:border-black hover:shadow-md'
                 }`}
               >
-                <div className="relative w-full h-[195px] sm:h-[225px] bg-slate-50 flex items-center justify-center p-1.5 overflow-hidden">
+                <div className="relative w-full h-[195px] sm:h-[225px] bg-neutral-50 flex items-center justify-center p-1.5 overflow-hidden">
                   <img
                     src={item.imageUrl}
                     alt={item.title}
@@ -199,13 +199,13 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
                     className="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
                   />
                 </div>
-                <div className="p-2.5 border-t border-slate-100 flex flex-col justify-between gap-1.5 flex-1">
-                  <h3 className="text-[11px] sm:text-xs font-bold text-slate-900 line-clamp-2 leading-snug group-hover:text-blue-600 transition-colors">
+                <div className="p-2.5 border-t border-neutral-200 flex flex-col justify-between gap-1.5 flex-1">
+                  <h3 className="text-[11px] sm:text-xs font-bold text-black line-clamp-2 leading-snug group-hover:underline transition-colors">
                     {item.title}
                   </h3>
-                  <div className="flex items-center justify-between text-[10px] text-slate-500 font-medium pt-0.5">
+                  <div className="flex items-center justify-between text-[10px] text-neutral-500 font-medium pt-0.5">
                     <span className="truncate">{item.category}</span>
-                    <span className="inline-flex items-center gap-0.5 text-blue-600 font-bold shrink-0">
+                    <span className="inline-flex items-center gap-0.5 text-black font-bold shrink-0">
                       <span>Open</span>
                       <ArrowUpRight className="w-3 h-3" />
                     </span>
@@ -225,8 +225,8 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
                 aria-label={`Slide ${idx + 1}`}
                 className={`h-1.5 rounded-full transition-all duration-200 cursor-pointer ${
                   activeIndex === idx
-                    ? 'w-5 bg-blue-600'
-                    : 'w-1.5 bg-slate-200 hover:bg-slate-300'
+                    ? 'w-5 bg-black'
+                    : 'w-1.5 bg-neutral-300 hover:bg-neutral-400'
                 }`}
               />
             ))}

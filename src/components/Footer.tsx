@@ -22,12 +22,12 @@ const MENU_ITEMS: { name: string; type?: ModalType; isHome?: boolean }[] = [
 
 export const Footer: React.FC<FooterProps> = ({ collections = COLLECTIONS_LIST, onSelectCategory, onSelectCollection, onOpenModal }) => {
   return (
-    <footer className="bg-white border-t border-slate-200 mt-16 pt-12 pb-10 text-center select-none">
+    <footer className="bg-white border-t border-neutral-200 mt-16 pt-12 pb-10 text-center select-none">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
         {/* SECTION 1: MENU */}
         <div className="mb-10">
-          <h4 className="text-xs font-bold text-slate-400 tracking-widest uppercase mb-4">
+          <h4 className="text-xs font-bold text-neutral-500 tracking-widest uppercase mb-4">
             MENU
           </h4>
           <div className="flex flex-wrap items-center justify-center gap-2.5">
@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ collections = COLLECTIONS_LIST, 
                     onOpenModal?.(item.type);
                   }
                 }}
-                className="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200 hover:border-blue-300 transition-all cursor-pointer shadow-xs"
+                className="px-4 py-2 rounded-xl text-xs font-semibold bg-neutral-50 hover:bg-black text-black hover:text-white border border-neutral-200 hover:border-black transition-all cursor-pointer shadow-xs"
               >
                 {item.name}
               </button>
@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ collections = COLLECTIONS_LIST, 
 
         {/* SECTION 2: COLLECTIONS (Triggers dedicated navigateToCollection page) */}
         <div className="mb-10">
-          <h4 className="text-xs font-bold text-slate-400 tracking-widest uppercase mb-4">
+          <h4 className="text-xs font-bold text-neutral-500 tracking-widest uppercase mb-4">
             COLLECTIONS
           </h4>
           <div className="flex flex-wrap items-center justify-center gap-2.5 max-w-4xl mx-auto">
@@ -72,14 +72,14 @@ export const Footer: React.FC<FooterProps> = ({ collections = COLLECTIONS_LIST, 
                   }}
                   className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all hover:scale-105 active:scale-95 cursor-pointer flex items-center gap-1.5 shadow-xs no-underline ${
                     isDiwali
-                      ? 'bg-amber-50 text-amber-800 border border-amber-300 font-bold hover:bg-amber-100'
-                      : 'bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200 hover:border-blue-300'
+                      ? 'bg-black text-white border border-black font-bold hover:bg-neutral-800'
+                      : 'bg-neutral-50 hover:bg-black text-black hover:text-white border border-neutral-200 hover:border-black'
                   }`}
                 >
-                  {isDiwali && <Sparkles className="w-3.5 h-3.5 text-amber-500" />}
+                  {isDiwali && <Sparkles className="w-3.5 h-3.5 text-white" />}
                   <span>{item.label}</span>
                   {isDiwali && (
-                    <span className="text-[9px] font-black uppercase bg-amber-500 text-white px-1.5 py-0.2 rounded-full">
+                    <span className="text-[9px] font-black uppercase bg-white text-black px-1.5 py-0.2 rounded-full">
                       Hot
                     </span>
                   )}
@@ -90,16 +90,16 @@ export const Footer: React.FC<FooterProps> = ({ collections = COLLECTIONS_LIST, 
         </div>
 
         {/* SECTION 3: COPYRIGHT & AI MODEL BADGES */}
-        <div className="pt-6 border-t border-slate-200 flex flex-col items-center gap-3 text-xs text-slate-500">
-          <div className="flex items-center gap-2 text-slate-600 font-medium">
+        <div className="pt-6 border-t border-neutral-200 flex flex-col items-center gap-3 text-xs text-neutral-500">
+          <div className="flex items-center gap-2 text-neutral-700 font-medium">
             <span>Curated AI Image Prompts for</span>
-            <span className="inline-flex items-center gap-1 font-bold text-slate-800">
-              <ChatGptIcon className="w-3.5 h-3.5 text-[#10a37f]" />
+            <span className="inline-flex items-center gap-1 font-bold text-black">
+              <ChatGptIcon className="w-3.5 h-3.5 text-black" />
               <span>ChatGPT</span>
             </span>
             <span>&bull;</span>
-            <span className="inline-flex items-center gap-1 font-bold text-slate-800">
-              <GeminiIcon className="w-3.5 h-3.5 text-blue-600" />
+            <span className="inline-flex items-center gap-1 font-bold text-black">
+              <GeminiIcon className="w-3.5 h-3.5 text-black" />
               <span>Gemini</span>
             </span>
           </div>
@@ -108,13 +108,13 @@ export const Footer: React.FC<FooterProps> = ({ collections = COLLECTIONS_LIST, 
             &copy; {new Date().getFullYear()} Piktrio. All rights reserved. &mdash;{' '}
             <span
               onClick={() => onOpenModal?.('terms')}
-              className="text-blue-600 hover:underline cursor-pointer font-medium"
+              className="text-black hover:underline cursor-pointer font-semibold"
             >
               Terms
             </span> |{' '}
             <span
               onClick={() => onOpenModal?.('privacy')}
-              className="text-blue-600 hover:underline cursor-pointer font-medium"
+              className="text-black hover:underline cursor-pointer font-semibold"
             >
               Privacy
             </span>

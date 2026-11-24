@@ -113,12 +113,12 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
       {/* Top Header Label */}
       <div className="flex items-center justify-between mb-2.5 px-1">
         <div className="flex items-center gap-2">
-          <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-blue-50 text-blue-600 border border-blue-200">
+          <span className="flex items-center justify-center w-6 h-6 rounded-lg bg-black text-white border border-black">
             <Pin className="w-3.5 h-3.5 rotate-45" />
           </span>
-          <h2 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight flex items-center gap-1.5">
+          <h2 className="text-sm sm:text-base font-extrabold text-black tracking-tight flex items-center gap-1.5">
             <span>Pinned Featured Prompts</span>
-            <span className="text-[10px] font-bold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full uppercase tracking-wider hidden sm:inline-block">
+            <span className="text-[10px] font-bold text-neutral-700 bg-neutral-100 border border-neutral-300 px-2 py-0.5 rounded-full uppercase tracking-wider hidden sm:inline-block">
               Editor's Choice
             </span>
           </h2>
@@ -126,21 +126,21 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
 
         {/* Slide Counter & Arrows */}
         <div className="flex items-center gap-2">
-          <span className="text-xs font-mono font-semibold text-slate-500">
-            <span className="text-blue-600 font-bold">{currentIndex + 1}</span> / {pinnedPrompts.length}
+          <span className="text-xs font-mono font-semibold text-neutral-500">
+            <span className="text-black font-bold">{currentIndex + 1}</span> / {pinnedPrompts.length}
           </span>
           <div className="flex items-center gap-1">
             <button
               onClick={handlePrev}
               aria-label="Previous pinned photo"
-              className="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 hover:text-blue-600 flex items-center justify-center transition-colors cursor-pointer border border-slate-200 shadow-xs"
+              className="w-7 h-7 rounded-lg bg-white hover:bg-black text-black hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-neutral-300 shadow-xs"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={handleNext}
               aria-label="Next pinned photo"
-              className="w-7 h-7 rounded-lg bg-white hover:bg-slate-100 text-slate-700 hover:text-blue-600 flex items-center justify-center transition-colors cursor-pointer border border-slate-200 shadow-xs"
+              className="w-7 h-7 rounded-lg bg-white hover:bg-black text-black hover:text-white flex items-center justify-center transition-colors cursor-pointer border border-neutral-300 shadow-xs"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -150,7 +150,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
 
       {/* Main Showcase Hero Card with Generous Height so Full Image is 100% Uncropped */}
       <div
-        className="relative bg-white text-slate-900 rounded-3xl border border-slate-200 shadow-xl overflow-hidden group"
+        className="relative bg-white text-black rounded-3xl border border-neutral-200 shadow-xl overflow-hidden group"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={handleTouchStart}
@@ -170,7 +170,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
             }}
             className="md:col-span-6 lg:col-span-5 flex items-center justify-center cursor-pointer group/img relative no-underline block"
           >
-            <div className="relative w-full h-[340px] sm:h-[400px] md:h-[450px] bg-slate-50 rounded-2xl border border-slate-200 shadow-inner flex items-center justify-center p-2.5 sm:p-3 overflow-hidden">
+            <div className="relative w-full h-[340px] sm:h-[400px] md:h-[450px] bg-neutral-50 rounded-2xl border border-neutral-200 shadow-inner flex items-center justify-center p-2.5 sm:p-3 overflow-hidden">
               
               {/* Uncropped Image Display: 100% full view from top to bottom */}
               <img
@@ -184,13 +184,13 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
               />
 
               {/* Pin Badge on Photo */}
-              <div className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-blue-600 text-white backdrop-blur-md shadow-md">
+              <div className="absolute top-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-black text-white backdrop-blur-md shadow-md">
                 <Pin className="w-3 h-3 rotate-45" />
                 <span>Featured Pin</span>
               </div>
 
               {/* Quick View Trigger */}
-              <div className="absolute bottom-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-900/80 text-white text-[10px] font-semibold backdrop-blur-md border border-white/20 opacity-0 group-hover/img:opacity-100 transition-opacity">
+              <div className="absolute bottom-3 right-3 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-black/85 text-white text-[10px] font-semibold backdrop-blur-md border border-white/20 opacity-0 group-hover/img:opacity-100 transition-opacity">
                 <Maximize2 className="w-3.5 h-3.5" />
                 <span>Open Full Details</span>
               </div>
@@ -202,27 +202,27 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
             
             {/* Category, Model & Pinned Tag */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-700 border border-blue-200 flex items-center gap-1.5">
-                <Sparkles className="w-3 h-3 text-blue-600" />
+              <span className="px-3 py-1 rounded-full text-xs font-bold bg-black text-white flex items-center gap-1.5">
+                <Sparkles className="w-3 h-3 text-white" />
                 <span>{current.category}</span>
               </span>
 
               {current.model && (
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200 flex items-center gap-1.5 shadow-2xs">
-                  <ChatGptIcon className="w-3 h-3 text-[#10a37f] shrink-0" />
-                  <GeminiIcon className="w-3 h-3 text-blue-600 shrink-0" />
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-neutral-100 text-neutral-800 border border-neutral-300 flex items-center gap-1.5 shadow-2xs">
+                  <ChatGptIcon className="w-3 h-3 text-black shrink-0" />
+                  <GeminiIcon className="w-3 h-3 text-black shrink-0" />
                   <span>{current.model}</span>
                 </span>
               )}
 
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono tracking-wider uppercase bg-amber-50 text-amber-700 border border-amber-300">
-                📌 Pinned
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono tracking-wider uppercase bg-neutral-100 text-black border border-neutral-300">
+                Pinned
               </span>
             </div>
 
             {/* Prompt Title */}
             <div>
-              <h3 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-slate-900 leading-snug tracking-tight hover:text-blue-600 transition-colors cursor-pointer line-clamp-2">
+              <h3 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-black leading-snug tracking-tight hover:text-neutral-700 transition-colors cursor-pointer line-clamp-2">
                 <a
                   href={`/?prompt=${encodeURIComponent(current.id)}`}
                   onClick={(e) => {
@@ -231,14 +231,14 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
                       onSelectPrompt(current);
                     }
                   }}
-                  className="hover:text-blue-600 text-inherit no-underline"
+                  className="hover:text-neutral-700 text-inherit no-underline"
                 >
                   {current.title}
                 </a>
               </h3>
 
               {/* Prompt snippet preview */}
-              <p className="text-xs sm:text-sm text-slate-600 mt-2.5 line-clamp-3 leading-relaxed font-sans">
+              <p className="text-xs sm:text-sm text-neutral-600 mt-2.5 line-clamp-3 leading-relaxed font-sans">
                 {current.prompt}
               </p>
             </div>
@@ -253,13 +253,13 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
                     onSelectPrompt(current);
                   }
                 }}
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-blue-500/25 transition-all transform active:scale-95 cursor-pointer no-underline"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-black hover:bg-neutral-800 text-white font-bold text-xs sm:text-sm shadow-lg transition-all transform active:scale-95 cursor-pointer no-underline"
               >
                 <span>View Full Prompt &amp; Copy</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
-              <span className="text-[11px] text-slate-400 hidden sm:inline-block">
+              <span className="text-[11px] text-neutral-500 hidden sm:inline-block">
                 Includes 7-second copy countdown &bull; 100% Uncropped Photo
               </span>
             </div>
@@ -273,8 +273,8 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
                   aria-label={`Go to slide ${idx + 1}`}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
                     currentIndex === idx 
-                      ? 'w-7 bg-blue-600 shadow-xs shadow-blue-400' 
-                      : 'w-2 bg-slate-200 hover:bg-slate-300'
+                      ? 'w-7 bg-black' 
+                      : 'w-2 bg-neutral-300 hover:bg-neutral-400'
                   }`}
                 />
               ))}
@@ -288,7 +288,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
         <button
           onClick={handlePrev}
           aria-label="Previous slide"
-          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/90 hover:bg-blue-600 hover:text-white text-slate-800 backdrop-blur-md hidden sm:flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer border border-slate-200 shadow-lg"
+          className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/95 hover:bg-black hover:text-white text-black backdrop-blur-md hidden sm:flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer border border-neutral-300 shadow-lg"
         >
           <ChevronLeft className="w-5 h-5" />
         </button>
@@ -297,7 +297,7 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
         <button
           onClick={handleNext}
           aria-label="Next slide"
-          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/90 hover:bg-blue-600 hover:text-white text-slate-800 backdrop-blur-md hidden sm:flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer border border-slate-200 shadow-lg"
+          className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/95 hover:bg-black hover:text-white text-black backdrop-blur-md hidden sm:flex items-center justify-center transition-all opacity-0 group-hover:opacity-100 cursor-pointer border border-neutral-300 shadow-lg"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
@@ -314,11 +314,11 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
                 onClick={() => transitionTo(idx)}
                 className={`flex-shrink-0 flex items-center gap-2 p-1.5 pr-3 rounded-xl border text-left transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-blue-50 border-blue-500 shadow-md shadow-blue-500/10 ring-1 ring-blue-500/50'
-                    : 'bg-white border-slate-200 hover:border-blue-300 hover:bg-slate-50'
+                    ? 'bg-black text-white border-black shadow-md'
+                    : 'bg-white border-neutral-200 hover:border-black hover:bg-neutral-50'
                 }`}
               >
-                <div className="w-10 h-14 rounded-lg bg-slate-50 border border-slate-200 overflow-hidden flex items-center justify-center p-0.5">
+                <div className="w-10 h-14 rounded-lg bg-neutral-100 border border-neutral-200 overflow-hidden flex items-center justify-center p-0.5">
                   <img
                     src={p.imageUrl}
                     alt={p.title}
@@ -330,10 +330,10 @@ export const FeaturedSlider: React.FC<FeaturedSliderProps> = ({
                   />
                 </div>
                 <div className="flex flex-col max-w-[130px] sm:max-w-[170px]">
-                  <span className={`text-[11px] font-bold line-clamp-1 ${isActive ? 'text-blue-700' : 'text-slate-800'}`}>
+                  <span className={`text-[11px] font-bold line-clamp-1 ${isActive ? 'text-white' : 'text-black'}`}>
                     {p.title}
                   </span>
-                  <span className="text-[9px] text-slate-400 font-medium">
+                  <span className={`text-[9px] font-medium ${isActive ? 'text-neutral-300' : 'text-neutral-500'}`}>
                     {p.category}
                   </span>
                 </div>

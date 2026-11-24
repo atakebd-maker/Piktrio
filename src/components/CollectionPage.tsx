@@ -91,26 +91,26 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
     <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 animate-in fade-in duration-300">
       
       {/* 1. Top Breadcrumbs Navigation & Back Button */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-200">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-neutral-200">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 bg-white hover:bg-slate-50 hover:text-blue-600 border border-slate-200 hover:border-blue-300 transition-colors cursor-pointer shadow-xs"
+          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-black bg-white hover:bg-black hover:text-white border border-neutral-300 hover:border-black transition-colors cursor-pointer shadow-xs"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Home</span>
         </button>
 
-        <div className="flex items-center gap-1.5 text-xs text-slate-500 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-1.5 text-xs text-neutral-500 overflow-x-auto no-scrollbar">
           <button
             onClick={onBack}
-            className="hover:text-blue-600 font-medium cursor-pointer"
+            className="hover:text-black font-medium cursor-pointer"
           >
             Home
           </button>
           <span>/</span>
-          <span className="text-slate-400">Collections</span>
+          <span className="text-neutral-400">Collections</span>
           <span>/</span>
-          <span className="font-bold text-slate-800 truncate max-w-[200px] sm:max-w-none">
+          <span className="font-bold text-black truncate max-w-[200px] sm:max-w-none">
             {collection.label}
           </span>
         </div>
@@ -123,14 +123,14 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
       </div>
 
       {/* 2. Collection Hero Banner Header */}
-      <div className="relative rounded-3xl bg-gradient-to-br from-blue-900 via-slate-900 to-indigo-950 text-white p-6 sm:p-10 mb-8 shadow-xl overflow-hidden border border-blue-800/30">
-        {/* Glow ambient background elements */}
-        <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-indigo-500/20 blur-3xl pointer-events-none" />
+      <div className="relative rounded-3xl bg-black text-white p-6 sm:p-10 mb-8 shadow-xl overflow-hidden border border-neutral-800">
+        {/* Subtle monochrome radial highlight */}
+        <div className="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-white/5 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-white/5 blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-200 text-xs font-bold mb-4 shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/25 text-white text-xs font-bold mb-4 shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-white" />
             <span>Curated AI Collection</span>
           </div>
 
@@ -138,22 +138,22 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
             {collection.title}
           </h1>
 
-          <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed mb-6 max-w-2xl">
+          <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed mb-6 max-w-2xl">
             {collection.description}
           </p>
 
           {/* Value Badges */}
           <div className="flex flex-wrap items-center gap-2 text-[11px] sm:text-xs font-semibold">
-            <span className="px-3 py-1 rounded-lg bg-blue-600 text-white shadow-xs">
+            <span className="px-3 py-1 rounded-lg bg-white text-black shadow-xs font-bold">
               {collectionPrompts.length} Verified Prompts
             </span>
-            <span className="px-3 py-1 rounded-lg bg-white/15 backdrop-blur-md text-white border border-white/20 flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+            <span className="px-3 py-1 rounded-lg bg-white/10 backdrop-blur-md text-white border border-white/25 flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-white" />
               <span>100% Face Identity Lock</span>
             </span>
-            <span className="px-3 py-1 rounded-lg bg-white/15 backdrop-blur-md text-white border border-white/20 flex items-center gap-1.5">
-              <ChatGptIcon className="w-3.5 h-3.5 text-[#10a37f] shrink-0" />
-              <GeminiIcon className="w-3.5 h-3.5 text-blue-300 shrink-0" />
+            <span className="px-3 py-1 rounded-lg bg-white/10 backdrop-blur-md text-white border border-white/25 flex items-center gap-1.5">
+              <ChatGptIcon className="w-3.5 h-3.5 text-white shrink-0" />
+              <GeminiIcon className="w-3.5 h-3.5 text-white shrink-0" />
               <span>ChatGPT (GPT-4o) &amp; Gemini</span>
             </span>
           </div>
@@ -162,7 +162,7 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
 
       {/* 3. Switch between other collections pill bar */}
       <div className="mb-8">
-        <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-2 px-1">
+        <span className="text-xs font-bold text-neutral-500 uppercase tracking-wider block mb-2 px-1">
           Explore Other Collections:
         </span>
         <div className="flex flex-wrap items-center gap-2">
@@ -174,8 +174,8 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
                 onClick={() => onSelectCollection(col)}
                 className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-xs ${
                   isSelected
-                    ? 'bg-blue-600 text-white shadow-blue-500/25 ring-2 ring-blue-500/50'
-                    : 'bg-white text-slate-700 hover:text-blue-600 hover:bg-blue-50 border border-slate-200 hover:border-blue-300'
+                    ? 'bg-black text-white ring-2 ring-black/25'
+                    : 'bg-white text-black hover:bg-neutral-100 border border-neutral-300 hover:border-black'
                 }`}
               >
                 {col.label}
@@ -194,19 +194,19 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
 
       {/* 5. Main Prompts Gallery for this Collection */}
       <section className="mt-4 mb-12">
-        <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+        <div className="flex items-center justify-between mb-4 pb-2 border-b border-neutral-200">
           <div className="flex items-center gap-2">
-            <Layers className="w-5 h-5 text-blue-600" />
-            <h2 className="text-base sm:text-xl font-black text-slate-900 flex items-center gap-2">
+            <Layers className="w-5 h-5 text-black" />
+            <h2 className="text-base sm:text-xl font-black text-black flex items-center gap-2">
               <span>{collection.label}</span>
               {totalPages > 1 && (
-                <span className="text-xs sm:text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-lg">
+                <span className="text-xs sm:text-sm font-bold text-black bg-neutral-100 border border-neutral-300 px-2 py-0.5 rounded-lg">
                   Page {currentPage} of {totalPages}
                 </span>
               )}
             </h2>
           </div>
-          <span className="text-xs font-semibold text-slate-500">
+          <span className="text-xs font-semibold text-neutral-500">
             {collectionPrompts.length} Prompts
           </span>
         </div>
@@ -261,13 +261,13 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
           </>
         ) : (
           <div className="py-16 text-center max-w-sm mx-auto">
-            <h3 className="font-bold text-slate-900 text-base mb-1">No Prompts Found in this Collection</h3>
-            <p className="text-xs text-slate-600 mb-4">
+            <h3 className="font-bold text-black text-base mb-1">No Prompts Found in this Collection</h3>
+            <p className="text-xs text-neutral-600 mb-4">
               Try exploring other collections or return to the main gallery.
             </p>
             <button
               onClick={onBack}
-              className="px-4 py-2 rounded-xl bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700 transition-colors cursor-pointer shadow-sm"
+              className="px-4 py-2 rounded-xl bg-black text-white text-xs font-semibold hover:bg-neutral-800 transition-colors cursor-pointer shadow-sm"
             >
               Back to Home
             </button>

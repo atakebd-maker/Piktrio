@@ -46,11 +46,11 @@ export const AiModelBadge: React.FC<{ label?: string; className?: string }> = ({
 }) => {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200/90 shadow-2xs select-none ${className}`}
+      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-neutral-100 text-neutral-800 border border-neutral-200 shadow-2xs select-none ${className}`}
     >
-      <ChatGptIcon className="w-3 h-3 text-[#10a37f] shrink-0" />
-      <span className="text-slate-300">/</span>
-      <GeminiIcon className="w-3 h-3 text-blue-600 shrink-0" />
+      <ChatGptIcon className="w-3 h-3 text-black shrink-0" />
+      <span className="text-neutral-400">/</span>
+      <GeminiIcon className="w-3 h-3 text-black shrink-0" />
       <span className="truncate">{label}</span>
     </span>
   );

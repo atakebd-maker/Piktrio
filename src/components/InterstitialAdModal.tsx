@@ -112,14 +112,14 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label="Sponsored Advertisement"
-      className="fixed inset-0 z-50 w-full h-full bg-white text-slate-800 flex flex-col justify-between overflow-y-auto animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 w-full h-full bg-white text-black flex flex-col justify-between overflow-y-auto animate-in fade-in duration-200"
     >
       {/* Top Sticky Header with Countdown & Skip Button */}
-      <div className="w-full bg-white/95 backdrop-blur-md border-b border-slate-200 sticky top-0 z-20">
+      <div className="w-full bg-white/95 backdrop-blur-md border-b border-neutral-200 sticky top-0 z-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-3.5 pb-3">
           <div className="w-full flex items-center justify-between mb-2.5">
-            <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-slate-800">
-              <Sparkles className="w-4 h-4 text-amber-500 shrink-0" />
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-black">
+              <Sparkles className="w-4 h-4 text-black shrink-0" />
               <span>Sponsored Advertisement</span>
             </div>
 
@@ -127,24 +127,24 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
               <button
                 onClick={handleCloseAndUnlock}
                 aria-label="Skip ad and view prompt"
-                className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-md transform active:scale-95 animate-pulse"
+                className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-black hover:bg-neutral-800 text-white text-xs sm:text-sm font-bold transition-all cursor-pointer shadow-md transform active:scale-95 animate-pulse"
                 title="Skip Ad & View Full Prompt"
               >
                 <span>Skip Ad</span>
                 <X className="w-4 h-4 stroke-[2.5]" />
               </button>
             ) : (
-              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-300 text-amber-800 text-xs font-bold shadow-2xs">
-                <Clock className="w-3.5 h-3.5 animate-spin text-amber-600" />
+              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-neutral-100 border border-neutral-300 text-black text-xs font-bold shadow-2xs">
+                <Clock className="w-3.5 h-3.5 animate-spin text-black" />
                 <span>Skip in {countdown}s</span>
               </div>
             )}
           </div>
 
-          <div className="w-full bg-slate-100 rounded-full h-1.5 overflow-hidden border border-slate-200">
+          <div className="w-full bg-neutral-200 rounded-full h-1.5 overflow-hidden border border-neutral-300">
             <div
               className={`h-full transition-all duration-1000 ease-linear rounded-full ${
-                canClose ? 'bg-emerald-500 w-full' : 'bg-blue-600'
+                canClose ? 'bg-black w-full' : 'bg-neutral-800'
               }`}
               style={{ width: canClose ? '100%' : `${((totalDuration - countdown) / totalDuration) * 100}%` }}
             />
@@ -156,8 +156,8 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       <div className="w-full max-w-4xl mx-auto flex-1 flex flex-col items-center justify-center gap-4 px-4 py-5">
         {!anyAdLoaded && isLoadingAds && (
           <div className="flex flex-col items-center justify-center py-4 text-center">
-            <div className="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin mb-2.5" />
-            <p className="text-xs sm:text-sm font-semibold text-slate-500">Loading sponsored advertisement...</p>
+            <div className="w-8 h-8 border-3 border-black border-t-transparent rounded-full animate-spin mb-2.5" />
+            <p className="text-xs sm:text-sm font-semibold text-neutral-500">Loading sponsored advertisement...</p>
           </div>
         )}
 
@@ -183,10 +183,10 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
         <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot6} />
 
         {!anyAdLoaded && !isLoadingAds && (
-          <div className="w-full max-w-md rounded-2xl bg-slate-50 border border-slate-200 px-5 py-7 text-center">
-            <Sparkles className="w-7 h-7 text-blue-600 mx-auto mb-2.5" />
-            <p className="text-sm sm:text-base font-bold text-slate-800 mb-1">Preparing Your AI Prompt</p>
-            <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
+          <div className="w-full max-w-md rounded-2xl bg-neutral-50 border border-neutral-200 px-5 py-7 text-center">
+            <Sparkles className="w-7 h-7 text-black mx-auto mb-2.5" />
+            <p className="text-sm sm:text-base font-bold text-black mb-1">Preparing Your AI Prompt</p>
+            <p className="text-xs sm:text-sm text-neutral-500 leading-relaxed">
               Your prompt preview and copy guide are unlocking automatically.
             </p>
           </div>
@@ -194,25 +194,25 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
       </div>
 
       {/* Bottom Sticky Skip & Unlock Footer */}
-      <div className="w-full bg-white/95 backdrop-blur-md border-t border-slate-200 sticky bottom-0 z-20">
+      <div className="w-full bg-white/95 backdrop-blur-md border-t border-neutral-200 sticky bottom-0 z-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 text-center">
           {canClose ? (
             <div className="flex flex-col items-center gap-2.5">
-              <p className="text-xs text-emerald-700 font-bold flex items-center justify-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <p className="text-xs text-black font-bold flex items-center justify-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-black shrink-0" />
                 <span>Ready! Click below to skip ad and view prompt.</span>
               </p>
               <button
                 onClick={handleCloseAndUnlock}
-                className="w-full max-w-md py-3.5 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/25 cursor-pointer transform active:scale-[0.99] transition-all"
+                className="w-full max-w-md py-3.5 px-5 rounded-xl bg-black hover:bg-neutral-800 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg cursor-pointer transform active:scale-[0.99] transition-all"
               >
                 <span>Skip Ad &amp; View Prompt</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           ) : (
-            <p className="text-xs sm:text-sm text-slate-500 font-medium py-1">
-              You can skip this ad in <span className="font-bold text-slate-800">{countdown} seconds</span> to view full photo prompt details.
+            <p className="text-xs sm:text-sm text-neutral-500 font-medium py-1">
+              You can skip this ad in <span className="font-bold text-black">{countdown} seconds</span> to view full photo prompt details.
             </p>
           )}
         </div>
