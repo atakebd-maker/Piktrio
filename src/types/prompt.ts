@@ -47,3 +47,39 @@ export interface CollectionInfo {
   description: string;
 }
 
+export interface BlogFAQItem {
+  question: string;
+  answer: string;
+}
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  categoryId: string;
+  categoryName: string;
+  title: string;
+  metaTitle: string;
+  metaDescription: string;
+  excerpt: string;
+  publishedAt: string;
+  readTime: string;
+  author: string;
+  coverImageUrl: string;
+  keywords: string[];
+  introParagraphs: string[];
+  perPromptNotes: Record<
+    string,
+    {
+      headline?: string;
+      summary: string;
+      howToSteps: string[];
+      proTip: string;
+    }
+  >;
+  masterHowToSteps: {
+    stepNumber: number;
+    title: string;
+    detail: string;
+  }[];
+  faqs: BlogFAQItem[];
+}

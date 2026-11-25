@@ -15,8 +15,10 @@ import { InterstitialAdModal } from './components/InterstitialAdModal';
 import { WelcomeSliderModal } from './components/WelcomeSliderModal';
 import { FAQSection } from './components/FAQSection';
 import { CollectionPage } from './components/CollectionPage';
-import { PromptItem, CategoryItem, CollectionInfo } from './types/prompt';
+import { BlogPage } from './components/BlogPage';
+import { PromptItem, CategoryItem, CollectionInfo, BlogPost } from './types/prompt';
 import { PROMPTPIN_CATEGORIES, STORE_PROMPTS, COLLECTIONS_LIST, HIDDEN_PROMPT_IDS, ensureIdentityPromptSuffix, promptMatchesCategory } from './data/initialPrompts';
+import { BLOG_POSTS } from './data/blogs';
 import {
   subscribeToPrompts,
   subscribeToCategories,
@@ -26,7 +28,7 @@ import {
   seedPromptsIfEmpty,
 } from './services/promptService';
 import { testConnection } from './services/firebase';
-import { CheckCircle2, SearchX, Sparkles, Layers } from 'lucide-react';
+import { CheckCircle2, SearchX, Sparkles, Layers, BookOpen, ArrowRight } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 8; // Optimal for 2-column mobile and 4-column desktop layout
 
@@ -54,23 +56,26 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeModal, setActiveModal] = useState<ModalType | null>(null);
 
-  // Dedicated Prompt Details Page State
+  // Dedicated Prompt Details Page & Collection & Blog State
   const [selectedPrompt, setSelectedPrompt] = useState<PromptItem | null>(null);
   const [selectedCollection, setSelectedCollection] = useState<CollectionInfo | null>(null);
+  const [isBlogView, setIsBlogView] = useState<boolean>(false);
+  const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
 
   // Interstitial Full-Screen Ad Modal triggered on photo click (10s -> 5s -> 2s -> 10s...)
   const [isAdModalOpen, setIsAdModalOpen] = useState(false);
   const [pendingPrompt, setPendingPrompt] = useState<PromptItem | null>(null);
 
-  // Opening centered popup slider with 6 newest photos + natural ads on initial site load
+  // Opening centered popup slider with newest photos + natural ads on initial site load
   const [isWelcomePopupOpen, setIsWelcomePopupOpen] = useState<boolean>(() => {
     try {
       const params = new URLSearchParams(window.location.search);
-      const hasDirectPrompt =
-        Boolean(params.get('prompt') || params.get('p')) ||
+      const hasDirectRoute =
+        Boolean(params.get('prompt') || params.get('p') || params.get('blog')) ||
         window.location.pathname.startsWith('/prompt/') ||
+        window.location.pathname.startsWith('/blog') ||
         window.location.hash.startsWith('#prompt/');
-      return !hasDirectPrompt;
+      return !hasDirectRoute;
     } catch {
       return true;
     }
@@ -118,14 +123,38 @@ export default function App() {
         ) || null;
       }
 
+      const blogParam = searchParams.get('blog');
+      const isBlogPath = pathname === '/blog' || pathname.startsWith('/blog/');
+      let targetBlog: BlogPost | null = null;
+      if (blogParam) {
+        targetBlog =
+          BLOG_POSTS.find(
+            (b) => b.slug.toLowerCase() === blogParam.toLowerCase() || b.id.toLowerCase() === blogParam.toLowerCase()
+          ) || null;
+      } else if (pathname.startsWith('/blog/')) {
+        const slug = decodeURIComponent(pathname.replace('/blog/', '').replace(/\/$/, ''));
+        targetBlog =
+          BLOG_POSTS.find(
+            (b) => b.slug.toLowerCase() === slug.toLowerCase() || b.id.toLowerCase() === slug.toLowerCase()
+          ) || null;
+      }
+
       if (targetPromptId && !HIDDEN_PROMPT_IDS.has(targetPromptId)) {
         const match = items.find((p) => p.id === targetPromptId) || STORE_PROMPTS.find((p) => p.id === targetPromptId);
         if (match) {
           setSelectedPrompt(match);
+          setIsBlogView(false);
           document.title = `${match.title} – Piktrio`;
         }
+      } else if (isBlogPath || blogParam) {
+        setSelectedPrompt(null);
+        setSelectedCollection(null);
+        setIsBlogView(true);
+        setSelectedBlog(targetBlog);
       } else {
         setSelectedPrompt(null);
+        setIsBlogView(false);
+        setSelectedBlog(null);
         if (targetCollection) {
           setSelectedCollection(targetCollection);
           document.title = `${targetCollection.title} – Piktrio`;
@@ -344,10 +373,23 @@ export default function App() {
   // Directly navigate to collection dedicated page
   const navigateToCollection = (col: CollectionInfo) => {
     setSelectedPrompt(null);
+    setIsBlogView(false);
+    setSelectedBlog(null);
     setSelectedCollection(col);
     const newUrl = `/collection/${encodeURIComponent(col.slug)}`;
     window.history.pushState({ collectionSlug: col.slug }, '', newUrl);
     document.title = `${col.title} – Piktrio`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Navigate to Blog Index or specific Blog Article
+  const navigateToBlog = (blog: BlogPost | null = null) => {
+    setSelectedPrompt(null);
+    setSelectedCollection(null);
+    setIsBlogView(true);
+    setSelectedBlog(blog);
+    const newUrl = blog ? `/blog/${encodeURIComponent(blog.slug)}` : '/blog';
+    window.history.pushState({ blogSlug: blog?.slug || null }, '', newUrl);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -359,10 +401,22 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Back to gallery (or back to collection if viewing from collection)
+  // Back from blog to homepage
+  const handleBackFromBlog = () => {
+    setIsBlogView(false);
+    setSelectedBlog(null);
+    window.history.pushState({}, '', '/');
+    resetHomeMeta();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Back to gallery (or back to collection/blog if viewing from collection/blog)
   const handleBackToGallery = () => {
     setSelectedPrompt(null);
-    if (selectedCollection) {
+    if (isBlogView) {
+      const newUrl = selectedBlog ? `/blog/${encodeURIComponent(selectedBlog.slug)}` : '/blog';
+      window.history.pushState({ blogSlug: selectedBlog?.slug || null }, '', newUrl);
+    } else if (selectedCollection) {
       const newUrl = `/collection/${encodeURIComponent(selectedCollection.slug)}`;
       window.history.pushState({ collectionSlug: selectedCollection.slug }, '', newUrl);
       document.title = `${selectedCollection.title} – Piktrio`;
@@ -383,6 +437,8 @@ export default function App() {
   const handleSelectCategory = (catName: string) => {
     setSelectedPrompt(null);
     setSelectedCollection(null);
+    setIsBlogView(false);
+    setSelectedBlog(null);
     setSelectedCategory(catName);
     setSearchQuery('');
     setCurrentPage(1);
@@ -391,6 +447,7 @@ export default function App() {
     searchParams.delete('prompt');
     searchParams.delete('p');
     searchParams.delete('collection');
+    searchParams.delete('blog');
     if (catName.toLowerCase() === 'all') {
       searchParams.delete('category');
       searchParams.delete('c');
@@ -416,6 +473,8 @@ export default function App() {
   const handleHomeClick = () => {
     setSelectedPrompt(null);
     setSelectedCollection(null);
+    setIsBlogView(false);
+    setSelectedBlog(null);
     setSelectedCategory('All');
     setSearchQuery('');
     setCurrentPage(1);
@@ -432,6 +491,7 @@ export default function App() {
       <Header
         onOpenMenu={() => setIsMenuOpen(true)}
         onHomeClick={handleHomeClick}
+        onBlogClick={() => navigateToBlog(null)}
         onSelectCategory={handleSelectCategory}
         onSelectCollection={navigateToCollection}
         onOpenModal={(type) => setActiveModal(type)}
@@ -448,13 +508,14 @@ export default function App() {
           window.scrollTo({ top: 240, behavior: 'smooth' });
         }}
         onSelectCollection={navigateToCollection}
+        onBlogClick={() => navigateToBlog(null)}
         onOpenModal={(type) => setActiveModal(type)}
       />
 
       {/* Main Content Area */}
       <main className="flex-1 w-full">
         
-        {/* CONDITIONAL RENDERING: Dedicated Prompt Details Page OR Collection Page OR Home Gallery */}
+        {/* CONDITIONAL RENDERING: Dedicated Prompt Details Page OR Blog Page OR Collection Page OR Home Gallery */}
         {selectedPrompt ? (
           /* DEDICATED PROMPT DETAILS PAGE (Opened upon clicking any image) */
           <PromptDetailPage
@@ -464,6 +525,17 @@ export default function App() {
             onCopyPrompt={handleCopyPrompt}
             onSelectPrompt={handleViewPrompt}
             allPrompts={prompts}
+          />
+        ) : isBlogView ? (
+          /* DEDICATED SEO BLOG SECTION (/blog or /blog/:slug) */
+          <BlogPage
+            blogs={BLOG_POSTS}
+            selectedBlog={selectedBlog}
+            allPrompts={prompts}
+            onBackHome={handleBackFromBlog}
+            onSelectBlog={(blog) => navigateToBlog(blog)}
+            onSelectPrompt={handleViewPrompt}
+            onCopyPrompt={handleCopyPrompt}
           />
         ) : selectedCollection ? (
           /* DEDICATED COLLECTION PAGE (Opened upon clicking any collection in Footer/Drawer/Header) */
@@ -631,11 +703,113 @@ export default function App() {
               )}
             </section>
 
-            {/* Banners above FAQ Section */}
+            {/* Banners above Blog & FAQ Section */}
             <div className="my-4 flex flex-col items-center gap-2.5">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
             </div>
+
+            {/* Featured SEO Blog Section Spotlight */}
+            {BLOG_POSTS.length > 0 && (
+              <section
+                aria-label="Featured SEO Blog Guide"
+                className="my-8 bg-white rounded-3xl border border-zinc-200 shadow-sm overflow-hidden p-5 sm:p-7"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-zinc-100">
+                  <div className="flex items-center gap-2">
+                    <span className="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 border border-blue-200 flex items-center justify-center">
+                      <BookOpen className="w-4 h-4" />
+                    </span>
+                    <div>
+                      <h2 className="text-base sm:text-xl font-black text-zinc-950">
+                        Piktrio SEO Blog &amp; Complete Creation Guides
+                      </h2>
+                      <p className="text-[11px] sm:text-xs text-zinc-500">
+                        All prompts from a category in one guide with copy buttons &amp; step-by-step tutorials
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href="/blog"
+                    onClick={(e) => {
+                      if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                        e.preventDefault();
+                        navigateToBlog(null);
+                      }
+                    }}
+                    className="text-xs font-bold text-blue-600 hover:underline no-underline"
+                  >
+                    View All Blogs &rarr;
+                  </a>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+                  <a
+                    href={`/blog/${encodeURIComponent(BLOG_POSTS[0].slug)}`}
+                    onClick={(e) => {
+                      if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                        e.preventDefault();
+                        navigateToBlog(BLOG_POSTS[0]);
+                      }
+                    }}
+                    className="md:col-span-4 bg-zinc-50 rounded-2xl border border-zinc-200 p-2.5 flex items-center justify-center no-underline"
+                  >
+                    <img
+                      src={BLOG_POSTS[0].coverImageUrl}
+                      alt={BLOG_POSTS[0].title}
+                      referrerPolicy="no-referrer"
+                      style={{ objectFit: 'contain' }}
+                      className="max-h-[220px] w-auto object-contain rounded-xl"
+                    />
+                  </a>
+
+                  <div className="md:col-span-8 space-y-3">
+                    <div className="flex flex-wrap items-center gap-2 text-xs">
+                      <span className="px-2.5 py-0.5 rounded-full bg-zinc-900 text-white font-bold">
+                        {BLOG_POSTS[0].categoryName} Guide
+                      </span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-semibold">
+                        Complete Category Blog
+                      </span>
+                      <span className="text-zinc-500 font-medium">{BLOG_POSTS[0].readTime}</span>
+                    </div>
+
+                    <h3 className="text-lg sm:text-xl font-black text-zinc-950 leading-snug">
+                      <a
+                        href={`/blog/${encodeURIComponent(BLOG_POSTS[0].slug)}`}
+                        onClick={(e) => {
+                          if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                            e.preventDefault();
+                            navigateToBlog(BLOG_POSTS[0]);
+                          }
+                        }}
+                        className="text-inherit hover:text-blue-600 transition-colors no-underline"
+                      >
+                        {BLOG_POSTS[0].title}
+                      </a>
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
+                      {BLOG_POSTS[0].excerpt}
+                    </p>
+
+                    <a
+                      href={`/blog/${encodeURIComponent(BLOG_POSTS[0].slug)}`}
+                      onClick={(e) => {
+                        if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                          e.preventDefault();
+                          navigateToBlog(BLOG_POSTS[0]);
+                        }
+                      }}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-blue-600 text-white text-xs sm:text-sm font-bold transition-colors no-underline shadow-xs"
+                    >
+                      <span>Read Diwali Blog &amp; Copy All Prompts</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              </section>
+            )}
 
             {/* 6. Comprehensive Search-Friendly AI Prompts FAQ Section */}
             <FAQSection />
@@ -651,7 +825,7 @@ export default function App() {
 
       </main>
 
-      {/* 7. Footer (Dark theme matching AIPROMPTS.BUZZ) */}
+      {/* 7. Footer */}
       <Footer
         collections={visibleCollections}
         onSelectCategory={(catName) => {
@@ -659,6 +833,7 @@ export default function App() {
           window.scrollTo({ top: 220, behavior: 'smooth' });
         }}
         onSelectCollection={navigateToCollection}
+        onBlogClick={() => navigateToBlog(null)}
         onOpenModal={(type) => setActiveModal(type)}
       />
 
@@ -669,9 +844,9 @@ export default function App() {
         onClose={() => setActiveModal(null)}
       />
 
-      {/* Opening Centered Popup with 6 Newest Photos Slider & Natural Ads */}
+      {/* Opening Centered Popup with Newest Photos Slider & Natural Ads */}
       <WelcomeSliderModal
-        isOpen={isWelcomePopupOpen && !selectedPrompt && !isAdModalOpen}
+        isOpen={isWelcomePopupOpen && !selectedPrompt && !isBlogView && !isAdModalOpen}
         prompts={prompts}
         onClose={() => setIsWelcomePopupOpen(false)}
         onSelectPrompt={handleViewPrompt}

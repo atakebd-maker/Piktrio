@@ -9,18 +9,20 @@ interface FooterProps {
   collections?: CollectionInfo[];
   onSelectCategory: (categoryName: string) => void;
   onSelectCollection: (collection: CollectionInfo) => void;
+  onBlogClick?: () => void;
   onOpenModal?: (type: ModalType) => void;
 }
 
-const MENU_ITEMS: { name: string; type?: ModalType; isHome?: boolean }[] = [
+const MENU_ITEMS: { name: string; type?: ModalType; isHome?: boolean; isBlog?: boolean }[] = [
   { name: 'Home', isHome: true },
+  { name: 'Blog & Guides', isBlog: true },
   { name: 'About Us', type: 'about' },
   { name: 'Contact Us', type: 'contact' },
   { name: 'Privacy Policy', type: 'privacy' },
   { name: 'Terms & Conditions', type: 'terms' },
 ];
 
-export const Footer: React.FC<FooterProps> = ({ collections = COLLECTIONS_LIST, onSelectCategory, onSelectCollection, onOpenModal }) => {
+export const Footer: React.FC<FooterProps> = ({ collections = COLLECTIONS_LIST, onSelectCategory, onSelectCollection, onBlogClick, onOpenModal }) => {
   return (
     <footer className="bg-white border-t border-zinc-200 mt-16 pt-12 pb-10 text-center select-none">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
@@ -39,6 +41,8 @@ export const Footer: React.FC<FooterProps> = ({ collections = COLLECTIONS_LIST, 
                   if (item.isHome) {
                     onSelectCategory('All');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                  } else if (item.isBlog) {
+                    onBlogClick?.();
                   } else if (item.type) {
                     onOpenModal?.(item.type);
                   }

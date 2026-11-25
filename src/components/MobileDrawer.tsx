@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, ChevronDown, ChevronUp, Sparkles, FolderHeart } from 'lucide-react';
+import { X, ChevronDown, ChevronUp, Sparkles, FolderHeart, BookOpen } from 'lucide-react';
 import { PROMPTPIN_CATEGORIES, COLLECTIONS_LIST } from '../data/initialPrompts';
 import { CategoryItem, CollectionInfo } from '../types/prompt';
 import { ModalType } from './InfoModal';
@@ -11,6 +11,7 @@ interface MobileDrawerProps {
   collections?: CollectionInfo[];
   onSelectCategory: (categoryName: string) => void;
   onSelectCollection?: (collection: CollectionInfo) => void;
+  onBlogClick?: () => void;
   onOpenModal?: (type: ModalType) => void;
 }
 
@@ -21,6 +22,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   collections = COLLECTIONS_LIST,
   onSelectCategory,
   onSelectCollection,
+  onBlogClick,
   onOpenModal,
 }) => {
   const [categoriesOpen, setCategoriesOpen] = useState(true);
@@ -77,6 +79,25 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             >
               <span>Home</span>
               <span className="text-xs font-medium text-zinc-400">Main Gallery</span>
+            </button>
+          </div>
+
+          {/* Blog & Guides */}
+          <div className="border-t border-zinc-100 pt-3">
+            <button
+              onClick={() => {
+                onBlogClick?.();
+                onClose();
+              }}
+              className="w-full text-left py-2 hover:text-blue-600 transition-colors cursor-pointer flex items-center justify-between text-zinc-950"
+            >
+              <span className="flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-blue-600" />
+                <span>Blog &amp; Guides</span>
+              </span>
+              <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">
+                SEO Guides
+              </span>
             </button>
           </div>
 

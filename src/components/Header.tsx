@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Sparkles } from 'lucide-react';
+import { Menu, Sparkles, BookOpen } from 'lucide-react';
 import { ModalType } from './InfoModal';
 import { CollectionInfo } from '../types/prompt';
 import { COLLECTIONS_LIST } from '../data/initialPrompts';
@@ -7,6 +7,7 @@ import { COLLECTIONS_LIST } from '../data/initialPrompts';
 interface HeaderProps {
   onOpenMenu: () => void;
   onHomeClick: () => void;
+  onBlogClick?: () => void;
   onSelectCategory?: (categoryName: string) => void;
   onSelectCollection?: (collection: CollectionInfo) => void;
   onOpenModal?: (type: ModalType) => void;
@@ -15,6 +16,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({
   onOpenMenu,
   onHomeClick,
+  onBlogClick,
   onSelectCategory,
   onSelectCollection,
   onOpenModal,
@@ -99,6 +101,20 @@ export const Header: React.FC<HeaderProps> = ({
               className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-200 transition-colors cursor-pointer no-underline"
             >
               Diwali Prompts
+            </a>
+
+            <a
+              href="/blog"
+              onClick={(e) => {
+                if (!e.ctrlKey && !e.metaKey && !e.shiftKey && e.button === 0) {
+                  e.preventDefault();
+                  onBlogClick?.();
+                }
+              }}
+              className="px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold text-blue-700 bg-blue-50/80 hover:bg-blue-100 border border-blue-200 transition-colors cursor-pointer flex items-center gap-1.5 no-underline"
+            >
+              <BookOpen className="w-3.5 h-3.5" />
+              <span>Blog</span>
             </a>
 
             <button

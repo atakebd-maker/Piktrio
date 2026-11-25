@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   ArrowLeft,
   Copy,
   Check,
   Sparkles,
-  Bot,
   Layers,
   Share2,
   CheckCircle2,
   Clock,
+  HelpCircle,
+  ChevronDown,
 } from 'lucide-react';
 import { PromptItem } from '../types/prompt';
 import { copyToClipboard } from '../utils/clipboard';
@@ -37,11 +38,48 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
   const [copyStatus, setCopyStatus] = useState<CopyStatus>('idle');
   const [countdown, setCountdown] = useState<number>(7);
   const [shareToast, setShareToast] = useState(false);
+  const [openFaqIndices, setOpenFaqIndices] = useState<number[]>([0]);
+
+  const promptFaqs = useMemo(() => {
+    const modelLabel = prompt.model || 'ChatGPT (GPT-4o) & Google Gemini';
+    const ratioLabel = prompt.aspectRatio || '3:4 vertical portrait';
+    const topTags = prompt.tags?.slice(0, 4).join(', ') || prompt.category;
+
+    return [
+      {
+        question: `How do I create the "${prompt.title}" AI photo in ChatGPT or Google Gemini?`,
+        answer: `Copy the full "${prompt.title}" prompt on this page using the Copy Full Prompt button, open ${modelLabel}, upload a clear front-facing photo of yourself, paste the prompt below your image, and send to generate your 8K portrait.`,
+      },
+      {
+        question: `Will my real face, beard, or mustache stay unchanged when using this ${prompt.category} prompt?`,
+        answer: `Yes. Every Piktrio prompt includes Strict Face Identity and Natural Facial Hair Preservation rules. When you upload your reference photo, ${modelLabel} matches your exact facial bone structure, skin tone, beard, and mustache without substituting a generic face.`,
+      },
+      {
+        question: `Is the "${prompt.title}" AI photo editing prompt free to use?`,
+        answer: `Yes, this ${prompt.category} prompt is 100% free to copy, customize, and use in ChatGPT, Google Gemini, or compatible AI image generators with zero watermarks.`,
+      },
+      {
+        question: `What aspect ratio, camera quality, and tags are used in this prompt?`,
+        answer: `This prompt is tuned for ${ratioLabel} framing with 8K photorealistic lighting, DSLR depth of field, and ${topTags} styling.`,
+      },
+      {
+        question: `Can I generate "${prompt.title}" on my Android phone or iPhone?`,
+        answer: `Yes! Tap Copy Full Prompt on your mobile phone, then tap Open in ChatGPT or Open in Gemini directly below the prompt box to paste and generate your photo in under 30 seconds.`,
+      },
+    ];
+  }, [prompt]);
+
+  const toggleFaqIndex = (idx: number) => {
+    setOpenFaqIndices((prev) =>
+      prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]
+    );
+  };
 
   // Reset countdown if switching between prompts
   useEffect(() => {
     setCopyStatus('idle');
     setCountdown(7);
+    setOpenFaqIndices([0]);
   }, [prompt.id]);
 
   // 7-second countdown timer
@@ -84,13 +122,17 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
 
   useEffect(() => {
-    document.title = `${prompt.title} - Piktrio`;
+    const pageTitle = `${prompt.title} – Piktrio`;
+    const pageDesc = `${prompt.title}. Copy this free ${prompt.category} AI photo editing prompt and learn how to create it using ChatGPT & Google Gemini.`;
+    const pageUrl = `${window.location.origin}/prompt/${encodeURIComponent(prompt.id)}`;
+
+    document.title = pageTitle;
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     // Dynamic SEO description for Google indexing
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute('content', `${prompt.title}. Learn how to create this AI photo using ChatGPT & Gemini.`);
+      metaDesc.setAttribute('content', pageDesc);
     }
 
     // Dynamic SEO keywords
@@ -103,10 +145,28 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
     metaKeywords.setAttribute(
       'content',
       (prompt.tags?.join(', ') || '') +
-        ', Jailer 2 AI Photo Prompt, Boys AI Photo, ChatGPT prompt, Gemini AI Prompt, AI photo editing'
+        `, ${prompt.category} AI Photo Prompt, ChatGPT prompt, Gemini AI Prompt, AI photo editing`
     );
 
-    // Schema.org Structured Data for Google Rich Snippets & Indexing
+    const resolvedImageUrl = prompt.imageUrl.startsWith('http')
+      ? prompt.imageUrl
+      : `${window.location.origin}${prompt.imageUrl.startsWith('/') ? '' : '/'}${prompt.imageUrl}`;
+
+    // Social OpenGraph & Twitter Cards
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', pageTitle);
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', pageDesc);
+    const ogImg = document.querySelector('meta[property="og:image"]');
+    if (ogImg) ogImg.setAttribute('content', resolvedImageUrl);
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twitterTitle) twitterTitle.setAttribute('content', pageTitle);
+    const twitterDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twitterDesc) twitterDesc.setAttribute('content', pageDesc);
+    const twitterImg = document.querySelector('meta[name="twitter:image"]');
+    if (twitterImg) twitterImg.setAttribute('content', resolvedImageUrl);
+
+    // Schema.org Article Structured Data
     let scriptTag = document.getElementById('jsonld-prompt-schema') as HTMLScriptElement | null;
     if (!scriptTag) {
       scriptTag = document.createElement('script');
@@ -114,20 +174,17 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
       scriptTag.type = 'application/ld+json';
       document.head.appendChild(scriptTag);
     }
-    const resolvedImageUrl = prompt.imageUrl.startsWith('http')
-      ? prompt.imageUrl
-      : `${window.location.origin}${prompt.imageUrl.startsWith('/') ? '' : '/'}${prompt.imageUrl}`;
 
     scriptTag.textContent = JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: prompt.title,
       image: [resolvedImageUrl],
-      description: prompt.description ? prompt.description.slice(0, 200) : prompt.title,
+      description: prompt.description ? prompt.description.slice(0, 200) : pageDesc,
       articleBody: prompt.prompt,
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': `${window.location.origin}/prompt/${encodeURIComponent(prompt.id)}`,
+        '@id': pageUrl,
       },
       publisher: {
         '@type': 'Organization',
@@ -136,24 +193,48 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
       },
     });
 
+    // Schema.org FAQPage Structured Data for query-based search visibility
+    let faqScriptTag = document.getElementById('jsonld-prompt-faq-schema') as HTMLScriptElement | null;
+    if (!faqScriptTag) {
+      faqScriptTag = document.createElement('script');
+      faqScriptTag.id = 'jsonld-prompt-faq-schema';
+      faqScriptTag.type = 'application/ld+json';
+      document.head.appendChild(faqScriptTag);
+    }
+
+    faqScriptTag.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: promptFaqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    });
+
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     if (canonicalLink) {
-      canonicalLink.setAttribute('href', `${window.location.origin}/prompt/${encodeURIComponent(prompt.id)}`);
+      canonicalLink.setAttribute('href', pageUrl);
     }
 
     const ogUrl = document.querySelector('meta[property="og:url"]');
     if (ogUrl) {
-      ogUrl.setAttribute('content', `${window.location.origin}/prompt/${encodeURIComponent(prompt.id)}`);
+      ogUrl.setAttribute('content', pageUrl);
     }
 
     return () => {
       const el = document.getElementById('jsonld-prompt-schema');
       if (el) el.remove();
+      const faqEl = document.getElementById('jsonld-prompt-faq-schema');
+      if (faqEl) faqEl.remove();
       if (canonicalLink) {
         canonicalLink.setAttribute('href', `${window.location.origin}/`);
       }
     };
-  }, [prompt]);
+  }, [prompt, promptFaqs]);
 
   const relatedPrompts = allPrompts
     .filter((p) => p.category === prompt.category && p.id !== prompt.id)
@@ -465,6 +546,55 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
         </div>
       </div>
+
+      {/* Prompt-Specific FAQ Section (Matched 1:1 with FAQPage JSON-LD Schema) */}
+      <section
+        aria-label="Prompt Frequently Asked Questions"
+        className="bg-white rounded-3xl border border-zinc-200 shadow-xs p-5 sm:p-7 mb-8"
+      >
+        <div className="mb-4">
+          <h2 className="text-lg sm:text-xl font-black text-zinc-950 flex items-center gap-2">
+            <HelpCircle className="w-5 h-5 text-blue-600 shrink-0" />
+            <span>Frequently Asked Questions</span>
+          </h2>
+          <p className="text-xs text-zinc-500 mt-1">
+            Quick answers for creating this {prompt.category} AI photo prompt in ChatGPT &amp; Google Gemini.
+          </p>
+        </div>
+
+        <div className="space-y-2.5">
+          {promptFaqs.map((faq, idx) => {
+            const isOpen = openFaqIndices.includes(idx);
+            return (
+              <div
+                key={idx}
+                className="rounded-2xl border border-zinc-200 overflow-hidden bg-zinc-50/50"
+              >
+                <button
+                  type="button"
+                  onClick={() => toggleFaqIndex(idx)}
+                  aria-expanded={isOpen}
+                  className="w-full text-left p-3.5 sm:p-4 flex items-center justify-between gap-3 cursor-pointer"
+                >
+                  <span className="text-xs sm:text-sm font-bold text-zinc-950 leading-snug">
+                    {faq.question}
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 text-blue-600' : ''
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <div className="px-4 pb-3.5 pt-1 text-xs sm:text-sm text-zinc-600 leading-relaxed border-t border-zinc-200/70 bg-white">
+                    {faq.answer}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
       {/* Mid-Page Sponsored Break before Related Prompts */}
       <div className="my-6 flex flex-col items-center justify-center gap-2.5">
