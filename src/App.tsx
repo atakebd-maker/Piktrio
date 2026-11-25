@@ -492,11 +492,10 @@ export default function App() {
               onCopySuccess={(msg) => showToast(msg)}
             />
 
-            {/* Large 300x250 + Small 320x50 Banners below Hero Search */}
+            {/* Both Ad Types Once Each (320x50 + 300x250) below Hero Search */}
             <div className="my-3 flex flex-col items-center gap-2.5">
-              <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
               <AdBanner format="320x50" label="" className="my-0" />
-              <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
+              <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
             </div>
 
             {/* 3. Horizontal Category Navigation */}
@@ -519,9 +518,8 @@ export default function App() {
               onSelectCategory={handleSelectCategory}
             />
 
-            {/* Banners between Slider and Showcase Gallery */}
+            {/* Banners between Slider and Showcase Gallery (One of Each) */}
             <div className="my-4 flex flex-col items-center gap-2.5">
-              <AdBanner format="300x250" label="Featured Partner" className="my-0" />
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
             </div>
@@ -570,9 +568,8 @@ export default function App() {
                   {paginatedPrompts.length > 4 && (
                     <>
                       <div className="my-5 flex flex-col items-center gap-2.5">
-                        <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
                         <AdBanner format="320x50" label="" className="my-0" />
-                        <AdBanner format="300x250" label="Featured Ad" className="my-0" />
+                        <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
                         {paginatedPrompts.slice(4).map((prompt) => (
@@ -599,13 +596,6 @@ export default function App() {
                     totalPages={totalPages}
                     onPageChange={handlePageChange}
                   />
-
-                  {/* Both Large 300x250 and Small 320x50 Banners below gallery pagination */}
-                  <div className="mt-6 mb-2 flex flex-col items-center gap-3">
-                    <AdBanner format="300x250" label="Featured Partner" className="my-0" />
-                    <AdBanner format="320x50" label="Sponsored Links" className="my-0" />
-                    <AdBanner format="300x250" label="Recommended" className="my-0" />
-                  </div>
                 </>
               ) : prompts.length === 0 ? (
                 /* Store empty state */
@@ -650,11 +640,10 @@ export default function App() {
             {/* 6. Comprehensive Search-Friendly AI Prompts FAQ Section */}
             <FAQSection />
 
-            {/* Bottom Large 300x250 + Small 320x50 Banners above Footer */}
+            {/* Bottom Small 320x50 + Large 300x250 Banners above Footer */}
             <div className="mt-4 mb-8 flex flex-col items-center gap-2.5">
-              <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
               <AdBanner format="320x50" label="" className="my-0" />
-              <AdBanner format="300x250" label="Featured Partner" className="my-0" />
+              <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
             </div>
 
           </div>

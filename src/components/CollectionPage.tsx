@@ -186,10 +186,9 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
       </div>
 
       {/* 4. Sponsored BengalAds Banners (Small 320x50 + Large 300x250) */}
-      <div className="my-6 flex flex-col items-center justify-center gap-3">
-        <AdBanner format="320x50" label="Sponsored Ad" className="my-0" />
-        <AdBanner format="300x250" label="Featured Partner" className="my-1" />
-        <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
+      <div className="my-6 flex flex-col items-center justify-center gap-2.5">
+        <AdBanner format="320x50" label="" className="my-0" />
+        <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
       </div>
 
       {/* 5. Main Prompts Gallery for this Collection */}
@@ -228,7 +227,6 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
             {paginatedPrompts.length > 4 && (
               <>
                 <div className="my-5 flex flex-col items-center gap-2.5">
-                  <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
                   <AdBanner format="320x50" label="" className="my-0" />
                   <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
                 </div>
@@ -252,9 +250,8 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
               onPageChange={handlePageChange}
             />
 
-            {/* Bottom Sponsored Banners */}
-            <div className="mt-8 flex flex-col items-center justify-center gap-3">
-              <AdBanner format="300x250" label="Sponsored Links" className="my-0" />
+            {/* Bottom Sponsored Banners (One of Each) */}
+            <div className="mt-8 flex flex-col items-center justify-center gap-2.5">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Featured Partner" className="my-0" />
             </div>

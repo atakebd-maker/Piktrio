@@ -256,11 +256,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               <span>100% Uncropped &bull; Original Aspect Ratio</span>
             </div>
 
-            {/* Ads below main preview image */}
-            <div className="w-full flex flex-col items-center gap-3 mt-4">
-              <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
+            {/* Ads below main preview image (One of Each) */}
+            <div className="w-full flex flex-col items-center gap-2.5 mt-4">
               <AdBanner format="320x50" label="" className="my-0" />
-              <AdBanner format="300x250" label="Recommended" className="my-0 hidden lg:flex" />
+              <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
             </div>
           </div>
 
