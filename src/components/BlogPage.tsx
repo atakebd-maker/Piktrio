@@ -233,7 +233,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({
         <div className="my-4 flex flex-col items-center gap-2.5">
           <AdBanner format="320x50" label="" className="my-0" />
           <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
-          <AdBanner format="320x50" label="" className="my-0" />
         </div>
 
         {/* Blog Articles List */}
@@ -371,7 +370,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({
       <div className="mb-5 flex flex-col items-center gap-2.5">
         <AdBanner format="320x50" label="" className="my-0" priorityPrimary />
         <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
-        <AdBanner format="320x50" label="" className="my-0" />
       </div>
 
       {/* Article Header */}
@@ -519,7 +517,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
 
                 {/* Small 320x50 Ad directly above the Prompt Box */}
                 <div className="my-4 flex justify-center">
-                  <AdBanner format="320x50" label="" className="my-0" />
+                  <AdBanner format="320x50" label="" className="my-0" priorityPrimary={idx < 2} />
                 </div>
 
                 {/* 2. Copy Prompt Box Directly Under the Photo */}
@@ -595,7 +593,7 @@ export const BlogPage: React.FC<BlogPageProps> = ({
 
                 {/* Small 320x50 Ad directly below the Prompt Box */}
                 <div className="mt-2 mb-5 flex justify-center">
-                  <AdBanner format="320x50" label="" className="my-0" />
+                  <AdBanner format="320x50" label="" className="my-0" priorityPrimary={idx < 2} />
                 </div>
 
                 {/* 3. How to Create This Photo (Step-by-Step Creation Rules) */}
@@ -621,7 +619,12 @@ export const BlogPage: React.FC<BlogPageProps> = ({
               {/* One Large 300x250 Ad after every 2 photos */}
               {(idx + 1) % 2 === 0 && (
                 <div className="my-4 flex justify-center">
-                  <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+                  <AdBanner
+                    format="300x250"
+                    label="Sponsored Ad"
+                    className="my-0"
+                    priorityPrimary={idx < 2}
+                  />
                 </div>
               )}
             </React.Fragment>
@@ -660,7 +663,6 @@ export const BlogPage: React.FC<BlogPageProps> = ({
       <div className="my-6 flex flex-col items-center gap-2.5">
         <AdBanner format="320x50" label="" className="my-0" />
         <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
-        <AdBanner format="320x50" label="" className="my-0" />
       </div>
 
       {/* Rich Search-Friendly Keywords Section */}

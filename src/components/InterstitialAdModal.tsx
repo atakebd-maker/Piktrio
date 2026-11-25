@@ -8,7 +8,7 @@ interface InterstitialAdModalProps {
   onUnlockSuccess: () => void;
 }
 
-const TOTAL_AD_SLOTS = 3;
+const TOTAL_AD_SLOTS = 2;
 
 export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   isOpen,
@@ -52,7 +52,6 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
 
   const onSlot0 = useCallback((v: boolean) => handleSlotStatus(0, v), [handleSlotStatus]);
   const onSlot1 = useCallback((v: boolean) => handleSlotStatus(1, v), [handleSlotStatus]);
-  const onSlot2 = useCallback((v: boolean) => handleSlotStatus(2, v), [handleSlotStatus]);
 
   // Reset timer and ad slot state whenever opened
   useEffect(() => {
@@ -157,10 +156,9 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
           </div>
         )}
 
-        {/* Unified Ad Pattern: 2x Small (320x50) + 1x Large (300x250) */}
-        <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot0} />
-        <AdBanner format="300x250" label="Sponsored Ad" className="my-0" priorityPrimary onStatusChange={onSlot1} />
-        <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot2} />
+        {/* Strictly 2 Large (300x250) Ads Only */}
+        <AdBanner format="300x250" label="Sponsored Ad" className="my-0" priorityPrimary onStatusChange={onSlot0} />
+        <AdBanner format="300x250" label="Sponsored Partner" className="my-0" priorityPrimary onStatusChange={onSlot1} />
 
         {!anyAdLoaded && !isLoadingAds && (
           <div className="w-full max-w-md rounded-2xl bg-white border border-zinc-200 shadow-xs px-5 py-7 text-center">

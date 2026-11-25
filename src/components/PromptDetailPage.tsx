@@ -282,11 +282,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
         </button>
       </div>
 
-      {/* Top-of-Post Natural Banners */}
+      {/* Top-of-Post Natural Banners (1x 320x50 + 1x 300x250) */}
       <div className="mb-5 flex flex-col items-center justify-center gap-2">
         <AdBanner format="320x50" label="" className="my-0" priorityPrimary />
         <AdBanner format="300x250" label="Sponsored Ad" className="my-1" />
-        <AdBanner format="320x50" label="" className="my-0" />
       </div>
 
       {/* Main Prompt Details Card */}
@@ -319,11 +318,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
           
           {/* LEFT: Large Original Image Preview in Showcase Frame */}
           <div className="lg:col-span-6 flex flex-col items-center">
-            {/* Ads on top of the image */}
+            {/* Ads on top of the image (1x 320x50 + 1x 300x250) */}
             <div className="w-full flex flex-col items-center gap-2 mb-3">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
-              <AdBanner format="320x50" label="" className="my-0" />
             </div>
 
             <div className="relative w-full min-h-[420px] sm:min-h-[560px] max-h-[78vh] bg-zinc-50 rounded-2xl sm:rounded-3xl flex items-center justify-center p-3 overflow-hidden shadow-inner border border-zinc-200 group">
@@ -342,22 +340,20 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               <span>100% Uncropped &bull; Original Aspect Ratio</span>
             </div>
 
-            {/* Ads below main preview image */}
+            {/* Ads below main preview image (1x 320x50 + 1x 300x250) */}
             <div className="w-full flex flex-col items-center gap-2.5 mt-4">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
-              <AdBanner format="320x50" label="" className="my-0" />
             </div>
           </div>
 
           {/* RIGHT: Prompt Information, Copy, and AI Tools */}
           <div className="lg:col-span-6 flex flex-col space-y-5">
             
-            {/* Ads above prompt box (2x 320x50 + 1x 300x250) */}
+            {/* Ads above prompt box (1x 320x50 + 1x 300x250) */}
             <div className="w-full flex flex-col items-center justify-center gap-2 my-1">
-              <AdBanner format="320x50" label="" className="my-0" />
-              <AdBanner format="300x250" label="Sponsored Ad" className="my-1" />
-              <AdBanner format="320x50" label="" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" priorityPrimary />
+              <AdBanner format="300x250" label="Sponsored Ad" className="my-1" priorityPrimary />
             </div>
 
             {/* English AI Generation Prompt Box */}
@@ -395,7 +391,7 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
             </div>
 
             {/* Slim 320x50 Ad directly below prompt box */}
-            <AdBanner format="320x50" label="" className="my-1" />
+            <AdBanner format="320x50" label="" className="my-1" priorityPrimary />
 
             {/* Action Buttons: 7-Second Countdown & Emerald Ready Copy Now */}
             <div className="space-y-3 pt-2">
@@ -448,8 +444,8 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
 
               {/* Large 300x250 + Small 320x50 placed below copy button (paired with 320x50 below prompt box = 2x 320x50 + 1x 300x250) */}
               <div className="w-full flex flex-col items-center justify-center gap-2.5 my-3">
-                <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
-                <AdBanner format="320x50" label="" className="my-0" />
+                <AdBanner format="300x250" label="Sponsored Partner" className="my-0" priorityPrimary />
+                <AdBanner format="320x50" label="" className="my-0" priorityPrimary />
               </div>
 
               {/* Open in ChatGPT and Open in Gemini (Opens tool website directly without prefilling query) */}
@@ -493,11 +489,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               </div>
             )}
 
-            {/* Natural Ads before the Tutorial Guide */}
+            {/* Natural Ads before the Tutorial Guide (1x 320x50 + 1x 300x250) */}
             <div className="w-full flex flex-col items-center justify-center gap-2 pt-2">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
-              <AdBanner format="320x50" label="" className="my-0" />
             </div>
 
             {/* Complete Guide / Description with Natural In-Article Ads between sections */}
@@ -529,7 +524,6 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
                           <div className="py-2 border-y border-zinc-200 flex flex-col items-center gap-2">
                             <AdBanner format="320x50" label="" className="my-0" />
                             <AdBanner format="300x250" label="Advertisement" className="my-0" />
-                            <AdBanner format="320x50" label="" className="my-0" />
                           </div>
                         )}
                       </React.Fragment>
@@ -538,11 +532,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               </div>
             )}
 
-            {/* Ad at the end of the post guide */}
+            {/* Ad at the end of the post guide (1x 320x50 + 1x 300x250) */}
             <div className="w-full flex flex-col items-center gap-2 mt-4 mb-2">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
-              <AdBanner format="320x50" label="" className="my-0" />
             </div>
 
           </div>
@@ -599,11 +592,10 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
         </div>
       </section>
 
-      {/* Mid-Page Sponsored Break before Related Prompts */}
+      {/* Mid-Page Sponsored Break before Related Prompts (1x 320x50 + 1x 300x250) */}
       <div className="my-6 flex flex-col items-center justify-center gap-2">
         <AdBanner format="320x50" label="" className="my-0" />
         <AdBanner format="300x250" label="Sponsored Links" className="my-0" />
-        <AdBanner format="320x50" label="" className="my-0" />
       </div>
 
       {/* Related Prompts Section (Matching 2-column mobile / 4-column desktop gallery) */}
@@ -635,7 +627,6 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
               <div className="my-4 flex flex-col items-center gap-2">
                 <AdBanner format="320x50" label="" className="my-0" />
                 <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
-                <AdBanner format="320x50" label="" className="my-0" />
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
                 {relatedPrompts.slice(2).map((related) => (
@@ -654,9 +645,8 @@ export const PromptDetailPage: React.FC<PromptDetailPageProps> = ({
           )}
 
           <div className="mt-6 mb-2 flex flex-col items-center gap-2">
-            <AdBanner format="320x50" label="" className="my-0" />
-            <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
             <AdBanner format="320x50" label="Sponsored Links" className="my-0" />
+            <AdBanner format="300x250" label="Sponsored Partner" className="my-1" />
           </div>
         </section>
       )}

@@ -31,22 +31,28 @@ const PLACEMENT_CONFIG: Record<
 interface QueueEntry {
   priority: boolean;
   run: (done: () => void) => () => void;
-  abort?: () => void;
 }
 
 interface PlacementQueue {
-  running: boolean;
-  activeEntry: QueueEntry | null;
+  activeCount: number;
   pending: QueueEntry[];
 }
 
 const placementQueues = new Map<string, PlacementQueue>();
 let globalSlotCounter = 0;
 
+const hasVisitorId = (): boolean => {
+  try {
+    return Boolean(window.localStorage.getItem('bengalads_visitor_id_v1'));
+  } catch {
+    return true;
+  }
+};
+
 const getQueue = (placement: string): PlacementQueue => {
   let q = placementQueues.get(placement);
   if (!q) {
-    q = { running: false, activeEntry: null, pending: [] };
+    q = { activeCount: 0, pending: [] };
     placementQueues.set(placement, q);
   }
   return q;
@@ -54,25 +60,26 @@ const getQueue = (placement: string): PlacementQueue => {
 
 const pumpQueue = (placement: string) => {
   const q = getQueue(placement);
-  if (q.running || q.pending.length === 0) return;
+  // Warm up visitor ID with concurrency 1 on first visit, then allow up to 3 concurrent unique-target requests
+  const maxConcurrent = hasVisitorId() ? 3 : 1;
 
-  const entry = q.pending.shift()!;
-  q.running = true;
-  q.activeEntry = entry;
+  while (q.activeCount < maxConcurrent && q.pending.length > 0) {
+    const entry = q.pending.shift()!;
+    q.activeCount += 1;
 
-  let finished = false;
-  const done = () => {
-    if (finished) return;
-    finished = true;
-    q.running = false;
-    q.activeEntry = null;
-    pumpQueue(placement);
-  };
+    let finished = false;
+    const done = () => {
+      if (finished) return;
+      finished = true;
+      q.activeCount = Math.max(0, q.activeCount - 1);
+      pumpQueue(placement);
+    };
 
-  try {
-    entry.run(done);
-  } catch {
-    done();
+    try {
+      entry.run(done);
+    } catch {
+      done();
+    }
   }
 };
 
@@ -85,20 +92,6 @@ const isZoneVisible = (zone: HTMLElement): boolean => {
   return Boolean(zone.querySelector('iframe, img, a, ins'));
 };
 
-const retireExistingZoneId = (baseZoneId: string) => {
-  let existing = document.getElementById(baseZoneId);
-  while (existing) {
-    const retiredId = `${baseZoneId}-slot-${++globalSlotCounter}`;
-    existing.id = retiredId;
-    existing.querySelectorAll('style').forEach((styleEl) => {
-      if (styleEl.textContent && styleEl.textContent.includes(baseZoneId)) {
-        styleEl.textContent = styleEl.textContent.split(baseZoneId).join(retiredId);
-      }
-    });
-    existing = document.getElementById(baseZoneId);
-  }
-};
-
 export const AdBanner: React.FC<AdBannerProps> = ({
   className = '',
   label = 'Sponsored Ad',
@@ -107,6 +100,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
   delayMs = 0,
   onStatusChange,
 }) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const statusCbRef = useRef(onStatusChange);
   statusCbRef.current = onStatusChange;
@@ -117,18 +111,23 @@ export const AdBanner: React.FC<AdBannerProps> = ({
     PLACEMENT_CONFIG[format] || PLACEMENT_CONFIG['320x50'];
 
   useEffect(() => {
+    const wrapper = wrapperRef.current;
     const container = containerRef.current;
-    if (!container) return;
+    if (!wrapper || !container) return;
 
     let unmounted = false;
+    let enqueued = false;
     setHasAd(false);
     statusCbRef.current?.(false);
     container.replaceChildren();
 
-    const baseZoneId = `zone-${placement}`;
-    const encodedTarget = encodeURIComponent(baseZoneId);
+    // Unique DOM target ID per AdBanner instance prevents cross-slot overwrite and navigation clobbering
+    const slotId = ++globalSlotCounter;
+    const uniqueZoneId = `zone-${placement}-s${slotId}`;
+    const encodedTarget = encodeURIComponent(uniqueZoneId);
 
     const zone = document.createElement('div');
+    zone.id = uniqueZoneId;
     zone.style.width = `${width}px`;
     zone.style.height = '0';
     zone.style.maxWidth = '100%';
@@ -157,10 +156,10 @@ export const AdBanner: React.FC<AdBannerProps> = ({
     });
     zone.addEventListener('load', syncVisibility, true);
 
-    const pollTimer = window.setInterval(syncVisibility, 350);
-    const stopPollTimer = window.setTimeout(() => window.clearInterval(pollTimer), 15000);
-
+    let pollTimer: number | null = null;
+    let stopPollTimer: number | null = null;
     let cancelActiveTurn: (() => void) | null = null;
+    const injectedScripts: HTMLScriptElement[] = [];
 
     const entry: QueueEntry = {
       priority: priorityPrimary,
@@ -175,7 +174,17 @@ export const AdBanner: React.FC<AdBannerProps> = ({
         let delayTimer: number | null = null;
         let settleTimer: number | null = null;
         let safetyTimer: number | null = null;
-        let stage1Script: HTMLScriptElement | null = null;
+
+        // Start polling ONLY when this slot begins executing so queued slots never time out prematurely
+        if (pollTimer === null) {
+          pollTimer = window.setInterval(syncVisibility, 350);
+          stopPollTimer = window.setTimeout(() => {
+            if (pollTimer !== null) {
+              window.clearInterval(pollTimer);
+              pollTimer = null;
+            }
+          }, 15000);
+        }
 
         const finishTurn = () => {
           if (turnClosed) return;
@@ -189,33 +198,15 @@ export const AdBanner: React.FC<AdBannerProps> = ({
         };
 
         cancelActiveTurn = () => {
-          if (turnClosed) return;
-          if (stage1Script && stage1Script.parentNode) {
-            stage1Script.parentNode.removeChild(stage1Script);
-          }
           finishTurn();
         };
-        entry.abort = cancelActiveTurn;
-
-        // Ensure ONLY this active slot holds the exact baseZoneId during script execution
-        retireExistingZoneId(baseZoneId);
-        zone.id = baseZoneId;
-
-        // Clear previous widget-render scripts for this placement target
-        document.head
-          .querySelectorAll<HTMLScriptElement>('script[src*="bengalads.com/widget-render.php"]')
-          .forEach((s) => {
-            if (s.src.includes(`target=${encodedTarget}`) && s.parentNode) {
-              s.parentNode.removeChild(s);
-            }
-          });
 
         const scheduleSettle = (ms: number) => {
           if (settleTimer !== null) window.clearTimeout(settleTimer);
           settleTimer = window.setTimeout(finishTurn, ms);
         };
 
-        // Watch document.head for Stage 2 (&vid=) script appended by Stage 1
+        // Watch document.head for Stage 2 (&vid=) script belonging strictly to this unique target
         headObserver = new MutationObserver((mutations) => {
           for (const mutation of mutations) {
             mutation.addedNodes.forEach((node) => {
@@ -225,9 +216,10 @@ export const AdBanner: React.FC<AdBannerProps> = ({
                 node.src.includes(`target=${encodedTarget}`) &&
                 node.src.includes('vid=')
               ) {
+                injectedScripts.push(node);
                 const onStage2Complete = () => {
                   syncVisibility();
-                  scheduleSettle(zone.childNodes.length > 0 ? 800 : 120);
+                  scheduleSettle(zone.childNodes.length > 0 ? 600 : 150);
                 };
                 node.addEventListener('load', onStage2Complete, { once: true });
                 node.addEventListener('error', finishTurn, { once: true });
@@ -244,11 +236,12 @@ export const AdBanner: React.FC<AdBannerProps> = ({
             finishTurn();
             return;
           }
-          stage1Script = document.createElement('script');
+          const stage1Script = document.createElement('script');
           stage1Script.async = true;
           stage1Script.referrerPolicy = 'origin';
           stage1Script.src = `https://bengalads.com/widget-render.php?placement=${placement}&target=${encodedTarget}&width=${width}&height=${height}&v=20260816_2231`;
           stage1Script.addEventListener('error', finishTurn, { once: true });
+          injectedScripts.push(stage1Script);
           document.head.appendChild(stage1Script);
         };
 
@@ -263,21 +256,54 @@ export const AdBanner: React.FC<AdBannerProps> = ({
     };
 
     const q = getQueue(placement);
-    if (priorityPrimary) {
-      q.pending.unshift(entry);
-      // If a non-priority background slot is currently running, yield immediately to the modal ad
-      if (q.running && q.activeEntry && !q.activeEntry.priority && q.activeEntry.abort) {
-        q.activeEntry.abort();
+
+    const enqueueSlot = () => {
+      if (unmounted || enqueued) return;
+      enqueued = true;
+      if (priorityPrimary) {
+        q.pending.unshift(entry);
+      } else {
+        q.pending.push(entry);
       }
+      pumpQueue(placement);
+    };
+
+    let io: IntersectionObserver | null = null;
+    const checkViewportAndEnqueue = () => {
+      const rect = wrapper.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight || 800;
+      return rect.top <= vh + 700 && rect.bottom >= -700;
+    };
+
+    if (
+      priorityPrimary ||
+      typeof IntersectionObserver === 'undefined' ||
+      checkViewportAndEnqueue()
+    ) {
+      enqueueSlot();
     } else {
-      q.pending.push(entry);
+      // Load slots once they are within 700px of viewport so visible & prompt-box ads load immediately
+      io = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((e) => e.isIntersecting)) {
+            io?.disconnect();
+            io = null;
+            enqueueSlot();
+          }
+        },
+        { rootMargin: '700px 0px' }
+      );
+      io.observe(wrapper);
     }
-    pumpQueue(placement);
 
     return () => {
       unmounted = true;
-      window.clearInterval(pollTimer);
-      window.clearTimeout(stopPollTimer);
+      if (io) {
+        io.disconnect();
+        io = null;
+      }
+      if (pollTimer !== null) window.clearInterval(pollTimer);
+      if (stopPollTimer !== null) window.clearTimeout(stopPollTimer);
       zoneObserver.disconnect();
       zone.removeEventListener('load', syncVisibility, true);
 
@@ -288,6 +314,9 @@ export const AdBanner: React.FC<AdBannerProps> = ({
       if (cancelActiveTurn) {
         cancelActiveTurn();
       }
+      injectedScripts.forEach((s) => {
+        if (s.parentNode) s.parentNode.removeChild(s);
+      });
 
       container.replaceChildren();
       statusCbRef.current?.(false);
@@ -298,7 +327,8 @@ export const AdBanner: React.FC<AdBannerProps> = ({
 
   return (
     <div
-      className={`flex flex-col items-center justify-center w-full ${
+      ref={wrapperRef}
+      className={`flex flex-col items-center justify-center w-full min-h-[1px] ${
         hasAd ? defaultMargin : 'my-0'
       } ${hasAd ? className : ''}`}
     >

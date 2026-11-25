@@ -236,11 +236,10 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
             ))}
           </div>
 
-          {/* Ads render inside the popup automatically when served (2x 320x50 + 1x 300x250) */}
+          {/* Ads render inside the popup automatically when served (1x 320x50 + 1x 300x250) */}
           <div className="flex flex-col items-center justify-center gap-2">
             <AdBanner format="320x50" label="" priorityPrimary className="my-0" />
             <AdBanner format="300x250" label="" priorityPrimary className="my-0" />
-            <AdBanner format="320x50" label="" priorityPrimary className="my-0" />
           </div>
         </div>
       </div>
