@@ -517,8 +517,13 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                   </div>
                 </div>
 
+                {/* Small 320x50 Ad directly above the Prompt Box */}
+                <div className="my-4 flex justify-center">
+                  <AdBanner format="320x50" label="" className="my-0" />
+                </div>
+
                 {/* 2. Copy Prompt Box Directly Under the Photo */}
-                <div className="space-y-3 mb-6">
+                <div className="space-y-3 mb-4">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-extrabold uppercase tracking-wider text-zinc-900 flex items-center gap-1.5">
                       <Sparkles className="w-3.5 h-3.5 text-amber-500" />
@@ -588,6 +593,11 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                   </div>
                 </div>
 
+                {/* Small 320x50 Ad directly below the Prompt Box */}
+                <div className="mt-2 mb-5 flex justify-center">
+                  <AdBanner format="320x50" label="" className="my-0" />
+                </div>
+
                 {/* 3. How to Create This Photo (Step-by-Step Creation Rules) */}
                 <div className="rounded-2xl bg-zinc-50 border border-zinc-200 p-4 sm:p-5 space-y-3">
                   <h3 className="text-sm sm:text-base font-extrabold text-zinc-950 flex items-center gap-2">
@@ -608,12 +618,10 @@ export const BlogPage: React.FC<BlogPageProps> = ({
                 </div>
               </section>
 
-              {/* Natural Ad Break every 2 posts */}
-              {(idx + 1) % 2 === 0 && idx < categoryPrompts.length - 1 && (
-                <div className="my-4 flex flex-col items-center gap-2.5">
-                  <AdBanner format="320x50" label="" className="my-0" />
+              {/* One Large 300x250 Ad after every 2 photos */}
+              {(idx + 1) % 2 === 0 && (
+                <div className="my-4 flex justify-center">
                   <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
-                  <AdBanner format="320x50" label="" className="my-0" />
                 </div>
               )}
             </React.Fragment>
