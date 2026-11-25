@@ -730,7 +730,7 @@ export default function App() {
                     </span>
                     <div>
                       <h2 className="text-base sm:text-xl font-black text-zinc-950">
-                        Piktrio SEO Blog &amp; Complete Creation Guides
+                        Daily Prompt
                       </h2>
                       <p className="text-[11px] sm:text-xs text-zinc-500">
                         All prompts from a category in one guide with copy buttons &amp; step-by-step tutorials
