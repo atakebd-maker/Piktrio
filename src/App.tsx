@@ -192,7 +192,15 @@ export default function App() {
         items.forEach((p) => {
           if (HIDDEN_PROMPT_IDS.has(p.id)) return;
           const local = map.get(p.id);
-          const merged = { ...(local || {}), ...p };
+          const merged = local
+            ? {
+                ...p,
+                ...local,
+                likesCount: Math.max(p.likesCount || 0, local.likesCount || 0),
+                viewsCount: Math.max(p.viewsCount || 0, local.viewsCount || 0),
+                copyCount: Math.max(p.copyCount || 0, local.copyCount || 0),
+              }
+            : { ...p };
           merged.prompt = ensureIdentityPromptSuffix(merged.prompt);
           map.set(p.id, merged);
         });

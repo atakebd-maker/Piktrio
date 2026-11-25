@@ -50,11 +50,23 @@ export async function seedPromptsIfEmpty(): Promise<void> {
   try {
     const promptsRef = collection(db, PROMPTS_COLLECTION);
     const existing = await getDocs(promptsRef);
-    const existingIds = new Set(existing.docs.map((d) => d.id));
+    const existingMap = new Map(existing.docs.map((d) => [d.id, d.data() as PromptItem]));
 
     for (const prompt of STORE_PROMPTS) {
-      if (!existingIds.has(prompt.id)) {
+      const curr = existingMap.get(prompt.id);
+      if (!curr) {
         await setDoc(doc(db, PROMPTS_COLLECTION, prompt.id), prompt);
+      } else if (
+        curr.title !== prompt.title ||
+        curr.prompt !== prompt.prompt ||
+        curr.description !== prompt.description
+      ) {
+        await updateDoc(doc(db, PROMPTS_COLLECTION, prompt.id), {
+          title: prompt.title,
+          prompt: prompt.prompt,
+          description: prompt.description,
+          tags: prompt.tags || [],
+        });
       }
     }
   } catch (err) {
