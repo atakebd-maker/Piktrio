@@ -8,7 +8,7 @@ interface InterstitialAdModalProps {
   onUnlockSuccess: () => void;
 }
 
-const TOTAL_AD_SLOTS = 7;
+const TOTAL_AD_SLOTS = 3;
 
 export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   isOpen,
@@ -53,10 +53,6 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
   const onSlot0 = useCallback((v: boolean) => handleSlotStatus(0, v), [handleSlotStatus]);
   const onSlot1 = useCallback((v: boolean) => handleSlotStatus(1, v), [handleSlotStatus]);
   const onSlot2 = useCallback((v: boolean) => handleSlotStatus(2, v), [handleSlotStatus]);
-  const onSlot3 = useCallback((v: boolean) => handleSlotStatus(3, v), [handleSlotStatus]);
-  const onSlot4 = useCallback((v: boolean) => handleSlotStatus(4, v), [handleSlotStatus]);
-  const onSlot5 = useCallback((v: boolean) => handleSlotStatus(5, v), [handleSlotStatus]);
-  const onSlot6 = useCallback((v: boolean) => handleSlotStatus(6, v), [handleSlotStatus]);
 
   // Reset timer and ad slot state whenever opened
   useEffect(() => {
@@ -161,26 +157,10 @@ export const InterstitialAdModal: React.FC<InterstitialAdModalProps> = ({
           </div>
         )}
 
-        {/* Top Slim Banner */}
+        {/* Unified Ad Pattern: 2x Small (320x50) + 1x Large (300x250) */}
         <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot0} />
-
-        {/* Upper Dual Large Ads (like above prompt box) */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-items-center">
-          <AdBanner format="300x250" label="Sponsored Ad" className="my-0" priorityPrimary onStatusChange={onSlot1} />
-          <AdBanner format="300x250" label="Sponsored Partner" className="my-0" priorityPrimary onStatusChange={onSlot2} />
-        </div>
-
-        {/* Center Slim Banner */}
-        <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot3} />
-
-        {/* Lower Dual Large Ads (like below prompt box) */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-items-center">
-          <AdBanner format="300x250" label="Featured Partner" className="my-0" priorityPrimary onStatusChange={onSlot4} />
-          <AdBanner format="300x250" label="Sponsored Links" className="my-0" priorityPrimary onStatusChange={onSlot5} />
-        </div>
-
-        {/* Bottom Slim Banner */}
-        <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot6} />
+        <AdBanner format="300x250" label="Sponsored Ad" className="my-0" priorityPrimary onStatusChange={onSlot1} />
+        <AdBanner format="320x50" label="" className="my-0" priorityPrimary onStatusChange={onSlot2} />
 
         {!anyAdLoaded && !isLoadingAds && (
           <div className="w-full max-w-md rounded-2xl bg-white border border-zinc-200 shadow-xs px-5 py-7 text-center">

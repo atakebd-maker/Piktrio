@@ -120,6 +120,7 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
       <div className="mb-5 flex flex-col items-center justify-center gap-2">
         <AdBanner format="320x50" label="" className="my-0" />
         <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+        <AdBanner format="320x50" label="" className="my-0" />
       </div>
 
       {/* 2. Collection Hero Banner Header */}
@@ -185,10 +186,11 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
         </div>
       </div>
 
-      {/* 4. Sponsored BengalAds Banners (Small 320x50 + Large 300x250) */}
+      {/* 4. Sponsored BengalAds Banners (2x 320x50 + 1x 300x250) */}
       <div className="my-6 flex flex-col items-center justify-center gap-2.5">
         <AdBanner format="320x50" label="" className="my-0" />
         <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
+        <AdBanner format="320x50" label="" className="my-0" />
       </div>
 
       {/* 5. Main Prompts Gallery for this Collection */}
@@ -229,6 +231,7 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
                 <div className="my-5 flex flex-col items-center gap-2.5">
                   <AdBanner format="320x50" label="" className="my-0" />
                   <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+                  <AdBanner format="320x50" label="" className="my-0" />
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
                   {paginatedPrompts.slice(4).map((prompt) => (
@@ -250,10 +253,11 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({
               onPageChange={handlePageChange}
             />
 
-            {/* Bottom Sponsored Banners (One of Each) */}
+            {/* Bottom Sponsored Banners */}
             <div className="mt-8 flex flex-col items-center justify-center gap-2.5">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Featured Partner" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
             </div>
           </>
         ) : (

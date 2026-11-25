@@ -553,8 +553,12 @@ export default function App() {
           /* HOMEPAGE GALLERY VIEW (Matching Clean White & Blue) */
           <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             
-            {/* Top Slim Banner above Hero */}
-            <AdBanner format="320x50" label="" className="mt-3 mb-1" />
+            {/* Top Banners above Hero (2x 320x50 + 1x 300x250) */}
+            <div className="mt-3 mb-2 flex flex-col items-center gap-2">
+              <AdBanner format="320x50" label="" className="my-0" />
+              <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
+            </div>
 
             {/* 2. Hero Section: Clean White & Blue */}
             <HeroSearch
@@ -564,10 +568,11 @@ export default function App() {
               onCopySuccess={(msg) => showToast(msg)}
             />
 
-            {/* Both Ad Types Once Each (320x50 + 300x250) below Hero Search */}
-            <div className="my-3 flex flex-col items-center gap-2.5">
+            {/* Banners below Hero Search (2x 320x50 + 1x 300x250) */}
+            <div className="my-3 flex flex-col items-center gap-2">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
             </div>
 
             {/* 3. Horizontal Category Navigation */}
@@ -577,10 +582,11 @@ export default function App() {
               onSelectCategory={handleSelectCategory}
             />
 
-            {/* Small 320x50 + Large 300x250 Banners below Category Bar */}
-            <div className="my-3 flex flex-col items-center gap-2.5">
+            {/* Banners below Category Bar (2x 320x50 + 1x 300x250) */}
+            <div className="my-3 flex flex-col items-center gap-2">
               <AdBanner format="320x50" label="Sponsored Ad" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Links" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
             </div>
 
             {/* 4. Beautiful Pinned Photos Slider below categories */}
@@ -590,10 +596,11 @@ export default function App() {
               onSelectCategory={handleSelectCategory}
             />
 
-            {/* Banners between Slider and Showcase Gallery (One of Each) */}
-            <div className="my-4 flex flex-col items-center gap-2.5">
+            {/* Banners between Slider and Showcase Gallery (2x 320x50 + 1x 300x250) */}
+            <div className="my-4 flex flex-col items-center gap-2">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
             </div>
 
             {/* 5. MAIN PROMPTS GALLERY (Strictly 2 columns on mobile: grid-cols-2) */}
@@ -639,9 +646,10 @@ export default function App() {
                   {/* Mid-Gallery Ads */}
                   {paginatedPrompts.length > 4 && (
                     <>
-                      <div className="my-5 flex flex-col items-center gap-2.5">
+                      <div className="my-5 flex flex-col items-center gap-2">
                         <AdBanner format="320x50" label="" className="my-0" />
                         <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
+                        <AdBanner format="320x50" label="" className="my-0" />
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
                         {paginatedPrompts.slice(4).map((prompt) => (
@@ -657,9 +665,10 @@ export default function App() {
                   )}
 
                   {/* Ads directly below gallery cards before pagination */}
-                  <div className="mt-5 mb-2 flex flex-col items-center gap-2.5">
+                  <div className="mt-5 mb-2 flex flex-col items-center gap-2">
                     <AdBanner format="320x50" label="" className="my-0" />
                     <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+                    <AdBanner format="320x50" label="" className="my-0" />
                   </div>
 
                   {/* Pagination */}
@@ -704,9 +713,10 @@ export default function App() {
             </section>
 
             {/* Banners above Blog & FAQ Section */}
-            <div className="my-4 flex flex-col items-center gap-2.5">
+            <div className="my-4 flex flex-col items-center gap-2">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Ad" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
             </div>
 
             {/* Featured SEO Blog Section Spotlight */}
@@ -814,10 +824,11 @@ export default function App() {
             {/* 6. Comprehensive Search-Friendly AI Prompts FAQ Section */}
             <FAQSection />
 
-            {/* Bottom Small 320x50 + Large 300x250 Banners above Footer */}
-            <div className="mt-4 mb-8 flex flex-col items-center gap-2.5">
+            {/* Bottom Banners above Footer (2x 320x50 + 1x 300x250) */}
+            <div className="mt-4 mb-8 flex flex-col items-center gap-2">
               <AdBanner format="320x50" label="" className="my-0" />
               <AdBanner format="300x250" label="Sponsored Partner" className="my-0" />
+              <AdBanner format="320x50" label="" className="my-0" />
             </div>
 
           </div>
