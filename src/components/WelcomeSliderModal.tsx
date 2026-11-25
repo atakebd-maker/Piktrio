@@ -33,53 +33,54 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Strictly pick the 6 newest photos
-  const newestSix = useMemo(() => {
+  // Show newest photos first with more photos appended at the end (up to 16)
+  const sliderPrompts = useMemo(() => {
     return [...prompts]
       .sort((a, b) => getPromptTimestamp(b) - getPromptTimestamp(a))
-      .slice(0, 6);
+      .slice(0, 16);
   }, [prompts]);
+
+  const scrollTrackToIndex = (track: HTMLDivElement, idx: number) => {
+    const cards = track.querySelectorAll<HTMLElement>('[data-slide-card]');
+    const targetCard = cards[idx];
+    if (!targetCard) return;
+    const targetLeft =
+      idx === 0
+        ? 0
+        : targetCard.getBoundingClientRect().left -
+          track.getBoundingClientRect().left +
+          track.scrollLeft;
+    track.scrollTo({
+      left: targetLeft,
+      behavior: 'smooth',
+    });
+  };
 
   const scrollToSlide = (idx: number) => {
     const track = sliderRef.current;
-    if (!track) return;
-    const cards = track.querySelectorAll<HTMLElement>('[data-slide-card]');
-    const targetCard = cards[idx];
-    if (targetCard) {
-      const targetLeft = targetCard.offsetLeft - track.offsetLeft;
-      track.scrollTo({
-        left: targetLeft,
-        behavior: 'smooth',
-      });
+    if (track) {
+      scrollTrackToIndex(track, idx);
     }
     setActiveIndex(idx);
   };
 
   // Auto-advance one by one in a horizontal line like a live slider
   useEffect(() => {
-    if (!isOpen || isPaused || newestSix.length <= 1) return;
+    if (!isOpen || isPaused || sliderPrompts.length <= 1) return;
 
     const timer = window.setInterval(() => {
       setActiveIndex((prev) => {
-        const next = (prev + 1) % newestSix.length;
+        const next = (prev + 1) % sliderPrompts.length;
         const track = sliderRef.current;
         if (track) {
-          const cards = track.querySelectorAll<HTMLElement>('[data-slide-card]');
-          const targetCard = cards[next];
-          if (targetCard) {
-            const targetLeft = next === 0 ? 0 : targetCard.offsetLeft - track.offsetLeft;
-            track.scrollTo({
-              left: targetLeft,
-              behavior: 'smooth',
-            });
-          }
+          scrollTrackToIndex(track, next);
         }
         return next;
       });
     }, 2600);
 
     return () => window.clearInterval(timer);
-  }, [isOpen, isPaused, newestSix.length]);
+  }, [isOpen, isPaused, sliderPrompts.length]);
 
   // Close cleanly on Escape key
   useEffect(() => {
@@ -93,15 +94,15 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, onClose]);
 
-  if (!isOpen || newestSix.length === 0) return null;
+  if (!isOpen || sliderPrompts.length === 0) return null;
 
   const handlePrev = () => {
-    const nextIdx = activeIndex === 0 ? newestSix.length - 1 : activeIndex - 1;
+    const nextIdx = activeIndex === 0 ? sliderPrompts.length - 1 : activeIndex - 1;
     scrollToSlide(nextIdx);
   };
 
   const handleNext = () => {
-    const nextIdx = (activeIndex + 1) % newestSix.length;
+    const nextIdx = (activeIndex + 1) % sliderPrompts.length;
     scrollToSlide(nextIdx);
   };
 
@@ -133,6 +134,9 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5 shrink-0">
+            <span className="text-[11px] font-mono font-semibold text-neutral-500 mr-1 hidden xs:inline-block sm:inline-block">
+              <span className="text-black font-bold">{activeIndex + 1}</span> / {sliderPrompts.length}
+            </span>
             <button
               type="button"
               onClick={handlePrev}
@@ -161,14 +165,14 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
           </div>
         </div>
 
-        {/* Scrollable Body: Single-Row 6-Photo Horizontal Slider + Natural Ads if available */}
+        {/* Scrollable Body: Single-Row Horizontal Slider + Natural Ads if available */}
         <div className="p-4 sm:p-5 overflow-y-auto space-y-3">
-          {/* 1-Line Horizontal Slider Track for the 6 Newest Photos */}
+          {/* 1-Line Horizontal Slider Track */}
           <div
             ref={sliderRef}
             className="flex flex-nowrap items-stretch gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar pb-1"
           >
-            {newestSix.map((item, idx) => (
+            {sliderPrompts.map((item, idx) => (
               <a
                 key={item.id}
                 data-slide-card
@@ -216,8 +220,8 @@ export const WelcomeSliderModal: React.FC<WelcomeSliderModalProps> = ({
           </div>
 
           {/* Slider Step Dots */}
-          <div className="flex items-center justify-center gap-1.5">
-            {newestSix.map((item, idx) => (
+          <div className="flex flex-wrap items-center justify-center gap-1.5">
+            {sliderPrompts.map((item, idx) => (
               <button
                 key={item.id}
                 type="button"
