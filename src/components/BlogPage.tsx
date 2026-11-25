@@ -55,11 +55,15 @@ export const BlogPage: React.FC<BlogPageProps> = ({
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [openFaqIdx, setOpenFaqIdx] = useState<number[]>([0, 1]);
 
-  // Collect all prompts matching the selected blog's category
+  // Collect all prompts matching the selected blog's curated promptIds or category
   const categoryPrompts = useMemo(() => {
     if (!selectedBlog) return [];
     return allPrompts
-      .filter((p) => promptMatchesCategory(p, selectedBlog.categoryId))
+      .filter((p) =>
+        selectedBlog.promptIds && selectedBlog.promptIds.length > 0
+          ? selectedBlog.promptIds.includes(p.id)
+          : promptMatchesCategory(p, selectedBlog.categoryId)
+      )
       .sort((a, b) => getPromptTimestamp(b) - getPromptTimestamp(a));
   }, [allPrompts, selectedBlog]);
 
@@ -239,7 +243,9 @@ export const BlogPage: React.FC<BlogPageProps> = ({
         <div className="grid grid-cols-1 gap-6 my-8">
           {blogs.map((blog) => {
             const count = allPrompts.filter((p) =>
-              promptMatchesCategory(p, blog.categoryId)
+              blog.promptIds && blog.promptIds.length > 0
+                ? blog.promptIds.includes(p.id)
+                : promptMatchesCategory(p, blog.categoryId)
             ).length;
             return (
               <article

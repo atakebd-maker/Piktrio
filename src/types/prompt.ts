@@ -57,6 +57,7 @@ export interface BlogPost {
   slug: string;
   categoryId: string;
   categoryName: string;
+  promptIds?: string[];
   title: string;
   metaTitle: string;
   metaDescription: string;

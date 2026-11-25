@@ -360,7 +360,11 @@ BLOG_POSTS.forEach((b) => {
     fs.mkdirSync(bDir, { recursive: true });
   }
   const blogCanonicalUrl = `${siteUrl}/blog/${encodeURIComponent(b.slug)}`;
-  const matchedPrompts = STORE_PROMPTS.filter((p) => promptMatchesCategory(p, b.categoryId));
+  const matchedPrompts = STORE_PROMPTS.filter((p) =>
+    b.promptIds && b.promptIds.length > 0
+      ? b.promptIds.includes(p.id)
+      : promptMatchesCategory(p, b.categoryId)
+  );
 
   const blogJsonLd = {
     '@context': 'https://schema.org',

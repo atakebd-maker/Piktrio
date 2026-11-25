@@ -206,4 +206,159 @@ export const BLOG_POSTS: BlogPost[] = [
       },
     ],
   },
+  {
+    id: 'sheru-bhai-ai-photo-editing-prompts-complete-guide',
+    slug: 'sheru-bhai-ai-photo-editing-prompts-complete-guide',
+    categoryId: 'boys',
+    categoryName: 'Sheru Bhai',
+    promptIds: [
+      'the-kings-companion-royal-white-lion-portrait',
+      'the-white-lion-king-luxury-royal-fashion-portrait',
+      'piktrio-pts-royal-lion-friendship-portrait',
+    ],
+    title:
+      'Sheru Bhai AI Photo Editing Prompts (2026) – All 3 Viral Royal Suit, Golden Throne & Friendship Prompts for ChatGPT & Gemini',
+    metaTitle:
+      'Sheru Bhai AI Photo Editing Prompts – All 3 Viral Prompts & Guide | Piktrio',
+    metaDescription:
+      'Copy all 3 viral Sheru Bhai AI photo editing prompts for boys. Create ultra-realistic 8K royal white suit, golden throne sofa, and PIKTRIO luxury portraits with Sheru Bhai in ChatGPT & Google Gemini.',
+    excerpt:
+      'All three trending Sheru Bhai AI photo editing prompts in one complete guide—featuring uncropped preview photos, one-click prompt copy boxes, and step-by-step ChatGPT & Gemini creation rules.',
+    publishedAt: '2026-11-24',
+    readTime: '7 min read',
+    author: 'Piktrio Editorial Team',
+    coverImageUrl:
+      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhbcQvGktYdvt6PxsG8-isoR6_KpUhZE_oDE2_GyOIeR2gHCe9pVfESObgTYvpQ2NODwocg3Xoi6fkBMdiXVvY45Vyt02l1DeBONHrlpAEFoBptwjN4raHHggpItX57gd93EvUVLARes7xREIJLb9HuoztmhWeI9H-BYTf-KDK4rKm7muXUmDu6KfAJILhl/s1600/image.png',
+    keywords: [
+      'Sheru Bhai AI photo editing prompt',
+      'Sheru Bhai photo prompt',
+      'Sheru Bhai with boy AI photo',
+      'Sheru Bhai white suit AI prompt',
+      'Sheru Bhai golden throne AI prompt',
+      'Piktrio Sheru Bhai prompt',
+      'PTS Sheru Bhai friendship portrait',
+      'Royal Sheru Bhai AI portrait',
+      'Sheru Bhai ChatGPT photo editing',
+      'Sheru Bhai Google Gemini prompt',
+      'Sheru Bhai viral Instagram photo prompt',
+      'Sheru Bhai TikTok AI photo prompt',
+      'Sheru Bhai matching ivory suit photo',
+      'Sheru Bhai royal lounge sofa prompt',
+      'Sheru Bhai standing pose AI prompt',
+      'Sheru Bhai sitting pose AI prompt',
+      'Face identity lock Sheru Bhai prompt',
+      'Keep real beard and face Sheru Bhai AI',
+      '8K ultra realistic Sheru Bhai portrait',
+      'Boys luxury fashion Sheru Bhai AI photo',
+      'Gemini Nano Banana Sheru Bhai prompt',
+      'GPT-4o Sheru Bhai photo transformation',
+      'Free Sheru Bhai AI prompts 2026',
+      'Sheru Bhai lion companion photo prompt',
+      'No watermark Sheru Bhai AI portrait',
+    ],
+    introParagraphs: [
+      'Sheru Bhai portraits have taken over Instagram Reels, Facebook, TikTok, and YouTube Shorts as one of the most popular luxury AI photo trends in Bangladesh, India, and across South Asia. Fans love generating ultra-realistic 8K portraits sitting or standing side by side with Sheru Bhai in tailored ivory-white suits, designer sunglasses, gold jewelry, and royal throne backdrops.',
+      'In this complete Piktrio guide, we have collected all three viral Sheru Bhai AI photo editing prompts into one easy-to-follow blog post. Each entry includes the full uncropped original image, an instant one-click English AI prompt box right below the photo, and exact step-by-step instructions for ChatGPT (GPT-4o) and Google Gemini so your real face, hairstyle, beard, and mustache remain 100% authentic.',
+    ],
+    perPromptNotes: {
+      'the-kings-companion-royal-white-lion-portrait': {
+        headline: 'The King’s Companion – Sheru Bhai Royal Lounge Sofa & Ivory Suit Portrait',
+        summary:
+          'A luxury study portrait sitting side-by-side with Sheru Bhai on an ornate golden carved sofa, featuring Sheru Bhai in a tailored ivory three-piece suit and black sunglasses with his paw over your shoulder.',
+        howToSteps: [
+          'Click the Copy Prompt button right below the Sheru Bhai Royal Lounge photo.',
+          'Open ChatGPT (GPT-4o) or Google Gemini on your mobile phone or computer.',
+          'Upload a clear front-facing solo photo of yourself so the AI sees your real face, hair, and beard/mustache.',
+          'Paste the copied prompt and press Send to generate your 4:5 royal lounge portrait with Sheru Bhai.',
+        ],
+        proTip:
+          'Choose a relaxed, smiling selfie taken in bright indoor or daylight lighting—it matches the warm golden lamp light and royal thumbs-up pose seamlessly.',
+      },
+      'the-white-lion-king-luxury-royal-fashion-portrait': {
+        headline: 'Sheru Bhai – Standing Royal White Suit & Luxury Red Carpet Portrait',
+        summary:
+          'An iconic standing celebration portrait alongside Sheru Bhai in matching ivory-white three-piece suits under glowing decorative ceiling string lights on a royal red carpet.',
+        howToSteps: [
+          'Copy the standing Sheru Bhai Luxury Fashion prompt using the Copy button directly below the image.',
+          'Launch Google Gemini or ChatGPT and attach one sharp personal portrait photo.',
+          'Paste the full prompt without deleting the Face Accuracy section at the bottom.',
+          'Generate and save your 8K portrait standing proudly next to Sheru Bhai!',
+        ],
+        proTip:
+          'Keep your face reference clear and free from heavy filters so the black rectangular sunglasses and warm golden highlights preserve your natural jawline and facial hair.',
+      },
+      'piktrio-pts-royal-lion-friendship-portrait': {
+        headline: 'Piktrio & PTS Royal Sheru Bhai Golden Throne Friendship Portrait',
+        summary:
+          'A grand outdoor royal palace garden portrait sitting with Sheru Bhai on an extravagant golden throne sofa, wearing white blazers over black shirts with custom PIKTRIO and PTS gold pendants.',
+        howToSteps: [
+          'Tap Copy Prompt below the Piktrio & PTS Royal Sheru Bhai Friendship preview image.',
+          'Open ChatGPT (GPT-4o) or Google Gemini and upload your personal face reference photo.',
+          'Paste the complete prompt text and submit to render the golden throne and PIKTRIO royal flag backdrop.',
+          'Check facial likeness and download your high-resolution portrait in full aspect ratio.',
+        ],
+        proTip:
+          'Do not shorten the prompt—keeping the detailed PIKTRIO and PTS jewelry rules ensures sharp gold lettering and natural sitting posture beside Sheru Bhai.',
+      },
+    },
+    masterHowToSteps: [
+      {
+        stepNumber: 1,
+        title: 'Pick Any of the 3 Sheru Bhai Styles Above',
+        detail:
+          'Decide whether you want the Royal Lounge Sofa pose, the Standing Ivory Suit Red Carpet look, or the Piktrio & PTS Golden Throne Friendship portrait, and copy its full prompt.',
+      },
+      {
+        stepNumber: 2,
+        title: 'Select a Sharp Solo Face Reference Photo',
+        detail:
+          'Use an unedited, well-lit photo showing only you looking clearly toward the camera so the AI preserves your real eyes, hairline, skin tone, and natural beard or clean-shaven face.',
+      },
+      {
+        stepNumber: 3,
+        title: 'Open ChatGPT (GPT-4o) or Google Gemini',
+        detail:
+          'Open the official ChatGPT or Google Gemini app or website and tap the image upload (+) button to attach your personal reference photo first.',
+      },
+      {
+        stepNumber: 4,
+        title: 'Paste the Full Copied Prompt & Submit',
+        detail:
+          'Paste the entire copied prompt beneath your uploaded photo and hit Send. Keep all Strict Face Identity Preservation instructions intact for true-to-life accuracy.',
+      },
+      {
+        stepNumber: 5,
+        title: 'Download & Share Your Sheru Bhai 8K Photo',
+        detail:
+          'Once generated, download the uncropped portrait in full resolution and share your Sheru Bhai royal look on Instagram, Facebook, TikTok, or WhatsApp Status.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Which AI app works best for generating Sheru Bhai photos?',
+        answer:
+          'Both ChatGPT (GPT-4o image generation) and Google Gemini work great with all three Sheru Bhai prompts in this blog. Simply upload your clear selfie, paste the prompt, and generate.',
+      },
+      {
+        question: 'Will my real face and beard stay unchanged in the Sheru Bhai portrait?',
+        answer:
+          'Yes! Every Sheru Bhai prompt includes Mandatory Reference Image Analysis and Facial Accuracy rules so the AI reproduces your exact facial features, hairstyle, beard, and mustache without replacing your face.',
+      },
+      {
+        question: 'Are all 3 Sheru Bhai AI photo editing prompts free to copy?',
+        answer:
+          'Yes, all three Sheru Bhai prompts—Royal Lounge Sofa, Standing Luxury White Suit, and Piktrio & PTS Golden Throne—are 100% free to copy and customize.',
+      },
+      {
+        question: 'Can I make Sheru Bhai photos on an Android phone or iPhone?',
+        answer:
+          'Yes, you can copy any prompt right from your mobile browser and paste it straight into the ChatGPT or Google Gemini mobile app in under 30 seconds.',
+      },
+      {
+        question: 'Can I customize the suit color or sunglasses in these Sheru Bhai prompts?',
+        answer:
+          'Yes. After copying the prompt, you can edit details like changing the ivory white suit to royal black or navy blue while keeping the rest of the Sheru Bhai scene description unchanged.',
+      },
+    ],
+  },
 ];
